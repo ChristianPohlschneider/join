@@ -40,3 +40,9 @@
     width: 100%;
 }
 
+.menu-button-possition{
+    display: flex;
+    align-items: center;
+    padding-left: 25%;
+}
+
