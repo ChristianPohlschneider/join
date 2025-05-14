@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -8,35 +8,44 @@
     <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/login-signup.css">
+    <script src="./js/login.js"></script>
 </head>
 
-<body>
+<body onload="init()">
+    <div id="animation" class="animation">
+        <img class="animation-logo logo" src="./assets/icons/Join-main-logo.png" alt="">
+    </div>
     <header>
-        <img src="./assets/icons/Join-main-logo.png" alt="Join Logo">
+        <img class="logo" src="./assets/icons/Join-main-logo.png" alt="Join Logo">
         <div>
             <span class="signup-span">Not a Join user?</span>
-            <button class="logSign-btn">Sign Up</button>
+            <button class="sign-btn">Sign Up</button>
         </div>
     </header>
     <main>
         <div class="form-container">
             <h1>Log in</h1>
             <div class="seperator"></div>
-            <form>
-                <div class="input-container">
-                    <input type="text">
-                    <img src="" alt="">
-                </div>
-                <div class="input-container">
-                    <input type="text">
-                    <img src="" alt="">
-                </div>
-                <div><button class="logSign-btn">Log in</button>
-                    <button>Guest Log in</button>
-                </div>
-            </form>
+            <div class="input-container input-email">
+                <input placeholder="Email" type="text">
+                <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
+            </div>
+            <div class="input-container input-pw">
+                <input placeholder="Password" type="text">
+                <img class="icon-pw" src="./assets/icons/pw-lock.png" alt="PW locked">
+            </div>
+            <div><button class="login-btn">Log in</button>
+                <button class="guest-btn">Guest Log in</button>
+            </div>
         </div>
     </main>
+    <footer>
+        <div class="footer-content">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Legal notice</a>
+        </div>
+
+    </footer>
 </body>
 
 </html>
