@@ -65,7 +65,7 @@ h1{
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    margin-bottom: 48px;
+    margin-bottom: 42px;
     width: 100%;
 }
 
@@ -82,6 +82,10 @@ h1{
     cursor: pointer;
     width: 16px;
     height: 21px;
+}
+
+.icon-person{
+    cursor: pointer;
 }
 
 .icon-mail{
@@ -151,9 +155,9 @@ a{
 }
 
 .footer-content{
-display: flex;
-justify-content: center;
-gap: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
 }
 
 a:hover{
@@ -186,4 +190,39 @@ a:hover{
         top: 138px;
         left: 117px;
     }
+}
+
+.form-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.arrow-img{
+    width: 24px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.checkbox-container{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.checkbox-span{
+    color: #D1D1D1;
+}
+
+.privacy-link{
+    color: #29ABE2;
+}
+
+.privacy-link:hover{
+    text-decoration: underline;
+}
+.checkbox{
+    cursor: pointer;
 }
