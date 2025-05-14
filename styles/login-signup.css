@@ -1,0 +1,59 @@
+.logSign-btn{
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: #2A3647;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.logSign-btn:hover{
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.signup-span{
+    font-size: 20px;
+    margin-right: 35px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 77px 67px;
+}
+
+header img{
+    width: 100px;
+    height: 122px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.seperator{
+    margin: 16px 0;
+    height: 3px;
+    width: 150px;
+    background-color: #29ABE2;
+    border-radius: 3px;
+}
+
+.input-container{
+    border: 1px solid #D1D1D1;
+}

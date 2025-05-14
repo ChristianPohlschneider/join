@@ -7,4 +7,14 @@
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
     margin: 0;
+    color: black;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+}
+
+input{
+    border: none;
 }
