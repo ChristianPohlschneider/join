@@ -13,26 +13,28 @@
 
 <body onload="init()">
     <div id="animation" class="animation">
-        <img class="animation-logo logo" src="./assets/icons/Join-main-logo.png" alt="">
+        <img class="animation-logo logo" src="./assets/icons/join-main-logo.png" alt="">
     </div>
     <header>
         <img class="logo" src="./assets/icons/Join-main-logo.png" alt="Join Logo">
         <div>
             <span class="signup-span">Not a Join user?</span>
-            <button class="sign-btn">Sign Up</button>
+            <a href="./html/sign_up.html"><button class="sign-btn">Sign up</button></a>
         </div>
     </header>
     <main>
         <div class="form-container">
             <h1>Log in</h1>
             <div class="seperator"></div>
-            <div class="input-container input-email">
-                <input placeholder="Email" type="text">
-                <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
-            </div>
-            <div class="input-container input-pw">
-                <input placeholder="Password" type="text">
-                <img class="icon-pw" src="./assets/icons/pw-lock.png" alt="PW locked">
+            <div class="log-in-container">
+                <div class="input-container">
+                    <input placeholder="Email" type="email">
+                    <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
+                </div>
+                <div class="input-container">
+                    <input placeholder="Password" type="password">
+                    <img class="icon-pw" src="./assets/icons/pw-lock.png" alt="PW locked">
+                </div>
             </div>
             <div><button class="login-btn">Log in</button>
                 <button class="guest-btn">Guest Log in</button>
