@@ -1,9 +1,10 @@
 function menu() {
-    return `    <div class="menu-style">
-        <div class="flex-center">
-            <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
-        </div>
-        <div>
+    return `    
+    <div class="menu-style">
+        <div class="menu-tasks">
+            <div class="menu-div">
+                <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
+            </div>
             <a href="#summary" class="menu-button-possition margin-bottom-10px">
                 <img src="../assets/icons/summary.png" alt="summary logo">
                 <p class="padding-left-10px">Summary</p>
@@ -20,10 +21,12 @@ function menu() {
                 <img src="../assets/icons/contact.png" alt="contact logo">
                 <p class="padding-left-10px">Contact</p>
             </a>
+
         </div>
         <div class="possition-absolute-bottom">
             <a href="#privacy-policy" class="flex-center padding-10px">Privacy Policy</a>
             <a href="#legal-notice" class="flex-center padding-10px">Legal notice</a>
         </div>
-    </div>`;
+    </div>
+    `;
 }

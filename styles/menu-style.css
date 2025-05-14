@@ -1,48 +1,60 @@
-
-.menu-style{
+.menu-style {
     background-color: rgb(42, 54, 71);
+    display: flex;
     color: white;
     font-size: 16px;
     width: 232px;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
     z-index: 1000;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.logo-join{
+.logo-join {
     width: 100px !important;
     height: 100px !important;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    margin-top: 64px;
+    margin-bottom: 64px;
 }
 
-.menu-style a{ 
-  color: #CDCDCD;
-  text-decoration: none;
+.menu-style a {
+    color: #CDCDCD;
+    text-decoration: none;
 }
 
-.menu-style a:hover{
+.menu-style a:hover {
     color: white;
-  background-color: #091931;
+    background-color: #091931;
 }
 
 .menu-style img {
-   width: 30px;
-   height: 30px;
+    width: 30px;
+    height: 30px;
 }
 
-.possition-absolute-bottom{
-    position: absolute;
+.menu-tasks {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-div {
+    display: flex;
+    justify-content: center;
+}
+
+.possition-absolute-bottom {
+    /* position: absolute; */
     bottom: 50px;
     left: 0;
     width: 100%;
+    margin-bottom: 50px;
 }
 
-.menu-button-possition{
+.menu-button-possition {
     display: flex;
     align-items: center;
     padding-left: 25%;
 }
-

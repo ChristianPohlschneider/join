@@ -1,0 +1,30 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+}
+
+header {
+    height: 200px;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.boardTemplate {
+    background-color: rgb(246,247,248);
+    color: black;
+    /* height: 100%;
+    width: 100%; */
+    display: flex;
+    flex: 1;
+}
+
+.boardHeader {
+    height: 100px;
+    width: 100%;
+}
