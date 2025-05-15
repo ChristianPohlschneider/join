@@ -54,13 +54,13 @@ function safeToLocalStorage() {
 
 function wrongMailandPassword(emailRef, passwordRef) {
     let warningRef = document.getElementById('warning')
-    let inputMail = document.getElementById('mail-container')
-    let inputPassword = document.getElementById('password-container')
     warningRef.classList.remove('d_none')
     emailRef.value = "";
     passwordRef.value = "";
-    inputMail.classList.add('red-border')
-    inputPassword.classList.add('red-border')
+    const inputContainers = document.querySelectorAll('.input-container');
+    inputContainers.forEach(container => {
+        container.classList.add('red-border');
+    })
 }
 
 function removeRedBorder() {
