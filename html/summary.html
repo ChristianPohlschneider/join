@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/styles/summary.css">
 </head>
 
-<body onload="summaryWelcome()">
+<body onload="initSummary()">
     <div id="menuTemplate"></div>
     <div id="headerTemplate"></div>
 
@@ -23,7 +23,33 @@
     </div>
 
     <div>
-        <div></div>
+        <div>
+            <div>
+                <div>
+                    <img src="/assets/icons/edit.png" alt="edit">
+                    <p>To-do</p>
+                </div>
+                <div>
+                    <img src="/assets/icons/check.png" alt="check">
+                    <p>Done</p>
+                </div>
+            </div>
+
+            <div>
+                <img src="/assets/icons/red-icon.png" alt="#">
+                <div></div>
+                <p id="dead-line">Upcoming Deadline</p>
+            </div>
+
+            <div>
+                <div>
+                    <p></p>
+                    <p>Tasks in Board</p>
+                </div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <div id="greeting"></div>
     </div>
 
