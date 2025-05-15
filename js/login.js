@@ -1,8 +1,35 @@
 function init() {
     const timeout = setTimeout(closeLoader, 2500);
-}
-
+};
 
 function closeLoader() {
-    document.getElementById('animation').classList.add('d_none')
-}
+    document.getElementById('animation').classList.add('d_none');
+};
+
+function togglePasswordImg() {
+     let passwordRef = document.getElementById('password');
+    let passwordIcon = document.getElementById('password-icon');
+    if (passwordRef.value.length > 0) {
+        if (passwordRef.type === "password") {
+            passwordIcon.src = `./assets/icons/pw-unvisible.png`
+        } else {
+            passwordIcon.src = `./assets/icons/pw-visible.png`
+        };
+    } else {
+        passwordIcon.src = `./assets/icons/pw-lock.png`
+    }; 
+};
+
+function togglePasswordVisibility() {
+    let passwordRef = document.getElementById('password');
+    let passwordIcon = document.getElementById('password-icon');
+    if (passwordRef.type === "password" && passwordRef.value.length > 0) {
+        passwordRef.type = "text"
+        passwordIcon.src = `./assets/icons/pw-visible.png`
+    } else if (passwordRef.type === "text" && passwordRef.value.length > 0) {
+        passwordRef.type = "password"
+        passwordIcon.src = `./assets/icons/pw-unvisible.png`
+    } else {
+        return
+    };
+};

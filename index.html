@@ -28,12 +28,12 @@
             <div class="seperator"></div>
             <div class="log-in-container">
                 <div class="input-container">
-                    <input placeholder="Email" type="email">
+                    <input id="mail" placeholder="Email" type="email">
                     <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
                 </div>
                 <div class="input-container">
-                    <input placeholder="Password" type="password">
-                    <img class="icon-pw" src="./assets/icons/pw-lock.png" alt="PW locked">
+                    <input onkeyup="togglePasswordImg()" id="password" placeholder="Password" type="password">
+                    <img onclick="togglePasswordVisibility()" id="password-icon" class="icon-pw" src="./assets/icons/pw-lock.png" alt="PW locked">
                 </div>
             </div>
             <div><button class="login-btn">Log in</button>
