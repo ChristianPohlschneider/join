@@ -7,19 +7,19 @@ function menu() {
             </div>
             <a href="#summary" class="menu-button-possition margin-bottom-15px">
                 <img src="../assets/icons/summary.png" alt="summary logo">
-                <p class="padding-left-10px">Summary</p>
+                <p class="padding-left-10px p-menu-style">Summary</p>
             </a>
             <a href="#add-task" class="menu-button-possition margin-bottom-15px">
                 <img src="../assets/icons/add-task.png" alt="add task logo">
-                <p class="padding-left-10px">Add Task</p>
+                <p class="padding-left-10px p-menu-style">Add Task</p>
             </a>
             <a href="#board" class="menu-button-possition margin-bottom-15px">
                 <img src="../assets/icons/board.png" alt="board logo">
-                <p class="padding-left-10px">Board</p>
+                <p class="padding-left-10px p-menu-style">Board</p>
             </a>
             <a href="#contact" class="menu-button-possition margin-bottom-15px">
                 <img src="../assets/icons/contact.png" alt="contact logo">
-                <p class="padding-left-10px">Contact</p>
+                <p class="padding-left-10px p-menu-style">Contact</p>
             </a>
 
         </div>

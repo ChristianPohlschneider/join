@@ -33,6 +33,11 @@ body {
     gap: 18px;
 }
 
+.summary-content-div-row1:hover{
+background-color: #2A3647;
+color: white;
+}
+
 .summary-content-div-row2 {
     background-color: #FFFFFF;
     border-radius: 20px;
@@ -46,6 +51,10 @@ body {
     padding-right: 48px;
 }
 
+.summary-content-div-row2:hover{
+    background-color: #2A3647;
+}
+
 .summary-content-div-row3 {
     background-color: #FFFFFF;
     border-radius: 20px;
@@ -54,6 +63,10 @@ body {
     max-width: 168px;
     height: 168px;
     gap: 18px;
+}
+
+.summary-content-div-row3:hover{
+    background-color: #2A3647;
 }
 
 p {

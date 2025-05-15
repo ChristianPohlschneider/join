@@ -13,6 +13,12 @@
     justify-content: space-between;
 }
 
+.p-menu-style{
+    color: #CDCDCD;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
 .logo-join {
     width: 100px !important;
     height: 100px !important;
