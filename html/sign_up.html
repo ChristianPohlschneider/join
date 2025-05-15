@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/assets.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/login-signup.css">
+    <script src="../js/signup.js"></script>
 </head>
 
 <body>
@@ -30,30 +31,42 @@
                     <input placeholder="Name" type="text">
                     <img class="icon-person" src="../assets/icons/person.png" alt="Person icon">
                 </div>
-                <div class="input-container">
-                    <input placeholder="Email" type="email">
+                <div id="mail-input-container" class="input-container margin-top">
+                    <input id="mail" onfocusout="checkMail()" on placeholder="Email" type="email">
                     <img class="icon-mail" src="../assets/icons/mail.png" alt="Mail icon">
                 </div>
-                <div class="input-container">
-                    <input placeholder="Password" type="password">
-                    <img class="icon-pw" src="../assets/icons/pw-lock.png" alt="PW locked">
+                <div class="warning-container">
+                    <span class="warning-signup d_none" id="warning-mail">Please check that your email is in the correct format.</span>
                 </div>
-                <div class="input-container">
-                    <input placeholder="Confirm Password" type="password">
-                    <img class="icon-pw" src="../assets/icons/pw-lock.png" alt="PW locked">
+                <div id="pasword-input-container" class="input-container">
+                    <input onclick="" onkeyup="updatePasswordState('password','password-icon')" id="password"
+                        placeholder="Password" type="password">
+                    <img onclick="togglePasswordVisibility('password','password-icon')" id="password-icon" class="icon-pw"
+                        src="../assets/icons/pw-lock.png" alt="PW locked">
                 </div>
-                <div class="checkbox-container">
-                    <img class="checkbox" src="../assets/icons/checkbox.png" alt="checkbox">
-                    <div>
-                        <span class="checkbox-span">I accept the</span>
-                        <a class="privacy-link" href="#">Privacy Policy</a>
-                    </div>
+                <div id="pasword-confirm-input-container" class="input-container margin-top">
+                    <input onclick="" onkeyup="updatePasswordState('confirm-password','password-confirm-icon')" id="confirm-password"
+                        placeholder="Confirm Password" type="password">
+                    <img onclick="togglePasswordVisibility('confirm-password','password-confirm-icon')" id="password-confirm-icon" class="icon-pw"
+                        src="../assets/icons/pw-lock.png" alt="PW locked">
                 </div>
             </div>
-
-            <div>
+            <div class="warning-container">
+                <span class="warning-signup" id="warning-password">Your passwords don't match. Please try again</span>
+            </div>
+            <div class="checkbox-container">
+                <img class="checkbox" src="../assets/icons/checkbox.png" alt="checkbox">
+                <div>
+                    <span class="checkbox-span">I accept the</span>
+                    <a class="privacy-link" href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="button-container">
                 <button class="login-btn">Sign up</button>
             </div>
+        </div>
+
+
         </div>
     </main>
     <footer>
