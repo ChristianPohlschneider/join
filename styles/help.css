@@ -6,21 +6,30 @@ p {
     font-size: 16px;
     font-weight: 400;
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 h1 {
-    font-size: 72px;
-    font-weight: 600;
+    font-size: 73px;
+    font-weight: 700;
     margin-top: 70px;
     margin-left: 328px;
 }
 
 h2 {
-    font-size: 36px;
-    font-weight: 600;
+    font-size: 27px;
+    font-weight: 700;
     gap: 32px;
-    margin-bottom: 32px;
+}
+
+.h2gap {
+    margin-bottom: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 700;
+    gap: 32px;
 }
 
 .txtContainer {
@@ -33,7 +42,6 @@ h2 {
 .guideBoard{
     display: flex;
     gap: 32px;
-    margin-bottom: 12px;
 }
 
 .guideContacts{
