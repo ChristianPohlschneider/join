@@ -12,8 +12,7 @@
 }
 
 .position-headline {
-    position: relative;
-    left: -176px;
+    width: 600px;
 }
 
 .h1-summary {
@@ -135,6 +134,11 @@ p {
 
 .greeting-style {
     font-size: 47px;
+}
+
+.possition-greeting {
+    position: relative;
+    bottom: -120px;
 }
 
 .user-name {

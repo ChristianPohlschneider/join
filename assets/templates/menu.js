@@ -6,7 +6,7 @@ function menu() {
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
             </div>
             <a href="#summary" class="menu-button-possition margin-bottom-15px">
-                <img src="../assets/icons/summary.png" alt="summary logo">
+                <div class="icon-menu-summary"></div>
                 <p class="padding-left-10px p-menu-style">Summary</p>
             </a>
             <a href="#add-task" class="menu-button-possition margin-bottom-15px">

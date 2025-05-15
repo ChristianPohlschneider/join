@@ -19,6 +19,10 @@
     padding-bottom: 8px;
 }
 
+.p-menu-style:hover{
+    color: white;
+}
+
 .logo-join {
     width: 100px !important;
     height: 100px !important;
@@ -49,6 +53,19 @@
 .menu-div {
     display: flex;
     justify-content: center;
+}
+
+.icon-menu-summary{
+    background-image: url(../assets/icons/summary.png);
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+}
+
+.icon-menu-summary:hover{
+    /*background-image: url(../assets/icons/png.hover/summary.png);
+     width: 30px;
+    height: 30px;*/
 }
 
 .possition-absolute-bottom {
