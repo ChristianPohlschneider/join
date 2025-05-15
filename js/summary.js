@@ -14,16 +14,16 @@ function summaryWelcome() {
 
     greetingTime = switchTime();
 
-    greeting.innerHTML = greetingTime + `<p>Noah Kallan<p>`;
+    greeting.innerHTML = greetingTime + `<p class="user-name">Noah Kallan<p>`;
 }
 
 function switchTime() {
     t = time.getHours();
 
     switch (true) {
-        case (t <= 12):
+        case (t < 12):
             return "Good morning";
-        case (t <= 18):
+        case (t >= 12):
             return "Good afternoon";
         default:
             return "Good evening";
