@@ -1,13 +1,37 @@
-function init() {
+const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/"
+let currentUser;
+let users = []
+
+async function init() {
     const timeout = setTimeout(closeLoader, 2500);
+    await fetchUsers()
 };
+
+async function fetchUsers() {
+    let userResponse = await getAllUsers("users");
+    let userKeysArray = Object.values(userResponse);
+    for (let index = 0; index < userKeysArray.length; index++) {
+        users.push(
+            {
+                "email" :  userKeysArray[index].email,
+                "password" : userKeysArray[index].password,
+                "name" : userKeysArray[index].name
+            }
+        );
+    };
+}
+
+async function getAllUsers(path = "") {
+    let response = await fetch(BASE_URL + path + ".json");
+    return responseToJson = await response.json();
+}
 
 function closeLoader() {
     document.getElementById('animation').classList.add('d_none');
 };
 
-function togglePasswordImg() {
-     let passwordRef = document.getElementById('password');
+function updatePasswordState() {
+    let passwordRef = document.getElementById('password');
     let passwordIcon = document.getElementById('password-icon');
     if (passwordRef.value.length > 0) {
         if (passwordRef.type === "password") {

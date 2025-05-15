@@ -32,8 +32,12 @@
                     <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
                 </div>
                 <div class="input-container">
-                    <input onkeyup="togglePasswordImg()" id="password" placeholder="Password" type="password">
-                    <img onclick="togglePasswordVisibility()" id="password-icon" class="icon-pw" src="./assets/icons/pw-lock.png" alt="PW locked">
+                    <input onkeyup="updatePasswordState()" id="password" placeholder="Password" type="password">
+                    <img onclick="togglePasswordVisibility()" id="password-icon" class="icon-pw"
+                        src="./assets/icons/pw-lock.png" alt="PW locked">
+                </div>
+                <div class="warning-container">
+                    <span class="warning d_none" id="warning">Check your email and password. Please try again</span>
                 </div>
             </div>
             <div><button class="login-btn">Log in</button>
