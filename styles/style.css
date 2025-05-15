@@ -9,14 +9,27 @@
     flex-direction: column;
 }
 
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
 .padding-left-10px {
     padding-left: 10px;
+}
+
+.margin-left-40px{
+    margin-left: 40px;
+}
+
+.margin-left-30px{
+    margin-left: 30px;
 }
 
 .padding-10px {
     padding: 10px;
 }
 
-.margin-bottom-10px {
-    margin-bottom: 10px;
+.margin-bottom-15px {
+    margin-bottom: 15px;
 }

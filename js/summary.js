@@ -14,7 +14,7 @@ function summaryWelcome() {
 
     greetingTime = switchTime();
 
-    greeting.innerHTML = greetingTime   /*  + user */;
+    greeting.innerHTML = greetingTime + `<p>Noah Kallan<p>`;
 }
 
 function switchTime() {
