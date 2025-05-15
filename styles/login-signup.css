@@ -79,7 +79,7 @@ h1{
 }
 
 .input-container:focus-within {
-    border: 1px solid #29ABE2;
+    border: 1px solid #29ABE2 !important;
 }
 
 .icon-pw{
@@ -102,6 +102,7 @@ input{
     font-size: 20px;
     font-weight: 400;
     width: 93%;
+    background-color: white;
 }
 
 ::placeholder {

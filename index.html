@@ -27,12 +27,12 @@
             <h1>Log in</h1>
             <div class="seperator"></div>
             <div class="log-in-container">
-                <div class="input-container">
-                    <input id="mail" placeholder="Email" type="email">
+                <div id="mail-container" class="input-container">
+                    <input onclick="removeRedBorder()" id="mail" placeholder="Email" type="email">
                     <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
                 </div>
-                <div class="input-container">
-                    <input onkeyup="updatePasswordState()" id="password" placeholder="Password" type="password">
+                <div id="password-container" class="input-container">
+                    <input onclick="removeRedBorder()" onkeyup="updatePasswordState()" id="password" placeholder="Password" type="password">
                     <img onclick="togglePasswordVisibility()" id="password-icon" class="icon-pw"
                         src="./assets/icons/pw-lock.png" alt="PW locked">
                 </div>
@@ -40,7 +40,7 @@
                     <span class="warning d_none" id="warning">Check your email and password. Please try again</span>
                 </div>
             </div>
-            <div><button class="login-btn">Log in</button>
+            <div><button onclick="logIn()" class="login-btn">Log in</button>
                 <button class="guest-btn">Guest Log in</button>
             </div>
         </div>
