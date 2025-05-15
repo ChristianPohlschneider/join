@@ -23,7 +23,7 @@ function switchTime() {
     switch (true) {
         case (t < 12):
             return "Good morning";
-        case (t >= 12):
+        case (t >= 12 && t <= 18):
             return "Good afternoon";
         default:
             return "Good evening";
