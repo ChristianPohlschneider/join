@@ -36,6 +36,16 @@ function logIn() {
     } else {
         wrongMailandPassword(emailRef, passwordRef)
     }
+    emailRef.value = "";
+    passwordRef.value = "";
+}
+
+function guestLogIn() {
+    let emailRef = document.getElementById('mail');
+    let passwordRef = document.getElementById('password');
+    emailRef.value = "guest@login.com"
+    passwordRef.value = "a1234567"
+    logIn();
 }
 
 function safeToLocalStorage() {

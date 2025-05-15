@@ -1,41 +1,42 @@
-body{
+body {
     background-color: rgb(246, 247, 248);
 }
 
-button{
+button {
     font-size: 16px;
     font-weight: 700;
     border-radius: 8px;
 }
 
-.sign-btn{
+.sign-btn {
     color: white;
     padding: 16px;
     background-color: #2A3647;
 }
 
-.sign-btn:hover, .login-btn:hover{
+.sign-btn:hover,
+.login-btn:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.signup-span{
+.signup-span {
     font-size: 20px;
     margin-right: 35px;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     padding: 77px 67px;
 }
 
-.logo{
+.logo {
     width: 100px;
     height: 122px;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +45,7 @@ main{
     flex: 1;
 }
 
-.form-container{
+.form-container {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -55,12 +56,12 @@ main{
     width: 652px;
 }
 
-h1{
+h1 {
     font-size: 61px;
     font-weight: 700;
 }
 
-.log-in-container{
+.log-in-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,7 +70,7 @@ h1{
     width: 100%;
 }
 
-.input-container{
+.input-container {
     display: flex;
     align-items: center;
     border: 1px solid #D1D1D1;
@@ -82,23 +83,23 @@ h1{
     border: 1px solid #29ABE2 !important;
 }
 
-.icon-pw{
+.icon-pw {
     cursor: pointer;
     width: 20px;
     height: 20px;
 }
 
-.icon-person{
+.icon-person {
     cursor: pointer;
 }
 
-.icon-mail{
+.icon-mail {
     cursor: pointer;
     width: 20px;
     height: 16px;
 }
 
-input{
+input {
     font-size: 20px;
     font-weight: 400;
     width: 93%;
@@ -106,17 +107,17 @@ input{
 }
 
 ::placeholder {
-  color: #D1D1D1;
+    color: #D1D1D1;
 }
 
-.login-btn{
+.login-btn {
     color: white;
     padding: 12px 24px;
     background-color: #2A3647;
     font-size: 21px;
 }
 
-.guest-btn{
+.guest-btn {
     color: #2A3647;
     padding: 12px 24px;
     background-color: white;
@@ -125,13 +126,14 @@ input{
     margin-left: 24px;
 }
 
-.guest-btn:hover{
+.guest-btn:hover {
     border: 1px solid #29ABE2;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    color: #29ABE2;;
+    color: #29ABE2;
+    ;
 }
 
-.seperator{
+.seperator {
     height: 3px;
     width: 150px;
     background-color: #29ABE2;
@@ -141,35 +143,36 @@ input{
     margin-bottom: 24px;
 }
 
-body{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-footer{
-  margin-top: auto;
-  padding-top: 84px;
-  padding-bottom: 52px;
+footer {
+    margin-top: auto;
+    padding-top: 84px;
+    padding-bottom: 52px;
 }
 
-a{
+a {
     color: #A8A8A8;
     font-size: 16px;
     font-weight: 400;
 }
 
-.footer-content{
+.footer-content {
     display: flex;
     justify-content: center;
     gap: 32px;
 }
 
-a:hover{
-    color: #29ABE2;;
+a:hover {
+    color: #29ABE2;
+    ;
 }
 
-.animation{
+.animation {
     position: fixed;
     background-color: rgb(246, 247, 248);
     height: 100vh;
@@ -177,7 +180,7 @@ a:hover{
     z-index: 1;
 }
 
-.animation-logo{
+.animation-logo {
     position: relative;
     top: 50%;
     left: 50%;
@@ -186,63 +189,65 @@ a:hover{
     animation-delay: 0.5s;
 }
 
-@keyframes moveLogo{
+@keyframes moveLogo {
     from {
         top: 50%;
         left: 50%;
     }
+
     to {
         top: 138px;
         left: 117px;
     }
 }
 
-.form-header{
+.form-header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
 }
 
-.arrow-img{
+.arrow-img {
     width: 24px;
     height: 21px;
     cursor: pointer;
 }
 
-.checkbox-container{
+.checkbox-container {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 16px;
 }
 
-.checkbox-span{
+.checkbox-span {
     color: #D1D1D1;
 }
 
-.privacy-link{
+.privacy-link {
     color: #29ABE2;
 }
 
-.privacy-link:hover{
+.privacy-link:hover {
     text-decoration: underline;
 }
-.checkbox{
+
+.checkbox {
     cursor: pointer;
 }
 
-.warning{
+.warning {
     height: 15px;
     font-size: 12px;
     font-weight: 400;
     color: #FF8190;
 }
 
-.warning-container{
+.warning-container {
     height: 15px;
 }
 
-.red-border{
-    border: 1px solid #FF001F !important; 
+.red-border {
+    border: 1px solid #FF001F !important;
 }
