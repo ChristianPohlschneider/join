@@ -19,17 +19,15 @@ h1 {
 h2 {
     font-size: 27px;
     font-weight: 700;
-    gap: 32px;
 }
 
-.h2gap {
+.h2mgb {
     margin-bottom: 24px;
 }
 
 h3 {
     font-size: 20px;
     font-weight: 700;
-    gap: 32px;
 }
 
 .txtContainer {
@@ -62,4 +60,9 @@ h3 {
 .guideDelCard {
     display: flex;
     gap: 32px;
+}
+
+.highlight {
+    color: #29ABE2;
+;
 }
