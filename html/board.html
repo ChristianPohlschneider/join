@@ -14,7 +14,7 @@
     <script src="../assets/templates/menu.js"></script>
 </head>
 
-<body onload="initboard()">
+<body class="maxWidth" onload="initboard()">
 
 
 
@@ -31,12 +31,12 @@
             <div class="boardTemplate" id="boardTemplate">
 
                 <div class="boardHeader">
-                    <h1>Board</h1>
+                    <div class="boardTitle">Board</div>
                     <div class="findAddElement">
                         <div class="taskSearch">
-                        <input class="taskSearchInput" type="search" value="" placeholder="Find Task">
-                        <img class="searchVector" src="../assets/icons/vector.png" alt="search">
-                        <img class="searchGlass" src="../assets/icons/search.png" alt="search">
+                            <input class="taskSearchInput" type="search" value="" placeholder="Find Task">
+                            <img class="searchVector" src="../assets/icons/vector.png" alt="search">
+                            <img class="searchGlass" src="../assets/icons/search.png" alt="search">
                         </div>
                         <button class="addTaskButton">Add task
                             <img class="addPlus" src="../assets/icons/add.png" alt="add task">
@@ -48,7 +48,10 @@
                     <div class="boardList">
                         <div class="boardListHeader">
                             <h3>To do</h3>
-                            <div>Add</div>
+                            <div class="plusButton">
+                                <div class="plusHorizontally"></div>
+                                <div class="plusVertically"></div>
+                            </div>
                         </div>
                         <div class="emptyTask">No Task To Do</div>
                     </div>
@@ -56,7 +59,10 @@
                     <div class="boardList">
                         <div class="boardListHeader">
                             <h3>In progress</h3>
-                            <div>Add</div>
+                            <div class="plusButton">
+                                <div class="plusHorizontally"></div>
+                                <div class="plusVertically"></div>
+                            </div>
                         </div>
                         <div class="emptyTask">Nothing in progress</div>
                     </div>
@@ -64,7 +70,10 @@
                     <div class="boardList">
                         <div class="boardListHeader">
                             <h3>Await feedback</h3>
-                            <div>Add</div>
+                            <div class="plusButton">
+                                <div class="plusHorizontally"></div>
+                                <div class="plusVertically"></div>
+                            </div>
                         </div>
                         <div class="emptyTask">No feedback</div>
                     </div>
@@ -72,7 +81,7 @@
                     <div class="boardList">
                         <div class="boardListHeader">
                             <h3>Done</h3>
-    
+
                         </div>
                         <div class="emptyTask">Nothing done</div>
                     </div>
