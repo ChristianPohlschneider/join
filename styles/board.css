@@ -1,12 +1,14 @@
 body {
     width: 100vw;
+    height: 100vh;
     overflow: auto;
+    margin-left: 232px;
 }
 
-/* .maxWidth {
+.maxWidth {
     max-width: 1440px;
     margin: 0 auto;
-} */
+}
 
 .rightSection {
     display: flex;
@@ -22,6 +24,7 @@ header {
 
 main {
     width: 100%;
+    height: 100%;
     display: flex;
 }
 
@@ -37,17 +40,23 @@ main {
 
 .boardHeader {
     display: flex;
-    height: 100px;
+    /* height: 100px; */
     width: 100%;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    padding-top: 64px;
+    padding-bottom: 42px;
+}
+
+.boardTitle {
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .boardTable {
     display: flex;
     gap: 20px;
-    justify-content: space-between;
 }
 
 .findAddElement {
@@ -69,6 +78,7 @@ main {
 .taskSearchInput {
     font-size: 20px;
     height: 100%;
+    width: 224px;
 }
 
 .searchVector {
@@ -98,17 +108,46 @@ main {
 .boardList {
     display: flex;
     flex-direction: column;
-    min-width: 250px;
+    width: 24%;
 }
 
 .boardListHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
+}
+
+.plusButton {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    border: 2px solid #2A3647;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.plusHorizontally {
+    background-color: #2A3647;
+    height: 2px;
+    width: 8px;
+}
+
+.plusVertically {
+    position: fixed;
+    background-color: #2A3647;
+    height: 8px;
+    width: 2px;
 }
 
 .emptyTask {
+    display: flex;
+    height: 48px;
     padding: 5px;
-    background-color: rgb(231, 231, 231);
+    background-color: #E7E7E7;
+    border: 1px dashed #A8A8A8;
     border-radius: 10px;
+    justify-content: center;
+    align-items: center;
 }
