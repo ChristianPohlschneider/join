@@ -9,23 +9,30 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/menu-style.css">
     <link rel="stylesheet" href="../styles/board.css">
+    <link rel="stylesheet" href="../styles/header-style.css">
     <script src="../js/board.js"></script>
+    <script src="../js/add_task.js"></script>
+    <script src="../js/legal_notice.js"></script>
+    <script src="../js/script.js"></script>
     <script src="../assets/templates/board_template.js"></script>
     <script src="../assets/templates/header.js"></script>
     <script src="../assets/templates/menu.js"></script>
-    <link rel="stylesheet" href="/styles/add-task.css">
+
+
 </head>
 
-<body class="maxWidth" onload="initboard()">
-
-
+<body onload="initboard()">
 
     <main>
 
-        <div id="menuTemplate"></div>
-        <div id="headerTemplate"></div>
+        <header>
+            <div class="headerTemplate" id="headerTemplate"></div>
 
-        <div class="rightSection">
+        </header>
+
+        <div id="menuTemplate"></div>
+
+        <div class="rightSection maxWidth">
 
             <div class="boardTemplate" id="boardTemplate">
 
@@ -91,10 +98,6 @@
         </div>
 
     </main>
-
-    <footer>
-
-    </footer>
 
 </body>
 
