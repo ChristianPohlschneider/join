@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +10,16 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/assets.css">
     <script src="../assets/templates/menu.js"></script>
-    
-
 </head>
+
 <body onload="initTask()">
 
-
-<header>
-    <div class="header-title">Kanban Project Management Tool</div>
-    <div class="header-help">
-        <a href="../html/help.html">
-            <img src="../assets/icons/help.png" alt="Help Icon" class="help-icon">
-        </a>
+    <header>
+        <div class="header-title">Kanban Project Management Tool</div>
+        <div class="header-help"> <!-- bei help bitte auf css aufpassen und header funktioniert nur in add_task.html-->
+            <a href="../html/help.html">
+                <img src="../assets/icons/help.png" alt="Help Icon" class="help-icon">
+            </a>
             <div id="userAvatar" class="avatar"></div>
             <div id="userSlider" class="slider">
                 <ul>
@@ -29,20 +28,78 @@
                     <li><a href="./sign_up.html">Log out</a></li>
                 </ul>
             </div>
+        </div>
+    </header>
+    <div id="menuTemplate"></div>
+
+    <!--Add_Task Content-->
+
+    <div class="add-task-style">
+        <h1 class="h1-add-task">Add Task</h1>
+
+        <form class="flex-center-task">
+            <div class="flex-gap flex-column">
+
+                <article>
+                    <p>Title<span>*</span></p>
+                    <input class="input-text" type="text" name="title" placeholder="Task Title" required>
+                </article>
+
+                <article>
+                <p>Description</p>
+                <textarea class="input-text" id="nachricht" name="nachricht" rows="6" cols="50"
+                    placeholder="Gib deine Nachricht hier ein..."></textarea>
+                </article>
+                <article>
+                <p>Due date<span>*</span></p>
+                <input class="input-text" type="date" name="due_date" required>
+                </article>
+            </div>
+
+            <div id="Border" class="task-gray-border"></div>
+
+            <div class="flex-gap flex-column">
+                <div>
+                    <p>Priority</p>
+                    <button>Urgent</button>
+                    <button>Medium</button>
+                    <button>Low</button>
+                </div>
+
+                  <article class="flex-column">
+                <label for="asigned">Assigned to</label>
+                <select id="assigned" name="auswahl" required>
+                    <option value="apfel">Apfel</option>
+                    <option value="banane">Banane</option>
+                    <option value="kirsche">Kirsche</option>
+                </select>
+                </article>
+
+                <article class="flex-column">
+                <label for="category">Category<span>*</span></label>
+                <select id="category" name="category" required>
+                    <option value="apfel">Apfel</option>
+                    <option value="banane">Banane</option>
+                    <option value="kirsche">Kirsche</option>
+                </select>
+                </article>
+
+                <article>
+                <p>Subtasks</p>
+                <input class="input-text" type="text" name="subtask" id="subtask" placeholder="Subtask 1">
+                </article>
+            </div>
+        </form>
+        <div class="flex-center flex-space-between margin-top-50px">
+            <p><span>*</span>This field is required</p>
+            <div>
+                <button>Cancel <img src="#" alt=""></button><button class="margin-left-10px">Create Task <img src="#" alt=""></button>
+            </div>
+        </div>
     </div>
-    
-</header>
-
-<main>
-<div id="menuTemplate"></div>
 
 
-</main>
-
-<footer>
-
-</footer>
-<script src="../js/add_task.js"></script>
 </body>
+<script src="../js/add_task.js"></script>
 
 </html>

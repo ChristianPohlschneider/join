@@ -5,23 +5,25 @@ function menu() {
             <div class="menu-div">
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
             </div>
-            <a href="#summary" class="menu-button-possition margin-bottom-15px">
+
+            <div class="gap-menu">
+            <a class="a-menu menu-button-possition" href="./summary.html" class="menu-button-possition">
                 <div class="icon-menu-summary"></div>
                 <p class="padding-left-10px p-menu-style">Summary</p>
             </a>
-            <a href="#add-task" class="menu-button-possition margin-bottom-15px">
+            <a class="a-menu menu-button-possition" href="./add_task.html" class="menu-button-possition">
                 <img src="../assets/icons/add-task.png" alt="add task logo">
                 <p class="padding-left-10px p-menu-style">Add Task</p>
             </a>
-            <a href="#board" class="menu-button-possition margin-bottom-15px">
+            <a class="a-menu menu-button-possition" href="./board.html" class="menu-button-possition">
                 <img src="../assets/icons/board.png" alt="board logo">
                 <p class="padding-left-10px p-menu-style">Board</p>
             </a>
-            <a href="#contact" class="menu-button-possition margin-bottom-15px">
+            <a class="a-menu menu-button-possition" href="./contact.html" class="menu-button-possition">
                 <img src="../assets/icons/contact.png" alt="contact logo">
                 <p class="padding-left-10px p-menu-style">Contact</p>
             </a>
-
+           </div>
         </div>
         <div class="position-bottom">
             <a href="#privacy-policy" class="flex-center padding-10px">Privacy Policy</a>

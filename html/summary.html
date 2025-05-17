@@ -4,71 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join summary</title>
-    <script src="/js/summary.js"></script>
-    <script src="/assets/templates/menu.js"></script>
-    <script src="/assets/templates/header.js"></script>
-    <script src="/js/login.js"></script>
-    <link rel="stylesheet" href="/styles/header-style.css">
-    <link rel="stylesheet" href="/styles/menu-style.css">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/summary.css">
-    <link rel="stylesheet" href="/styles/assets.css">
-    <link rel="stylesheet" href="/styles/add-task.css">
+    <title>Join | summary</title>
+    <script src="../js/summary.js"></script>
+    <script src="../assets/templates/menu.js"></script>
+    <script src="../assets/templates/header.js"></script>
+    <script src="../js/login.js"></script>
+    <link rel="stylesheet" href="../styles/header-style.css">
+    <link rel="stylesheet" href="../styles/menu-style.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/summary.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../styles/add-task.css">
 </head>
 
 <body class="max-width display-flex" onload="initSummary()">
     <div id="menuTemplate"></div>
     <div id="headerTemplate"></div>
 
-
-<div>
-    <div class="flex-center padding-left">
-        <div class="max-width-560px">
-               <div class="flex-center margin-top-h1 position-headline">
-        <h1 class="h1-summary">Join 360</h1>
-        <div class="blue-border"></div>
-        <p class="suptitle-summary">Key Metrics at a Glance</p>
-    </div>
-            <div class="flex-center flex-space-between">
-                <div class="summary-content-div-row1 flex-center">
-                    <div class="icon-edit"></div>
-                    <div class="flex-column flex-center">
-                        <p>1</p>
-                        <p>To-do</p>
+    <div>
+        <div class="flex-center">
+            <div class="max-width-560px">
+                <div class="flex-center margin-top-h1 position-headline">
+                    <h1 class="h1-summary">Join 360</h1>
+                    <div class="blue-border"></div>
+                    <p class="suptitle-summary">Key Metrics at a Glance</p>
+                </div>
+                <div class="flex-center flex-space-between">
+                    <div class="summary-content-div-row1 flex-center">
+                        <div class="icon-edit"></div>
+                        <div class="flex-column flex-center">
+                            <p>1</p>
+                            <p class="p-rows">To-do</p>
+                        </div>
+                    </div>
+                    <div class="summary-content-div-row1 flex-center">
+                        <div class="icon-check"></div>
+                        <div class="flex-column flex-center">
+                            <p>2</p>
+                            <p class="p-rows">Done</p>
+                        </div>
                     </div>
                 </div>
-                <div class="summary-content-div-row1 flex-center">
-                    <div class="icon-check"></div>
-                    <div class="flex-column flex-center">
-                    <p>2</p>
-                    <p>Done</p>
+                <div class="summary-content-div-row2 flex-center flex-space-between">
+                    <img src="/assets/icons/red-icon.png" alt="#">
+                    <div class="border-gray"></div>
+                    <p class="dead-line p-rows">Upcoming Deadline</p>
+                </div>
+
+                <div class="flex-center flex-space-between">
+                    <div class="summary-content-div-row3 flex-column flex-center">
+                        <p>5</p>
+                        <p class="p-rows">Tasks in Board</p>
+                    </div>
+                    <div class="summary-content-div-row3 flex-column flex-center">
+                        <p>5</p>
+                        <p class="p-rows">Tasks on Board</p>
+                    </div>
+                    <div class="summary-content-div-row3 flex-column flex-center">
+                        <p>5</p>
+                        <p class="p-rows">Tasks on Board</p>
                     </div>
                 </div>
             </div>
-            <div class="summary-content-div-row2 flex-center flex-space-between">
-                <img src="/assets/icons/red-icon.png" alt="#">
-                <div class="border-gray"></div>
-                <p class="dead-line">Upcoming Deadline</p>
-            </div>
-
-            <div class="flex-center flex-space-between">
-                <div class="summary-content-div-row3 flex-column flex-center">
-                    <p>5</p>
-                    <p>Tasks in Board</p>
-                </div>
-                 <div class="summary-content-div-row3 flex-column flex-center">
-                    <p>5</p>
-                    <p>Tasks on Board</p>
-                </div> 
-                <div class="summary-content-div-row3 flex-column flex-center">
-                    <p>5</p>
-                    <p>Tasks on Board</p>
-                </div>
-            </div>
+            <div class="margin-left-50px greeting-style possition-greeting" id="greeting"></div>
         </div>
-        <div class="margin-left-50px greeting-style possition-greeting" id="greeting"></div>
-    </div>
     </div>
 
 </body>
