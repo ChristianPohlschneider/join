@@ -27,7 +27,7 @@ function checkName(name) {
     let nameInput = document.getElementById('warning-name')
     nameInput.classList.add('d_none');
     nameContainer.classList.remove('red-border');
-    if (name.value == 0) {
+    if (name.value.trim().length === 0) {
         throw {
             code: 'noName',
             nameText: nameInput,
@@ -62,7 +62,7 @@ function checkMail(email) {
     let mailContainer = document.getElementById('mail-input-container');
     warningMail.classList.add('d_none')
     mailContainer.classList.remove('red-border')
-    if (!email.value.includes('@' && '.') || email.value.length == 0) {
+    if (!email.value.includes('@') || !email.value.includes('.') || email.value.trim().length === 0) {
         throw {
             code: 'email incorrect',
             mailText: warningMail,
