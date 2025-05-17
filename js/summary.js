@@ -7,6 +7,7 @@ const time = new Date();
 
 function initTask() {
     document.getElementById("menuTemplate").innerHTML = menu();
+    document.getElementById("headerTemplate").innerHTML = header();
 }
 
 function summaryWelcome() {
