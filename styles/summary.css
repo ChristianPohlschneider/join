@@ -3,6 +3,14 @@
     margin: auto;
 }
 
+.display-flex {
+    display: flex;
+}
+
+.padding-left {
+    padding-left: 100px;
+}
+
 .blue-border {
     background-color: #29ABE2;
     width: 3px;
