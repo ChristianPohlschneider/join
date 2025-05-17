@@ -5,7 +5,6 @@
     font-size: 16px;
     width: 232px;
     height: 100vh;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -13,13 +12,13 @@
     justify-content: space-between;
 }
 
-.p-menu-style{
+.p-menu-style {
     color: #CDCDCD;
     padding-top: 8px;
     padding-bottom: 8px;
 }
 
-.p-menu-style:hover{
+.p-menu-style:hover {
     color: white;
 }
 
@@ -55,24 +54,22 @@
     justify-content: center;
 }
 
-.icon-menu-summary{
+.icon-menu-summary {
     background-image: url(../assets/icons/summary.png);
     width: 30px;
     height: 30px;
     background-repeat: no-repeat;
 }
 
-.icon-menu-summary:hover{
+.icon-menu-summary:hover {
     /*background-image: url(../assets/icons/png.hover/summary.png);
      width: 30px;
     height: 30px;*/
 }
 
-.possition-absolute-bottom {
-    position: absolute;
-    bottom: 50px;
-    left: 0;
+.position-bottom {
     width: 100%;
+    padding-bottom: 50px;
 }
 
 .menu-button-possition {

@@ -23,7 +23,7 @@ function menu() {
             </a>
 
         </div>
-        <div class="possition-absolute-bottom">
+        <div class="position-bottom">
             <a href="#privacy-policy" class="flex-center padding-10px">Privacy Policy</a>
             <a href="#legal-notice" class="flex-center padding-10px">Legal notice</a>
         </div>
