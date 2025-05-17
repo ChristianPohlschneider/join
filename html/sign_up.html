@@ -27,12 +27,15 @@
 
             <div class="seperator"></div>
             <div class="log-in-container">
-                <div class="input-container">
-                    <input placeholder="Name" type="text">
+                <div class="input-container" id="name-input-container">
+                    <input id="name" placeholder="Name" type="text">
                     <img class="icon-person" src="../assets/icons/person.png" alt="Person icon">
                 </div>
-                <div id="mail-input-container" class="input-container margin-top">
-                    <input id="mail" onfocusout="checkMail()" on placeholder="Email" type="email">
+                <div class="warning-container">
+                    <span class="warning-signup d_none" id="warning-name">Please enter your Name</span>
+                </div>
+                <div id="mail-input-container" class="input-container">
+                    <input id="mail" on placeholder="Email" type="email">
                     <img class="icon-mail" src="../assets/icons/mail.png" alt="Mail icon">
                 </div>
                 <div class="warning-container">
@@ -41,18 +44,18 @@
                 <div id="pasword-input-container" class="input-container">
                     <input onclick="" onkeyup="updatePasswordState('password','password-icon')" id="password"
                         placeholder="Password" type="password">
-                    <img onclick="togglePasswordVisibility('password','password-icon')" id="password-icon" class="icon-pw"
-                        src="../assets/icons/pw-lock.png" alt="PW locked">
+                    <img onclick="togglePasswordVisibility('password','password-icon')" id="password-icon"
+                        class="icon-pw" src="../assets/icons/pw-lock.png" alt="PW locked">
                 </div>
                 <div id="pasword-confirm-input-container" class="input-container margin-top">
-                    <input onclick="" onkeyup="updatePasswordState('confirm-password','password-confirm-icon')" id="confirm-password"
-                        placeholder="Confirm Password" type="password">
-                    <img onclick="togglePasswordVisibility('confirm-password','password-confirm-icon')" id="password-confirm-icon" class="icon-pw"
-                        src="../assets/icons/pw-lock.png" alt="PW locked">
+                    <input onclick="" onkeyup="updatePasswordState('confirm-password','password-confirm-icon')"
+                        id="confirm-password" placeholder="Confirm Password" type="password">
+                    <img onclick="togglePasswordVisibility('confirm-password','password-confirm-icon')"
+                        id="password-confirm-icon" class="icon-pw" src="../assets/icons/pw-lock.png" alt="PW locked">
                 </div>
             </div>
             <div class="warning-container">
-                <span class="warning-signup" id="warning-password">Your passwords don't match. Please try again</span>
+                <span class="warning-signup d_none" id="warning-password">Your passwords don't match. Please try again</span>
             </div>
             <div class="checkbox-container">
                 <img class="checkbox" src="../assets/icons/checkbox.png" alt="checkbox">
@@ -62,7 +65,7 @@
                 </div>
             </div>
             <div class="button-container">
-                <button class="login-btn">Sign up</button>
+                <button onclick="signup()" class="login-btn">Sign up</button>
             </div>
         </div>
 

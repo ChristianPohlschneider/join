@@ -1,15 +1,15 @@
 const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/"
 let currentUser;
-let users = []
+let users = [];
 
 async function init() {
     const timeout = setTimeout(closeLoader, 2500);
-    await fetchUsers()
+    await fetchUsers();
 };
 
 async function fetchUsers() {
-    let userResponse = await getAllUsers("users")
-    let userKeysArray = Object.values(userResponse)
+    let userResponse = await getAllUsers("users");
+    let userKeysArray = Object.values(userResponse);
     for (let index = 0; index < userKeysArray.length; index++) {
         users.push(
             {
@@ -17,28 +17,28 @@ async function fetchUsers() {
                 "password": userKeysArray[index].password,
                 "name": userKeysArray[index].name
             }
-        )
-    }
-}
+        );
+    };
+};
 
 async function getAllUsers(path) {
     let response = await fetch(BASE_URL + path + ".json");
     return responseToJson = await response.json();
-}
+};
 
 function logIn() {
     let emailRef = document.getElementById('mail');
     let passwordRef = document.getElementById('password');
-    currentUser = users.find((user) => user.mail == emailRef.value && user.password == passwordRef.value)
+    currentUser = users.find((user) => user.mail == emailRef.value && user.password == passwordRef.value);
     if (currentUser) {
         window.location.href = "./html/summary.html";
-        safeToLocalStorage()
+        safeToLocalStorage();
     } else {
-        wrongMailandPassword(emailRef, passwordRef)
-    }
+        wrongMailandPassword(emailRef, passwordRef);
+    };
     emailRef.value = "";
     passwordRef.value = "";
-}
+};
 
 function guestLogIn() {
     let emailRef = document.getElementById('mail');
@@ -46,31 +46,31 @@ function guestLogIn() {
     emailRef.value = "guest@login.com"
     passwordRef.value = "a1234567"
     logIn();
-}
+};
 
 function safeToLocalStorage() {
     localStorage.setItem("user", JSON.stringify(currentUser.name));
-}
+};
 
 function wrongMailandPassword(emailRef, passwordRef) {
-    let warningRef = document.getElementById('warning')
-    let inputMail = document.getElementById('mail-container')
-    let inputPassword = document.getElementById('password-container')
-    warningRef.classList.remove('d_none')
+    let warningRef = document.getElementById('warning');
+    let inputMail = document.getElementById('mail-container');
+    let inputPassword = document.getElementById('password-container');
+    warningRef.classList.remove('d_none');
     emailRef.value = "";
     passwordRef.value = "";
-    inputMail.classList.add('red-border')
-    inputPassword.classList.add('red-border')
-}
+    inputMail.classList.add('red-border');
+    inputPassword.classList.add('red-border');
+};
 
 function removeRedBorder() {
-    let warningRef = document.getElementById('warning')
-    let inputMail = document.getElementById('mail-container')
-    let inputPassword = document.getElementById('password-container')
-    warningRef.classList.add('d_none')
-    inputMail.classList.remove('red-border')
-    inputPassword.classList.remove('red-border')
-}
+    let warningRef = document.getElementById('warning');
+    let inputMail = document.getElementById('mail-container');
+    let inputPassword = document.getElementById('password-container');
+    warningRef.classList.add('d_none');
+    inputMail.classList.remove('red-border');
+    inputPassword.classList.remove('red-border');
+};
 
 function closeLoader() {
     document.getElementById('animation').classList.add('d_none');
