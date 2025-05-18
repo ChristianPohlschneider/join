@@ -8,7 +8,7 @@ button {
     border-radius: 8px;
 }
 
-.margin-top{
+.margin-top {
     margin-top: 24px !important;
 }
 
@@ -109,7 +109,7 @@ input {
     background-color: white;
 }
 
-.button-container{
+.button-container {
     margin-top: 32px;
 }
 
@@ -260,11 +260,11 @@ a:hover {
     border: 1px solid #FF001F !important;
 }
 
-.warning-signup{
-       height: 15px;
+.warning-signup {
+    height: 15px;
     font-size: 12px;
     font-weight: 400;
-    color: #FF8190; 
+    color: #FF8190;
 }
 
 button:disabled {
@@ -275,4 +275,26 @@ button:disabled {
 button:disabled:hover {
     background-color: #2A3647;
     box-shadow: none;
+}
+
+.success-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #d1d1d14f;
+    width: 100%;
+    height: 100vh;
+}
+
+.success-massage {
+    position: relative;
+    top: 100px;
+    right: 0;
+    font-size: 24px;
+    font-weight: 700;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: white;
+    padding: 26px;
 }

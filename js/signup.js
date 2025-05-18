@@ -7,28 +7,40 @@ async function signup() {
         let userName = checkName();
         let userMail = checkMail();
         let userPassword = checkPassword();
-        await createUser(userName, userMail, userPassword);
+        //await createUser(userName, userMail, userPassword);
+        succeedRegistration();
+        const Timeout = setTimeout(fowarding, 2000);
     } catch (error) {
         error.code === 'password mismatch' ? passwordError(error) : error.code === 'noName' ? nameError(error) : emailError(error);
     }
 };
 
+function succeedRegistration() {
+    let succeed = document.getElementById('succedSignup');
+    succeed.classList.remove('d_none');
+    document.getElementById('body').style.overflow = "hidden";
+};
+
+function fowarding() {
+    window.location.href = "../index.html";
+};
+
 async function createUser(name, email, password) {
-        let response = await fetch(BASE_URL + "/users" + ".json",{
-        method : "POST",
+    let response = await fetch(BASE_URL + "/users" + ".json", {
+        method: "POST",
         header: {
             "Content-Type": "application/json",
-          },
-          body: JSON.stringify(
+        },
+        body: JSON.stringify(
             {
                 email: email,
-                name : name,
+                name: name,
                 password: password
             }
-          )                          
+        )
     });
-    return response = await response.json()
-}
+    return response = await response.json();
+};
 
 function clearErrors() {
     let nameContainer = document.getElementById('name-input-container');

@@ -6,13 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join | Login</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/assets.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/login-signup.css">
+    <link rel="stylesheet" href="../styles/assets.css">
     <script src="../js/signup.js"></script>
 </head>
 
-<body>
+<body id="body">
+    <div id="succedSignup" class="d_none success-container">
+        <div id="sucess-message" class="success-massage">
+            You Signed Up successfully
+        </div>
+    </div>
     <header>
         <img class="logo" src="../assets/icons/Join-main-logo.png" alt="Join Logo">
         <div>
@@ -40,7 +45,8 @@
                     <img class="icon-mail" src="../assets/icons/mail.png" alt="Mail icon">
                 </div>
                 <div class="warning-container">
-                    <span class="warning-signup d_none" id="warning-mail">Please check that your email is in the correct format.</span>
+                    <span class="warning-signup d_none" id="warning-mail">Please check that your email is in the correct
+                        format.</span>
                 </div>
                 <div id="pasword-input-container" class="input-container">
                     <input onclick="" onkeyup="updatePasswordState('password','password-icon')" id="password"
@@ -56,10 +62,12 @@
                 </div>
             </div>
             <div class="warning-container">
-                <span class="warning-signup d_none" id="warning-password">Your passwords don't match. Please try again</span>
+                <span class="warning-signup d_none" id="warning-password">Your passwords don't match. Please try
+                    again</span>
             </div>
             <div class="checkbox-container">
-                <img id="checkbox" onclick="toggleCheckbox()" class="checkbox" src="../assets/icons/checkbox.png" alt="checkbox">
+                <img id="checkbox" onclick="toggleCheckbox()" class="checkbox" src="../assets/icons/checkbox.png"
+                    alt="checkbox">
                 <div>
                     <span class="checkbox-span">I accept the</span>
                     <a class="privacy-link" href="#">Privacy Policy</a>
@@ -69,8 +77,6 @@
                 <button id="signup-Btn" disabled onclick="signup()" class="login-btn">Sign up</button>
             </div>
         </div>
-
-
         </div>
     </main>
     <footer>
