@@ -47,7 +47,7 @@ function renderTasks() {
         }
     }
 }
-// Function to render the card
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.taskSearchInput');
     searchInput.addEventListener('input', filterTasks);
