@@ -1,15 +1,34 @@
 let checkbox = false;
+const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/"
 
 async function signup() {
     try {
         clearErrors();
-        checkName();
-        checkMail();
-        checkPassword();
+        let userName = checkName();
+        let userMail = checkMail();
+        let userPassword = checkPassword();
+        await createUser(userName, userMail, userPassword);
     } catch (error) {
         error.code === 'password mismatch' ? passwordError(error) : error.code === 'noName' ? nameError(error) : emailError(error);
     }
 };
+
+async function createUser(name, email, password) {
+        let response = await fetch(BASE_URL + "/users" + ".json",{
+        method : "POST",
+        header: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(
+            {
+                email: email,
+                name : name,
+                password: password
+            }
+          )                          
+    });
+    return response = await response.json()
+}
 
 function clearErrors() {
     let nameContainer = document.getElementById('name-input-container');
@@ -39,7 +58,7 @@ function checkName() {
             nameBorder: nameContainer,
         };
     } else {
-        return
+        return name.value
     };
 };
 
@@ -50,7 +69,7 @@ function checkPassword() {
     let passwordContainer = document.getElementById('pasword-confirm-input-container');
     let passwordCOnfirmContainer = document.getElementById('pasword-input-container');
     if (password.value === confirmPwassword.value && password.value.length != 0) {
-        return
+        return password.value
     } else {
         throw {
             code: 'password mismatch',
@@ -72,7 +91,7 @@ function checkMail() {
             mailBorder: mailContainer
         };
     } else {
-        return
+        return email.value;
     };
 };
 
