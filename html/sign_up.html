@@ -59,14 +59,14 @@
                 <span class="warning-signup d_none" id="warning-password">Your passwords don't match. Please try again</span>
             </div>
             <div class="checkbox-container">
-                <img class="checkbox" src="../assets/icons/checkbox.png" alt="checkbox">
+                <img id="checkbox" onclick="toggleCheckbox()" class="checkbox" src="../assets/icons/checkbox.png" alt="checkbox">
                 <div>
                     <span class="checkbox-span">I accept the</span>
                     <a class="privacy-link" href="#">Privacy Policy</a>
                 </div>
             </div>
             <div class="button-container">
-                <button onclick="signup()" class="login-btn">Sign up</button>
+                <button id="signup-Btn" disabled onclick="signup()" class="login-btn">Sign up</button>
             </div>
         </div>
 
