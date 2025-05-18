@@ -100,13 +100,20 @@ main {
     display: flex;
     flex-direction: column;
     width: 24%;
+    gap: 16px;
 }
 
 .boardListHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
+    width: 252px;
+}
+
+.taskList {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
 }
 
 .plusButton {
@@ -141,4 +148,5 @@ main {
     border-radius: 10px;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }

@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>board</title>
+    <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles/assets.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/menu-style.css">
     <link rel="stylesheet" href="../styles/board.css">
     <link rel="stylesheet" href="../styles/header-style.css">
+    <link rel="stylesheet" href="../styles/card.css">
     <script src="../js/board.js"></script>
     <script src="../js/add_task.js"></script>
     <script src="../js/legal_notice.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../assets/templates/card.js"></script>
     <script src="../assets/templates/board_template.js"></script>
     <script src="../assets/templates/header.js"></script>
     <script src="../assets/templates/menu.js"></script>
@@ -59,7 +62,8 @@
                                 <div class="plusVertically"></div>
                             </div>
                         </div>
-                        <div class="emptyTask">No Task To Do</div>
+                        <div id="emptyTask0" class="emptyTask">No Task To Do</div>
+                        <div id="taskToDo" class="taskList"></div>
                     </div>
 
                     <div class="boardList">
@@ -70,7 +74,8 @@
                                 <div class="plusVertically"></div>
                             </div>
                         </div>
-                        <div class="emptyTask">Nothing in progress</div>
+                        <div id="emptyTask1" class="emptyTask">Nothing in progress</div>
+                        <div id="taskInProgress" class="taskList"></div>
                     </div>
 
                     <div class="boardList">
@@ -81,7 +86,8 @@
                                 <div class="plusVertically"></div>
                             </div>
                         </div>
-                        <div class="emptyTask">No feedback</div>
+                        <div id="emptyTask2" class="emptyTask">No feedback</div>
+                        <div id="taskAwaitFeedback" class="taskList"></div>
                     </div>
 
                     <div class="boardList">
@@ -89,7 +95,8 @@
                             <h3>Done</h3>
 
                         </div>
-                        <div class="emptyTask">Nothing done</div>
+                        <div id="emptyTask3" class="emptyTask">Nothing done</div>
+                        <div id="taskDone" class="taskList"></div>
                     </div>
 
                 </div>
