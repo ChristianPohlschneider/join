@@ -7,7 +7,7 @@ async function signup() {
         let userName = checkName();
         let userMail = checkMail();
         let userPassword = checkPassword();
-        //await createUser(userName, userMail, userPassword);
+        await createUser(userName, userMail, userPassword);
         succeedRegistration();
         const Timeout = setTimeout(fowarding, 2000);
     } catch (error) {
@@ -39,7 +39,6 @@ async function createUser(name, email, password) {
             }
         )
     });
-    return response = await response.json();
 };
 
 function clearErrors() {
