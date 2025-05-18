@@ -47,3 +47,19 @@ function renderTasks() {
         }
     }
 }
+// Function to render the card
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.taskSearchInput');
+    searchInput.addEventListener('input', filterTasks);
+});
+
+function filterTasks(event) {
+    const searchTerm = event.target.value.toLowerCase();
+
+    const taskCards = document.querySelectorAll('.taskCard');
+
+    taskCards.forEach(card => {
+        const content = card.innerText.toLowerCase();
+        card.style.display = content.includes(searchTerm) ? 'block' : 'none';
+    });
+}
