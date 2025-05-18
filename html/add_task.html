@@ -14,81 +14,84 @@
     <script src="../assets/templates/menu.js"></script>
     <script src="../assets/templates/header.js"></script>
     <script src="../js/add_task.js"></script>
+    <script src="../js/board.js"></script>
 </head>
 
-<body onload="initTask()">
-<header id="headerTemplate"></header>
-<main>
-
+<body onload="initTask(); startForm()">
+    <header id="headerTemplate"></header>
     <div id="menuTemplate"></div>
+    <main>
 
-    <!--Add_Task Content-->
+        <div class="add-task-style">
+            <h1 class="h1-add-task">Add Task</h1>
 
-    <div class="add-task-style">
-        <h1 class="h1-add-task">Add Task</h1>
+            <form class="flex-center-task">
+                <div class="flex-gap flex-column">
 
-        <form class="flex-center-task">
-            <div class="flex-gap flex-column">
+                    <article>
+                        <p>Title<span>*</span></p>
+                        <input class="input-text" type="text" id="title" placeholder="Task Title" required>
+                    </article>
 
-                <article>
-                    <p>Title<span>*</span></p>
-                    <input class="input-text" type="text" name="title" placeholder="Task Title" required>
-                </article>
-
-                <article>
-                <p>Description</p>
-                <textarea class="input-text" id="nachricht" name="nachricht" rows="6" cols="50"
-                    placeholder="Gib deine Nachricht hier ein..."></textarea>
-                </article>
-                <article>
-                <p>Due date<span>*</span></p>
-                <input class="input-text" type="date" name="due_date" required>
-                </article>
-            </div>
-
-            <div id="Border" class="task-gray-border"></div>
-
-            <div class="flex-gap flex-column">
-                <div>
-                    <p>Priority</p>
-                    <button>Urgent</button>
-                    <button>Medium</button>
-                    <button>Low</button>
+                    <article>
+                        <p>Description</p>
+                        <textarea class="input-text" id="description" rows="6" cols="50"
+                            placeholder="Enter a Description"></textarea>
+                    </article>
+                    <article>
+                        <p>Due date<span>*</span></p>
+                        <input class="input-text" type="date" id="dueDate" required>
+                    </article>
                 </div>
 
-                  <article class="flex-column">
-                <label for="asigned">Assigned to</label>
-                <select id="assigned" name="auswahl" required>
-                    <option value="apfel">Apfel</option>
-                    <option value="banane">Banane</option>
-                    <option value="kirsche">Kirsche</option>
-                </select>
-                </article>
+                <div id="Border" class="task-gray-border"></div>
 
-                <article class="flex-column">
-                <label for="category">Category<span>*</span></label>
-                <select id="category" name="category" required>
-                    <option value="apfel">Apfel</option>
-                    <option value="banane">Banane</option>
-                    <option value="kirsche">Kirsche</option>
-                </select>
-                </article>
+                <div class="flex-gap flex-column">
+                    <div>
+                        <p>Priority</p>
+                        <div class="flex-center flex-gap">
+                            <div class="selectable" id="urgent" onclick="addCss('urgent')">Urgent</div>
+                            <div class="selectable" id="medium" onclick="addCss('medium')"> Medium</div>
+                            <div class="selectable" id="low" onclick="addCss('low')">Low</div>
+                        </div>
+                    </div>
 
-                <article>
-                <p>Subtasks</p>
-                <input class="input-text" type="text" name="subtask" id="subtask" placeholder="Subtask 1">
-                </article>
-            </div>
-        </form>
-        <div class="flex-center flex-space-between margin-top-50px">
-            <p><span>*</span>This field is required</p>
-            <div>
-                <button>Cancel <img src="#" alt=""></button><button class="margin-left-10px">Create Task <img src="#" alt=""></button>
+                    <article class="flex-column">
+                        <label for="assigned">Assigned to</label>
+                        <select id="assigned" name="selection-assigned" class="input-text" required>
+                        </select>
+                    </article>
+
+                    <article class="flex-column">
+                        <label for="category">Category<span>*</span></label>
+                        <select id="category" name="selection-category" class="input-text" required>
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+                    </article>
+
+                    <article>
+                        <p>Subtasks</p>
+                        <div class="flex-center">
+                            <input id="subtask" type="text" placeholder="Neue Unteraufgabe hinzufügen" maxlength="30"
+                                name="subtaskTitle" class="input-text">
+                            <img src="../assets/icons/+.png" alt="Unteraufgabe hinzufügen" class="plus-symbol" onclick="addSubtask()">
+                        </div>
+                        <div id="subtaskList"></div>
+                    </article>
+                </div>
+            </form>
+            <div class="flex-center flex-space-between margin-top-50px">
+                <p><span>*</span>This field is required</p>
+                <div>
+                    <button onclick="cancelTask()">Cancel <img src="#" alt=""></button><button onclick="addNewToDO()"
+                        class="margin-left-10px">Create Task</button>
+                </div>
             </div>
         </div>
-    </div>
 
-</main>
+    </main>
 </body>
 <script src="../js/add_task.js"></script>
 

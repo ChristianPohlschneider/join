@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #F6F7F8;
 }
 
 header {
@@ -121,7 +122,7 @@ span{
 .input-text{
   border: 2px solid #D1D1D1 !important;
   border-radius: 4px;
-
+  width: 100%;
 }
 
 .flex-center-task{
@@ -132,4 +133,39 @@ span{
 .flex-gap{
   display: flex;
   gap: 10px;
+}
+
+.urgent{
+  background-color: #FF3D00 !important;
+  color: white;
+  border: 2px solid #FF3D00 !important;
+}
+
+.medium{
+  background-color: #FFA800 !important;
+  color: white;
+  border: 2px solid #FFA800 !important;
+}
+
+.low{
+  background-color: #7AE229 !important;
+  color: white;
+  border: 2px solid #7AE229 !important;
+}
+
+ .selectable {
+    padding: 10px 20px;
+    margin-right: 5px;
+    border: 2px solid #D1D1D1;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: white;
+  }
+
+.plus-symbol{
+  height: 14px;
+  width: 14px;
+  position: relative;
+  padding-right: 5px;
+  left: -12px;
 }
