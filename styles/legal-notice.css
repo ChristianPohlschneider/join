@@ -19,7 +19,7 @@ h1 {
 h2 {
     font-size: 27px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-top: 24px;
 }
 
 .txtContainer {
@@ -27,4 +27,8 @@ h2 {
     margin-top: 36px;
     margin-left: 328px;
     margin-right: 36px;
+}
+
+.highlight {
+    color: #29ABE2;
 }
