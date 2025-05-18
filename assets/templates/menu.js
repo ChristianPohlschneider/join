@@ -26,8 +26,8 @@ function menu() {
            </div>
         </div>
         <div class="position-bottom">
-            <a href="#privacy-policy" class="flex-center padding-10px">Privacy Policy</a>
-            <a href="#legal-notice" class="flex-center padding-10px">Legal notice</a>
+            <a href="../html/privacy_policy.html" class="flex-center padding-10px">Privacy Policy</a>
+            <a href="../html/legal_notice.html" class="flex-center padding-10px">Legal notice</a>
         </div>
     </div>
     `;
