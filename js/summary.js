@@ -6,7 +6,7 @@ function initSummary() {
 const time = new Date();
 
 function initTask() {
-    document.getElementById("menuTemplate").innerHTML = menu();
+    document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.getElementById("headerTemplate").innerHTML = header();
 }
 

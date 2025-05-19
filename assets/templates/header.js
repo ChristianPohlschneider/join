@@ -1,7 +1,7 @@
 function header() {
   return `  
     <div class="header-title">Kanban Project Management Tool</div>
-    <div class="header-help">
+    <div id="header-help" class="header-help">
         <a href="../html/help.html">
             <img src="../assets/icons/help.png" alt="Help Icon" class="help-icon">
         </a>
@@ -10,15 +10,19 @@ function header() {
             <ul>
                 <li><a href="./legal_notice.html">Legal Notice</a></li>
                 <li><a href="./privacy_policy.html">Privacy Policy</a></li>
-                <li><a href="/index.html">Log out</a></li>
+                <li><a onclick="clearStorage()" href="/index.html">Log out</a></li>
             </ul>
         </div>
     </div>
   `;
 }
 
+function clearStorage() {
+  localStorage.clear();
+}
+
 function initTask () {
-  document.getElementById("menuTemplate").innerHTML = menu();
+  document.getElementById("menuTemplate").innerHTML = checkLogged();
   document.getElementById("headerTemplate").innerHTML = header();
   initAvatarSlider();
 }
@@ -33,7 +37,7 @@ function initAvatarSlider() {
     const initials = getInitials(userName);
     avatar.textContent = initials;
   } else {
-    avatar.textContent = "?";
+    document.getElementById('header-help').classList.add('d_none')
   }
 
   avatar.addEventListener("click", (e) => {

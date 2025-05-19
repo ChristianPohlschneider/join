@@ -13,12 +13,12 @@
 </head>
 
 <body onload="init()">
-   <div id="animation" class="animation">
+    <div id="animation" class="animation">
         <img class="animation-logo logo" src="./assets/icons/join-main-logo.png" alt="">
     </div>
     <header>
         <img class="logo" src="./assets/icons/Join-main-logo.png" alt="Join Logo">
-        <div>
+        <div class="header-signup">
             <span class="signup-span">Not a Join user?</span>
             <a href="./html/sign_up.html"><button class="sign-btn">Sign up</button></a>
         </div>
@@ -33,7 +33,8 @@
                     <img class="icon-mail" src="./assets/icons/mail.png" alt="Mail icon">
                 </div>
                 <div id="password-container" class="input-container margin-top">
-                    <input onclick="removeRedBorder()" onkeyup="updatePasswordState()" id="password" placeholder="Password" type="password">
+                    <input onclick="removeRedBorder()" onkeyup="updatePasswordState()" id="password"
+                        placeholder="Password" type="password">
                     <img onclick="togglePasswordVisibility()" id="password-icon" class="icon-pw"
                         src="./assets/icons/pw-lock.png" alt="PW locked">
                 </div>
@@ -47,10 +48,14 @@
             </div>
         </div>
     </main>
+    <div class="header-signup-resp">
+        <span class="signup-span">Not a Join user?</span>
+        <a href="./html/sign_up.html"><button class="sign-btn">Sign up</button></a>
+    </div>
     <footer>
         <div class="footer-content">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Legal notice</a>
+            <a href="./html/privacy_policy.html">Privacy Policy</a>
+            <a href="./html/legal_notice.html">Legal notice</a>
         </div>
     </footer>
 </body>

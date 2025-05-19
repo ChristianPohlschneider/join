@@ -4,7 +4,7 @@ let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5",
 let categoryVariants = [];
 
 async function initboard() {
-    document.getElementById("menuTemplate").innerHTML = menu();
+    document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.querySelector("header").innerHTML = header();
     initAvatarSlider();
     await fetchTasks();
