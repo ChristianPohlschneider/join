@@ -1,7 +1,7 @@
 function renderCard(taskIndex) {
     return `
         <div id="card" class="card taskCard">
-            <div id="taskCategory" class="taskCategory">#${tasks[taskIndex].category}</div>
+            <div id="taskCategory${"#" + taskIndex}" class="taskCategory">${tasks[taskIndex].category}</div>
             <div id="taskName" class="taskName">${tasks[taskIndex].name}</div>
             <div id="taskDescription" class="taskDescription">${tasks[taskIndex].description}</div>
             <div id="subtask" class="subtask">
