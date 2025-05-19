@@ -298,3 +298,79 @@ button:disabled:hover {
     color: white;
     padding: 26px;
 }
+
+.header-signup-resp {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 64px;
+        height: 78px;
+    }
+
+    .input-container {
+        width: 100%;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .guest-btn {
+        margin-left: 0;
+        margin-top: 24px;
+    }
+
+    .login-btn {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 47px;
+    }
+
+    .seperator {
+        width: 100px;
+    }
+
+    .header-signup {
+        display: none;
+    }
+
+    .header-signup-resp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 56px;
+    }
+
+    footer {
+        padding-top: 62px;
+    }
+
+    header {
+        padding: 37px 38px;
+    }
+
+    .animation-logo {
+        display: none;
+    }
+
+    .animation {
+        background-color: rgb(42, 54, 71);
+        background-image: url("/assets/icons/join-logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    @media (max-width: 400px) {
+        .form-container {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+    }
+}
