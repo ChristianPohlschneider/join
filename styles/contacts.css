@@ -5,3 +5,44 @@ body, html {
   flex-direction: column;
 }
 
+.page-container {
+  display: flex;
+  flex: 1;
+  height: 60px;
+}
+
+.contacts-main {
+  flex: 1;
+  display: flex;
+}
+
+.contacts-section {
+  display: flex;
+  width: 100%;
+}
+
+.contacts-list {
+    margin-left: 310px;
+  width: 300px;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.contact-details {
+  flex: 1;
+  padding: 20px;
+}
+
+.contact-avatar {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: orange;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 10px;
+}
