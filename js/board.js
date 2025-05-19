@@ -2,7 +2,7 @@ const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.
 let tasks = [];
 
 async function initboard() {
-    document.getElementById("menuTemplate").innerHTML = menu();
+    document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.querySelector("header").innerHTML = header();
     initAvatarSlider();
     await fetchTasks();
