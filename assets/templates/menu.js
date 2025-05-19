@@ -57,8 +57,6 @@ function menuUnlogged() {
 
 function checkLogged() {
     let userName = localStorage.getItem("user");
-    console.log(userName);
-    
     if (userName == undefined) {
         return menuUnlogged()
     } else {

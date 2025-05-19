@@ -10,11 +10,15 @@ function header() {
             <ul>
                 <li><a href="./legal_notice.html">Legal Notice</a></li>
                 <li><a href="./privacy_policy.html">Privacy Policy</a></li>
-                <li><a href="/index.html">Log out</a></li>
+                <li><a onclick="clearStorage()" href="/index.html">Log out</a></li>
             </ul>
         </div>
     </div>
   `;
+}
+
+function clearStorage() {
+  localStorage.clear();
 }
 
 function initTask () {
