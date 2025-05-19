@@ -1,7 +1,7 @@
 function header() {
   return `  
     <div class="header-title">Kanban Project Management Tool</div>
-    <div class="header-help">
+    <div id="header-help" class="header-help">
         <a href="../html/help.html">
             <img src="../assets/icons/help.png" alt="Help Icon" class="help-icon">
         </a>
@@ -37,7 +37,7 @@ function initAvatarSlider() {
     const initials = getInitials(userName);
     avatar.textContent = initials;
   } else {
-    avatar.textContent = "?";
+    document.getElementById('header-help').classList.add('d_none')
   }
 
   avatar.addEventListener("click", (e) => {
