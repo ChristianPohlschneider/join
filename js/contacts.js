@@ -39,8 +39,8 @@ function renderContacts(contactsObj) {
       <span class="contact-avatar" style="background:${color}">${getInitials(
       contact.name
     )}</span>
-      <strong>${contact.name}</strong><br/>
-      <small>${contact.mail}</small>
+      <p class="contact-name">${contact.name}</p><br/>
+      <p class="contact-mail">${contact.mail}</p>
     `;
     div.addEventListener("click", () => showContact(contact, color, index));
     list.appendChild(div);
