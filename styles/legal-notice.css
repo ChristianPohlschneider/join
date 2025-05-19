@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-p {
+.txtContainer p {
     font-size: 16px;
     font-weight: 400;
     width: 100%;
