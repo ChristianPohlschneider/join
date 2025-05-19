@@ -41,8 +41,8 @@ function menuUnlogged() {
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
             </div>
             <div class="gap-menu">
-            <a class="a-menu menu-button-possition" href="..index.html" class="menu-button-possition">
-                <img src="../assets/icons/login.png" alt="board logo">
+            <a class="a-menu menu-button-possition" href="../index.html" class="menu-button-possition">
+                <img src="../assets/icons/login.png" alt="log in logo">
                 <p class="padding-left-10px p-menu-style">Log In</p>
             </a>
            </div>
