@@ -21,6 +21,25 @@ body, html {
     width: 100%;
 }
 
+.add-button {
+    width: 352px;
+    height: 56px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.add-button:hover {
+    background-color: #29ABE2;
+}
+
+.add-button img {
+    width: 32px;
+    margin-left: 16px;
+}
+
 .contacts-list {
     margin-left: 310px;
     width: 400px;
