@@ -1,14 +1,3 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyA5LRioD4v-9RP0IbH2y-9vaU6Z4m5hk5o",
-  authDomain: "join-13fcf.firebaseapp.com",
-  databaseURL:"https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "join-13fcf",
-  storageBucket: "join-13fcf.firebasestorage.app",
-  messagingSenderId: "60079391606",
-  appId: "1:60079391606:web:53707b5edad6f36dd7f057",
-};
-firebase.initializeApp(firebaseConfig);
-
 function initContacts() {
   loadContacts();
   initTask();
