@@ -75,13 +75,7 @@ function renderDone(taskIndex) {
 }
 
 function findBackgroundColor(taskIndex) {
-    if (categoryVariants == "") {
-        document.getElementById("taskCategory#" + taskIndex).classList.add(colorVariants[0]);
-        categoryVariants.push({
-            variant: colorVariants[0],
-            category: tasks[taskIndex].category,
-        })
-    } else if (categoryVariants.find(({ category }) => category == tasks[taskIndex].category)) {
+     if (categoryVariants.find(({ category }) => category == tasks[taskIndex].category)) {
         let searchWord = tasks[taskIndex].category;
         let categoryVariantsIndex = categoryVariants.findIndex(v => v.category === searchWord);
         document.getElementById("taskCategory#" + taskIndex).classList.add(categoryVariants[categoryVariantsIndex].variant)
