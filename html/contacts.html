@@ -18,25 +18,33 @@
 </head>
 
 <body onload="initContacts()">
-    <header id="headerTemplate"></header>
+  <header id="headerTemplate"></header>
 
-    <main class="contacts-main">
-        <div id="menuTemplate"></div>
-      <section class="contacts-section">
-        <div class="contacts-list">
-          <button class="add-button">Add new contact<img src="../assets/icons/person_add.png" alt=""></button>
-          
-          <div id="contactList"></div>
-        </div>
+  <main class="contacts-main">
+    <div id="menuTemplate"></div>
 
-        <div class="contact-details">
-          <h2 class="contact-title">Contacts <span class="subtitle"><span class="highlight">|</span> Better with a team</span></h2>
-          <div id="contactView">
-            <p>Wähle einen Kontakt aus der Liste.</p>
-          </div>
-        </div>
-      </section>
-    </main>
+    <section class="contacts-section">
+      <div class="contacts-list">
+      <div class="contacts-header">
+        <button class="add-button">
+          Add new contact
+          <img src="../assets/icons/person_add.png" alt="">
+        </button>
+    </div>
+
+  <div class="contacts-scroll-area" id="contactList">
   </div>
+</div>
+
+      <div class="contact-details">
+        <h2 class="contact-title">
+          Contacts <span class="subtitle"><span class="highlight">|</span> Better with a team</span>
+        </h2>
+        <div id="contactView">
+          <p>Wähle einen Kontakt aus der Liste.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

@@ -3,6 +3,7 @@ body, html {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .page-container {
@@ -46,10 +47,25 @@ body, html {
     border-right: 1px solid #ccc;
     padding: 12px;
     background-color: #f9f9f9;
+    overflow-y: auto; 
+    height: calc(100vh - 96px);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+.contacts-header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.contacts-scroll-area {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 10px;
 }
 
 .contact-details {
