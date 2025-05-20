@@ -88,26 +88,23 @@ function getSubTasks() {
     return subtasks;
 }
 
-const title = document.getElementById("title");
-const dueDate = document.getElementById("dueDate");
-const category = document.getElementById("category");
-const submitButton = document.getElementById("createTask");
+document.addEventListener("DOMContentLoaded", function () {
+  const title = document.getElementById("title");
+  const dueDate = document.getElementById("dueDate");
+  const category = document.getElementById("category");
+  const submitButton = document.getElementById("creatTask");
 
-title.addEventListener("input", checkInputs);
-dueDate.addEventListener("input", checkInputs);
-category.addEventListener("input", checkInputs);
-
-
-// Die Funktion prüft, ob alle Felder gefüllt sind
-function checkInputs() {
-  if (title.value === "" || dueDate.value === "" || category.value === "") {
-    submitButton.disabled = true;
-  } else {
-    submitButton.disabled = false;
+  function checkInputs() {
+    if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
+      submitButton.disabled = true;
+    } else {
+      submitButton.disabled = false;
+    }
   }
-}
 
-// Event Listener, der bei jeder Eingabe reagiert
+  title.addEventListener("input", checkInputs);
+  dueDate.addEventListener("input", checkInputs);
+  category.addEventListener("input", checkInputs);
 
-// Initial prüfen (z. B. bei Autofill)
-checkInputs();
+  checkInputs();
+});
