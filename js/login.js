@@ -1,35 +1,14 @@
-const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/"
 let currentUser;
-let users = [];
 
 async function init() {
     const timeout = setTimeout(closeLoader, 2500);
     await fetchUsers();
 };
 
-async function fetchUsers() {
-    let userResponse = await getAllUsers("users");
-    let userKeysArray = Object.values(userResponse);
-    for (let index = 0; index < userKeysArray.length; index++) {
-        users.push(
-            {
-                "mail": userKeysArray[index].email,
-                "password": userKeysArray[index].password,
-                "name": userKeysArray[index].name
-            }
-        );
-    };
-};
-
-async function getAllUsers(path) {
-    let response = await fetch(BASE_URL + path + ".json");
-    return responseToJson = await response.json();
-};
-
 function logIn() {
     let emailRef = document.getElementById('mail');
     let passwordRef = document.getElementById('password');
-    currentUser = users.find((user) => user.mail == emailRef.value && user.password == passwordRef.value);
+    currentUser = users.find((user) => user.email == emailRef.value && user.password == passwordRef.value);
     if (currentUser) {
         window.location.href = "./html/summary.html";
         safeToLocalStorage();

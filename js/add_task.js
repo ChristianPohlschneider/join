@@ -1,4 +1,4 @@
-const contacts = {};
+contacts = {};
 let priority = "medium"
 
 function startForm() {

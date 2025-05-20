@@ -1,5 +1,3 @@
-const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/"
-let tasks = [];
 let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"]
 let categoryVariants = [];
 
@@ -11,16 +9,6 @@ async function initboard() {
     clearBoardTable();
     renderTasks();
     
-}
-
-async function fetchTasks() {
-    let taskResponse = await getAllTasks("tasks");
-    tasks = Object.values(taskResponse);
-}
-
-async function getAllTasks(path) {
-    let response = await fetch(BASE_URL + path + ".json");
-    return responseToJson = await response.json();
 }
 
 function renderTasks() {

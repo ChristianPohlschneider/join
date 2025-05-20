@@ -60,7 +60,7 @@ body {
 .summary-content-div-row1:hover {
     background-color: #2A3647;
     color: white !important;
-    transform: scale(1.05);
+    transform: scale(1.0);
 }
 
 .icon-edit {
@@ -95,7 +95,7 @@ body {
 .summary-content-div-row2:hover {
     background-color: #2A3647;
     color: white !important;
-    transform: scale(1.05);
+    transform: scale(1.0);
 }
 
 .icon-check {
@@ -127,7 +127,7 @@ body {
 .summary-content-div-row3:hover {
     background-color: #2A3647;
     color: white !important;
-    transform: scale(1.05);
+    transform: scale(1.0);
 }
 
 
@@ -191,4 +191,15 @@ body {
 .task-informations {
     font-size: 64px;
     font-weight: 600;
+}
+
+.date-informations{
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.dead-line{
+    padding-top: 8px;
+    font-size: 16px;
+    font-weight: 400;
 }
