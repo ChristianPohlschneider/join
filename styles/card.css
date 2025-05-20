@@ -10,7 +10,12 @@
 }
 
 .taskCategory {
+    color: white;
+    display: flex;
     font-size: 19px;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    justify-content: center;
 }
 
 .variant1 {
@@ -71,4 +76,29 @@
 
 .variant15 {
     background-color: #FF4646;
+}
+
+.subtasks {
+    display: flex;
+    font-size: 12px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerScale {
+    display: flex;
+    height: 8px;
+    background-color: #4589FF;
+    border-radius: 16px;
+}
+
+.outerScale {
+    display: flex;
+    justify-content: flex-start;
+    width: 128px;
+    height: 8px;
+    background-color: #F4F4F4;
+    /* border: 4px solid rgb(50, 24, 6); */
+    border-radius: 8px;
 }
