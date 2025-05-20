@@ -7,7 +7,7 @@ async function initContacts() {
 
 async function fetchContacts() {
   try {
-    const data = await getAll("contacts");
+    const data = await getAllUsers("contacts");
 
     if (!data) {
       document.getElementById("contactList").innerHTML = "<p>Keine Kontakte gefunden.</p>";
@@ -21,12 +21,10 @@ async function fetchContacts() {
   }
 }
 
-async function getAll(path) {
-  const response = await fetch(BASE_URL + path + ".json");
-  if (!response.ok) throw new Error("");
-  return await response.json();
+async function getAllUsers(path) {
+    let response = await fetch(BASE_URL + path + ".json");
+    return responseToJson = await response.json();
 }
-
 function renderContacts(contacts) {
   const list = document.getElementById("contactList");
   list.innerHTML = "";
