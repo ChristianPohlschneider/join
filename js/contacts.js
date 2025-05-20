@@ -23,7 +23,7 @@ async function fetchContacts() {
 
 async function getAll(path) {
   const response = await fetch(BASE_URL + path + ".json");
-  if (!response.ok) throw new Error("Fehler beim Abrufen der Daten");
+  if (!response.ok) throw new Error("");
   return await response.json();
 }
 
@@ -34,11 +34,13 @@ function renderContacts(contacts) {
   contacts.forEach((contact, index) => {
     const color = getRandomColor();
     const div = document.createElement("div");
-    div.classList.add("contact-entry");
+    div.classList.add("contact-div");
     div.innerHTML = `
       <span class="contact-avatar" style="background:${color}">${getInitials(contact.name)}</span>
-      <strong>${contact.name}</strong><br/>
-      <small>${contact.mail}</small>
+      <div>
+        <p class="contacts-name">${contact.name}</p><br>
+        <p class="contacts-mail">${contact.mail}</p>
+      </div>
     `;
     div.addEventListener("click", () => showContact(contact, color, index));
     list.appendChild(div);
