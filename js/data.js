@@ -4,8 +4,8 @@ let tasks = [];
 let contacts = [];
 
 async function fetchInit() {
-    await fetchUsers();
     await fetchTasks();
+    await fetchUsers();
 }
 
 async function fetchTasks() {
@@ -21,7 +21,6 @@ async function getAllTasks(path) {
 async function fetchUsers() {
     let userResponse = await getAllUsers("users");
     users = Object.values(userResponse);
-
 };
 
 async function getAllUsers(path) {

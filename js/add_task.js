@@ -1,8 +1,9 @@
-priority = "medium"
+let priority = "medium"
+const submitButton = document.getElementById("creatTask");
 
 async function startForm() {
     addCss('medium');
-    renderSelection();
+    fetchInit();
 }
 
 function addNewToDO() {
@@ -13,7 +14,6 @@ function addNewToDO() {
     assignedTo = document.getElementById("assigned").value;
 
     pushTask(title, description, dueDate, category, assignedTo, priority);
-
     cancelTask()
 }
 
@@ -25,32 +25,25 @@ function cancelTask() {
     document.getElementById("assigned").value = "";
     document.getElementById("subtask").value = "";
     subtaskList.innerHTML = "";
+    submitButton.disabled = true;
     addCss('medium')
 }
 
 function pushTask(title, description, dueDate, category, assignedTo, priority) {
-    tasks.push({
+    let newTask = ({
         assigned_to: assignedTo,
         category: category,
         date: dueDate,
         description: description,
         name: title,
         priority: priority,
-        status: "todo",
+        status: "toDo",
         subtasks: getSubTasks()
     });
+
+    postData(newTask)
 }
 
-function renderSelection() {
-    const assignedTo = document.getElementById("assigned");
-    assignedTo.innerHTML = "";
-
-    assignedTo.innerHTML += `<option value="" disabled selected hidden>Select contacts to assign</option>`;
-
-    for (let i = 0; i < users.length; i++) {
-        assignedTo.innerHTML += `<option value="${users[i].name}">${users[i].name}</option>`;
-    }
-}
 
 function addCss(id) {
     const elements = document.querySelectorAll('.selectable');
@@ -88,22 +81,54 @@ function getSubTasks() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const title = document.getElementById("title");
-  const dueDate = document.getElementById("dueDate");
-  const category = document.getElementById("category");
-  const submitButton = document.getElementById("creatTask");
+    const title = document.getElementById("title");
+    const dueDate = document.getElementById("dueDate");
+    const category = document.getElementById("category");
 
-  function checkInputs() {
-    if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
-      submitButton.disabled = true;
-    } else {
-      submitButton.disabled = false;
+    function checkInputs() {
+        if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
+            submitButton.disabled = true;
+        } else {
+            submitButton.disabled = false;
+        }
     }
-  }
 
-  title.addEventListener("input", checkInputs);
-  dueDate.addEventListener("input", checkInputs);
-  category.addEventListener("input", checkInputs);
+    title.addEventListener("input", checkInputs);
+    dueDate.addEventListener("input", checkInputs);
+    category.addEventListener("input", checkInputs);
 
-  checkInputs();
+    checkInputs();
 });
+
+
+async function postData(newTask) {
+    let response = await fetch(BASE_URL + 'tasks' + '.json', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+    }
+    );
+
+    let responseData = await response.json();
+    return responseData;
+}
+
+fetchInit().then(() => {
+    console.log(users);
+    getContacts();
+});
+
+function getContacts() {
+    contentPlace = document.getElementById("assigned");
+    contentPlace.innerHTML = "";
+    contentPlace.innerHTML += `<option value="" disabled selected hidden>Select contacts to assign</option>`;
+
+    const userNames = users.map(u => u.name);
+    const shortNames = userNames.map(name => name.substring(0, 2));
+
+    for (let i = 0; i < shortNames.length; i++) {
+        contentPlace.innerHTML += `<option value="${shortNames[i]}">${shortNames[i]}</option>`;
+    }
+}  

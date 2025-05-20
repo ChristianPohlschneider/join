@@ -1,7 +1,7 @@
 async function initSummary() {
-    await fetchTasks();
-    summaryWelcome();
     initTask();
+    await fetchInit();
+    summaryWelcome();
     renderSummary();
 }
 
