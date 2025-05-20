@@ -82,6 +82,7 @@ main {
 
 .addTaskButton {
     display: flex;
+    height: 48px;
     font-size: 21px;
     padding: 8px 16px;
     border-radius: 10px;

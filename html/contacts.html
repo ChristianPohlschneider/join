@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Contacts</title>
-    <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/menu-style.css">
-    <link rel="stylesheet" href="../styles/contacts.css">
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/assets.css">
-    <link rel="stylesheet" href="../styles/header-style.css">
-    <script src="../js/contacts.js"></script>
-    <script src="../assets/templates/menu.js"></script>
-    <script src="../assets/templates/header.js"></script>
+    <link rel="stylesheet" href="../styles/menu-style.css" />
+    <link rel="stylesheet" href="../styles/contacts.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+<link rel="stylesheet" href="../styles/header-style.css" />
+    <link rel="stylesheet" href="../styles/assets.css" />
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+    <script defer src="../assets/templates/menu.js"></script>
+    <script defer src="../assets/templates/header.js"></script>
+    <script defer src="../js/contacts.js"></script>
 
 </head>
-<body onload="initTask()">
 
-<header id="headerTemplate"></header>
+<body onload="initContacts()">
+    <header id="headerTemplate"></header>
 
-<main>
-<div id="menuTemplate"></div>
-</main>   
+    <main class="contacts-main">
+        <div id="menuTemplate"></div>
+      <section class="contacts-section">
+        <div class="contacts-list">
+          <button class="add-button">Add new contact<img src="../assets/icons/person_add.png" alt=""></button>
+          
+          <div id="contactList"></div>
+        </div>
+
+        <div class="contact-details">
+          <h2 class="contact-title">Contacts <span class="subtitle"><span class="highlight">|</span> Better with a team</span></h2>
+          <div id="contactView">
+            <p>Wähle einen Kontakt aus der Liste.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,0 +1,92 @@
+body, html {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container {
+    display: flex;
+    flex: 1;
+    height: 60px;
+}
+
+.contacts-main {
+    flex: 1;
+    display: flex;
+}
+
+.contacts-section {
+    display: flex;
+    width: 100%;
+}
+
+.add-button {
+    width: 352px;
+    height: 56px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.add-button:hover {
+    background-color: #29ABE2;
+}
+
+.add-button img {
+    width: 32px;
+    margin-left: 16px;
+}
+
+.contacts-list {
+    margin-left: 310px;
+    width: 400px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.contact-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.contact-title{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 27px;
+    font-weight: 400;
+    color: #2A3647;
+}
+
+.contact-avatar {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: orange;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+.contact-mail {
+    font-size: 16px;
+    font-weight: 400;
+    color: #007CEE;
+}
+.contact-name {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.highlight {
+    color: #29ABE2;
+}
