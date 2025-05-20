@@ -1,6 +1,20 @@
-function initSummary() {
+let tasks = [];
+
+async function initSummary() {
     summaryWelcome();
     initTask();
+    await fetchTasks();
+    renderSummary();
+}
+
+async function fetchTasks() {
+    let taskResponse = await getAllTasks("tasks");
+    tasks = Object.values(taskResponse);
+}
+
+async function getAllTasks(path) {
+    let response = await fetch(BASE_URL + path + ".json");
+    return responseToJson = await response.json();
 }
 
 const time = new Date();
@@ -22,7 +36,7 @@ function switchTime() {
     t = time.getHours();
 
     switch (true) {
-        case (t >= 6 && t < 12 ):
+        case (t >= 6 && t < 12):
             return "Good morning";
         case (t >= 12 && t <= 18):
             return "Good afternoon";
@@ -32,11 +46,32 @@ function switchTime() {
 }
 
 function getUserInfo() {
-   let user = JSON.parse(localStorage.getItem("user"));
-    
-switch (true){
-    case (user === "Guest"): 
-        return "";
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    switch (true) {
+        case (user === "Guest"):
+            return "";
         default:
             return `,` + `<p class="user-name">${user}</p>`;
-}}
+    }
+}
+
+function renderSummary() {
+    let allTasks = document.getElementById('tasks-in-board');
+    allTasks.innerHTML = `${tasks.length}`
+    let allToDoes = document.getElementById('to-do');
+    let currentToDoes = tasks.filter((i) => i.status === "toDo")
+    allToDoes.innerHTML = `${currentToDoes.length}`
+    let allDones = document.getElementById('done');
+    let currentDones = tasks.filter((i) => i.status === "done")
+    allDones.innerHTML = `${currentDones.length}`
+    let allInProgress = document.getElementById('tasks-in-progress');
+    let currentInProgress = tasks.filter((i) => i.status === "inProgress")
+    allInProgress.innerHTML = `${currentInProgress.length}`
+    let allAwait = document.getElementById('awaiting-feedback');
+    let currentAwait = tasks.filter((i) => i.status === "await")
+    allAwait.innerHTML = `${currentAwait.length}`
+    let allUrgents = document.getElementById('urgent');
+    let currentUrgent = tasks.filter((i) => i.priority === "urgent")
+    allUrgents.innerHTML = `${currentUrgent.length}`
+}

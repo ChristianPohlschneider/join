@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #F6F7F8;
 }
 
@@ -109,9 +109,9 @@ body{
     width: 20vw;
     max-width: 168px;
     height: 138px;
-    gap: 18px;
     transition: transform 0.2s ease;
     cursor: pointer;
+    padding-bottom: 6px;
 }
 
 .summary-content-div-row3:hover {
@@ -121,10 +121,13 @@ body{
 }
 
 
-.p-rows{
+.p-rows {
     margin-block-start: 0px;
     margin-block-end: 0px;
     font-size: 20px;
+    padding-right: 24px;
+    text-align: center;
+    padding-left: 24px;
 }
 
 .max-width-560px {
@@ -166,10 +169,15 @@ body{
     width: 100%;
 }
 
-.content{
+.content {
     margin-left: 232px;
     padding-left: 86px;
     padding-right: 86px;
     display: flex;
     align-items: center;
+}
+
+.task-informations {
+    font-size: 64px;
+    font-weight: 600;
 }
