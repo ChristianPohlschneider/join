@@ -12,18 +12,9 @@ function addNewToDO() {
     dueDate = document.getElementById("dueDate").value;
     category = document.getElementById("category").value;
     assignedTo = document.getElementById("assigned").value;
-    //subtasks = document.getElementById("subtasks").value;
 
-    tasks.push({
-        assigned_to: assignedTo,
-        category: category,
-        date: dueDate,
-        description: description,
-        name: title,
-        priority: priority,
-        status: "todo",
-        //subtasks:
-    })
+    pushTask(title, description, dueDate, category, assignedTo, priority);
+
     cancelTask()
 }
 
@@ -36,6 +27,19 @@ function cancelTask() {
     document.getElementById("subtask").value = "";
     subtaskList.innerHTML = "";
     addCss('medium')
+}
+
+function pushTask(title, description, dueDate, category, assignedTo, priority) {
+    tasks.push({
+        assigned_to: assignedTo,
+        category: category,
+        date: dueDate,
+        description: description,
+        name: title,
+        priority: priority,
+        status: "todo",
+        subtasks: getSubTasks()
+    });
 }
 
 function renderSelection() {
@@ -69,3 +73,41 @@ function addSubtask() {
         subtask.value = "";
     }
 }
+
+function getSubTasks() {
+    const div = document.getElementById("subtaskList");
+    if (div.children.length === 0) {
+        return [];
+    }
+
+    const subtasks = Array.from(div.children).map(child => ({
+        title: child.textContent.trim(),
+        done: false
+    }));
+
+    return subtasks;
+}
+
+const title = document.getElementById("title");
+const dueDate = document.getElementById("dueDate");
+const category = document.getElementById("category");
+const submitButton = document.getElementById("createTask");
+
+title.addEventListener("input", checkInputs);
+dueDate.addEventListener("input", checkInputs);
+category.addEventListener("input", checkInputs);
+
+
+// Die Funktion prüft, ob alle Felder gefüllt sind
+function checkInputs() {
+  if (title.value === "" || dueDate.value === "" || category.value === "") {
+    submitButton.disabled = true;
+  } else {
+    submitButton.disabled = false;
+  }
+}
+
+// Event Listener, der bei jeder Eingabe reagiert
+
+// Initial prüfen (z. B. bei Autofill)
+checkInputs();
