@@ -1,7 +1,6 @@
-contacts = {};
-let priority = "medium"
+priority = "medium"
 
-function startForm() {
+async function startForm() {
     addCss('medium');
     renderSelection();
 }
