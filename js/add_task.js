@@ -1,4 +1,3 @@
-test = [];
 const contacts = {};
 let priority = "medium"
 
@@ -31,7 +30,7 @@ function cancelTask() {
 }
 
 function pushTask(title, description, dueDate, category, assignedTo, priority) {
-    test.push({
+    tasks.push({
         assigned_to: assignedTo,
         category: category,
         date: dueDate,
@@ -88,3 +87,27 @@ function getSubTasks() {
 
     return subtasks;
 }
+
+const title = document.getElementById("title");
+const dueDate = document.getElementById("dueDate");
+const category = document.getElementById("category");
+const submitButton = document.getElementById("createTask");
+
+title.addEventListener("input", checkInputs);
+dueDate.addEventListener("input", checkInputs);
+category.addEventListener("input", checkInputs);
+
+
+// Die Funktion prüft, ob alle Felder gefüllt sind
+function checkInputs() {
+  if (title.value === "" || dueDate.value === "" || category.value === "") {
+    submitButton.disabled = true;
+  } else {
+    submitButton.disabled = false;
+  }
+}
+
+// Event Listener, der bei jeder Eingabe reagiert
+
+// Initial prüfen (z. B. bei Autofill)
+checkInputs();
