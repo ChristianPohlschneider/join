@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #F6F7F8;
 }
 
@@ -12,6 +12,14 @@ body{
 
 .padding-left {
     padding-left: 100px;
+}
+
+.padding-left-232 {
+    padding-left: 232px;
+}
+
+.padding-left-50 {
+    padding-left: 50px;
 }
 
 .blue-border {
@@ -30,6 +38,8 @@ body{
     font-size: 61px;
     margin-block-start: 0em;
     margin-block-end: 0em;
+    margin-top: 80px;
+    padding-bottom: 60px;
 }
 
 .suptitle-summary {
@@ -121,7 +131,7 @@ body{
 }
 
 
-.p-rows{
+.p-rows {
     margin-block-start: 0px;
     margin-block-end: 0px;
     font-size: 20px;
@@ -157,11 +167,11 @@ body{
     color: #29ABE2;
 }
 
-.margin-top-h1 {
-    margin-top: 100px;
-    padding-bottom: 60px;
-}
-
 .width-100 {
     width: 100%;
+}
+
+.summary-position {
+    display: flex;
+    align-items: center;
 }
