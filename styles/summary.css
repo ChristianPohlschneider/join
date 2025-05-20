@@ -167,11 +167,26 @@ body {
     color: #29ABE2;
 }
 
+<<<<<<< HEAD
+=======
+.margin-top-h1 {
+    margin-top: 86px;
+    padding-bottom: 60px;
+}
+
+>>>>>>> eb7f4c63cd5b22492c09f63986ffb7226e2fa950
 .width-100 {
     width: 100%;
 }
 
+<<<<<<< HEAD
 .summary-position {
+=======
+.content{
+    margin-left: 232px;
+    padding-left: 86px;
+    padding-right: 86px;
+>>>>>>> eb7f4c63cd5b22492c09f63986ffb7226e2fa950
     display: flex;
     align-items: center;
 }

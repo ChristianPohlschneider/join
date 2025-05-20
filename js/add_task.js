@@ -74,6 +74,7 @@ function addSubtask() {
         subtask.value = "";
     }
 }
+<<<<<<< HEAD
 
 function getSubTasks() {
     const div = document.getElementById("subtaskList");
@@ -87,3 +88,5 @@ function getSubTasks() {
     }));
 
     return subtasks;
+=======
+>>>>>>> eb7f4c63cd5b22492c09f63986ffb7226e2fa950
