@@ -15,3 +15,13 @@ function renderCard(taskIndex) {
         </div>
     `;
 }
+
+function renderSubtaskSScale(data, statIndex) {
+    return `
+    <div class="attribute"><p class="attributeName">${data.stats[statIndex].stat.name}</p>
+        <div id="outerscale" class="outerScale">
+            <div class="innerScale" id="innerScale${statIndex}" style="width: ${Math.abs(Number(data.stats[statIndex].base_stat) * 3)}px"></div>
+        </div>
+    </div>
+    `;
+}
