@@ -19,7 +19,7 @@ function menuLogged() {
                 <img src="../assets/icons/board.png" alt="board logo">
                 <p class="padding-left-10px p-menu-style">Board</p>
             </a>
-            <a class="a-menu menu-button-possition" href="./contact.html" class="menu-button-possition">
+            <a class="a-menu menu-button-possition" href="./contacts.html" class="menu-button-possition">
                 <img src="../assets/icons/contact.png" alt="contact logo">
                 <p class="padding-left-10px p-menu-style">Contact</p>
             </a>
