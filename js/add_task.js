@@ -1,3 +1,4 @@
+test = [];
 const contacts = {};
 let priority = "medium"
 
@@ -12,18 +13,9 @@ function addNewToDO() {
     dueDate = document.getElementById("dueDate").value;
     category = document.getElementById("category").value;
     assignedTo = document.getElementById("assigned").value;
-    //subtasks = document.getElementById("subtasks").value;
 
-    tasks.push({
-        assigned_to: assignedTo,
-        category: category,
-        date: dueDate,
-        description: description,
-        name: title,
-        priority: priority,
-        status: "todo",
-        //subtasks:
-    })
+    pushTask(title, description, dueDate, category, assignedTo, priority);
+
     cancelTask()
 }
 
@@ -36,6 +28,19 @@ function cancelTask() {
     document.getElementById("subtask").value = "";
     subtaskList.innerHTML = "";
     addCss('medium')
+}
+
+function pushTask(title, description, dueDate, category, assignedTo, priority) {
+    test.push({
+        assigned_to: assignedTo,
+        category: category,
+        date: dueDate,
+        description: description,
+        name: title,
+        priority: priority,
+        status: "todo",
+        subtasks: getSubTasks()
+    });
 }
 
 function renderSelection() {
@@ -68,4 +73,18 @@ function addSubtask() {
         subtaskList.innerHTML += `<li>${subtask.value}</li>`;
         subtask.value = "";
     }
+}
+
+function getSubTasks() {
+    const div = document.getElementById("subtaskList");
+    if (div.children.length === 0) {
+        return [];
+    }
+
+    const subtasks = Array.from(div.children).map(child => ({
+        title: child.textContent.trim(),
+        done: false
+    }));
+
+    return subtasks;
 }

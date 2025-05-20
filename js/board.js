@@ -10,6 +10,7 @@ async function initboard() {
     await fetchTasks();
     clearBoardTable();
     renderTasks();
+    
 }
 
 async function fetchTasks() {
@@ -103,3 +104,4 @@ function filterTasks(event) {
         card.style.display = content.includes(searchTerm) ? 'block' : 'none';
     });
 }
+
