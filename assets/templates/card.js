@@ -17,14 +17,3 @@ function renderCard(taskIndex) {
         </div>
     `;
 }
-
-// function renderSubtasksScale(taskIndex) {
-//     return `
-//     <div id="subtasks" class="subtasks">
-//         <div id="outerscale" class="outerScale">
-//             <div class="innerScale" id="innerScale${statIndex}" style="width: ${Math.abs(Number(data.stats[statIndex].base_stat) * 3)}px"></div>
-//         </div>
-//         <p id="subtaskDone" class="subtaskDone">${"/" + tasks[taskIndex].subtasks.length + "Subtasks"}</p>
-//     </div>
-//     `;
-// }
