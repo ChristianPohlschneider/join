@@ -130,3 +130,13 @@ body, html {
 .highlight {
     color: #29ABE2;
 }
+
+.contact-info{
+    display: flex;
+    align-items: center;
+}
+
+.contact-name-buttons h2 {
+    font-size: 47px;
+    font-weight: 500;
+}

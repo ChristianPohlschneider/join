@@ -71,13 +71,23 @@ function getRandomColor() {
 
 function showContact(contact, color) {
   document.getElementById("contactView").innerHTML = `
-    <div class="contact-avatar" style="background:${color}; width:60px; height:60px; font-size:20px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white;">
-      ${getInitials(contact.name)}
+    <div class="contact-view">
+      <div class="contact-info">
+        <div class="contact-avatar" style="background:${color}; width:120px; height:120px; font-size:47px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white;">
+          ${getInitials(contact.name)}
+        </div>
+        <div class="contact-name-buttons">
+          <h2>${contact.name}</h2>
+          <img src="../assets/icons/edit-v2.png" alt="">
+          <button>Edit</button>
+          <img src="../assets/icons/delete.png" alt="">
+          <button>Delete</button>
+        </div>
+      </div>
+      <div class="contact-details">        
+        <p><strong>Email:</strong> <a href="mailto:${contact.mail}">${contact.mail}</a></p>
+        <p><strong>Phone:</strong> ${contact.phone_number || '-'}</p>
+      </div>
     </div>
-    <h2>${contact.name}</h2>
-    <p><strong>Email:</strong> <a href="mailto:${contact.mail}">${contact.mail}</a></p>
-    <p><strong>Phone:</strong> ${contact.phone_number || '-'}</p>
-    <button>Edit</button>
-    <button>Delete</button>
   `;
 }
