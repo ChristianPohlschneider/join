@@ -77,11 +77,9 @@ function showContact(contact, color) {
           ${getInitials(contact.name)}
         </div>
         <div class="contact-name-buttons">
-          <h2>${contact.name}</h2>
-          <img src="../assets/icons/edit-v2.png" alt="">
-          <button>Edit</button>
-          <img src="../assets/icons/delete.png" alt="">
-          <button>Delete</button>
+          <h2>${contact.name}</h2>          
+          <button><img src="../assets/icons/edit-v2.png" alt="">Edit</button>          
+          <button><img src="../assets/icons/delete.png" alt="">Delete</button>
         </div>
       </div>
       <p class="contact-info-subtitle">Contact Information</p>

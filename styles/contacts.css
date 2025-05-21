@@ -142,6 +142,21 @@ body, html {
     font-weight: 500;
 }
 
+.contact-name-buttons button {
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #2a364700;
+}
+
+.contact-name-buttons button:hover {
+    background-color: #ebebeb;
+}
+
+.contact-name-buttons button img{
+    height: 16px;
+    margin-right: 10px;
+}
+
 .contact-info-subtitle{
     font-size: 20px;
     font-weight: 400;
