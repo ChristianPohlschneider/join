@@ -1,6 +1,8 @@
 let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"]
 let categoryVariants = [];
 let subtaskArray = [];
+let subtask = 0;
+let subtaskTotal = 0;
 
 async function initboard() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
@@ -83,10 +85,8 @@ function findBackgroundColor(taskIndex) {
 }
 
 function getSubtasks(taskIndex) {
-    let subtask = 0;
-    let subtaskTotal = 0;
-    if (tasks[taskIndex].subtasks == "") {
-        return;
+    if (tasks[taskIndex].subtasks === undefined) {
+        document.getElementById("subtasks#" + taskIndex).style.display ="none";
     }
     getSubtaskIndex(taskIndex);
     for (let subtaskIndex = 0; subtaskIndex < subtaskArray.length; subtaskIndex++) {

@@ -5,7 +5,7 @@ function renderCard(taskIndex) {
             <div id="taskName" class="taskName">${tasks[taskIndex].name}</div>
             <div id="taskDescription" class="taskDescription">${tasks[taskIndex].description}</div>
             <div id="subtasks${"#" + taskIndex}" class="subtasks">
-                <div id="outerscale" class="outerScale">
+                <div id="outerScale${"#" + taskIndex}" class="outerScale">
                     <div class="innerScale" id="innerScale${"#" + taskIndex}"></div>
                 </div>
                 <p id="subtaskDone${"#" + taskIndex}" class="subtaskDone"></p>
