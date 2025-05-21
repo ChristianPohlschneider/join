@@ -56,11 +56,14 @@
                         </div>
                     </div>
 
-                    <article class="flex-column">
+                    <div class="assign-dropdown-container">
                         <label for="assigned">Assigned to</label>
-                        <select id="assigned" name="selection-assigned" class="input-text" required>
-                        </select>
-                    </article>
+                        <div class="dropdown" id="assignee-dropdown">
+                            <input class="input-text" type="text" id="assignee-input" placeholder="Select contacts to assign" autocomplete="off" onclick="toggleSelectable()">
+                            <div class="selectable-assigned dnone" id="assigned"></div>
+                            <div id="memberForTask"></div>
+                        </div>
+                    </div>
 
                     <article class="flex-column">
                         <label for="category">Category<span>*</span></label>
@@ -69,14 +72,15 @@
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
                         </select>
-                    </article>
+                    </article> 
 
                     <article>
                         <p>Subtasks</p>
                         <div class="flex-center">
                             <input id="subtask" type="text" placeholder="Neue Unteraufgabe hinzufügen" maxlength="30"
                                 name="subtaskTitle" class="input-text">
-                            <img src="../assets/icons/+.png" alt="Unteraufgabe hinzufügen" class="plus-symbol" onclick="addSubtask()">
+                            <img src="../assets/icons/+.png" alt="Unteraufgabe hinzufügen" class="plus-symbol"
+                                onclick="addSubtask()">
                         </div>
                         <div id="subtaskList"></div>
                     </article>
@@ -85,8 +89,8 @@
             <div class="flex-center flex-space-between margin-top-50px">
                 <p><span>*</span>This field is required</p>
                 <div>
-                    <button onclick="cancelTask()">Cancel <img src="#" alt=""></button><button disabled id="creatTask" onclick="addNewToDO()"
-                        class="margin-left-10px">Create Task</button>
+                    <button onclick="cancelTask()">Cancel <img src="#" alt=""></button><button disabled id="creatTask"
+                        onclick="addNewToDO()" class="margin-left-10px">Create Task</button>
                 </div>
             </div>
         </div>

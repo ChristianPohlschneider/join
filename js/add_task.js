@@ -129,6 +129,15 @@ function getContacts() {
     const shortNames = userNames.map(name => name.substring(0, 2));
 
     for (let i = 0; i < shortNames.length; i++) {
-        contentPlace.innerHTML += `<option value="${shortNames[i]}">${shortNames[i]}</option>`;
+        contentPlace.innerHTML += `<div value="${shortNames[i]}">${shortNames[i]}<input type="checkbox" onclick="addMember(${shortNames[i]})"/></div>`;
     }
 }  
+
+function toggleSelectable(){
+    document.getElementById("assigned").classList.toggle("dnone")
+}
+
+function addMember(i) {
+    contentPlace = document.getElementById("memberForTask")
+    contentPlace.innerHTML += `<p>${i}></p>`;
+}
