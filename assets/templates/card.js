@@ -10,7 +10,7 @@ function renderCard(taskIndex) {
                 </div>
                 <p id="subtaskDone${"#" + taskIndex}" class="subtaskDone"></p>
             </div>
-            <div>
+            <div id="taskAssignment" class="taskAssignment">
                 <div id="assignedTo${"#" + taskIndex}" class="assignedTo"></div>
                 <div id="priority${"#" + taskIndex}" class="priority"></div>
             </div>
@@ -21,5 +21,11 @@ function renderCard(taskIndex) {
 function renderPriority(taskIndex, priority) {
      return `
      <img id="priorityImg${"#" + taskIndex}" class="priorityImg" src="../assets/icons/${priority}.png" alt="priority">
+     `;
+}
+
+function renderInitials(taskIndex, initials) {
+     return `
+     <div id="assignedToInitial${"#" + taskIndex}" class="assignedToInitial">${initials.toUpperCase()}</div>
      `;
 }

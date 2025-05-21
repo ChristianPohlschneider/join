@@ -1,6 +1,8 @@
 let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"]
 let categoryVariants = [];
 let subtaskArray = [];
+let assignedTo = [];
+let assignedToVariants = [];
 let subtask = 0;
 let subtaskTotal = 0;
 
@@ -43,6 +45,7 @@ function renderTaskToDo(taskIndex) {
     document.getElementById("taskToDo").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getAssignedTo(taskIndex);
     getPriority(taskIndex);
 }
 
@@ -52,6 +55,7 @@ function renderTaskInProgress(taskIndex) {
     document.getElementById("taskInProgress").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getAssignedTo(taskIndex);
     getPriority(taskIndex);
 }
 
@@ -61,6 +65,7 @@ function renderTaskAwait(taskIndex) {
     document.getElementById("taskAwaitFeedback").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getAssignedTo(taskIndex);
     getPriority(taskIndex);
 }
 
@@ -70,6 +75,7 @@ function renderDone(taskIndex) {
     document.getElementById("taskDone").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getAssignedTo(taskIndex);
     getPriority(taskIndex);
 }
 
@@ -131,6 +137,46 @@ function getPriority(taskIndex) {
         document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
     } else {
         document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
+    }
+}
+
+function getAssignedTo(taskIndex) {
+    getAssignedToInitials(taskIndex);
+    getAssignedToVariants(taskIndex);
+}
+
+function getAssignedToInitials(taskIndex) {
+    for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
+        assignedTo.push(`${key}`);
+    }
+    for (let index = 0; index < assignedTo.length; index++) {
+        let name = assignedTo[index];
+            let parts = name.split('_')
+            let initials = ''
+            for (let i = 0; i < parts.length; i++) {
+                if (parts[i].length > 0 && parts[i] !== '') {
+                    initials += parts[i][0]
+                }
+            }
+            document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials);
+    }
+    assignedTo = [];
+}
+
+function getAssignedToVariants(taskIndex) {
+    if (assignedToVariants.find(({ assigned_to }) => assigned_to == tasks[taskIndex].assigned_to)) {
+        let searchWord = tasks[taskIndex].assigned_to;
+        let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
+        document.getElementById("assignedToInitial#" + taskIndex).classList.add(assignedToVariants[assignedToVariantsIndex].variant)
+    } else {
+        assignedToVariants.push({
+            variant: colorVariants[assignedToVariants.length],
+            assigned_to: tasks[taskIndex].assigned_to,
+        })
+        if (document.getElementById("assignedToInitial#" + taskIndex) != null) {
+            document.getElementById("assignedToInitial#" + taskIndex).classList.add(colorVariants[assignedToVariants.length - 1]);
+        }
+        
     }
 }
 

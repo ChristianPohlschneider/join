@@ -39,6 +39,30 @@
     width: 128px;
     height: 8px;
     background-color: #F4F4F4;
-    /* border: 4px solid rgb(50, 24, 6); */
     border-radius: 8px;
+}
+
+.assignedTo {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.taskAssignment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assignedToInitial {
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    /* color: #FFFFFF; */
+    display: flex;
+    height: 32px;
+    width: 32px;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
 }
