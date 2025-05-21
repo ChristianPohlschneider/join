@@ -63,7 +63,7 @@ body {
     transform: scale(1.0);
 }
 
-a{
+.tasks-link{
     color: black !important;
 }
 
