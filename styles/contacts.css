@@ -134,9 +134,18 @@ body, html {
 .contact-info{
     display: flex;
     align-items: center;
+    margin-top: 54px;
 }
 
 .contact-name-buttons h2 {
     font-size: 47px;
     font-weight: 500;
+}
+
+.contact-info-subtitle{
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 20px;
 }

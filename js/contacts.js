@@ -84,9 +84,10 @@ function showContact(contact, color) {
           <button>Delete</button>
         </div>
       </div>
+      <p class="contact-info-subtitle">Contact Information</p>
       <div class="contact-details">        
-        <p><strong>Email:</strong> <a href="mailto:${contact.mail}">${contact.mail}</a></p>
-        <p><strong>Phone:</strong> ${contact.phone_number || '-'}</p>
+        <p><strong>Email:</strong><br><br> <a href="mailto:${contact.mail}">${contact.mail}</a></p><br><br>
+        <p><strong>Phone:</strong><br><br> ${contact.phone_number || '-'}</p>
       </div>
     </div>
   `;
