@@ -63,6 +63,10 @@ body {
     transform: scale(1.0);
 }
 
+a{
+    color: black !important;
+}
+
 .icon-edit {
     background-image: url('../assets/icons/edit.png');
     width: 70px;
