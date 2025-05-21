@@ -12,8 +12,14 @@ function renderCard(taskIndex) {
             </div>
             <div>
                 <div id="assignedTo${"#" + taskIndex}" class="assignedTo"></div>
-                <div id="priority" class="priority"></div>
+                <div id="priority${"#" + taskIndex}" class="priority"></div>
             </div>
         </div>
     `;
+}
+
+function renderPriority(taskIndex, priority) {
+     return `
+     <img id="priorityImg${"#" + taskIndex}" class="priorityImg" src="../assets/icons/${priority}.png" alt="priority">
+     `;
 }

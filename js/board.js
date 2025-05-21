@@ -11,7 +11,6 @@ async function initboard() {
     await fetchTasks();
     clearBoardTable();
     renderTasks();
-
 }
 
 function renderTasks() {
@@ -44,6 +43,7 @@ function renderTaskToDo(taskIndex) {
     document.getElementById("taskToDo").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getPriority(taskIndex);
 }
 
 function renderTaskInProgress(taskIndex) {
@@ -52,6 +52,7 @@ function renderTaskInProgress(taskIndex) {
     document.getElementById("taskInProgress").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getPriority(taskIndex);
 }
 
 function renderTaskAwait(taskIndex) {
@@ -60,6 +61,7 @@ function renderTaskAwait(taskIndex) {
     document.getElementById("taskAwaitFeedback").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getPriority(taskIndex);
 }
 
 function renderDone(taskIndex) {
@@ -68,6 +70,7 @@ function renderDone(taskIndex) {
     document.getElementById("taskDone").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
+    getPriority(taskIndex);
 }
 
 function findBackgroundColor(taskIndex) {
@@ -86,13 +89,17 @@ function findBackgroundColor(taskIndex) {
 
 function getSubtasks(taskIndex) {
     if (tasks[taskIndex].subtasks === undefined) {
-        document.getElementById("subtasks#" + taskIndex).style.display ="none";
+        document.getElementById("subtasks#" + taskIndex).style.display = "none";
     }
     getSubtaskIndex(taskIndex);
     for (let subtaskIndex = 0; subtaskIndex < subtaskArray.length; subtaskIndex++) {
         subtask++;
         subtaskTotal++;
     }
+    renderSubtasks(taskIndex);
+}
+
+function renderSubtasks(taskIndex) {
     document.getElementById("subtaskDone#" + taskIndex).innerHTML = subtask + "/" + subtaskTotal + " Subtask";
     document.getElementById("innerScale#" + taskIndex).style.width = Math.abs(Number(128)) + "px";
     subtask = 0;
@@ -101,20 +108,30 @@ function getSubtasks(taskIndex) {
 }
 
 function getSubtaskIndex(taskIndex) {
-const task = tasks[taskIndex];
-
-if (task.subtasks) {
-    Object.entries(task.subtasks).forEach(([key, value], subIndex) => {
-        subtaskArray.push({
-            taskIndex,
-            subIndex,
-            taskName: task.name,
-            key,
-            title: value.title,
-            done: value.done
+    const task = tasks[taskIndex];
+    if (task.subtasks) {
+        Object.entries(task.subtasks).forEach(([key, value], subIndex) => {
+            subtaskArray.push({
+                taskIndex,
+                subIndex,
+                taskName: task.name,
+                key,
+                title: value.title,
+                done: value.done
+            });
         });
-    });
+    }
 }
+
+function getPriority(taskIndex) {
+    let priority = tasks[taskIndex].priority;
+    if (priority == "urgent") {
+        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
+    } else if (priority == "medium") {
+        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
+    } else {
+        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
