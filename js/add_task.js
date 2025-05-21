@@ -1,5 +1,6 @@
 let priority = "medium"
 const submitButton = document.getElementById("creatTask");
+let assignedMembers = [];
 
 async function startForm() {
     addCss('medium');
@@ -11,9 +12,8 @@ function addNewToDO() {
     description = document.getElementById("description").value;
     dueDate = document.getElementById("dueDate").value;
     category = document.getElementById("category").value;
-    assignedTo = document.getElementById("assigned").value;
 
-    pushTask(title, description, dueDate, category, assignedTo, priority);
+    pushTask(title, description, dueDate, category, priority);
     cancelTask()
 }
 
@@ -22,16 +22,17 @@ function cancelTask() {
     document.getElementById("description").value = "";
     document.getElementById("dueDate").value = "";
     document.getElementById('category').value = "";
-    document.getElementById("assigned").value = "";
+    document.getElementById("memberForTask").innerHTML = "";
     document.getElementById("subtask").value = "";
     subtaskList.innerHTML = "";
     submitButton.disabled = true;
     addCss('medium')
+    assignedMembers = [];
 }
 
-function pushTask(title, description, dueDate, category, assignedTo, priority) {
+function pushTask(title, description, dueDate, category, priority) {
     let newTask = ({
-        assigned_to: assignedTo,
+        assigned_to: assignedMembers,
         category: category,
         date: dueDate,
         description: description,
@@ -40,7 +41,6 @@ function pushTask(title, description, dueDate, category, assignedTo, priority) {
         status: "toDo",
         subtasks: getSubTasks()
     });
-
     postData(newTask)
 }
 
@@ -61,16 +61,14 @@ function addSubtask() {
     subtask = document.getElementById("subtask");
 
     if (subtask.value.trim()) {
-        subtaskList.innerHTML += `<li>${subtask.value}</li>`;
+        subtaskList.innerHTML += subtaskTemplate(subtask.value);
         subtask.value = "";
     }
 }
 
 function getSubTasks() {
     const div = document.getElementById("subtaskList");
-    if (div.children.length === 0) {
-        return [];
-    }
+    if (div.children.length === 0) {return []; }
 
     const subtasks = Array.from(div.children).map(child => ({
         title: child.textContent.trim(),
@@ -88,10 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkInputs() {
         if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
             submitButton.disabled = true;
-        } else {
-            submitButton.disabled = false;
-        }
-    }
+        } else {submitButton.disabled = false;}}
 
     title.addEventListener("input", checkInputs);
     dueDate.addEventListener("input", checkInputs);
@@ -108,36 +103,51 @@ async function postData(newTask) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(newTask),
-    }
-    );
+    });
 
     let responseData = await response.json();
     return responseData;
 }
 
-fetchInit().then(() => {
-    console.log(users);
-    getContacts();
-});
+fetchInit().then(() => {getContacts();});
 
 function getContacts() {
-    contentPlace = document.getElementById("assigned");
+    const contentPlace = document.getElementById("assigned");
     contentPlace.innerHTML = "";
-    contentPlace.innerHTML += `<option value="" disabled selected hidden>Select contacts to assign</option>`;
+    contentPlace.innerHTML += disabledSelect();
 
     const userNames = users.map(u => u.name);
-    const shortNames = userNames.map(name => name.substring(0, 2));
+    const shortNames = makeShortName(userNames);
 
     for (let i = 0; i < shortNames.length; i++) {
-        contentPlace.innerHTML += `<div value="${shortNames[i]}">${shortNames[i]}<input type="checkbox" onclick="addMember(${shortNames[i]})"/></div>`;
+        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i]);
     }
-}  
+}
+
+function makeShortName(userNames) {
+    return userNames.map(name => {
+        const parts = name.trim().split(" ");
+        const first = parts[0]?.charAt(0).toUpperCase() || "";
+        const last = parts[1]?.charAt(0).toUpperCase() || "";
+        return first + last;
+    });
+}
+
+
 
 function toggleSelectable(){
     document.getElementById("assigned").classList.toggle("dnone")
 }
 
-function addMember(i) {
-    contentPlace = document.getElementById("memberForTask")
-    contentPlace.innerHTML += `<p>${i}></p>`;
-}
+function addMember(shortName, checkboxElement, userName) {
+    const contentPlace = document.getElementById("memberForTask");
+
+    if (checkboxElement.checked) {
+        if (!document.getElementById(`member-${shortName}`)) {
+            contentPlace.innerHTML +=  meberTemplate(shortName);
+            assignedMembers.push({"name": userName, "shortName": shortName });}
+    } else {
+        const elem = document.getElementById(`member-${shortName}`);
+        if (elem) {elem.remove();}
+        assignedMembers = assignedMembers.filter(member => member.shortName !== shortName);
+    }};
