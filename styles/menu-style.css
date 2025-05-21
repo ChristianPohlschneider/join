@@ -132,3 +132,13 @@
     font-size: 14px;
     font-weight: 400;
 }
+
+.loggedOut-mobile-menu{
+    display: flex;
+    gap: 6px;
+}
+
+.loggedOut-mobile-menu a{
+    color: #CDCDCD;
+    width: 112px;
+}

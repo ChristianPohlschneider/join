@@ -1,5 +1,5 @@
 function menuLogged() {
-    return `    <div class="menu-style">
+     return `    <div class="menu-style">
         <div class="menu-tasks">
             <div class="menu-div">
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
@@ -73,6 +73,22 @@ function menuUnlogged() {
             <a href="../html/legal_notice.html" class="flex-center padding-10px">Legal notice</a>
         </div>
     </div>
+    `;
+}
+
+function mobileMenuUnLogged() {
+    return `    <div class="mobile-menu-container">
+        <a href="./summary.html">
+            <img src="../assets/icons/login.png" alt="">
+            <p>Log In</p>
+        </a>
+        <div class="loggedOut-mobile-menu">
+            <a href="../html/privacy_policy.html">Privacy Policy
+            </a>
+            <a href="../html/legal_notice.html">Legal notice
+            </a>
+        </div>
+    </div> 
     `;
 }
 
