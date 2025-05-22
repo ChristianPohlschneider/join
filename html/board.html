@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="boardTable">
-                    <div class="boardList">
+                    <div ondrop="moveTo('toDo')"ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>To do</h3>
                             <div class="plusButton">
@@ -63,10 +63,10 @@
                             </div>
                         </div>
                         <div id="emptyTask0" class="emptyTask">No Task To Do</div>
-                        <div id="taskToDo" class="taskList"></div>
+                        <div  id="taskToDo" class="taskList"></div>
                     </div>
 
-                    <div class="boardList">
+                    <div ondrop="moveTo('inProgress')"ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>In progress</h3>
                             <div class="plusButton">
@@ -75,10 +75,10 @@
                             </div>
                         </div>
                         <div id="emptyTask1" class="emptyTask">Nothing in progress</div>
-                        <div id="taskInProgress" class="taskList"></div>
+                        <div  id="taskInProgress" class="taskList"></div>
                     </div>
 
-                    <div class="boardList">
+                    <div ondrop="moveTo('await')"ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Await feedback</h3>
                             <div class="plusButton">
@@ -87,16 +87,16 @@
                             </div>
                         </div>
                         <div id="emptyTask2" class="emptyTask">No feedback</div>
-                        <div id="taskAwaitFeedback" class="taskList"></div>
+                        <div  id="taskAwaitFeedback" class="taskList"></div>
                     </div>
 
-                    <div class="boardList">
+                    <div ondrop="moveTo('done')"ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Done</h3>
 
                         </div>
                         <div id="emptyTask3" class="emptyTask">Nothing done</div>
-                        <div id="taskDone" class="taskList"></div>
+                        <div  id="taskDone" class="taskList"></div>
                     </div>
 
                 </div>

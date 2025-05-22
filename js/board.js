@@ -6,6 +6,8 @@ let assignedToVariants = [];
 let subtask = 0;
 let subtaskTotal = 0;
 
+let currentId;
+
 async function initboard() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.querySelector("header").innerHTML = header();
@@ -196,3 +198,16 @@ function filterTasks(event) {
     });
 }
 
+function startDragging(id) {
+    currentId = id;
+}
+
+function moveTo(status) {
+    tasks[currentId].status = status
+    clearBoardTable();
+    renderTasks();
+}
+
+function dragoverHandler(ev) {
+    ev.preventDefault();
+}
