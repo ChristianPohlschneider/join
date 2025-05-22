@@ -1,5 +1,5 @@
 function menuLogged() {
-     return `    <div class="menu-style">
+    return `    <div class="menu-style">
         <div class="menu-tasks">
             <div class="menu-div">
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
@@ -95,8 +95,24 @@ function mobileMenuUnLogged() {
 function checkLogged() {
     let userName = localStorage.getItem("user");
     if (userName == undefined) {
-        return menuUnlogged();
+        if (window.innerWidth <= 1350) {
+            return mobileMenuUnLogged();
+        } else {
+            return menuUnlogged();
+        }
     } else {
-        return menuLogged();
+        if (window.innerWidth <= 1350) {
+            return  mobileMenuLogged();
+        } else {
+            return menuLogged();
+        }
+    }
+}
+
+function toogleVieW() {
+    if (window.innerWidth <= 1350) {
+        document.getElementById("menuTemplate").innerHTML = mobileMenuLogged();
+    } else {
+        document.getElementById("menuTemplate").innerHTML = menuLogged();
     }
 }
