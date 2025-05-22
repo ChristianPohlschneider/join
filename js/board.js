@@ -109,7 +109,10 @@ function getSubtasks(taskIndex) {
     }
     getSubtaskIndex(taskIndex);
     for (let subtaskIndex = 0; subtaskIndex < subtaskArray.length; subtaskIndex++) {
-        subtask++;
+        if (subtaskArray[subtaskIndex].done == true) {
+            subtask++;
+        }
+        
         subtaskTotal++;
     }
     renderSubtasks(taskIndex);
@@ -117,7 +120,7 @@ function getSubtasks(taskIndex) {
 
 function renderSubtasks(taskIndex) {
     document.getElementById("subtaskDone#" + taskIndex).innerHTML = subtask + "/" + subtaskTotal + " Subtask";
-    document.getElementById("innerScale#" + taskIndex).style.width = Math.abs(Number(128)) + "px";
+    document.getElementById("innerScale#" + taskIndex).style.width = Math.abs(Number((subtask/subtaskTotal) * 128)) + "px";
     subtask = 0;
     subtaskTotal = 0;
     subtaskArray = [];
