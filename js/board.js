@@ -39,6 +39,14 @@ function clearBoardTable() {
     document.getElementById("taskInProgress").innerHTML = "";
     document.getElementById("taskAwaitFeedback").innerHTML = "";
     document.getElementById("taskDone").innerHTML = "";
+    document.getElementById("emptyTask0").classList.remove("d_none");
+    document.getElementById("emptyTask0").classList.add("emptyTask");
+    document.getElementById("emptyTask1").classList.remove("d_none");
+    document.getElementById("emptyTask1").classList.add("emptyTask");
+    document.getElementById("emptyTask2").classList.remove("d_none");
+    document.getElementById("emptyTask2").classList.add("emptyTask");
+    document.getElementById("emptyTask3").classList.remove("d_none");
+    document.getElementById("emptyTask3").classList.add("emptyTask");
 }
 
 function renderTaskToDo(taskIndex) {
