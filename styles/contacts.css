@@ -179,12 +179,16 @@ body, html {
 }
 
 .overlay-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    height: 594px;
+    max-width: 90%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    
 }
 
 .hidden {
@@ -197,4 +201,23 @@ body, html {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.add-contact-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 422px;
+    height: 215px;
+}
+
+.contact-form input {
+    height: 50px;
 }

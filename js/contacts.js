@@ -1,5 +1,3 @@
-const BASE_URL = "https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/";
-
 async function initContacts() {
   await fetchContacts();
   initTask();
