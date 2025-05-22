@@ -1,6 +1,8 @@
 function header() {
   return `  
     <div class="header-title">Kanban Project Management Tool</div>
+    <img class="logo" src="../assets/icons/Join-main-logo.png" alt="Join Logo">
+    
     <div id="header-help" class="header-help">
         <a href="../html/help.html">
             <img src="../assets/icons/help.png" alt="Help Icon" class="help-icon">

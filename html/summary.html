@@ -25,13 +25,15 @@
     <div class="content">
 
         <div class="max-width-560px">
-            <div class="flex-center position-headline h1-container">
+            <div class="h1-container">
                 <h1 class="h1-summary">Join 360</h1>
-                <div class="blue-border"></div>
-                <p class="suptitle-summary">Key Metrics at a Glance</p>
+                <div class="suptitle-container">
+                    <div class="blue-border"></div>
+                    <p class="suptitle-summary">Key Metrics at a Glance</p>
+                </div>
             </div>
 
-            <div class="flex-center flex-space-between">
+            <div class="row-1-container">
                 <a href="./board.html" class="tasks-link summary-content-div-row1 flex-center">
                     <div class="icon-edit"></div>
                     <div class="flex-column flex-center">
@@ -47,21 +49,21 @@
                     </div>
                 </a>
             </div>
-
-            <a href="./board.html" class=" tasks-link summary-content-div-row2 flex-center flex-space-between">
-                <img src="/assets/icons/red-icon.png" alt="#">
-                <div class="flex-column flex-center">
-                    <p id="urgent" class="task-informations"></p>
-                    <p class="p-rows">Urgent</p>
-                </div>
-                <div class="border-gray"></div>
-                <div class="flex-column flex-center">
-                    <p id="urgant-date" class="date-informations"></p>
-                    <p class="dead-line">Upcoming Deadline</p>
-                </div>
-            </a>
-
-            <div class="flex-center flex-space-between">
+            <div class="row-2-container">
+                <a href="./board.html" class=" tasks-link summary-content-div-row2 flex-center">
+                    <img class="urgent-img" src="/assets/icons/red-icon.png" alt="#">
+                    <div class="flex-column flex-center">
+                        <p id="urgent" class="task-informations"></p>
+                        <p class="p-rows">Urgent</p>
+                    </div>
+                    <div class="border-gray"></div>
+                    <div class="flex-column flex-center">
+                        <p id="urgant-date" class="date-informations"></p>
+                        <p class="dead-line">Upcoming Deadline</p>
+                    </div>
+                </a>
+            </div>
+            <div class="row-3-container">
                 <a href="./board.html" class="tasks-link summary-content-div-row3 flex-column flex-center">
                     <p class="task-informations" id="tasks-in-board"></p>
                     <p class="p-rows">Tasks in Board</p>
@@ -76,7 +78,7 @@
                 </a>
             </div>
         </div>
-        <div class="margin-left-50px greeting-style possition-greeting" id="greeting"></div>
+        <div class="margin-left-50px greeting-style" id="greeting"></div>
 
     </div>
 </body>

@@ -4,6 +4,10 @@ body {
 
 .max-width {
     max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .display-flex {
@@ -30,10 +34,6 @@ body {
     margin-right: 30px;
 }
 
-.position-headline {
-    width: 600px;
-}
-
 .h1-summary {
     font-size: 61px;
     margin-block-start: 0em;
@@ -41,9 +41,12 @@ body {
 
 }
 
-.h1-container{
+.h1-container {
+    display: flex;
+    align-items: center;
     margin-top: 86px;
     padding-bottom: 60px;
+    width: 600px;
 }
 
 .suptitle-summary {
@@ -56,7 +59,6 @@ body {
     box-shadow: 1px 1px 5px #00000025;
     width: 264px;
     height: 138px;
-    gap: 18px;
     transition: transform 0.2s ease;
     cursor: pointer;
 }
@@ -67,7 +69,7 @@ body {
     transform: scale(1.0);
 }
 
-.tasks-link{
+.tasks-link {
     color: black !important;
 }
 
@@ -94,10 +96,9 @@ body {
     height: 138px;
     margin-bottom: 30px;
     margin-top: 30px;
-    padding-left: 48px;
-    padding-right: 48px;
     transition: transform 0.2s ease;
     cursor: pointer;
+    gap: 47px;
 }
 
 .summary-content-div-row2:hover {
@@ -124,9 +125,8 @@ body {
     background-color: #FFFFFF;
     border-radius: 20px;
     box-shadow: 1px 1px 5px #00000025;
-    width: 20vw;
-    max-width: 168px;
-    height: 138px;
+    width: 168px;
+    height: 168px;
     transition: transform 0.2s ease;
     cursor: pointer;
     padding-bottom: 6px;
@@ -165,12 +165,9 @@ body {
 }
 
 .greeting-style {
-    font-size: 47px;
-}
-
-.possition-greeting {
     position: relative;
     bottom: -120px;
+    font-size: 47px;
 }
 
 .user-name {
@@ -188,12 +185,13 @@ body {
 }
 
 
-.content{
+.content {
     margin-left: 232px;
     padding-left: 86px;
     padding-right: 86px;
     display: flex;
     align-items: center;
+    margin-bottom: 90px;
 }
 
 .task-informations {
@@ -201,13 +199,146 @@ body {
     font-weight: 600;
 }
 
-.date-informations{
+.date-informations {
     font-size: 21px;
     font-weight: 700;
 }
 
-.dead-line{
+.dead-line {
     padding-top: 8px;
     font-size: 16px;
     font-weight: 400;
+}
+
+.suptitle-container {
+    display: flex;
+    align-items: center;
+}
+
+.row-1-container {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+.row-2-container {
+    display: flex;
+}
+
+.row-3-container {
+    display: flex;
+    gap: 28px;
+}
+
+@media (max-width: 1350px) {
+    .content {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 1100px) {
+    .greeting-style {
+        display: none;
+    }
+}
+
+@media (max-width: 750px) {
+    .greeting-style {
+        display: none;
+    }
+
+    .h1-summary {
+        font-size: 47px;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+
+    }
+
+    .content {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .suptitle-summary {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 630px) {
+    .h1-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 86px;
+        padding-bottom: 60px;
+        width: 600px;
+        gap: 12px;
+        margin-top: 64px;
+    }
+
+    .blue-border {
+        height: 3px;
+        width: 90px;
+        margin: 0;
+    }
+
+    .suptitle-container {
+        flex-direction: column-reverse;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .summary-content-div-row1 {
+        width: 186px;
+        height: 110px;
+        gap: 6px;
+    }
+
+    .summary-content-div-row2 {
+        width: 396px;
+        height: 110px;
+        gap: 22px;
+    }
+
+    .summary-content-div-row3 {
+        width: 116px;
+        height: 116px;
+
+    }
+
+    .p-rows {
+        padding: 0;
+        font-size: 14px;
+    }
+
+    .row-1-container {
+        gap: 24px;
+    }
+
+    .icon-edit,
+    .icon-check,
+    .urgent-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        background-position: center;
+    }
+
+    .task-informations {
+        font-size: 47px;
+    }
+
+    .date-informations {
+        font-size: 16px;
+    }
+
+    .dead-line {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 370px) {
+    .summary-content-div-row2 {
+        gap: 12px;
+    }
 }

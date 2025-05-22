@@ -85,3 +85,34 @@ header {
 .slider li {
   margin: 15px 0;
 }
+
+.logo{
+  display: none;
+  height: 39px;
+  width: 32px;
+}
+
+@media (max-width: 1350px) {
+  header {
+        padding: 20px 40px 20px 86px !important;
+  }
+  .header-title{
+    display: none;
+  }
+  .logo{
+    display: flex;
+  }
+}
+
+@media (max-width: 850px) {
+ .slider {
+    top: 0px !important;
+    
+  }
+}
+
+@media (max-width: 750px) {
+  header {
+        padding: 20px 40px 20px 28px !important;
+  }
+}
