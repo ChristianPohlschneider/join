@@ -153,14 +153,14 @@ function getAssignedToInitials(taskIndex) {
     }
     for (let index = 0; index < assignedTo.length; index++) {
         let name = assignedTo[index];
-            let parts = name.split('_')
-            let initials = ''
-            for (let i = 0; i < parts.length; i++) {
-                if (parts[i].length > 0 && parts[i] !== '') {
-                    initials += parts[i][0]
-                }
+        let parts = name.split('_')
+        let initials = ''
+        for (let i = 0; i < parts.length; i++) {
+            if (parts[i].length > 0 && parts[i] !== '') {
+                initials += parts[i][0]
             }
-            document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials);
+        }
+        document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials);
     }
     assignedTo = [];
 }
@@ -178,7 +178,7 @@ function getAssignedToVariants(taskIndex) {
         if (document.getElementById("assignedToInitial#" + taskIndex) != null) {
             document.getElementById("assignedToInitial#" + taskIndex).classList.add(colorVariants[assignedToVariants.length - 1]);
         }
-        
+
     }
 }
 
@@ -206,6 +206,8 @@ function moveTo(status) {
     tasks[currentId].status = status
     clearBoardTable();
     renderTasks();
+    currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
+    putData(currentTaskPath , status)
 }
 
 function dragoverHandler(ev) {
