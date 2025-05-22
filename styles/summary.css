@@ -126,7 +126,7 @@ body {
     border-radius: 20px;
     box-shadow: 1px 1px 5px #00000025;
     width: 168px;
-    height: 168px;
+    height: 138px;
     transition: transform 0.2s ease;
     cursor: pointer;
     padding-bottom: 6px;
@@ -238,14 +238,50 @@ body {
 
 @media (max-width: 1100px) {
     .greeting-style {
-        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: rgb(246, 247, 248);
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        height: calc(100vh - 162px);
+        -webkit-animation: seconds 1.0s forwards;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-delay: 5s;
+        animation: seconds 1.0s forwards;
+        animation-iteration-count: 1;
+        animation-delay: 2s;
+    }
+
+    @-webkit-keyframes seconds {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            top: -9999px;
+        }
+    }
+
+    @keyframes seconds {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            top: -9999px;
+        }
     }
 }
 
 @media (max-width: 750px) {
-    .greeting-style {
-        display: none;
-    }
 
     .h1-summary {
         font-size: 47px;
@@ -265,15 +301,21 @@ body {
 }
 
 @media (max-width: 630px) {
+    .avatar {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 16px !important;
+    }
+
     .h1-container {
         display: flex;
         align-items: flex-start;
         flex-direction: column;
         margin-top: 86px;
         padding-bottom: 60px;
-        width: 600px;
         gap: 12px;
         margin-top: 64px;
+        width: 300px;
     }
 
     .blue-border {
@@ -307,7 +349,8 @@ body {
     }
 
     .p-rows {
-        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
         font-size: 14px;
     }
 
@@ -334,6 +377,13 @@ body {
 
     .dead-line {
         font-size: 14px;
+    }
+
+    .greeting-style{
+        font-size: 36px;
+    }
+    .user-name{
+        font-size: 47px;
     }
 }
 
