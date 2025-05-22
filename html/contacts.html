@@ -44,29 +44,28 @@
           <p>Wähle einen Kontakt aus der Liste.</p>
         </div>
       </div>
-    </section>
-      <div id="addContactOverlay" class="overlay hidden">
-        <div class="overlay-content">
-          <div>
-            <h2>Add contact</h2>
-            <p>Tasks are better with a team!</p>
-          </div>
-          <div>
-            <button class="close-btn" onclick="closeAddContact()">×</button>
-            <div class="add-contact-icon">
-              <img src="../assets/icons/person.png" alt="Add contact icon">
+      </section>
+        <div id="addContactOverlay" class="overlay hidden">
+          <div class="overlay-content">
+            <div>
+              <h2>Add contact</h2>
+              <p>Tasks are better with a team!</p>
             </div>
-          <div class="contact-form">
-            <input type="text" id="contactName" placeholder="Name">
-            <input type="email" id="contactEmail" placeholder="Email">
-            <input type="tel" id="contactPhone" placeholder="Phone">
-            </div>
-            <button onclick="createContact()">Create contact</button>
-            <button onclick="closeAddContact()">Cancel</button>
-            </div>
+              <div>
+                <button class="close-btn" onclick="closeAddContact()">×</button>
+                <div class="add-contact-icon">
+                  <img src="../assets/icons/person.png" alt="Add contact icon">
+                </div>
+                  <div class="contact-form">
+                    <input type="text" id="contactName" placeholder="Name">
+                    <input type="email" id="contactEmail" placeholder="Email">
+                    <input type="tel" id="contactPhone" placeholder="Phone">
+                  </div>
+              </div>
+              <button onclick="createContact()">Create contact</button>
+              <button onclick="closeAddContact()">Cancel</button>
           </div>
         </div>
-      </div>
   </main>
 </body>
 </html>

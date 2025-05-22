@@ -213,11 +213,13 @@ body, html {
 .contact-form {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    justify-content: space-between;
     width: 422px;
     height: 215px;
 }
 
 .contact-form input {
     height: 50px;
+    border: #afafaf solid 1px;
+    border-radius: 10px;
 }
