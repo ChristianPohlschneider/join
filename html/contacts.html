@@ -27,7 +27,7 @@
     <section class="contacts-section">
       <div class="contacts-list">
       <div class="contacts-header">
-        <button class="add-button">
+        <button onclick="openAddContact()" class="add-button">
           Add new contact
           <img src="../assets/icons/person_add.png" alt="">
         </button>
@@ -46,6 +46,18 @@
         </div>
       </div>
     </section>
+      <div id="addContactOverlay" class="overlay hidden">
+        <div class="overlay-content">
+          <button class="close-btn" onclick="closeAddContact()">×</button>
+          <h2>Add contact</h2>
+          <p>Tasks are better with a team!</p>
+          <input type="text" id="contactName" placeholder="Name">
+          <input type="email" id="contactEmail" placeholder="Email">
+          <input type="tel" id="contactPhone" placeholder="Phone">
+          <button onclick="createContact()">Create contact</button>
+          <button onclick="closeAddContact()">Cancel</button>
+        </div>
+      </div>
   </main>
 </body>
 </html>

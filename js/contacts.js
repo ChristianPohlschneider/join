@@ -90,3 +90,11 @@ function showContact(contact, color) {
     </div>
   `;
 }
+
+function openAddContact() {
+  document.getElementById("addContactOverlay").classList.remove("hidden");
+}
+
+function closeAddContact() {
+  document.getElementById("addContactOverlay").classList.add("hidden");
+}
