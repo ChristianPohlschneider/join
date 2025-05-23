@@ -48,14 +48,33 @@ function pushTask(title, description, dueDate, category, priority) {
 
 function addCss(id) {
     const elements = document.querySelectorAll('.selectable');
-
     elements.forEach(el => {
         el.classList.remove(el.id);
     });
-    const clicked = document.getElementById(id);
-
+    let clicked = document.getElementById(id);
     clicked.classList.add(id);
-    priority = id;
+    addImage(id);
+     priority = id;
+}
+
+function addImage(id) {
+        switch (id) {
+        case 'urgent':
+            document.getElementById(id).innerHTML = `Urgent<img src="../assets/icons/urgent-white.png" alt="">`
+            document.getElementById('low').innerHTML = `Low<img src="../assets/icons/low.png" alt="">`
+            document.getElementById('medium').innerHTML = `Medium<img src="../assets/icons/medium.png" alt="">`
+            break;
+        case 'low':
+            document.getElementById(id).innerHTML = `Low<img src="../assets/icons/low-white.png" alt="">`
+            document.getElementById('medium').innerHTML = `Medium<img src="../assets/icons/medium.png" alt="">`
+            document.getElementById('urgent').innerHTML = `Urgent<img src="../assets/icons/urgent.png" alt="">`
+            break;
+        case 'medium':
+            document.getElementById(id).innerHTML = `Medium<img src="../assets/icons/medium-white.png" alt="">`
+            document.getElementById('urgent').innerHTML = `Urgent<img src="../assets/icons/urgent.png" alt="">`
+            document.getElementById('low').innerHTML = `Low<img src="../assets/icons/low.png" alt="">`
+            break;
+    }
 }
 
 function addSubtask() {
@@ -69,7 +88,7 @@ function addSubtask() {
 
 function getSubTasks() {
     const div = document.getElementById("subtaskList");
-    if (div.children.length === 0) {return []; }
+    if (div.children.length === 0) { return []; }
 
     const subtasks = Array.from(div.children).map(child => ({
         title: child.textContent.trim(),
@@ -87,7 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkInputs() {
         if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
             submitButton.disabled = true;
-        } else {submitButton.disabled = false;}}
+        } else { submitButton.disabled = false; }
+    }
 
     title.addEventListener("input", checkInputs);
     dueDate.addEventListener("input", checkInputs);
@@ -110,7 +130,7 @@ async function postData(newTask) {
     return responseData;
 }
 
-fetchInit().then(() => {getContacts();});
+fetchInit().then(() => { getContacts(); });
 
 function getContacts() {
     const contentPlace = document.getElementById("assigned");
@@ -136,7 +156,7 @@ function makeShortName(userNames) {
 
 
 
-function toggleSelectable(){
+function toggleSelectable() {
     document.getElementById("assigned").classList.toggle("dnone")
 }
 
@@ -145,12 +165,14 @@ function addMember(shortName, checkboxElement, userName) {
 
     if (checkboxElement.checked) {
         if (!document.getElementById(`member-${shortName}`)) {
-            contentPlace.innerHTML +=  meberTemplate(shortName);
-            assignedMembers.push({"name": userName, "shortName": shortName });}
+            contentPlace.innerHTML += meberTemplate(shortName);
+            assignedMembers.push({ "name": userName, "shortName": shortName });
+        }
     } else {
         const elem = document.getElementById(`member-${shortName}`);
-        if (elem) {elem.remove();}
+        if (elem) { elem.remove(); }
         assignedMembers = assignedMembers.filter(member => member.shortName !== shortName);
-    }};
+    }
+};
 
 
