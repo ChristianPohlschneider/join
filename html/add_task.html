@@ -31,7 +31,11 @@
 
                     <article>
                         <p>Title<span>*</span></p>
-                        <input class="input-text" type="text" id="title" placeholder="Task Title" required>
+                        <input onfocusout="checkValue()" class="input-text" type="text" id="title"
+                            placeholder="Task Title" required>
+                        <div class="warning-container">
+                            <span class="warning d_none" id="warning-title">This field is required</span>
+                        </div>
                     </article>
 
                     <article>
@@ -41,7 +45,10 @@
                     </article>
                     <article>
                         <p>Due date<span>*</span></p>
-                        <input type="date" required class="input-text date-input" id="dueDate">
+                        <input onfocusout="checkDate()" type="date" required class="input-text date-input" id="dueDate">
+                        <div class="warning-container">
+                            <span class="warning d_none" id="warning-dueDate">This field is required</span>
+                        </div>
                     </article>
                 </div>
 
@@ -55,21 +62,22 @@
                                 Urgent
                                 <img src="../assets/icons/urgent.png" alt="">
                             </div>
-                            <div class="selectable" id="medium" onclick="addCss('medium')"> 
+                            <div class="selectable" id="medium" onclick="addCss('medium')">
                                 Medium
                                 <img src="../assets/icons/medium.png" alt="">
                             </div>
                             <div class="selectable" id="low" onclick="addCss('low')">
                                 Low
                                 <img src="../assets/icons/low.png" alt="">
-                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="assign-dropdown-container">
                         <label for="assigned">Assigned to</label>
                         <div class="dropdown" id="assignee-dropdown">
-                            <input class="input-text" type="text" id="assignee-input" placeholder="Select contacts to assign" autocomplete="off" onclick="toggleSelectable()">
+                            <input class="input-text" type="text" id="assignee-input"
+                                placeholder="Select contacts to assign" autocomplete="off" onclick="toggleSelectable()">
                             <div class="selectable-assigned dnone" id="assigned"></div>
                             <div id="memberForTask"></div>
                         </div>
@@ -82,7 +90,7 @@
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
                         </select>
-                    </article> 
+                    </article>
 
                     <article>
                         <p>Subtasks</p>
@@ -99,8 +107,10 @@
             <div class="flex-center flex-space-between margin-top-50px">
                 <p><span>*</span>This field is required</p>
                 <div class="btn-container">
-                    <button class="clear-btn" onclick="cancelTask()">Clear <img src="../assets/icons/x.png" alt=""></button>
-                    <button disabled id="creatTask"onclick="addNewToDO()" class="add-task-btn margin-left-10px">Create Task<img src="../assets/icons/check-btn.png" alt=""></button>
+                    <button class="clear-btn" onclick="cancelTask()">Clear <img src="../assets/icons/x.png"
+                            alt=""></button>
+                    <button disabled id="creatTask" onclick="addNewToDO()" class="add-task-btn margin-left-10px">Create
+                        Task<img src="../assets/icons/check-btn.png" alt=""></button>
                 </div>
             </div>
         </div>

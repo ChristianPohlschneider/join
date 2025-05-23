@@ -175,4 +175,32 @@ function addMember(shortName, checkboxElement, userName) {
     }
 };
 
+function checkValue() {
+    let title = document.getElementById('title')
+    let warningText = document.getElementById('warning-title')
+    if (title.value.length <= 0) {
+        getRedBorder(title)
+    } else {
+        title.classList.remove('red-border')
+        warningText.classList.add('d_none')
+    }
+}
+
+function checkDate() {
+    let date = document.getElementById('dueDate')
+    let warningText = document.getElementById('warning-dueDate')
+    if (date.value === '') {
+        getRedBorder(date)
+    } else {
+        date.classList.remove('red-border')
+        warningText.classList.add('d_none')
+    }
+}
+
+function getRedBorder(input) {
+    input.classList.add('red-border')
+    let warningText = document.getElementById('warning-' + input.id)
+    warningText.classList.remove('d_none')
+}
+
 

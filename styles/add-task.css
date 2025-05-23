@@ -20,6 +20,7 @@ p,
 label {
   font-size: 20px;
   margin-bottom: 8px;
+  margin-top: 12px;
 }
 
 .header-title {
@@ -132,7 +133,6 @@ span {
   font-size: 20px;
   padding-left: 12px;
   padding-right: 12px;
-  margin-bottom: 12px;
 }
 
 textarea {
@@ -235,9 +235,7 @@ textarea {
 }
 
 
-.dnone {
-  display: none;
-}
+
 
 .btn-container {
   display: flex;
@@ -287,4 +285,31 @@ button:disabled {
 button:disabled:hover {
     background-color: #2A3647;
     box-shadow: none;
+}
+
+select{
+  cursor: pointer;
+}
+
+li{
+  margin-top: 8px;
+}
+
+.red-border {
+    border: 1px solid #FF001F !important;
+}
+
+.warning{
+      height: 15px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+}
+
+.warning-container{
+  height: 18px;
+}
+
+.dnone {
+  display: none;
 }
