@@ -16,7 +16,8 @@ header {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-p, label {
+p,
+label {
   font-size: 20px;
   margin-bottom: 8px;
 }
@@ -107,8 +108,8 @@ p, label {
 }
 
 input#dueDate::-webkit-calendar-picker-indicator {
-      cursor: pointer;
-    }
+  cursor: pointer;
+}
 
 .task-gray-border {
   width: 1px;
@@ -134,15 +135,17 @@ span {
   margin-bottom: 12px;
 }
 
-textarea{
+textarea {
   max-width: 440px !important;
+  min-width: 440px !important;
   height: 120px !important;
   max-height: 120px;
+  min-height: 120px;
 }
 
-.input-text:focus{
-    border: 1px solid #29ABE2 !important;
-    outline: none;
+.input-text:focus {
+  border: 1px solid #29ABE2 !important;
+  outline: none;
 }
 
 .first-container {
@@ -182,7 +185,7 @@ textarea{
 
 
 
-.date-input{
+.date-input {
   cursor: pointer;
 }
 
@@ -204,8 +207,8 @@ textarea{
   box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
-.selectable:hover{
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+.selectable:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .plus-symbol {
@@ -223,15 +226,65 @@ textarea{
   overflow-y: auto;
 }
 
-.assign-dropdown-container{
+.assign-dropdown-container {
   margin-top: 8px;
 }
 
-.dropdown{
+.dropdown {
   margin-top: 8px;
 }
 
 
 .dnone {
   display: none;
+}
+
+.btn-container {
+  display: flex;
+  gap: 12px;
+}
+
+.clear-btn {
+  display: flex;
+  align-items: center;
+  color: #2A3647;
+  padding: 12px 12px;
+  background-color: white;
+  font-size: 20px;
+  border: 1px solid #2A3647;
+  border-radius: 10px;
+  font-weight: 400;
+}
+
+.clear-btn:hover {
+  border: 1px solid #29ABE2;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  color: #29ABE2;
+}
+
+.add-task-btn {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 12px 24px;
+  background-color: #2A3647;
+  font-size: 21px;
+  font-weight: 700;
+  border-radius: 10px;
+  gap: 6px;
+}
+
+.add-task-btn:hover{
+      background-color: #29ABE2;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: auto;
+}
+
+button:disabled:hover {
+    background-color: #2A3647;
+    box-shadow: none;
 }

@@ -14,7 +14,9 @@
 }
 
 .p-menu-style {
+    font-size: 16px;
     color: #CDCDCD;
+    margin-bottom: 0;
 }
 
 .a-menu {
@@ -65,12 +67,6 @@
     width: 30px;
     height: 30px;
     background-repeat: no-repeat;
-}
-
-.icon-menu-summary:hover {
-    /*background-image: url(../assets/icons/png.hover/summary.png);
-     width: 30px;
-    height: 30px;*/
 }
 
 .position-bottom {
