@@ -223,3 +223,27 @@ body, html {
     border: #afafaf solid 1px;
     border-radius: 10px;
 }
+
+.add-overlay-button {
+    width: 364px;
+    height: 57px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-button {
+    width: 126px;
+    height: 56px;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+}
+.create-button {
+    width: 214px;
+    height: 57px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #FFFFFF;
+}

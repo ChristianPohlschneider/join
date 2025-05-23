@@ -60,10 +60,12 @@
                     <input type="text" id="contactName" placeholder="Name">
                     <input type="email" id="contactEmail" placeholder="Email">
                     <input type="tel" id="contactPhone" placeholder="Phone">
+                    <div class="add-overlay-button">
+                      <button class="cancel-button" onclick="closeAddContact()">Cancel</button>
+                      <button class="create-button" onclick="createContact()">Create contact</button>
+                    </div>
                   </div>
               </div>
-              <button onclick="createContact()">Create contact</button>
-              <button onclick="closeAddContact()">Cancel</button>
           </div>
         </div>
   </main>
