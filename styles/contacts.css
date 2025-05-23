@@ -180,7 +180,6 @@ body, html {
 
 .overlay-content {
     background: white;
-    padding: 30px;
     border-radius: 10px;
     width: 90%;
     height: 594px;
@@ -208,6 +207,14 @@ body, html {
     height: 120px;
     border-radius: 50%;
     background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-contact-icon img {
+    width: 64px;
+    height: 64px;
 }
 
 .contact-form {
@@ -246,4 +253,18 @@ body, html {
     font-size: 21px;
     font-weight: 700;
     color: #FFFFFF;
+}
+
+.overlay-header {
+    background-color: #2A3647;
+    color : #FFFFFF;
+    height: 594px;
+    width: 467px;
+    border-radius: 10px;
+}
+
+.overlay-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
