@@ -27,7 +27,7 @@
             <h1 class="h1-add-task">Add Task</h1>
 
             <form class="flex-center-task">
-                <div class="flex-gap flex-column">
+                <div class="first-container flex-gap flex-column">
 
                     <article>
                         <p>Title<span>*</span></p>
@@ -41,19 +41,28 @@
                     </article>
                     <article>
                         <p>Due date<span>*</span></p>
-                        <input class="input-text" type="date" id="dueDate" required>
+                        <input type="date" required class="input-text date-input" id="dueDate">
                     </article>
                 </div>
 
                 <div id="Border" class="task-gray-border"></div>
 
-                <div class="flex-gap flex-column">
+                <div class="second-container flex-gap flex-column">
                     <div>
                         <p>Priority</p>
                         <div class="flex-center flex-gap">
-                            <div class="selectable" id="urgent" onclick="addCss('urgent')">Urgent</div>
-                            <div class="selectable" id="medium" onclick="addCss('medium')"> Medium</div>
-                            <div class="selectable" id="low" onclick="addCss('low')">Low</div>
+                            <div class="selectable" id="urgent" onclick="addCss('urgent')">
+                                Urgent
+                                <img src="../assets/icons/urgent.png" alt="">
+                            </div>
+                            <div class="selectable" id="medium" onclick="addCss('medium')"> 
+                                Medium
+                                <img src="../assets/icons/medium-white.png" alt="">
+                            </div>
+                            <div class="selectable" id="low" onclick="addCss('low')">
+                                Low
+                                <img src="../assets/icons/low.png" alt="">
+                                </div>
                         </div>
                     </div>
 

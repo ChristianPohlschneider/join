@@ -1,6 +1,7 @@
 let priority = "medium"
 const submitButton = document.getElementById("creatTask");
 let assignedMembers = [];
+dueDate.min = new Date().toISOString().split("T")[0];
 
 async function startForm() {
     addCss('medium');
@@ -151,3 +152,5 @@ function addMember(shortName, checkboxElement, userName) {
         if (elem) {elem.remove();}
         assignedMembers = assignedMembers.filter(member => member.shortName !== shortName);
     }};
+
+

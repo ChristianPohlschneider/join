@@ -365,7 +365,18 @@ body {
         height: 40px;
         border-radius: 50px;
         background-position: center;
+        background-size: contain;
     }
+
+    .summary-content-div-row1:hover .icon-edit {
+        width: 40px;
+        height: 40px;
+    }
+
+    .summary-content-div-row1:hover .icon-check {
+    width: 40px;
+    height: 40px;
+}
 
     .task-informations {
         font-size: 47px;
@@ -379,10 +390,11 @@ body {
         font-size: 14px;
     }
 
-    .greeting-style{
+    .greeting-style {
         font-size: 36px;
     }
-    .user-name{
+
+    .user-name {
         font-size: 47px;
     }
 }
