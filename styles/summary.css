@@ -129,7 +129,7 @@ body {
     height: 138px;
     transition: transform 0.2s ease;
     cursor: pointer;
-    padding-bottom: 6px;
+    padding-bottom: 18px;
 }
 
 .summary-content-div-row3:hover {

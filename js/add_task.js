@@ -84,6 +84,7 @@ function addSubtask() {
         subtaskList.innerHTML += subtaskTemplate(subtask.value);
         subtask.value = "";
     }
+    checkSubtask();
 }
 
 function getSubTasks() {
