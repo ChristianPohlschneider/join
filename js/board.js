@@ -119,7 +119,7 @@ function getSubtasks(taskIndex) {
 
 function renderSubtasks(taskIndex) {
     document.getElementById("subtaskDone#" + taskIndex).innerHTML = subtask + "/" + subtaskTotal + " Subtask";
-    document.getElementById("innerScale#" + taskIndex).style.width = Math.abs(Number((subtask/subtaskTotal) * 128)) + "px";
+    document.getElementById("innerScale#" + taskIndex).style.width = Math.abs(Number((subtask / subtaskTotal) * 128)) + "px";
     subtask = 0;
     subtaskTotal = 0;
     subtaskArray = [];
@@ -167,7 +167,7 @@ function getAssignedToInitials(taskIndex) {
         for (let i = 0; i < parts.length; i++) {
             if (parts[i].length > 0 && parts[i] !== '') {
                 initials += parts[i][0]
-            } 
+            }
         }
         document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials, index);
         getAssignedToVariants(taskIndex, initials, index);
@@ -179,7 +179,12 @@ function getAssignedToVariants(taskIndex, initials, index) {
     if (assignedToVariants.find(({ assigned_to }) => assigned_to == Object.entries(tasks[taskIndex].assigned_to)[index][0])) {
         let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][0];
         let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
-        document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant)
+        if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
+            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
+            // document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+        } else {
+            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
+        }
     } else {
         assignedToVariants.push({
             variant: colorVariants[assignedToVariants.length],
@@ -187,8 +192,8 @@ function getAssignedToVariants(taskIndex, initials, index) {
         })
         if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
             document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(colorVariants[assignedToVariants.length - 1]);
+            // document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
         }
-
     }
 }
 
@@ -217,7 +222,7 @@ function moveTo(status) {
     clearBoardTable();
     renderTasks();
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
-    putData(currentTaskPath , status)
+    putData(currentTaskPath, status)
 }
 
 function dragoverHandler(ev) {

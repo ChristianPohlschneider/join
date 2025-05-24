@@ -68,6 +68,10 @@ main {
     gap: 10px;
 }
 
+.taskSearch:hover {
+    border-color: #29ABE2;
+}
+
 .taskSearchInput {
     font-size: 20px;
     height: 100%;
@@ -79,6 +83,7 @@ main {
 }
 
 .searchGlass {
+    cursor: pointer;
     padding: 7px;
 }
 
@@ -93,6 +98,12 @@ main {
     background-color: #2A3647;
     color: white;
     gap: 4px;
+}
+
+.addTaskButton:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-color: #29ABE2;
 }
 
 .addPlus {
@@ -120,6 +131,7 @@ main {
 }
 
 .plusButton {
+    cursor: pointer;
     display: flex;
     height: 24px;
     width: 24px;
@@ -129,10 +141,18 @@ main {
     align-items: center;
 }
 
+.plusButton:hover {
+    border-color: #29ABE2;
+}
+
 .plusHorizontally {
     background-color: #2A3647;
     height: 2px;
     width: 8px;
+}
+
+.plusButton:hover .plusHorizontally {
+    background-color: #29ABE2;
 }
 
 .plusVertically {
@@ -140,6 +160,10 @@ main {
     background-color: #2A3647;
     height: 8px;
     width: 2px;
+}
+
+.plusButton:hover .plusVertically {
+    background-color: #29ABE2;
 }
 
 .emptyTask {
@@ -152,4 +176,9 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.positionAddInitials {
+    position: fixed;
+    left: 10px;
 }
