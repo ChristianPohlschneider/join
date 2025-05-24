@@ -125,7 +125,8 @@ span {
   color: red;
 }
 
-.input-text {
+.input-text,
+.subtask-container {
   border: 1px solid #D1D1D1;
   border-radius: 10px;
   width: 100%;
@@ -135,6 +136,8 @@ span {
   padding-right: 12px;
 }
 
+
+
 textarea {
   max-width: 440px !important;
   min-width: 440px !important;
@@ -143,7 +146,7 @@ textarea {
   min-height: 120px;
 }
 
-.input-text:focus {
+.input-text:focus, .subtask-container:focus-within {
   border: 1px solid #29ABE2 !important;
   outline: none;
 }
@@ -211,12 +214,34 @@ textarea {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.subtask-container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.subtasks-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.input-subtask {
+  background-color: white;
+  font-size: 20px;
+  width: 90%;
+}
+
+.delte-icon, .check-icon{
+  width: 18px;
+  height: 18px;
+}
+
 .plus-symbol {
-  height: 14px;
-  width: 14px;
-  position: relative;
-  padding-right: 5px;
-  left: -12px;
+  margin-left: 41px;
+  height: 24px;
+  width: 24px;
 }
 
 .selectable-assigned {
@@ -272,41 +297,41 @@ textarea {
   gap: 6px;
 }
 
-.add-task-btn:hover{
-      background-color: #29ABE2;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+.add-task-btn:hover {
+  background-color: #29ABE2;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 button:disabled {
-    opacity: 0.6;
-    cursor: auto;
+  opacity: 0.6;
+  cursor: auto;
 }
 
 button:disabled:hover {
-    background-color: #2A3647;
-    box-shadow: none;
+  background-color: #2A3647;
+  box-shadow: none;
 }
 
-select{
+select {
   cursor: pointer;
 }
 
-li{
+li {
   margin-top: 8px;
 }
 
 .red-border {
-    border: 1px solid #FF001F !important;
+  border: 1px solid #FF001F !important;
 }
 
-.warning{
-      height: 15px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #FF8190;
+.warning {
+  height: 15px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FF8190;
 }
 
-.warning-container{
+.warning-container {
   height: 18px;
 }
 

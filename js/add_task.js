@@ -54,11 +54,11 @@ function addCss(id) {
     let clicked = document.getElementById(id);
     clicked.classList.add(id);
     addImage(id);
-     priority = id;
+    priority = id;
 }
 
 function addImage(id) {
-        switch (id) {
+    switch (id) {
         case 'urgent':
             document.getElementById(id).innerHTML = `Urgent<img src="../assets/icons/urgent-white.png" alt="">`
             document.getElementById('low').innerHTML = `Low<img src="../assets/icons/low.png" alt="">`
@@ -157,7 +157,7 @@ function makeShortName(userNames) {
 
 
 function toggleSelectable() {
-    document.getElementById("assigned").classList.toggle("dnone")
+    document.getElementById("assigned").classList.toggle("dnone");
 }
 
 function addMember(shortName, checkboxElement, userName) {
@@ -176,42 +176,61 @@ function addMember(shortName, checkboxElement, userName) {
 };
 
 function checkTitle() {
-    let title = document.getElementById('title')
-    let warningText = document.getElementById('warning-title')
+    let title = document.getElementById('title');
+    let warningText = document.getElementById('warning-title');
     if (title.value.length <= 0) {
-        getRedBorder(title)
+        getRedBorder(title);
     } else {
-        title.classList.remove('red-border')
-        warningText.classList.add('d_none')
+        title.classList.remove('red-border');
+        warningText.classList.add('d_none');
     }
 }
 
 function checkDate() {
-    let date = document.getElementById('dueDate')
-    let warningText = document.getElementById('warning-dueDate')
+    let date = document.getElementById('dueDate');
+    let warningText = document.getElementById('warning-dueDate');
     if (date.value === '') {
-        getRedBorder(date)
+        getRedBorder(date);
     } else {
-        date.classList.remove('red-border')
-        warningText.classList.add('d_none')
+        date.classList.remove('red-border');
+        warningText.classList.add('d_none');
     }
 }
 
 function getRedBorder(input) {
-    input.classList.add('red-border')
-    let warningText = document.getElementById('warning-' + input.id)
-    warningText.classList.remove('d_none')
+    input.classList.add('red-border');
+    let warningText = document.getElementById('warning-' + input.id);
+    warningText.classList.remove('d_none');
 }
 
 function checkCategory() {
-    let category = document.getElementById('category')
-    let warningText = document.getElementById('warning-category')
-        if (category.value === '') {
-        getRedBorder(category)
+    let category = document.getElementById('category');
+    let warningText = document.getElementById('warning-category');
+    if (category.value === '') {
+        getRedBorder(category);
     } else {
-        category.classList.remove('red-border')
-        warningText.classList.add('d_none')
+        category.classList.remove('red-border');
+        warningText.classList.add('d_none');
     }
+}
+
+function checkSubtask() {
+    let subtaskRef = document.getElementById('subtask');
+    let subtaskPlus = document.getElementById('subtask-plus');
+    let subtaskIcons = document.getElementById('subtask-icon-container');
+    if (subtaskRef.value.length > 0) {
+        subtaskPlus.classList.add('d_none')
+        subtaskIcons.classList.remove('d_none')
+    } else {
+        subtaskPlus.classList.remove('d_none')
+        subtaskIcons.classList.add('d_none')
+    }
+}
+
+function deleteSubtaskInput() {
+    let subtaskRef = document.getElementById('subtask');
+    subtaskRef.value = "";
+    checkSubtask();
 }
 
 
