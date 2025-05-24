@@ -175,7 +175,7 @@ function addMember(shortName, checkboxElement, userName) {
     }
 };
 
-function checkValue() {
+function checkTitle() {
     let title = document.getElementById('title')
     let warningText = document.getElementById('warning-title')
     if (title.value.length <= 0) {
@@ -201,6 +201,17 @@ function getRedBorder(input) {
     input.classList.add('red-border')
     let warningText = document.getElementById('warning-' + input.id)
     warningText.classList.remove('d_none')
+}
+
+function checkCategory() {
+    let category = document.getElementById('category')
+    let warningText = document.getElementById('warning-category')
+        if (category.value === '') {
+        getRedBorder(category)
+    } else {
+        category.classList.remove('red-border')
+        warningText.classList.add('d_none')
+    }
 }
 
 

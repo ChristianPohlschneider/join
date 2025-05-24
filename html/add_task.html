@@ -31,7 +31,7 @@
 
                     <article>
                         <p>Title<span>*</span></p>
-                        <input onfocusout="checkValue()" class="input-text" type="text" id="title"
+                        <input onfocusout="checkTitle()" class="input-text" type="text" id="title"
                             placeholder="Task Title" required>
                         <div class="warning-container">
                             <span class="warning d_none" id="warning-title">This field is required</span>
@@ -85,11 +85,15 @@
 
                     <article class="flex-column">
                         <label for="category">Category<span>*</span></label>
-                        <select id="category" name="selection-category" class="input-text" required>
+                        <select onfocusout="checkCategory()" id="category" name="selection-category" class="input-text"
+                            required>
                             <option value="" disabled selected hidden>Select task category</option>
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
                         </select>
+                        <div class="warning-container">
+                            <span class="warning d_none" id="warning-category">This field is required</span>
+                        </div>
                     </article>
 
                     <article>
