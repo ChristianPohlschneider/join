@@ -1,3 +1,5 @@
+let currentEditKey = null;
+
 async function initContacts() {
   await fetchContacts();
   initTask();
@@ -12,31 +14,31 @@ async function fetchContacts() {
       return;
     }
 
-    const contacts = Object.values(data);
-    renderContacts(contacts);
+    renderContacts(data);
   } catch (error) {
-    console.error("", error);
+    console.error("Fehler beim Laden der Kontakte:", error);
   }
 }
 
 async function getAllUsers(path) {
-    let response = await fetch(BASE_URL + path + ".json");
-    return responseToJson = await response.json();
+  const response = await fetch(BASE_URL + path + ".json");
+  return await response.json();
 }
-function renderContacts(contacts) {
+
+function renderContacts(contactsData) {
   const list = document.getElementById("contactList");
   list.innerHTML = "";
 
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  const contacts = Object.entries(contactsData);
+  contacts.sort((a, b) => a[1].name.localeCompare(b[1].name));
 
   let currentGroup = "";
 
-  contacts.forEach((contact, index) => {
+  contacts.forEach(([key, contact]) => {
     const firstLetter = contact.name.charAt(0).toUpperCase();
 
     if (firstLetter !== currentGroup) {
       currentGroup = firstLetter;
-
       const groupHeader = document.createElement("div");
       groupHeader.classList.add("contact-group-header");
       groupHeader.textContent = currentGroup;
@@ -53,7 +55,7 @@ function renderContacts(contacts) {
         <p class="contacts-mail">${contact.mail}</p>
       </div>
     `;
-    div.addEventListener("click", () => showContact(contact, color));
+    div.addEventListener("click", () => showContact(contact, color, key));
     list.appendChild(div);
   });
 }
@@ -67,7 +69,7 @@ function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
-function showContact(contact, color) {
+function showContact(contact, color, key) {
   document.getElementById("contactView").innerHTML = `
     <div class="contact-view">
       <div class="contact-info">
@@ -75,9 +77,9 @@ function showContact(contact, color) {
           ${getInitials(contact.name)}
         </div>
         <div class="contact-name-buttons">
-          <h2>${contact.name}</h2>          
-          <button onclick="openEditContact()"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>          
-          <button><img src="../assets/icons/delete.png" alt="">Delete</button>
+          <h2>${contact.name}</h2>
+          <button onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>
+          <button onclick="deleteContact('${key}')"><img src="../assets/icons/delete.png" alt="">Delete</button>
         </div>
       </div>
       <p class="contact-info-subtitle">Contact Information</p>
@@ -103,4 +105,70 @@ function openEditContact() {
 
 function closeEditContact() {
   document.getElementById("editContactOverlay").classList.add("hidden");
+  currentEditKey = null;
+}
+
+async function editContact(key) {
+  try {
+    const response = await fetch(`${BASE_URL}contacts/${key}.json`);
+    const contact = await response.json();
+
+    if (!contact) {
+      alert("Kontakt nicht gefunden.");
+      return;
+    }
+
+    document.getElementById("editName").value = contact.name || "";
+    document.getElementById("editMail").value = contact.mail || "";
+    document.getElementById("editPhone").value = contact.phone_number || "";
+
+    currentEditKey = key;
+
+    document.getElementById("editContactOverlay").classList.remove("hidden");
+  } catch (error) {
+    console.error("Fehler beim Laden des Kontakts:", error);
+  }
+}
+
+async function saveEditedContact() {
+  if (!currentEditKey) {
+    alert("Kein Kontakt ausgewählt.");
+    return;
+  }
+
+  const updatedContact = {
+    name: document.getElementById("editName").value,
+    mail: document.getElementById("editMail").value,
+    phone_number: document.getElementById("editPhone").value
+  };
+
+  try {
+    await fetch(`${BASE_URL}contacts/${currentEditKey}.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedContact)
+    });
+
+    closeEditContact();
+    await fetchContacts();
+  } catch (error) {
+    console.error("Fehler beim Speichern:", error);
+  }
+}
+
+async function deleteContact(key) {
+  if (!confirm("Möchtest du diesen Kontakt wirklich löschen?")) return;
+
+  try {
+    await fetch(`${BASE_URL}contacts/${key}.json`, {
+      method: "DELETE"
+    });
+
+    document.getElementById("contactView").innerHTML = "<p>Wähle einen Kontakt aus der Liste.</p>";
+    await fetchContacts();
+  } catch (error) {
+    console.error("Fehler beim Löschen:", error);
+  }
 }
