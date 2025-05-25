@@ -69,6 +69,30 @@
               </div>
           </div>
         </div>
+    </section>
+            <div id="editContactOverlay" class="overlay hidden">
+          <button class="close-btn" onclick="closeAddContact()">×</button>
+          <div class="overlay-content">
+            <div class="overlay-header">
+              <img src="../assets/icons/Join-logo.png" alt="Join Logo">
+              <h2>Edit contact</h2>
+            </div>
+              <div class="overlay-body">
+                <div class="add-contact-icon">
+                  <img src="../assets/icons/person-white.png" alt="Add contact icon">
+                </div>
+                  <div class="contact-form">
+                    <input type="text" id="contactName" placeholder="Name">
+                    <input type="email" id="contactEmail" placeholder="Email">
+                    <input type="tel" id="contactPhone" placeholder="Phone">
+                    <div class="add-overlay-button">
+                      <button class="cancel-button" onclick="closeAddContact()">Cancel</button>
+                      <button class="create-button" onclick="createContact()">Create contact</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
   </main>
 </body>
 </html>

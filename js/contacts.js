@@ -76,7 +76,7 @@ function showContact(contact, color) {
         </div>
         <div class="contact-name-buttons">
           <h2>${contact.name}</h2>          
-          <button><img src="../assets/icons/edit-v2.png" alt="">Edit</button>          
+          <button onclick="openEditContact()"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>          
           <button><img src="../assets/icons/delete.png" alt="">Delete</button>
         </div>
       </div>
@@ -95,4 +95,12 @@ function openAddContact() {
 
 function closeAddContact() {
   document.getElementById("addContactOverlay").classList.add("hidden");
+}
+
+function openEditContact() {
+  document.getElementById("editContactOverlay").classList.remove("hidden");
+}
+
+function closeEditContact() {
+  document.getElementById("editContactOverlay").classList.add("hidden");
 }
