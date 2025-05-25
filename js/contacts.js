@@ -16,7 +16,6 @@ async function fetchContacts() {
 
     renderContacts(data);
   } catch (error) {
-    console.error("Fehler beim Laden der Kontakte:", error);
   }
 }
 
@@ -97,6 +96,7 @@ function openAddContact() {
 
 function closeAddContact() {
   document.getElementById("addContactOverlay").classList.add("hidden");
+  clearAddContactFields();
 }
 
 function openEditContact() {
@@ -126,7 +126,6 @@ async function editContact(key) {
 
     document.getElementById("editContactOverlay").classList.remove("hidden");
   } catch (error) {
-    console.error("Fehler beim Laden des Kontakts:", error);
   }
 }
 
@@ -153,8 +152,10 @@ async function saveEditedContact() {
 
     closeEditContact();
     await fetchContacts();
+
+    const color = getRandomColor();
+    showContact(updatedContact, color, currentEditKey);
   } catch (error) {
-    console.error("Fehler beim Speichern:", error);
   }
 }
 
@@ -169,6 +170,48 @@ async function deleteContact(key) {
     document.getElementById("contactView").innerHTML = "<p>Wähle einen Kontakt aus der Liste.</p>";
     await fetchContacts();
   } catch (error) {
-    console.error("Fehler beim Löschen:", error);
   }
+}
+
+async function createContact() {
+  const name = document.getElementById("contactName").value.trim();
+  const mail = document.getElementById("contactEmail").value.trim();
+  const phone = document.getElementById("contactPhone").value.trim();
+
+  if (!name || !mail || !phone) {
+    alert("Bitte fülle alle Felder aus.");
+    return;
+  }
+
+  const newContact = {
+    name: name,
+    mail: mail,
+    phone_number: phone
+  };
+
+  try {
+    const response = await fetch(`${BASE_URL}contacts.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newContact)
+    });
+
+    if (!response.ok) {
+      alert("Fehler beim Speichern.");
+      return;
+    }
+
+    closeAddContact();
+    clearAddContactFields();
+    await fetchContacts();
+  } catch (error) {
+  }
+}
+
+function clearAddContactFields() {
+  document.getElementById("contactName").value = "";
+  document.getElementById("contactEmail").value = "";
+  document.getElementById("contactPhone").value = "";
 }
