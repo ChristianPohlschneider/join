@@ -64,7 +64,7 @@ function getInitials(name) {
 }
 
 function getRandomColor() {
-  const colors = ["orange", "blue", "purple", "teal", "pink", "green"];
+  const colors = ["orange", "blue", "purple", "teal", "pink", "green" , "red", "yellow", "brown"];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
