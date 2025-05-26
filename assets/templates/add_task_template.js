@@ -10,14 +10,14 @@ function meberTemplate(shortName) {
     return `<p id="member-${shortName}">${shortName}</p>`
 }
 
-function subtaskTemplate(subtask) {
-    return `<div id="${subtask}" >
-                <div onmouseover="openSubtaskEdit(${subtask})" onmouseout="closeSubtaskEdit(${subtask})"  class="subtask-list-container">
-                    <li ondblclick="editSubtask(${subtask})" id="li-${subtask}">${subtask}</li>
-                    <div id="edit-${subtask}" class="d_none subtasks-icon-container">
-                        <img onclick="removeSubtask(${subtask})" class="delte-icon" src="../assets/icons/delete.png"alt="X">
+function subtaskTemplate(index) {
+    return `<div id="${index}">
+                <div onmouseover="openSubtaskEdit(${index})" onmouseout="closeSubtaskEdit(${index})"  class="subtask-list-container">
+                    <li>${subtaskArr[index]}</li>
+                    <div id="${subtaskArr[index]}-${index}" class="d_none subtasks-icon-container">
+                        <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png"alt="X">
                         <img src="../assets/icons/vector.png" alt="">
-                        <img onclick="editSubtask(${subtask})" class="check-icon" src="../assets/icons/edit-v2.png" alt="Add">
+                        <img onclick="editSubtask(${index})" class="check-icon" src="../assets/icons/edit-v2.png" alt="Add">
                     </div>
                 </div>
             </div>`

@@ -2,6 +2,7 @@ let priority = "medium"
 const submitButton = document.getElementById("creatTask");
 let assignedMembers = [];
 dueDate.min = new Date().toISOString().split("T")[0];
+let subtaskArr = [];
 
 async function startForm() {
     addCss('medium');
@@ -79,12 +80,19 @@ function addImage(id) {
 
 function addSubtask() {
     subtask = document.getElementById("subtask");
-
     if (subtask.value.trim()) {
-        subtaskList.innerHTML += subtaskTemplate(subtask.value);
+        subtaskArr.push(subtask.value)
+        renderSubtasks()
         subtask.value = "";
     }
     checkSubtask();
+}
+
+function renderSubtasks() {
+    subtaskList.innerHTML = "";
+    for (let index = 0; index < subtaskArr.length; index++) {
+        subtaskList.innerHTML += subtaskTemplate(index);
+    }
 }
 
 function getSubTasks() {
@@ -234,38 +242,37 @@ function deleteSubtaskInput() {
     checkSubtask();
 }
 
-function openSubtaskEdit(currentTask) {
-    let subtaskEdit = document.getElementById('edit-'+ currentTask.id)
+function openSubtaskEdit(index) {
+    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index)
     subtaskEdit.classList.remove('d_none')
 }
 
-function closeSubtaskEdit(currentTask) {
-    let subtaskEdit = document.getElementById('edit-'+ currentTask.id)
+function closeSubtaskEdit(index) {
+    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index)
     subtaskEdit.classList.add('d_none')
 }
 
-function removeSubtask(currentTask) {
-    let task = document.getElementById(currentTask.id)
-    task.remove();
+function removeSubtask(index) {
+    subtaskArr.splice(index, 1)
+    renderSubtasks();
 }
 
-function editSubtask(currentValue) {
-    let currentListItem = document.getElementById(currentValue.id)
+function editSubtask(index) {
+    let currentListItem = document.getElementById(index)
     currentListItem.innerHTML = "";
     currentListItem.innerHTML = `<div class="subtask-edit-container">
-                                    <input id="edit-input" type="text" value="${currentValue.id}">
+                                    <input id="edit-input" type="text" value="${subtaskArr[index]}">
                                     <div class="subtasks-icon-container">
-                                        <img onclick="removeSubtask(${currentValue.id})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
+                                        <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
                                         <img src="../assets/icons/vector.png" alt="">
-                                        <img onclick="addEditSubtask(${currentValue.id})" class="check-icon" src="../assets/icons/check-black.png" alt="Add">
+                                        <img onclick="addEditSubtask(${index})" class="check-icon" src="../assets/icons/check-black.png" alt="Add">
                                     </div>
                             </div>`
 }
 
-function addEditSubtask(currentValue) {
+function addEditSubtask(index) {
     let editInput = document.getElementById('edit-input');
-    let valueRef = document.getElementById(currentValue.id)
-    valueRef.innerHTML = "";
-    valueRef.innerHTML = subtaskTemplate(editInput.value);
-    
+    subtaskArr[index] = editInput.value
+    renderSubtasks();
+
 }
