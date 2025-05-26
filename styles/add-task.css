@@ -236,10 +236,9 @@ textarea {
 
 .delte-icon,
 .check-icon {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
-
 .plus-symbol {
   margin-left: 41px;
   height: 24px;
@@ -266,8 +265,9 @@ textarea {
   margin-bottom: 12px;
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 16px;
   cursor: pointer;
+  height: 30px;
 }
 
 .subtask-list-container:hover {

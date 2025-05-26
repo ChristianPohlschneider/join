@@ -234,4 +234,17 @@ function deleteSubtaskInput() {
     checkSubtask();
 }
 
+function openSubtaskEdit(currentTask) {
+    let subtaskEdit = document.getElementById('edit-'+ currentTask.id)
+    subtaskEdit.classList.remove('d_none')
+}
 
+function closeSubtaskEdit(currentTask) {
+    let subtaskEdit = document.getElementById('edit-'+ currentTask.id)
+    subtaskEdit.classList.add('d_none')
+}
+
+function removeSubtask(currentTask) {
+    let task = document.getElementById(currentTask.id)
+    task.remove();
+}

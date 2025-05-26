@@ -11,10 +11,10 @@ function meberTemplate(shortName) {
 }
 
 function subtaskTemplate(subtask) {
-    return `<div onmouseover="openSubtaskEdit()" onmouseout="closeSubtaskEdit()" class="subtask-list-container">
+    return `<div id="${subtask}" onmouseover="openSubtaskEdit(${subtask})" onmouseout="closeSubtaskEdit(${subtask})" class="subtask-list-container">
                 <li>${subtask}</li>
-                <div class="d_none subtasks-icon-container">
-                    <img class="delte-icon" src="../assets/icons/delete.png"alt="X">
+                <div id="edit-${subtask}" class="d_none subtasks-icon-container">
+                    <img onclick="removeSubtask(${subtask})" class="delte-icon" src="../assets/icons/delete.png"alt="X">
                     <img src="../assets/icons/vector.png" alt="">
                     <img class="check-icon" src="../assets/icons/edit-v2.png" alt="Add">
                 </div>
