@@ -299,3 +299,22 @@ body, html {
     align-items: center;
     justify-content: center;
 }
+
+.edit-contact-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+#editAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: grey;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

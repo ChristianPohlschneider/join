@@ -124,10 +124,17 @@ async function editContact(key) {
 
     currentEditKey = key;
 
+    const avatar = document.getElementById("editAvatar");
+    const color = contact.color || getRandomColor();
+    avatar.textContent = getInitials(contact.name);
+    avatar.style.background = color;
+
     document.getElementById("editContactOverlay").classList.remove("hidden");
   } catch (error) {
   }
 }
+
+
 
 async function saveEditedContact() {
   if (!currentEditKey) {
@@ -138,7 +145,8 @@ async function saveEditedContact() {
   const updatedContact = {
     name: document.getElementById("editName").value,
     mail: document.getElementById("editMail").value,
-    phone_number: document.getElementById("editPhone").value
+    phone_number: document.getElementById("editPhone").value,
+    color: document.getElementById("editAvatar").style.background || getRandomColor()
   };
 
   try {
@@ -152,12 +160,12 @@ async function saveEditedContact() {
 
     closeEditContact();
     await fetchContacts();
-
-    const color = getRandomColor();
-    showContact(updatedContact, color, currentEditKey);
+    showContact(updatedContact, updatedContact.color, currentEditKey);
   } catch (error) {
   }
 }
+
+
 
 async function deleteContact(key) {
   if (!confirm("Möchtest du diesen Kontakt wirklich löschen?")) return;
@@ -186,7 +194,7 @@ async function createContact() {
   const newContact = {
     name: name,
     mail: mail,
-    phone_number: phone
+    phone_number: phone,
   };
 
   try {
