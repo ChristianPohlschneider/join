@@ -248,3 +248,24 @@ function removeSubtask(currentTask) {
     let task = document.getElementById(currentTask.id)
     task.remove();
 }
+
+function editSubtask(currentValue) {
+    let currentListItem = document.getElementById(currentValue.id)
+    currentListItem.innerHTML = "";
+    currentListItem.innerHTML = `<div class="subtask-edit-container">
+                                    <input id="edit-input" type="text" value="${currentValue.id}">
+                                    <div class="subtasks-icon-container">
+                                        <img onclick="removeSubtask(${currentValue.id})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
+                                        <img src="../assets/icons/vector.png" alt="">
+                                        <img onclick="addEditSubtask(${currentValue.id})" class="check-icon" src="../assets/icons/check-black.png" alt="Add">
+                                    </div>
+                            </div>`
+}
+
+function addEditSubtask(currentValue) {
+    let editInput = document.getElementById('edit-input');
+    let valueRef = document.getElementById(currentValue.id)
+    valueRef.innerHTML = "";
+    valueRef.innerHTML = subtaskTemplate(editInput.value);
+    
+}

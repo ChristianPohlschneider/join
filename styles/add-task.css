@@ -351,3 +351,12 @@ li {
 .dnone {
   display: none;
 }
+
+.subtask-edit-container{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 6px;
+  border-bottom: 1px solid #29ABE2;
+  width: 440px;
+}
