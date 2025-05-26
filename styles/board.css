@@ -179,6 +179,5 @@ main {
 }
 
 .positionAddInitials {
-    position: fixed;
-    left: 10px;
+    margin-left: -18px;
 }

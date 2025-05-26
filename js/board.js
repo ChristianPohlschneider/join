@@ -181,7 +181,9 @@ function getAssignedToVariants(taskIndex, initials, index) {
         let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
         if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
             document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
-            // document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+            if (index != 0) {
+                document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+            }
         } else {
             document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
         }
@@ -192,7 +194,9 @@ function getAssignedToVariants(taskIndex, initials, index) {
         })
         if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
             document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(colorVariants[assignedToVariants.length - 1]);
-            // document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+            if (index != 0) {
+                document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+            }
         }
     }
 }
@@ -204,9 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function filterTasks(event) {
     const searchTerm = event.target.value.toLowerCase();
-
     const taskCards = document.querySelectorAll('.taskCard');
-
     taskCards.forEach(card => {
         const content = card.innerText.toLowerCase();
         card.style.display = content.includes(searchTerm) ? 'block' : 'none';
