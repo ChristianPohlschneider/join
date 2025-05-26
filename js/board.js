@@ -160,6 +160,12 @@ function getAssignedToInitials(taskIndex) {
     for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
         assignedTo.push(`${key}`);
     }
+    establishInitials(taskIndex);
+
+    assignedTo = [];
+}
+
+function establishInitials(taskIndex) {
     for (let index = 0; index < assignedTo.length; index++) {
         let name = assignedTo[index];
         let parts = name.split('_')
@@ -172,31 +178,34 @@ function getAssignedToInitials(taskIndex) {
         document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials, index);
         getAssignedToVariants(taskIndex, initials, index);
     }
-    assignedTo = [];
 }
 
 function getAssignedToVariants(taskIndex, initials, index) {
     if (assignedToVariants.find(({ assigned_to }) => assigned_to == Object.entries(tasks[taskIndex].assigned_to)[index][0])) {
-        let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][0];
-        let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
-        if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
-            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
-            if (index != 0) {
-                document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
-            }
-        } else {
-            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
-        }
+        establishKnownVariant(taskIndex, initials, index);
     } else {
-        assignedToVariants.push({
-            variant: colorVariants[assignedToVariants.length],
-            assigned_to: Object.entries(tasks[taskIndex].assigned_to)[index][0],
-        })
-        if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
-            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(colorVariants[assignedToVariants.length - 1]);
-            if (index != 0) {
-                document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
-            }
+        establishUnknownVariant(taskIndex, initials, index);
+    }
+}
+
+function establishKnownVariant(taskIndex, initials, index) {
+    let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][0];
+    let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
+    document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
+    if (index != 0) {
+        document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+    }
+}
+
+function establishUnknownVariant(taskIndex, initials, index) {
+    assignedToVariants.push({
+        variant: colorVariants[assignedToVariants.length],
+        assigned_to: Object.entries(tasks[taskIndex].assigned_to)[index][0],
+    })
+    if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
+        document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(colorVariants[assignedToVariants.length - 1]);
+        if (index != 0) {
+            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
         }
     }
 }
