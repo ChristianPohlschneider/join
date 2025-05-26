@@ -220,7 +220,7 @@ function filterTasks(event) {
     const taskCards = document.querySelectorAll('.taskCard');
     taskCards.forEach(card => {
         const content = card.innerText.toLowerCase();
-        card.style.display = content.includes(searchTerm) ? 'block' : 'none';
+        card.style.display = content.includes(searchTerm) ? 'flex' : 'none';
     });
 }
 
