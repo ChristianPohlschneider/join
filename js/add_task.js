@@ -261,7 +261,7 @@ function editSubtask(index) {
     let currentListItem = document.getElementById(index)
     currentListItem.innerHTML = "";
     currentListItem.innerHTML = `<div class="subtask-edit-container">
-                                    <input id="edit-input" type="text" value="${subtaskArr[index]}">
+                                    <input onfocusout="addEditSubtask(${index})" id="edit-input" type="text" value="${subtaskArr[index]}">
                                     <div class="subtasks-icon-container">
                                         <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
                                         <img src="../assets/icons/vector.png" alt="">

@@ -12,7 +12,7 @@ function meberTemplate(shortName) {
 
 function subtaskTemplate(index) {
     return `<div id="${index}">
-                <div onmouseover="openSubtaskEdit(${index})" onmouseout="closeSubtaskEdit(${index})"  class="subtask-list-container">
+                <div ondblclick="editSubtask(${index})" onmouseover="openSubtaskEdit(${index})" onmouseout="closeSubtaskEdit(${index})"  class="subtask-list-container">
                     <li>${subtaskArr[index]}</li>
                     <div id="${subtaskArr[index]}-${index}" class="d_none subtasks-icon-container">
                         <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png"alt="X">

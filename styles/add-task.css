@@ -99,6 +99,7 @@ label {
   position: absolute;
   left: 318px;
   padding-top: 86px;
+  padding-bottom: 56px;
 }
 
 .h1-add-task {
@@ -236,8 +237,8 @@ textarea {
 
 .delte-icon,
 .check-icon {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 .plus-symbol {
   margin-left: 41px;
@@ -354,9 +355,15 @@ li {
 
 .subtask-edit-container{
   display: flex;
-  justify-content: space-between;
   background-color: white;
-  padding: 6px;
+  margin: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
   border-bottom: 1px solid #29ABE2;
-  width: 440px;
+  font-size: 16px;
+}
+
+.subtask-edit-container input{
+  width: 90%;
+  font-size: 16px;
 }
