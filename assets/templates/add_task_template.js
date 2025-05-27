@@ -1,5 +1,5 @@
 function assigneeDropdownTemplate(shortName, userName) {
-    return `<div class="selectable-assigned-contact" value="${shortName}">${userName}<img onclick="addMember('${shortName}', this, '${userName}')" src="../assets/icons/checkbox.png" alt=""></div>`;
+    return `<div id="container-${shortName}" onclick="addMember(${shortName})" class="selectable-assigned-contact"><div class="initials-name"><div class="initials" id="${shortName}">${shortName}</div>${userName}</div><img id="img-${shortName}" class="checkbox" src="../assets/icons/checkbox.png" alt=""></div>`;
 }
 
 function disabledSelect() {

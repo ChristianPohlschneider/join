@@ -257,15 +257,37 @@ textarea {
 .selectable-assigned-contact{
   display: flex;
   justify-content: space-between;
-  padding: 12px;
+  align-items: center;
+  padding: 6px;
    border-radius: 10px;
    cursor: pointer;
    margin-bottom: 6px;
 }
 
-.selectable-assigned-contact:hover{
+.assigned-bgcolor{
   background-color: #2A3647;
   color: white;
+}
+
+.initials-name{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.checkbox{
+  width: 24px;
+  height: 24px;
+}
+
+.initials{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 42px;
+  height: 42px;
 }
 
 .assign-dropdown-container {

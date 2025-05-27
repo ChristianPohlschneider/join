@@ -3,6 +3,8 @@ const submitButton = document.getElementById("creatTask");
 let assignedMembers = [];
 dueDate.min = new Date().toISOString().split("T")[0];
 let subtaskArr = [];
+let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"]
+let assignedToVariants = [];
 
 async function startForm() {
     addCss('medium');
@@ -146,12 +148,23 @@ function getContacts() {
     contentPlace.innerHTML = "";
     contentPlace.innerHTML += disabledSelect();
 
-    const userNames = users.map(u => u.name);
+    const userNames = contacts.map(u => u.name);
     const shortNames = makeShortName(userNames);
 
-    for (let i = 0; i < shortNames.length; i++) {
+    for (let i = 0; i < userNames.length; i++) {
+        
         contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i]);
+        getBackgroundColor(shortNames[i], userNames[i]);
     }
+}
+
+function getBackgroundColor(initals, name) {
+        assignedToVariants.push({
+        variant: colorVariants[assignedToVariants.length],
+        assigned_to: name,
+    })
+    document.getElementById(initals).classList.add(colorVariants[assignedToVariants.length - 1]);
+
 }
 
 function makeShortName(userNames) {
@@ -169,10 +182,15 @@ function toggleSelectable() {
     document.getElementById("assigned").classList.toggle("dnone");
 }
 
-function addMember(shortName, checkboxElement, userName) {
+function addMember(shortName, userName) {
+    let bgcolor = document.getElementById("container-"+ shortName.id)
+    bgcolor.classList.toggle('assigned-bgcolor')
+    let checked = document.getElementById("img-"+ shortName.id)
+    checked.src = `../assets/icons/checkbox-checked-white.png`
+
     const contentPlace = document.getElementById("memberForTask");
 
-    if (checkboxElement.checked) {
+/*     if (checkboxElement.checked) {
         if (!document.getElementById(`member-${shortName}`)) {
             contentPlace.innerHTML += meberTemplate(shortName);
             assignedMembers.push({ "name": userName, "shortName": shortName });
@@ -181,7 +199,7 @@ function addMember(shortName, checkboxElement, userName) {
         const elem = document.getElementById(`member-${shortName}`);
         if (elem) { elem.remove(); }
         assignedMembers = assignedMembers.filter(member => member.shortName !== shortName);
-    }
+    } */
 };
 
 function checkTitle() {
