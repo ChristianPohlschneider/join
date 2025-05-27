@@ -249,8 +249,23 @@ textarea {
 .selectable-assigned {
   background: white;
   border: 1px solid #D1D1D1;
-  max-height: 100px;
+  max-height: 200px;
   overflow-y: auto;
+  border-radius: 10px;
+}
+
+.selectable-assigned-contact{
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+   border-radius: 10px;
+   cursor: pointer;
+   margin-bottom: 6px;
+}
+
+.selectable-assigned-contact:hover{
+  background-color: #2A3647;
+  color: white;
 }
 
 .assign-dropdown-container {

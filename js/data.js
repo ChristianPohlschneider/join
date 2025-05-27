@@ -7,7 +7,18 @@ let taskResponse;
 async function fetchInit() {
     await fetchTasks();
     await fetchUsers();
+    await fetchContacts();
 }
+
+async function fetchContacts() {
+    contactsResponse = await getAllContacts("contacts");
+    contacts = Object.values(contactsResponse);
+};
+
+async function getAllContacts(path) {
+    let response = await fetch(BASE_URL + path + ".json");
+    return responseToJson = await response.json();
+};
 
 async function fetchTasks() {
     taskResponse = await getAllTasks("tasks");
