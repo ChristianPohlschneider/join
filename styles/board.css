@@ -181,3 +181,8 @@ main {
 .positionAddInitials {
     margin-left: -18px;
 }
+
+.stopScrolling {
+    height: 100vh;
+    overflow-y: hidden;
+}

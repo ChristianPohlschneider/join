@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/board.css">
     <link rel="stylesheet" href="../styles/header-style.css">
     <link rel="stylesheet" href="../styles/card.css">
+    <link rel="stylesheet" href="../styles/card-overlay.css">
     <script src="../js/data.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/legal_notice.js"></script>
@@ -20,6 +21,8 @@
     <script src="../assets/templates/board_template.js"></script>
     <script src="../assets/templates/header.js"></script>
     <script src="../assets/templates/menu.js"></script>
+    <script src="../assets/templates/task_overlay.js"></script>
+    <script src="../js/overlay.js"></script>
 
 
 </head>
@@ -27,6 +30,8 @@
 <body onresize="toogleVieW()" onload="initboard()">
 
     <main>
+        <div class="currentContent" id="currentContent"></div>
+
         <header>
             <div class="headerTemplate" id="headerTemplate"></div>
         </header>

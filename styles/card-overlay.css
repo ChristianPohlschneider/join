@@ -1,0 +1,71 @@
+.cardOverlay {
+    cursor: pointer;
+    position: fixed;
+    left: calc(50% - 262px);
+    top: 35%;
+    display: flex;
+    width: 525px;
+    background-color: white;
+    gap: 24px;
+    flex-direction: column;
+    border: 2px solid white;
+    border-radius: 24px;
+    padding: 16px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+.taskOverlayCategory {
+    color: white;
+    display: flex;
+    font-size: 19px;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    justify-content: center;
+}
+
+.taskOverlayName {
+    height: 24px;
+}
+
+.taskOverlayDescription {}
+
+.overlaySubtasks {
+    display: flex;
+    font-size: 12px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.outerScaleOverlay {
+    display: flex;
+    justify-content: flex-start;
+    width: 128px;
+    height: 8px;
+    background-color: #F4F4F4;
+    border-radius: 8px;
+}
+
+.innerScaleOverlay {
+    display: flex;
+    height: 8px;
+    background-color: #4589FF;
+    border-radius: 16px;
+}
+
+.subtaskOverlayDone {}
+
+.taskOverlayAssignment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assignedToOverlay {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.priorityOverlay {}

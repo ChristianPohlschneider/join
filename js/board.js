@@ -239,3 +239,11 @@ function moveTo(status) {
 function dragoverHandler(ev) {
     ev.preventDefault();
 }
+
+function openTaskOverlay(taskIndex, event) {
+    document.getElementById("currentContent").innerHTML = "";
+    document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex);
+    loadTaskOverlayData(taskIndex);
+    event.stopPropagation();
+    document.body.classList.add("stopScrolling");
+}
