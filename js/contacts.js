@@ -250,3 +250,18 @@ function deleteCurrentContact() {
     closeEditContact();
   }
 }
+
+function closeOverlayByElement(overlayId) {
+  const overlay = document.getElementById(overlayId);
+  if (overlay) overlay.classList.add("hidden");
+}
+
+document.addEventListener("click", function (event) {
+  const openOverlays = document.querySelectorAll(".overlay:not(.hidden)");
+
+  openOverlays.forEach(overlay => {
+    if (event.target === overlay) {
+      overlay.classList.add("hidden");
+    }
+  });
+});
