@@ -24,7 +24,8 @@
 }
 
 .taskOverlayName {
-    height: 24px;
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .taskOverlayDescription {}
