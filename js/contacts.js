@@ -243,3 +243,10 @@ function clearAddContactFields() {
   document.getElementById("contactEmail").value = "";
   document.getElementById("contactPhone").value = "";
 }
+
+function deleteCurrentContact() {
+  if (currentEditKey) {
+    deleteContact(currentEditKey);
+    closeEditContact();
+  }
+}
