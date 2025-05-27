@@ -14,6 +14,12 @@
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
+.taskCategoryDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .taskOverlayCategory {
     color: white;
     display: flex;
@@ -28,14 +34,19 @@
     font-weight: 700;
 }
 
-.taskOverlayDescription {}
+.priorityOverlay {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
 
 .overlaySubtasks {
     display: flex;
     font-size: 12px;
     gap: 10px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    flex-direction: column;
 }
 
 .outerScaleOverlay {
@@ -54,13 +65,12 @@
     border-radius: 16px;
 }
 
-.subtaskOverlayDone {}
-
 .taskOverlayAssignment {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .assignedToOverlay {
@@ -68,5 +78,3 @@
     flex-direction: row;
     gap: 10px;
 }
-
-.priorityOverlay {}
