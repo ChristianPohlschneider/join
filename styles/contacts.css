@@ -262,6 +262,37 @@ body, html {
     color: #FFFFFF;
 }
 
+.edit-overlay-button {
+    width: 249px;
+    height: 57px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-button {
+    width: 113px;
+    height: 55px;
+    border-radius: 8px;
+    border: 1px solid #2A3647;
+    font-size: 21px;
+    font-weight: 400;
+    color: #2A3647;
+;
+}
+
+.save-button {
+    width: 114px;
+    height: 57px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 400;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .overlay-header {
     background-color: #2A3647;
     color : #FFFFFF;
