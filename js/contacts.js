@@ -5,6 +5,10 @@ async function initContacts() {
   initTask();
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  initContacts();
+});
+
 async function fetchContacts() {
   try {
     const data = await getAllUsers("contacts");
@@ -44,7 +48,7 @@ function renderContacts(contactsData) {
       list.appendChild(groupHeader);
     }
 
-    const color = getRandomColor();
+    const color = contact.color || getRandomColor();
     const div = document.createElement("div");
     div.classList.add("contact-div");
     div.innerHTML = `
@@ -64,7 +68,7 @@ function getInitials(name) {
 }
 
 function getRandomColor() {
-  const colors = ["orange", "blue", "purple", "teal", "pink", "green" , "red", "yellow", "brown"];
+  const colors = ["#6E52FF", "#FFA35E", "#FFE62B", "#00BEE8", "#FF5EB3", "#FFBB2B", "#FF745E", "#C3FF2B", "#FF7A00", "#1FD7C1", "#0038FF", "#FFC701", "#9327FF", "#FC71FF", "#FF4646"];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -118,23 +122,34 @@ async function editContact(key) {
       return;
     }
 
-    document.getElementById("editName").value = contact.name || "";
-    document.getElementById("editMail").value = contact.mail || "";
-    document.getElementById("editPhone").value = contact.phone_number || "";
+    const name = contact.name || "";
+    const mail = contact.mail || "";
+    const phone = contact.phone_number || "";
+    let color = contact.color;
+
+    if (!color) {
+      color = getRandomColor();
+      await fetch(`${BASE_URL}contacts/${key}/color.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(color)
+      });
+    }
+
+    document.getElementById("editName").value = name;
+    document.getElementById("editMail").value = mail;
+    document.getElementById("editPhone").value = phone;
 
     currentEditKey = key;
 
     const avatar = document.getElementById("editAvatar");
-    const color = contact.color || getRandomColor();
-    avatar.textContent = getInitials(contact.name);
+    avatar.textContent = getInitials(name);
     avatar.style.background = color;
 
     document.getElementById("editContactOverlay").classList.remove("hidden");
   } catch (error) {
   }
 }
-
-
 
 async function saveEditedContact() {
   if (!currentEditKey) {
@@ -165,8 +180,6 @@ async function saveEditedContact() {
   }
 }
 
-
-
 async function deleteContact(key) {
   if (!confirm("Möchtest du diesen Kontakt wirklich löschen?")) return;
 
@@ -179,6 +192,10 @@ async function deleteContact(key) {
     await fetchContacts();
   } catch (error) {
   }
+}
+
+function generateKeyFromName(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]/g, "_");
 }
 
 async function createContact() {
@@ -195,11 +212,14 @@ async function createContact() {
     name: name,
     mail: mail,
     phone_number: phone,
+    color: getRandomColor()
   };
 
+  const key = generateKeyFromName(name);
+
   try {
-    const response = await fetch(`${BASE_URL}contacts.json`, {
-      method: "POST",
+    const response = await fetch(`${BASE_URL}contacts/${key}.json`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
