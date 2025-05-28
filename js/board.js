@@ -161,7 +161,6 @@ function getAssignedToInitials(taskIndex) {
         assignedTo.push(`${key}`);
     }
     establishInitials(taskIndex);
-
     assignedTo = [];
 }
 
@@ -199,6 +198,7 @@ function establishKnownVariant(taskIndex, initials, index) {
 
 function establishUnknownVariant(taskIndex, initials, index) {
     assignedToVariants.push({
+        initials: initials.toUpperCase(),
         variant: colorVariants[assignedToVariants.length],
         assigned_to: Object.entries(tasks[taskIndex].assigned_to)[index][0],
     })
@@ -238,12 +238,4 @@ function moveTo(status) {
 
 function dragoverHandler(ev) {
     ev.preventDefault();
-}
-
-function openTaskOverlay(taskIndex, event) {
-    document.getElementById("currentContent").innerHTML = "";
-    document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex);
-    loadTaskOverlayData(taskIndex);
-    event.stopPropagation();
-    document.body.classList.add("stopScrolling");
 }
