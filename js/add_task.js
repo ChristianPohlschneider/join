@@ -153,7 +153,7 @@ function getContacts() {
 
     for (let i = 0; i < userNames.length; i++) {
 
-        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i], i);
+        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i]);
         getBackgroundColor(shortNames[i], userNames[i]);
     }
 }
@@ -185,30 +185,31 @@ function findSameBgColor(initals) {
     document.getElementById('picked-' + initals).classList.add(findSameInitials.variant)
 }
 
-function addMember(shortName, userName, index) {
-    const currentMember = assignedMembers.find((member) => { return member.name == userName })
+function addMember(shortName, userName) {
+    const currentMember = assignedMembers.find((member) => { return member == userName })
     let bgcolor = document.getElementById("container-" + shortName)
     let checked = document.getElementById("img-" + shortName)
     if (currentMember) {
+        const index = assignedMembers.indexOf(userName)
         assignedMembers.splice(index, 1)
         bgcolor.classList.remove('assigned-bgcolor')
         checked.src = `../assets/icons/checkbox.png`
         renderMembersForTask()
     } else {
-        assignedMembers.push({name : userName, initials : shortName});
+        assignedMembers.push(userName);
         bgcolor.classList.add('assigned-bgcolor')
         checked.src = `../assets/icons/checkbox-checked-white.png`        
         renderMembersForTask()
-        
     }
 };
 
 function renderMembersForTask() {
     const contentPlace = document.getElementById("memberForTask");
     contentPlace.innerHTML = "";
-    for (let index = 0; index < assignedMembers.length; index++) {
-        contentPlace.innerHTML += meberTemplate(index)
-        findSameBgColor(assignedMembers[index].initials)
+    const initialsMembers = makeShortName(assignedMembers)
+    for (let index = 0; index < initialsMembers.length; index++) {
+        contentPlace.innerHTML += meberTemplate(initialsMembers, index)
+        findSameBgColor(initialsMembers[index])
     }
 }
 
