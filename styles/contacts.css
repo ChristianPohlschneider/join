@@ -280,6 +280,11 @@ body, html {
 ;
 }
 
+.save-button img {
+    width: 24px;
+    height: 24px;
+}
+
 .save-button {
     width: 114px;
     height: 57px;
