@@ -152,16 +152,16 @@ function getContacts() {
     const shortNames = makeShortName(userNames);
 
     for (let i = 0; i < userNames.length; i++) {
-        
-        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i]);
+
+        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i], i);
         getBackgroundColor(shortNames[i], userNames[i]);
     }
 }
 
-function getBackgroundColor(initals, name) {
-        assignedToVariants.push({
+function getBackgroundColor(initals) {
+    assignedToVariants.push({
         variant: colorVariants[assignedToVariants.length],
-        assigned_to: name,
+        assigned_to: initals,
     })
     document.getElementById(initals).classList.add(colorVariants[assignedToVariants.length - 1]);
 
@@ -176,31 +176,41 @@ function makeShortName(userNames) {
     });
 }
 
-
-
 function toggleSelectable() {
     document.getElementById("assigned").classList.toggle("dnone");
 }
 
-function addMember(shortName, userName) {
-    let bgcolor = document.getElementById("container-"+ shortName.id)
-    bgcolor.classList.toggle('assigned-bgcolor')
-    let checked = document.getElementById("img-"+ shortName.id)
-    checked.src = `../assets/icons/checkbox-checked-white.png`
+function findSameBgColor(initals) {
+    const findSameInitials = assignedToVariants.find((item) => { return item.assigned_to == initals })
+    document.getElementById('picked-' + initals).classList.add(findSameInitials.variant)
+}
 
-    const contentPlace = document.getElementById("memberForTask");
-
-/*     if (checkboxElement.checked) {
-        if (!document.getElementById(`member-${shortName}`)) {
-            contentPlace.innerHTML += meberTemplate(shortName);
-            assignedMembers.push({ "name": userName, "shortName": shortName });
-        }
+function addMember(shortName, userName, index) {
+    const currentMember = assignedMembers.find((member) => { return member.name == userName })
+    let bgcolor = document.getElementById("container-" + shortName)
+    let checked = document.getElementById("img-" + shortName)
+    if (currentMember) {
+        assignedMembers.splice(index, 1)
+        bgcolor.classList.remove('assigned-bgcolor')
+        checked.src = `../assets/icons/checkbox.png`
+        renderMembersForTask()
     } else {
-        const elem = document.getElementById(`member-${shortName}`);
-        if (elem) { elem.remove(); }
-        assignedMembers = assignedMembers.filter(member => member.shortName !== shortName);
-    } */
+        assignedMembers.push({name : userName, initials : shortName});
+        bgcolor.classList.add('assigned-bgcolor')
+        checked.src = `../assets/icons/checkbox-checked-white.png`        
+        renderMembersForTask()
+        
+    }
 };
+
+function renderMembersForTask() {
+    const contentPlace = document.getElementById("memberForTask");
+    contentPlace.innerHTML = "";
+    for (let index = 0; index < assignedMembers.length; index++) {
+        contentPlace.innerHTML += meberTemplate(index)
+        findSameBgColor(assignedMembers[index].initials)
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('assignee-input');

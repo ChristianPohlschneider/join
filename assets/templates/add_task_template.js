@@ -1,13 +1,13 @@
-function assigneeDropdownTemplate(shortName, userName) {
-    return `<div id="container-${shortName}" onclick="addMember(${shortName})" class="selectable-assigned-contact"><div class="initials-name"><div class="initials" id="${shortName}">${shortName}</div>${userName}</div><img id="img-${shortName}" class="checkbox" src="../assets/icons/checkbox.png" alt=""></div>`;
+function assigneeDropdownTemplate(shortName, userName, index) {
+    return `<div id="container-${shortName}" onclick="addMember('${shortName}','${userName}', '${index}')" class="selectable-assigned-contact"><div class="initials-name"><div class="initials" id="${shortName}">${shortName}</div>${userName}</div><img id="img-${shortName}" class="checkbox" src="../assets/icons/checkbox.png" alt=""></div>`;
 }
 
 function disabledSelect() {
     return `<option value="" disabled selected hidden>Select contacts to assign</option>`;
 }
 
-function meberTemplate(shortName) {
-    return `<p id="member-${shortName}">${shortName}</p>`
+function meberTemplate(index) {
+    return `<div class="initials" id="picked-${assignedMembers[index].initials}">${assignedMembers[index].initials}</div>`
 }
 
 function subtaskTemplate(index) {

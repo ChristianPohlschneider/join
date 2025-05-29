@@ -288,6 +288,12 @@ textarea {
   gap: 6px;
 }
 
+.memberForTask{
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
 .initials{
   display: flex;
   align-items: center;
