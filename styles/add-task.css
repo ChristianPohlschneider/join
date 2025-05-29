@@ -264,7 +264,20 @@ textarea {
    margin-bottom: 6px;
 }
 
+.selectable-assigned-contact:hover{
+  background-color: #D1D1D1;
+}
+
 .assigned-bgcolor{
+  background-color: #2A3647;
+  color: white;
+}
+
+.assigned-bgcolor img{
+ padding-right: 3px;
+}
+
+.assigned-bgcolor:hover{
   background-color: #2A3647;
   color: white;
 }
@@ -273,10 +286,6 @@ textarea {
   display: flex;
   align-items: center;
   gap: 6px;
-}
-.checkbox{
-  width: 24px;
-  height: 24px;
 }
 
 .initials{

@@ -202,6 +202,21 @@ function addMember(shortName, userName) {
     } */
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('assignee-input');
+    searchInput.addEventListener('input', filterAssigned);
+});
+
+function filterAssigned(event) {
+    const searchTerm = event.target.value.toLowerCase();
+    const assigned = document.querySelectorAll('.selectable-assigned-contact');
+    assigned.forEach(contact => {
+        const content = contact.innerText.toLowerCase();
+        contact.style.display = content.includes(searchTerm) ? 'flex' : 'none';
+    });
+}
+
+
 function checkTitle() {
     let title = document.getElementById('title');
     let warningText = document.getElementById('warning-title');
