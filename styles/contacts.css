@@ -355,3 +355,39 @@ body, html {
   justify-content: center;
 }
 
+@media (max-width: 1350px) {
+
+    .contacts-list {
+        margin-left: 16px;
+        width: 375px
+    }
+
+    .contact-details {
+        padding: 10px;
+    }
+
+    .contact-title {
+        font-size: 48px;
+    }
+
+    .contact-div {
+        width: 300px;
+        height: 60px;
+    }
+
+    .contact-name-buttons h2 {
+        font-size: 36px;
+    }
+
+    .contact-info-subtitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .contact-details {
+        display: none;
+    }
+}
+
