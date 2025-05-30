@@ -6,11 +6,11 @@ function renderTaskOverlay(taskIndex) {
             <div id="taskDescription" class="taskOverlayDescription">${tasks[taskIndex].description}</div>
             <div class="dueDateOverlay">   
                 <p>Due date:</p>
-                <div>${tasks[taskIndex].date}</div>
+                <div class="dueDateOverlayDiv">${tasks[taskIndex].date}</div>
             </div>
             <div class="priorityOverlay">
                 <p>Priority:</p>
-                <div id="priority${"#" + taskIndex}"></div>
+                <div id="priority${"#" + taskIndex}" class="priorityOverlayDiv"></div>
             </div>
             <div id="taskAssignment" class="taskOverlayAssignment">
                 <p>Assigned To:</p>
@@ -34,7 +34,7 @@ function renderOverlaySubtasks(taskIndex, subtaskIndex, subtaskCounter) {
 function renderAssignedToName(assignedToNamesIndex) {
     const temp = document.createElement("div");
     temp.innerHTML = `
-        <div class="" id="">${assignedToVariants[assignedToNamesIndex].assigned_to}</div>
+        <div class="assignedToName" id="assignedToName${"#" + assignedToNamesIndex}">${assignedToVariants[assignedToNamesIndex].assigned_to.charAt(0).toUpperCase() + assignedToVariants[assignedToNamesIndex].assigned_to.slice(1)}</div>
     `;
     return temp.firstElementChild;
 }

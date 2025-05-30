@@ -142,13 +142,13 @@ function getSubtaskIndex(taskIndex) {
 }
 
 function getPriority(taskIndex) {
-    let priority = tasks[taskIndex].priority;
-    if (priority == "urgent") {
-        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
-    } else if (priority == "medium") {
-        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
+    let cardPriority = tasks[taskIndex].priority;
+    if (cardPriority == "urgent") {
+        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, cardPriority);
+    } else if (cardPriority == "medium") {
+        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, cardPriority);
     } else {
-        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, priority);
+        document.getElementById("priority#" + taskIndex).innerHTML = renderPriority(taskIndex, cardPriority);
     }
 }
 

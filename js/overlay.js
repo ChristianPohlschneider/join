@@ -6,7 +6,7 @@ function loadTaskOverlayData(taskIndex) {
     getAssignedTo(taskIndex);
     getAssignedToNames(taskIndex);
     getPriority(taskIndex);
-    document.getElementById("priority#" + taskIndex).innerHTML += tasks[taskIndex].priority;
+    document.getElementById("priority#" + taskIndex).innerHTML += tasks[taskIndex].priority.charAt(0).toUpperCase() + tasks[taskIndex].priority.slice(1);
 }
 
 function openTaskOverlay(taskIndex, event) {
@@ -20,9 +20,11 @@ function openTaskOverlay(taskIndex, event) {
 function getAssignedToNames(taskIndex) {
     let searchWord = Object.entries(document.getElementsByClassName("assignedToOverlay"))[0][1].children;
     for (let index = 0; index < searchWord.length; index++) {
-        let assignedToNamesIndex = assignedToVariants.findIndex(v => v.initials === searchWord[index].innerHTML);
-        searchWord[index].after(renderAssignedToName(assignedToNamesIndex));
-        index++
+        let assignedToNamesIndex = assignedToVariants.findIndex(v => v.initials === searchWord[index].innerText);
+        searchWord[index].children[0].after(renderAssignedToName(assignedToNamesIndex));
+        if (index != 0) {
+            searchWord[index].children[0].classList.remove("positionAddInitials");
+        }
     }
 }
 
