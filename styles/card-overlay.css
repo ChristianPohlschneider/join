@@ -10,7 +10,7 @@
     flex-direction: column;
     border: 2px solid white;
     border-radius: 24px;
-    padding: 16px;
+    padding: 32px 32px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
     z-index: 1;
 }
@@ -30,9 +30,43 @@
     justify-content: center;
 }
 
+.closeImg {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  cursor: pointer;
+}
+
+.closeImg::before,
+.closeImg::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0;
+  width: 2px;
+  height: 14px;
+  background-color: black;
+}
+
+.closeImg::before {
+  transform: rotate(45deg);
+}
+
+.closeImg::after {
+  transform: rotate(-45deg);
+}
+
+.taskOverlayDescription {
+    font-size: 20px;
+}
+
 .taskOverlayName {
     font-size: 61px;
     font-weight: 700;
+}
+
+.fontSize20 {
+    font-size: 20px;
 }
 
 .dueDateOverlay {
@@ -59,15 +93,6 @@
     align-items: center;
     padding-left: 38px;
     gap: 16px;
-}
-
-.overlaySubtasks {
-    display: flex;
-    font-size: 12px;
-    gap: 10px;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
 }
 
 .outerScaleOverlay {
@@ -106,4 +131,109 @@
     align-items: center;
     gap: 16px;
     padding: 7px 16px 0px 16px;
+}
+
+.overlaySubtaskDiv {
+    display: flex;
+    padding-left: 16px;
+    gap: 16px;
+    font-size: 16px;
+    align-items: center;
+}
+
+.subTaskHeadTitle {
+    font-size: 20px;
+}
+
+.overlaySubtasks {
+    display: flex;
+    font-size: 12px;
+    gap: 8px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 7px 16px 7px 0px;
+}
+
+.overlaySubtaskCheckbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+    position: relative;
+}
+
+.overlaySubtaskCheckbox input {
+    display: none;
+}
+
+.overlaySubtaskCheckbox .overlaySubtaskCheckmark {
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    z-index: 2;
+    border: 2px solid #2A3647;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+/* Hintergrund ändern bei checked */
+.overlaySubtaskCheckbox input:checked+.overlaySubtaskCheckmark {
+    background-color: white;
+}
+
+/* Weißer Umriss-Haken (liegt unten) */
+.overlaySubtaskCheckbox .overlaySubtaskCheckmark::before {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: -10px;
+    width: 6px;
+    height: 16px;
+    border: solid white;
+    border-width: 0 5px 5px 0;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+/* Dunkler innerer Haken (liegt oben) */
+.overlaySubtaskCheckbox .overlaySubtaskCheckmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: -7px;
+    width: 6px;
+    height: 14px;
+    border: solid #2A3647;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+/* Haken anzeigen, wenn checked */
+.overlaySubtaskCheckbox input:checked+.overlaySubtaskCheckmark::before,
+.overlaySubtaskCheckbox input:checked+.overlaySubtaskCheckmark::after {
+    display: block;
+}
+
+.editDeleteDiv {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.editDeleteImg {
+    height: 18px;
+    width: 16px;
+}
+
+.editDeleteVector {
+    height: 24px;
 }
