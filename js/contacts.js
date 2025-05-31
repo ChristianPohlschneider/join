@@ -61,6 +61,7 @@ function renderContacts(contactsData) {
     div.addEventListener("click", () => showContact(contact, color, key));
     list.appendChild(div);
   });
+
 }
 
 function getInitials(name) {
