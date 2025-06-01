@@ -21,13 +21,28 @@ function getAssignedToNames(taskIndex) {
     let searchWord = Object.entries(document.getElementsByClassName("assignedToOverlay"))[0][1].children;
     for (let index = 0; index < searchWord.length; index++) {
         let assignedToNamesIndex = assignedToVariants.findIndex(v => v.initials === searchWord[index].innerText);
-        searchWord[index].children[0].after(renderAssignedToName(assignedToNamesIndex));
-        if (index != 0) {
-            searchWord[index].children[0].classList.remove("positionAddInitials");
-        }
+        let assignedToName = "";
+        editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index);
+
     }
 }
 
+function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index) {
+    let newName = "";
+    assignedToName = assignedToVariants[assignedToNamesIndex].assigned_to.split("_");
+    for (let nameIndex = 0; nameIndex < assignedToName.length; nameIndex++) {
+        newName += assignedToName[nameIndex].charAt(0).toUpperCase() + assignedToName[nameIndex].slice(1) + " ";  
+    }
+    assignedToName = newName.trim();
+    establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index);
+}
+
+function establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index) {
+        searchWord[index].children[0].after(renderAssignedToName(assignedToNamesIndex, assignedToName));
+        if (index != 0) {
+            searchWord[index].children[0].classList.remove("positionAddInitials");
+        }
+}
 
 function getOverlaySubtasks(taskIndex) {
     if (tasks[taskIndex].subtasks === undefined) {

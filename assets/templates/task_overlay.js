@@ -42,10 +42,10 @@ function renderOverlaySubtasks(taskIndex, subtaskIndex, subtaskCounter) {
     `;
 }
 
-function renderAssignedToName(assignedToNamesIndex) {
+function renderAssignedToName(assignedToNamesIndex, assignedToName) {
     const temp = document.createElement("div");
     temp.innerHTML = `
-        <div class="assignedToName" id="assignedToName${"#" + assignedToNamesIndex}">${assignedToVariants[assignedToNamesIndex].assigned_to.charAt(0).toUpperCase() + assignedToVariants[assignedToNamesIndex].assigned_to.slice(1)}</div>
+        <div class="assignedToName" id="assignedToName${"#" + assignedToNamesIndex}">${assignedToName}</div>
     `;
     return temp.firstElementChild;
 }
