@@ -190,7 +190,7 @@ function addMember(shortName, userName) {
     let bgcolor = document.getElementById("container-" + shortName)
     let checked = document.getElementById("img-" + shortName)
     if (currentMember) {
-        const index = assignedMembers.indexOf({userName})
+        const index = assignedMembers.indexOf(userName)
         assignedMembers.splice(index, 1)
         bgcolor.classList.remove('assigned-bgcolor')
         checked.src = `../assets/icons/checkbox.png`

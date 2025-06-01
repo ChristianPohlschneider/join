@@ -292,6 +292,7 @@ textarea {
   display: flex;
   gap: 4px;
   margin-top: 8px;
+  height: 42px;
 }
 
 .initials{
