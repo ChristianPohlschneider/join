@@ -320,3 +320,11 @@ function addEditSubtask(index) {
     renderSubtasks();
 
 }
+
+document.addEventListener('click', e => {
+    let assignInput = document.getElementById('assignee-input')
+    let assignedRef = document.getElementById('assigned')
+    if(!assignedRef.contains(e.target) && e.target !== assignInput){
+        assignedRef.classList.add('dnone')
+    }
+})
