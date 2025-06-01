@@ -158,7 +158,7 @@ function getAssignedTo(taskIndex) {
 
 function getAssignedToInitials(taskIndex) {
     for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
-        assignedTo.push(`${key}`);
+        assignedTo.push(`${value}`);
     }
     establishInitials(taskIndex);
     assignedTo = [];
@@ -167,7 +167,7 @@ function getAssignedToInitials(taskIndex) {
 function establishInitials(taskIndex) {
     for (let index = 0; index < assignedTo.length; index++) {
         let name = assignedTo[index];
-        let parts = name.split('_')
+        let parts = name.split(' ')
         let initials = ''
         for (let i = 0; i < parts.length; i++) {
             if (parts[i].length > 0 && parts[i] !== '') {
@@ -180,7 +180,7 @@ function establishInitials(taskIndex) {
 }
 
 function getAssignedToVariants(taskIndex, initials, index) {
-    if (assignedToVariants.find(({ assigned_to }) => assigned_to == Object.entries(tasks[taskIndex].assigned_to)[index][0])) {
+    if (assignedToVariants.find(({ assigned_to }) => assigned_to == Object.entries(tasks[taskIndex].assigned_to)[index][1])) {
         establishKnownVariant(taskIndex, initials, index);
     } else {
         establishUnknownVariant(taskIndex, initials, index);
@@ -188,7 +188,7 @@ function getAssignedToVariants(taskIndex, initials, index) {
 }
 
 function establishKnownVariant(taskIndex, initials, index) {
-    let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][0];
+    let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][1];
     let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
     document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
     if (index != 0) {
@@ -200,7 +200,7 @@ function establishUnknownVariant(taskIndex, initials, index) {
     assignedToVariants.push({
         initials: initials.toUpperCase(),
         variant: colorVariants[assignedToVariants.length],
-        assigned_to: Object.entries(tasks[taskIndex].assigned_to)[index][0],
+        assigned_to: Object.entries(tasks[taskIndex].assigned_to)[index][1],
     })
     if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
         document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(colorVariants[assignedToVariants.length - 1]);
