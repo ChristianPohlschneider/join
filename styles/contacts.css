@@ -448,11 +448,26 @@ body, html {
     }
 
     .close-btn {
-        display: none;
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        color: white;
+        width: 12px;
+    }
+
+    .close-btn:hover {
+        color: #29ABE2;
     }
 
     .overlay-body {
         display: flex;
         flex-direction: column;
+    }
+
+    .add-contact-icon {
+        margin-top: -60px;
+        border-color: white;
+        border-style: solid;
+        margin-bottom: 32px;
     }
 }
