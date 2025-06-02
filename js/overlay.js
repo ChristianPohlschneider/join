@@ -11,6 +11,7 @@ function loadTaskOverlayData(taskIndex) {
 
 function openTaskOverlay(taskIndex, event) {
     document.getElementById("currentContent").innerHTML = "";
+    document.getElementById("boardTaskOverlay").classList.remove("hidden");
     document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex, subtaskCounter);
     loadTaskOverlayData(taskIndex);
     event.stopPropagation();
@@ -74,4 +75,5 @@ function checkSubtaskCheckboxes(taskIndex) {
 
 function closeOverlay() {
     document.getElementById("currentContent").innerHTML = "";
+    document.getElementById("boardTaskOverlay").classList.add("hidden");
 }
