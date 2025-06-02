@@ -92,7 +92,7 @@ function showContact(contact, color, key) {
         </div>
       </div>
       <p class="contact-info-subtitle">Contact Information</p>
-      <div class="contact-details">        
+      <div class="contact-info-block">        
         <p><strong>Email:</strong><br><br> <a href="mailto:${contact.mail}">${contact.mail}</a></p><br><br>
         <p><strong>Phone:</strong><br><br> ${contact.phone_number || '-'}</p>
       </div>
@@ -104,6 +104,7 @@ function showContact(contact, color, key) {
     document.getElementById("contactDetails").classList.add("show");
   }
 }
+
 
 function openAddContact() {
   document.getElementById("addContactOverlay").classList.remove("hidden");

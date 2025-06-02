@@ -359,6 +359,10 @@ body, html {
     display: none;
 }
 
+.back-button {
+  display: none;
+}
+
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -474,32 +478,38 @@ body, html {
     .contact-form {
         height: 300px;
     }
-}
 
-@media (max-width: 930px) {
-  .contacts-list,
-  .contact-details {
-    display: none;
-  }
+    .contacts-list:not(.show) {
+        display: none;
+    }
 
-  .contacts-list.show,
-  .contact-details.show {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+    .contacts-list.show,
+    .contact-details.show {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 
-  .back-button {
-    background: none;
+    .back-button {
+    display: block;
+    position: absolute;
+    top: 128px;
+    right: 32px;
+    width: 37px;
+    height: 37px;
+    background-color: transparent;
     border: none;
-    font-size: 20px;
-    color: #2A3647;
-    padding: 12px;
-    text-align: left;
     cursor: pointer;
   }
 
-  .back-button:hover {
-    color: #29ABE2;
+  .back-button img {
+    width: 32px;
   }
+}
+
+    #contactView {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+    }
 }
