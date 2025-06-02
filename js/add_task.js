@@ -177,7 +177,14 @@ function makeShortName(userNames) {
 }
 
 function toggleSelectable() {
-    document.getElementById("assigned").classList.toggle("dnone");
+    let dropdownIcon = document.getElementById('dropwdown-icon')
+    let selectableRef = document.getElementById("assigned")
+    if (selectableRef.classList.contains('dnone')) {
+        dropdownIcon.src = `../assets/icons/dropdown-open.png`
+    } else {
+        dropdownIcon.src = `../assets/icons/dropdown-closed.png`
+    }
+    selectableRef.classList.toggle("dnone");
 }
 
 function findSameBgColor(initals) {
