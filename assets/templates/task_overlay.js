@@ -6,7 +6,7 @@ function renderTaskOverlay(taskIndex) {
             <div id="taskDescription" class="taskOverlayDescription">${tasks[taskIndex].description}</div>
             <div class="dueDateOverlay">   
                 <p class="fontSize20">Due date:</p>
-                <div class="dueDateOverlayDiv">${tasks[taskIndex].date}</div>
+                <div class="dueDateOverlayDiv">${tasks[taskIndex].date.slice(0,10).split('-').reverse().join('/')}</div>
             </div>
             <div class="priorityOverlay">
                 <p class="fontSize20">Priority:</p>
