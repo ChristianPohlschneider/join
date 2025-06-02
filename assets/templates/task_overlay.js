@@ -20,11 +20,15 @@ function renderTaskOverlay(taskIndex) {
                 <p id="subTaskHeadTitle" class="subTaskHeadTitle">Subtasks</p>
             </div>
             <div class="editDeleteDiv">
-                <img class="editDeleteImg" src="../assets/icons/delete.png" alt="delete">
-                <div>Delete</div>
+                <div class="deleteSectionDiv">
+                    <img class="editDeleteImg" src="../assets/icons/delete.png" alt="delete">
+                    <div>Delete</div>
+                </div>    
                 <img class="editDeleteVector" src="../assets/icons/vector.png" alt="vector">
-                <img class="editDeleteImg" src="../assets/icons/edit-v2.png" alt="edit">
-                <div>Edit</div>
+                <div class="editSectionDiv">
+                    <img class="editDeleteImg" src="../assets/icons/edit-v2.png" alt="edit">
+                    <div>Edit</div>
+                </div>    
             </div>
         </div>
     `;
