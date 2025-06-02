@@ -146,6 +146,7 @@ main {
 }
 
 .plusHorizontally {
+    position: absolute;
     background-color: #2A3647;
     height: 2px;
     width: 8px;
@@ -156,7 +157,7 @@ main {
 }
 
 .plusVertically {
-    position: fixed;
+    position: sticky;
     background-color: #2A3647;
     height: 8px;
     width: 2px;

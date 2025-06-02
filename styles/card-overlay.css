@@ -1,5 +1,4 @@
 .cardOverlay {
-    cursor: pointer;
     position: fixed;
     left: calc(50% - 262px);
     top: 20%;
@@ -13,6 +12,10 @@
     padding: 32px 32px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
     z-index: 1;
+}
+
+.cardOverlay p {
+    color: #2A3647;
 }
 
 .taskCategoryDiv {
@@ -31,29 +34,29 @@
 }
 
 .closeImg {
-  width: 14px;
-  height: 14px;
-  position: relative;
-  cursor: pointer;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    cursor: pointer;
 }
 
 .closeImg::before,
 .closeImg::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 0;
-  width: 2px;
-  height: 14px;
-  background-color: black;
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 0;
+    width: 2px;
+    height: 14px;
+    background-color: black;
 }
 
 .closeImg::before {
-  transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .closeImg::after {
-  transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 .taskOverlayDescription {
@@ -73,11 +76,13 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
+    align-items: center;
 }
 
 .dueDateOverlayDiv {
     display: flex;
     padding-left: 24px;
+    font-size: 24px;
 }
 
 .priorityOverlay {
@@ -93,6 +98,7 @@
     align-items: center;
     padding-left: 38px;
     gap: 16px;
+    font-size: 20px;
 }
 
 .outerScaleOverlay {
@@ -131,6 +137,7 @@
     align-items: center;
     gap: 16px;
     padding: 7px 16px 0px 16px;
+    font-size: 19px;
 }
 
 .overlaySubtaskDiv {
@@ -157,15 +164,41 @@
 
 .overlaySubtaskCheckbox {
     display: inline-flex;
+    width: 24px;
+    height: 24px;
     align-items: center;
     cursor: pointer;
     font-size: 16px;
     user-select: none;
     position: relative;
+    justify-content: center;
+}
+
+.overlaySubtaskCheckbox:hover input:checked+.overlaySubtaskCheckmark, .overlaySubtaskCheckbox:hover{
+    background-color: #D1D1D1;
+}
+
+.overlaySubtaskCheckbox:hover {
+        border-radius: 50%;
+}
+
+.overlaySubtaskCheckbox:hover .overlaySubtaskCheckmark, .overlaySubtaskCheckmark:hover{
+    background-color: #D1D1D1;
+}
+
+.overlaySubtaskCheckbox:hover .overlaySubtaskCheckmark::before {
+    border-color: #D1D1D1;
 }
 
 .overlaySubtaskCheckbox input {
     display: none;
+}
+
+.overlaySubtaskCheckbox:hover .overlaySubtaskCheckmark::before {
+    height: 8px;
+    left: 7px;
+    top: -7px;
+    translate: -4px 4px;
 }
 
 .overlaySubtaskCheckbox .overlaySubtaskCheckmark {
@@ -173,7 +206,6 @@
     height: 16px;
     background-color: white;
     border-radius: 4px;
-    margin-right: 10px;
     position: relative;
     z-index: 2;
     border: 2px solid #2A3647;
