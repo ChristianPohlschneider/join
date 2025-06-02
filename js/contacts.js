@@ -73,6 +73,11 @@ function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
+function backToList() {
+  document.getElementById("contactDetails").classList.remove("show");
+  document.querySelector(".contacts-list").classList.add("show");
+}
+
 function showContact(contact, color, key) {
   document.getElementById("contactView").innerHTML = `
     <div class="contact-view">
@@ -93,6 +98,11 @@ function showContact(contact, color, key) {
       </div>
     </div>
   `;
+
+  if (window.innerWidth < 930) {
+    document.querySelector(".contacts-list").classList.remove("show");
+    document.getElementById("contactDetails").classList.add("show");
+  }
 }
 
 function openAddContact() {

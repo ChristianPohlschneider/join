@@ -25,7 +25,7 @@
     <div id="menuTemplate"></div>
 
     <section class="contacts-section">
-      <div class="contacts-list">
+      <div class="contacts-list show">
       <div class="contacts-header">
         <button onclick="openAddContact()" class="add-button">
           Add new contact
@@ -40,7 +40,8 @@
         </button>
   </div>
 </div>
-      <div class="contact-details">
+      <div class="contact-details" id="contactDetails">
+        <button class="back-button" onclick="backToList()">← Zurück</button>
         <h2 class="contact-title">
           Contacts <span class="subtitle"><span class="highlight">|</span> Better with a team</span>
         </h2>
