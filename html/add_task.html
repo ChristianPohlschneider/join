@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    <article class="flex-column">
+                    <article class="flex-column mobile-dnone">
                         <label for="category">Category<span>*</span></label>
                         <select onfocusout="checkCategory()" id="category" name="selection-category" class="input-text"
                             required>
@@ -96,7 +96,7 @@
                         </div>
                     </article>
 
-                    <article>
+                    <article class="mobile-dnone">
                         <p>Subtasks</p>
                         <div class="subtask-container">
                             <input onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
@@ -119,8 +119,8 @@
                     </article>
                 </div>
             </form>
-            <div class="flex-center flex-space-between margin-top-50px">
-                <p><span>*</span>This field is required</p>
+            <div class="flex-center flex-space-between margin-top-50px button-area">
+                <p class="mobile-dnone"><span>*</span>This field is required</p>
                 <div class="btn-container">
                     <button class="clear-btn" onclick="cancelTask()">Clear <img src="../assets/icons/x.png"
                             alt=""></button>
