@@ -246,6 +246,21 @@ textarea {
   width: 24px;
 }
 
+.dropdown-img-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+  margin-left: 41px;
+  cursor: pointer;
+}
+
+.dropdown-img-container img{
+  width: 8.21px;
+  height: 5.6px;
+}
+
 .selectable-assigned {
   background: white;
   border: 1px solid #D1D1D1;
