@@ -364,6 +364,10 @@ body, html {
   display: none;
 }
 
+.highlight-mobile {
+    display: none;
+}
+
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -519,6 +523,22 @@ body, html {
         flex-direction: column;
         margin-left: 58px;
         margin-top: 32px;
+        font-size: 47px;
+        font-weight: 700;
+    }
+
+    .highlight-mobile {
+        display: flex;
+        background-color: #29ABE2;;
+        height: 3px;
+        width: 90px;
+        border-radius: 3px;
+        margin-top: 10px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        font-weight: 400;
     }
 
     .highlight {
@@ -534,9 +554,12 @@ body, html {
     .contact-info {
         margin-left: 12px;
         margin-top: 12px;
+        font-size: 36px;
     }
 
     .contact-name-buttons button {
         display: none;
     }
+
+
 }
