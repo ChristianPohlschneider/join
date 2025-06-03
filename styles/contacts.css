@@ -163,6 +163,7 @@ body, html {
     margin-top: 12px;
     margin-bottom: 12px;
     padding: 20px;
+    margin-left: 16px;
 }
 
 .overlay {
@@ -488,28 +489,54 @@ body, html {
         display: flex;
         flex-direction: column;
         width: 100%;
+        background-color: #F6F7F8;
     }
 
     .back-button {
-    display: block;
-    position: absolute;
-    top: 128px;
-    right: 32px;
-    width: 37px;
-    height: 37px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
+        display: block;
+        position: absolute;
+        top: 128px;
+        right: 32px;
+        width: 37px;
+        height: 37px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
 
-  .back-button img {
-    width: 32px;
-  }
-}
+    .back-button img {
+        width: 32px;
+    }
 
     #contactView {
         flex: 1;
         padding: 20px;
         overflow-y: auto;
+    }
+
+    .contact-title {
+        display: flex;
+        flex-direction: column;
+        margin-left: 58px;
+        margin-top: 32px;
+    }
+
+    .highlight {
+        display: none;
+    }
+
+    .contact-info-block {
+        display: flex;
+        flex-direction: column;
+        margin-left: 36px;
+    }
+
+    .contact-info {
+        margin-left: 12px;
+        margin-top: 12px;
+    }
+
+    .contact-name-buttons button {
+        display: none;
     }
 }
