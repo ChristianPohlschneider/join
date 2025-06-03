@@ -496,7 +496,7 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 10px;
+    padding-left: 18px;
     padding-right: 10px;
   }
 
@@ -551,7 +551,7 @@ li {
   }
 
   .add-task-btn {
-    padding: 8px 14px;
+    padding: 0px 4px;
   }
 
   .clear-btn {
@@ -563,27 +563,26 @@ li {
   }
 
   .input-text {
-    width: 90vw;
+    width: 85vw;
     font-size: 16px;
   }
 
   main {
     position: absolute;
-    left: 10px;
     padding-left: 0px;
   }
 
   textarea {
-    width: 90vw;
+    width: 85vw;
     min-width: 0px !important;
   }
 
   .input-text,
   .subtask-container {
-    width: 90vw;
+    width: 85vw;
   }
 
   .selectable-assigned {
-    width: 90vw;
+    width: 85vw;
   }
 }
