@@ -1,14 +1,14 @@
 function assigneeDropdownTemplate(shortName, userName) {
     return `<div id="container-${shortName}" onclick="addMember('${shortName}','${userName}')" class="selectable-assigned-contact"><div class="initials-name"><div class="initials" id="${shortName}">${shortName}</div>${userName}</div><img id="img-${shortName}" class="checkbox" src="../assets/icons/checkbox.png" alt=""></div>`;
-}
+};
 
 function disabledSelect() {
     return `<option value="" disabled selected hidden>Select contacts to assign</option>`;
-}
+};
 
 function meberTemplate(initialsMembers, index) {
     return `<div class="initials" id="picked-${initialsMembers[index]}">${initialsMembers[index]}</div>`
-}
+};
 
 function subtaskTemplate(index) {
     return `<div id="${index}">
@@ -21,4 +21,15 @@ function subtaskTemplate(index) {
                     </div>
                 </div>
             </div>`
-}
+};
+
+function editSubtaskTemplate(index) {
+    return `<div class="subtask-edit-container">
+                <input onfocusout="addEditSubtask(${index})" id="edit-input" type="text" value="${subtaskArr[index]}">
+                <div class="subtasks-icon-container">
+                    <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
+                    <img src="../assets/icons/vector.png" alt="">
+                    <img onclick="addEditSubtask(${index})" class="check-icon" src="../assets/icons/check-black.png" alt="Add">
+                </div>
+            </div>`
+};

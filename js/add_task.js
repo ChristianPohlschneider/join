@@ -3,7 +3,7 @@ const submitButton = document.getElementById("creatTask");
 let assignedMembers = [];
 dueDate.min = new Date().toISOString().split("T")[0];
 let subtaskArr = [];
-let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"]
+let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"];
 let assignedToVariants = [];
 
 async function startForm() {
@@ -16,12 +16,11 @@ function addNewToDO() {
     description = document.getElementById("description").value;
     dueDate = document.getElementById("dueDate").value;
     category = document.getElementById("category").value;
-
     pushTask(title, description, dueDate, category, priority);
-    cancelTask()
+    cancelTask();
     succeedRegistration();
     const Timeout = setTimeout(fowarding, 2000);
-}
+};
 
 function cancelTask() {
     document.getElementById("title").value = "";
@@ -32,10 +31,9 @@ function cancelTask() {
     document.getElementById("subtask").value = "";
     subtaskList.innerHTML = "";
     submitButton.disabled = true;
-    addCss('medium')
+    addCss('medium');
     assignedMembers = [];
-
-}
+};
 
 function pushTask(title, description, dueDate, category, priority) {
     let newTask = ({
@@ -48,8 +46,8 @@ function pushTask(title, description, dueDate, category, priority) {
         status: "toDo",
         subtasks: getSubTasks()
     });
-    postData(newTask)
-}
+    postData(newTask);
+};
 
 function addCss(id) {
     const elements = document.querySelectorAll('.selectable');
@@ -60,7 +58,7 @@ function addCss(id) {
     clicked.classList.add(id);
     addImage(id);
     priority = id;
-}
+};
 
 function addImage(id) {
     switch (id) {
@@ -79,56 +77,50 @@ function addImage(id) {
             document.getElementById('urgent').innerHTML = `Urgent<img src="../assets/icons/urgent.png" alt="">`
             document.getElementById('low').innerHTML = `Low<img src="../assets/icons/low.png" alt="">`
             break;
-    }
-}
+    };
+};
 
 function addSubtask() {
     subtask = document.getElementById("subtask");
     if (subtask.value.trim()) {
-        subtaskArr.push(subtask.value)
-        renderSubtasks()
+        subtaskArr.push(subtask.value);
+        renderSubtasks();
         subtask.value = "";
     }
     checkSubtask();
-}
+};
 
 function renderSubtasks() {
     subtaskList.innerHTML = "";
     for (let index = 0; index < subtaskArr.length; index++) {
         subtaskList.innerHTML += subtaskTemplate(index);
-    }
-}
+    };
+};
 
 function getSubTasks() {
     const div = document.getElementById("subtaskList");
     if (div.children.length === 0) { return []; }
-
     const subtasks = Array.from(div.children).map(child => ({
         title: child.textContent.trim(),
         done: false
     }));
-
     return subtasks;
-}
+};
 
 document.addEventListener("DOMContentLoaded", function () {
     const title = document.getElementById("title");
     const dueDate = document.getElementById("dueDate");
     const category = document.getElementById("category");
-
     function checkInputs() {
         if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
             submitButton.disabled = true;
         } else { submitButton.disabled = false; }
     }
-
     title.addEventListener("input", checkInputs);
     dueDate.addEventListener("input", checkInputs);
     category.addEventListener("input", checkInputs);
-
     checkInputs();
 });
-
 
 async function postData(newTask) {
     let response = await fetch(BASE_URL + 'tasks' + '.json', {
@@ -138,10 +130,9 @@ async function postData(newTask) {
         },
         body: JSON.stringify(newTask),
     });
-
     let responseData = await response.json();
     return responseData;
-}
+};
 
 fetchInit().then(() => { getContacts(); });
 
@@ -149,16 +140,13 @@ function getContacts() {
     const contentPlace = document.getElementById("assigned");
     contentPlace.innerHTML = "";
     contentPlace.innerHTML += disabledSelect();
-
     const userNames = contacts.map(u => u.name);
     const shortNames = makeShortName(userNames);
-
     for (let i = 0; i < userNames.length; i++) {
-
         contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i]);
         getBackgroundColor(shortNames[i], userNames[i]);
-    }
-}
+    };
+};
 
 function getBackgroundColor(initals) {
     assignedToVariants.push({
@@ -166,8 +154,7 @@ function getBackgroundColor(initals) {
         assigned_to: initals,
     })
     document.getElementById(initals).classList.add(colorVariants[assignedToVariants.length - 1]);
-
-}
+};
 
 function makeShortName(userNames) {
     return userNames.map(name => {
@@ -176,51 +163,51 @@ function makeShortName(userNames) {
         const last = parts[1]?.charAt(0).toUpperCase() || "";
         return first + last;
     });
-}
+};
 
 function toggleSelectable() {
-    let dropdownIcon = document.getElementById('dropwdown-icon')
-    let selectableRef = document.getElementById("assigned")
+    let dropdownIcon = document.getElementById('dropwdown-icon');
+    let selectableRef = document.getElementById("assigned");
     if (selectableRef.classList.contains('dnone')) {
         dropdownIcon.src = `../assets/icons/dropdown-open.png`
     } else {
         dropdownIcon.src = `../assets/icons/dropdown-closed.png`
     }
     selectableRef.classList.toggle("dnone");
-}
+};
 
 function findSameBgColor(initals) {
-    const findSameInitials = assignedToVariants.find((item) => { return item.assigned_to == initals })
-    document.getElementById('picked-' + initals).classList.add(findSameInitials.variant)
-}
+    const findSameInitials = assignedToVariants.find((item) => { return item.assigned_to == initals });
+    document.getElementById('picked-' + initals).classList.add(findSameInitials.variant);
+};
 
 function addMember(shortName, userName) {
-    const currentMember = assignedMembers.find((member) => { return member == userName })
-    let bgcolor = document.getElementById("container-" + shortName)
-    let checked = document.getElementById("img-" + shortName)
+    const currentMember = assignedMembers.find((member) => { return member == userName });
+    let bgcolor = document.getElementById("container-" + shortName);
+    let checked = document.getElementById("img-" + shortName);
     if (currentMember) {
-        const index = assignedMembers.indexOf(userName)
-        assignedMembers.splice(index, 1)
-        bgcolor.classList.remove('assigned-bgcolor')
+        const index = assignedMembers.indexOf(userName);
+        assignedMembers.splice(index, 1);
+        bgcolor.classList.remove('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox.png`
-        renderMembersForTask()
+        renderMembersForTask();
     } else {
         assignedMembers.push(userName);
-        bgcolor.classList.add('assigned-bgcolor')
+        bgcolor.classList.add('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox-checked-white.png`
-        renderMembersForTask()
-    }
+        renderMembersForTask();
+    };
 };
 
 function renderMembersForTask() {
     const contentPlace = document.getElementById("memberForTask");
     contentPlace.innerHTML = "";
-    const initialsMembers = makeShortName(assignedMembers)
+    const initialsMembers = makeShortName(assignedMembers);
     for (let index = 0; index < initialsMembers.length; index++) {
-        contentPlace.innerHTML += meberTemplate(initialsMembers, index)
-        findSameBgColor(initialsMembers[index])
-    }
-}
+        contentPlace.innerHTML += meberTemplate(initialsMembers, index);
+        findSameBgColor(initialsMembers[index]);
+    };
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('assignee-input');
@@ -234,7 +221,7 @@ function filterAssigned(event) {
         const content = contact.innerText.toLowerCase();
         contact.style.display = content.includes(searchTerm) ? 'flex' : 'none';
     });
-}
+};
 
 
 function checkTitle() {
@@ -245,8 +232,8 @@ function checkTitle() {
     } else {
         title.classList.remove('red-border');
         warningText.classList.add('d_none');
-    }
-}
+    };
+};
 
 function checkDate() {
     let date = document.getElementById('dueDate');
@@ -256,14 +243,14 @@ function checkDate() {
     } else {
         date.classList.remove('red-border');
         warningText.classList.add('d_none');
-    }
-}
+    };
+};
 
 function getRedBorder(input) {
     input.classList.add('red-border');
     let warningText = document.getElementById('warning-' + input.id);
     warningText.classList.remove('d_none');
-}
+};
 
 function checkCategory() {
     let category = document.getElementById('category');
@@ -281,62 +268,54 @@ function checkSubtask() {
     let subtaskPlus = document.getElementById('subtask-plus');
     let subtaskIcons = document.getElementById('subtask-icon-container');
     if (subtaskRef.value.length > 0) {
-        subtaskPlus.classList.add('d_none')
-        subtaskIcons.classList.remove('d_none')
+        subtaskPlus.classList.add('d_none');
+        subtaskIcons.classList.remove('d_none');
     } else {
-        subtaskPlus.classList.remove('d_none')
-        subtaskIcons.classList.add('d_none')
-    }
-}
+        subtaskPlus.classList.remove('d_none');
+        subtaskIcons.classList.add('d_none');
+    };
+};
 
 function deleteSubtaskInput() {
     let subtaskRef = document.getElementById('subtask');
     subtaskRef.value = "";
     checkSubtask();
-}
+};
 
 function openSubtaskEdit(index) {
-    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index)
-    subtaskEdit.classList.remove('d_none')
-}
+    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index);
+    subtaskEdit.classList.remove('d_none');
+};
 
 function closeSubtaskEdit(index) {
-    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index)
-    subtaskEdit.classList.add('d_none')
-}
+    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index);
+    subtaskEdit.classList.add('d_none');
+};
 
 function removeSubtask(index) {
-    subtaskArr.splice(index, 1)
+    subtaskArr.splice(index, 1);
     renderSubtasks();
-}
+};
 
 function editSubtask(index) {
-    let currentListItem = document.getElementById(index)
+    let currentListItem = document.getElementById(index);
     currentListItem.innerHTML = "";
-    currentListItem.innerHTML = `<div class="subtask-edit-container">
-                                    <input onfocusout="addEditSubtask(${index})" id="edit-input" type="text" value="${subtaskArr[index]}">
-                                    <div class="subtasks-icon-container">
-                                        <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
-                                        <img src="../assets/icons/vector.png" alt="">
-                                        <img onclick="addEditSubtask(${index})" class="check-icon" src="../assets/icons/check-black.png" alt="Add">
-                                    </div>
-                            </div>`
+    currentListItem.innerHTML = editSubtaskTemplate(index)
 }
 
 function addEditSubtask(index) {
     let editInput = document.getElementById('edit-input');
-    subtaskArr[index] = editInput.value
+    subtaskArr[index] = editInput.value;
     renderSubtasks();
-
-}
+};
 
 document.addEventListener('click', e => {
-    let assignInput = document.getElementById('assignee-container')
-    let assignedRef = document.getElementById('assigned')
+    let assignInput = document.getElementById('assignee-container');
+    let assignedRef = document.getElementById('assigned');
     if (!assignedRef.contains(e.target) && e.target !== assignInput) {
-        assignedRef.classList.add('dnone')
-    }
-})
+        assignedRef.classList.add('dnone');
+    };
+});
 
 function succeedRegistration() {
     let succeed = document.getElementById('succedSignup');
