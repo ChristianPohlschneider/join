@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-.txtContainer p{
+.txtContainer p {
     font-size: 16px;
     font-weight: 400;
     width: 100%;
@@ -37,12 +37,12 @@ h3 {
     margin-right: 36px;
 }
 
-.guideBoard{
+.guideBoard {
     display: flex;
     gap: 32px;
 }
 
-.guideContacts{
+.guideContacts {
     display: flex;
     gap: 32px;
 }
@@ -64,4 +64,23 @@ h3 {
 
 .highlight {
     color: #29ABE2;
+}
+
+@media (max-width: 1350px) {
+    .txtContainer, h1 {
+        margin-left: 86px;
+    }
+}
+
+@media (max-width: 550px) {
+    .txtContainer {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    h1 {
+        font-size: 47px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
 }

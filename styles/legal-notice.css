@@ -32,3 +32,20 @@ h2 {
 .highlight {
     color: #29ABE2;
 }
+
+@media (max-width: 1350px) {
+   .txtContainer{
+    margin-left: 86px;
+   } 
+}
+
+@media (max-width: 550px) {
+   .txtContainer{
+    margin-left: 12px;
+    margin-right: 12px;
+   } 
+
+   h1{
+    font-size: 47px;
+   }
+}
