@@ -3,8 +3,8 @@ let subtaskCounter = 0;
 function loadTaskOverlayData(taskIndex) {
     findBackgroundColor(taskIndex);
     getOverlaySubtasks(taskIndex);
-    getAssignedTo(taskIndex);
-    getAssignedToNames(taskIndex);
+    getAssignedTo(taskIndex, contacts);
+    getAssignedToNames(taskIndex, contacts);
     getPriority(taskIndex);
     document.getElementById("priority#" + taskIndex).innerHTML += tasks[taskIndex].priority.charAt(0).toUpperCase() + tasks[taskIndex].priority.slice(1);
 }
@@ -18,23 +18,25 @@ function openTaskOverlay(taskIndex, event) {
     document.body.classList.add("stopScrolling");
 }
 
-function getAssignedToNames(taskIndex) {
+function getAssignedToNames(taskIndex, contacts) {
     let searchWord = Object.entries(document.getElementsByClassName("assignedToOverlay"))[0][1].children;
     for (let index = 0; index < searchWord.length; index++) {
-        let assignedToNamesIndex = assignedToVariants.findIndex(v => v.initials === searchWord[index].innerText);
+        let assignedToNamesIndex = contacts.findIndex(v => getInitialsOverlay(v.name) === searchWord[index].innerText);
         let assignedToName = "";
-        editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index);
-
+        editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index, contacts);
     }
 }
 
-function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index) {
-    let newName = "";
-    assignedToName = assignedToVariants[assignedToNamesIndex].assigned_to.split("_");
-    for (let nameIndex = 0; nameIndex < assignedToName.length; nameIndex++) {
-        newName += assignedToName[nameIndex].charAt(0).toUpperCase() + assignedToName[nameIndex].slice(1) + " ";  
-    }
-    assignedToName = newName.trim();
+function getInitialsOverlay(name) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map(word => word[0].toUpperCase())
+    .join('');
+}
+
+function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index, contacts) {
+    assignedToName = contacts[assignedToNamesIndex].name;
     establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index);
 }
 

@@ -5,7 +5,6 @@ let assignedTo = [];
 let assignedToVariants = [];
 let subtask = 0;
 let subtaskTotal = 0;
-
 let currentId;
 
 async function initboard() {
@@ -13,23 +12,24 @@ async function initboard() {
     document.querySelector("header").innerHTML = header();
     initAvatarSlider();
     await fetchTasks();
+    await fetchContacts();
     clearBoardTable();
-    renderTasks();
+    renderTasks(contacts);
 }
 
-function renderTasks() {
+function renderTasks(contacts) {
     for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
         if (tasks[taskIndex].status == "toDo") {
-            renderTaskToDo(taskIndex);
+            renderTaskToDo(taskIndex, contacts);
         }
         else if (tasks[taskIndex].status == "inProgress") {
-            renderTaskInProgress(taskIndex);
+            renderTaskInProgress(taskIndex, contacts);
         }
         else if (tasks[taskIndex].status == "await") {
-            renderTaskAwait(taskIndex);
+            renderTaskAwait(taskIndex, contacts);
         }
         else if (tasks[taskIndex].status == "done") {
-            renderDone(taskIndex);
+            renderDone(taskIndex, contacts);
         }
     }
 }
@@ -49,43 +49,43 @@ function clearBoardTable() {
     document.getElementById("emptyTask3").classList.add("emptyTask");
 }
 
-function renderTaskToDo(taskIndex) {
+function renderTaskToDo(taskIndex, contacts) {
     document.getElementById("emptyTask0").classList.remove("emptyTask");
     document.getElementById("emptyTask0").classList.add("d_none");
     document.getElementById("taskToDo").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
-    getAssignedTo(taskIndex);
+    getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
 }
 
-function renderTaskInProgress(taskIndex) {
+function renderTaskInProgress(taskIndex, contacts) {
     document.getElementById("emptyTask1").classList.remove("emptyTask");
     document.getElementById("emptyTask1").classList.add("d_none");
     document.getElementById("taskInProgress").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
-    getAssignedTo(taskIndex);
+    getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
 }
 
-function renderTaskAwait(taskIndex) {
+function renderTaskAwait(taskIndex, contacts) {
     document.getElementById("emptyTask2").classList.remove("emptyTask");
     document.getElementById("emptyTask2").classList.add("d_none");
     document.getElementById("taskAwaitFeedback").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
-    getAssignedTo(taskIndex);
+    getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
 }
 
-function renderDone(taskIndex) {
+function renderDone(taskIndex, contacts) {
     document.getElementById("emptyTask3").classList.remove("emptyTask");
     document.getElementById("emptyTask3").classList.add("d_none");
     document.getElementById("taskDone").innerHTML += renderCard(taskIndex);
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
-    getAssignedTo(taskIndex);
+    getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
 }
 
@@ -152,19 +152,20 @@ function getPriority(taskIndex) {
     }
 }
 
-function getAssignedTo(taskIndex) {
-    getAssignedToInitials(taskIndex);
+function getAssignedTo(taskIndex, contacts) {
+    getAssignedToInitials(taskIndex, contacts);
 }
 
-function getAssignedToInitials(taskIndex) {
+function getAssignedToInitials(taskIndex, contacts) {
     for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
-        assignedTo.push(`${value}`);
+        let nameValue = replaceUmlauts(value);
+        assignedTo.push(`${nameValue}`);
     }
-    establishInitials(taskIndex);
+    establishInitials(taskIndex, contacts);
     assignedTo = [];
 }
 
-function establishInitials(taskIndex) {
+function establishInitials(taskIndex, contacts) {
     for (let index = 0; index < assignedTo.length; index++) {
         let name = assignedTo[index];
         let parts = name.split(' ')
@@ -175,39 +176,45 @@ function establishInitials(taskIndex) {
             }
         }
         document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials, index);
-        getAssignedToVariants(taskIndex, initials, index);
+        getAssignedToVariants(taskIndex, initials, index, contacts);
     }
 }
 
-function getAssignedToVariants(taskIndex, initials, index) {
-    if (assignedToVariants.find(({ assigned_to }) => assigned_to == Object.entries(tasks[taskIndex].assigned_to)[index][1])) {
+function getAssignedToVariants(taskIndex, initials, index, contacts) {
+    let nameToFind = replaceUmlauts(Object.entries(tasks[taskIndex].assigned_to)[index][1]);
+    if (contacts.find(({ name }) => replaceUmlauts(name) == nameToFind)) {
         establishKnownVariant(taskIndex, initials, index);
     } else {
-        establishUnknownVariant(taskIndex, initials, index);
+        document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).style.backgroundColor = getRandomColor();
+        if (index != 0) {
+            document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).classList.add("positionAddInitials");
+        }
     }
+}
+
+function replaceUmlauts(string) {
+    value = string;
+    value = value.replace(/ä/g, 'ae');
+    value = value.replace(/ö/g, 'oe');
+    value = value.replace(/ü/g, 'ue');
+    value = value.replace(/Ä/g, 'Ae');
+    value = value.replace(/Ö/g, 'Oe');
+    value = value.replace(/Ü/g, 'Ue');
+    return value;
 }
 
 function establishKnownVariant(taskIndex, initials, index) {
     let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][1];
-    let assignedToVariantsIndex = assignedToVariants.findIndex(v => v.assigned_to === searchWord);
-    document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(assignedToVariants[assignedToVariantsIndex].variant);
+    let colorIndex = contacts.findIndex(v => replaceUmlauts(v.name) === replaceUmlauts(searchWord));
+    document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).style.backgroundColor = contacts[colorIndex].color;
     if (index != 0) {
-        document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
+        document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).classList.add("positionAddInitials");
     }
 }
 
-function establishUnknownVariant(taskIndex, initials, index) {
-    assignedToVariants.push({
-        initials: initials.toUpperCase(),
-        variant: colorVariants[assignedToVariants.length],
-        assigned_to: Object.entries(tasks[taskIndex].assigned_to)[index][1],
-    })
-    if (document.getElementById("assignedToInitial#" + initials + "#" + index) != null) {
-        document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add(colorVariants[assignedToVariants.length - 1]);
-        if (index != 0) {
-            document.getElementById("assignedToInitial#" + initials + "#" + index).classList.add("positionAddInitials");
-        }
-    }
+function getRandomColor() {
+    const colors = ["#6E52FF", "#FFA35E", "#FFE62B", "#00BEE8", "#FF5EB3", "#FFBB2B", "#FF745E", "#C3FF2B", "#FF7A00", "#1FD7C1", "#0038FF", "#FFC701", "#9327FF", "#FC71FF", "#FF4646"];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
 
 document.addEventListener('DOMContentLoaded', () => {

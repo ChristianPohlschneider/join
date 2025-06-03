@@ -27,7 +27,7 @@ function renderPriority(taskIndex, priority) {
 function renderInitials(taskIndex, initials, index) {
      return `
      <div class="assignedToInitialDiv">
-        <div id="assignedToInitial${"#" + initials + "#" + index}" class="assignedToInitial">${initials.toUpperCase()}</div>
+        <div id="assignedToInitial${"#" + initials + "#" + index +  "#" + taskIndex}" class="assignedToInitial">${initials.toUpperCase()}</div>
      </div>
      `;
 }
