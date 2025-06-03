@@ -78,7 +78,7 @@ function menuUnlogged() {
 
 function mobileMenuUnLogged() {
     return `    <div class="mobile-menu-container">
-        <a href="./summary.html">
+        <a href="../index.html">
             <img src="../assets/icons/login.png" alt="">
             <p>Log In</p>
         </a>
@@ -92,27 +92,32 @@ function mobileMenuUnLogged() {
     `;
 }
 
+let userName = localStorage.getItem("user");
+
 function checkLogged() {
-    let userName = localStorage.getItem("user");
     if (userName == undefined) {
         if (window.innerWidth <= 1350) {
             return mobileMenuUnLogged();
         } else {
             return menuUnlogged();
-        }
+        };
     } else {
         if (window.innerWidth <= 1350) {
             return  mobileMenuLogged();
         } else {
             return menuLogged();
-        }
-    }
-}
+        };
+    };
+};
 
 function toogleVieW() {
-    if (window.innerWidth <= 1350) {
-        document.getElementById("menuTemplate").innerHTML = mobileMenuLogged();
-    } else {
+    if (window.innerWidth <= 1350 && userName == undefined) {
+        document.getElementById("menuTemplate").innerHTML = mobileMenuUnLogged();
+    } else if (window.innerWidth >= 1350 && userName == undefined) {
+        document.getElementById("menuTemplate").innerHTML = menuUnlogged();
+    } else if (window.innerWidth >= 1350 && userName) {
         document.getElementById("menuTemplate").innerHTML = menuLogged();
-    }
-}
+    } else {
+        document.getElementById("menuTemplate").innerHTML = mobileMenuLogged();
+    };
+};
