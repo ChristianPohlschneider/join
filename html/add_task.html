@@ -18,17 +18,19 @@
     <script src="../assets/templates/add_task_template.js"></script>
 </head>
 
-<body onresize="toogleVieW()" onload="initTask(); startForm()">
+<body id="body" onresize="toogleVieW()" onload="initTask(); startForm()">
+    <div id="succedSignup" class="d_none success-container ">
+        <div id="sucess-message" class="success-massage">
+            Task added to board <img src="../assets/icons/board.png" alt="">
+        </div>
+    </div>
     <header id="headerTemplate"></header>
     <div id="menuTemplate"></div>
     <main>
-
         <div class="add-task-style">
             <h1 class="h1-add-task">Add Task</h1>
-
             <form class="flex-center-task">
                 <div class="first-container flex-gap flex-column">
-
                     <article>
                         <p>Title<span>*</span></p>
                         <input onfocusout="checkTitle()" class="input-text" type="text" id="title"
@@ -37,7 +39,6 @@
                             <span class="warning d_none" id="warning-title">This field is required</span>
                         </div>
                     </article>
-
                     <article>
                         <p>Description</p>
                         <textarea class="input-text" id="description" rows="6" cols="50"
@@ -51,9 +52,7 @@
                         </div>
                     </article>
                 </div>
-
                 <div id="Border" class="task-gray-border"></div>
-
                 <div class="second-container flex-gap flex-column">
                     <div>
                         <p>Priority</p>
@@ -72,13 +71,14 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="assign-dropdown-container">
                         <p>Assigned to</p>
                         <div class="dropdown" id="assignee-dropdown">
-                            <div onclick="toggleSelectable(), event.stopPropagation()" id="assignee-container"  class="subtask-container">
-                                <input class="input-subtask" type="text" id="assignee-input" placeholder="Select contacts to assign" autocomplete="off">
-                                <div  class="dropdown-img-container">
+                            <div onclick="toggleSelectable(), event.stopPropagation()" id="assignee-container"
+                                class="subtask-container">
+                                <input class="input-subtask" type="text" id="assignee-input"
+                                    placeholder="Select contacts to assign" autocomplete="off">
+                                <div class="dropdown-img-container">
                                     <img id="dropwdown-icon" src="../assets/icons/dropdown-closed.png" alt="">
                                 </div>
                             </div>
@@ -86,7 +86,6 @@
                             <div class="memberForTask" id="memberForTask"></div>
                         </div>
                     </div>
-
                     <article class="flex-column mobile-dnone">
                         <label for="category">Category<span>*</span></label>
                         <select onfocusout="checkCategory()" id="category" name="selection-category" class="input-text"
@@ -99,7 +98,6 @@
                             <span class="warning d_none" id="warning-category">This field is required</span>
                         </div>
                     </article>
-
                     <article class="mobile-dnone">
                         <p>Subtasks</p>
                         <div class="subtask-container">
@@ -114,12 +112,7 @@
                             </div>
                             <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
                         </div>
-                        <div id="subtaskList">
-
-
-
-
-                        </div>
+                        <div id="subtaskList"></div>
                     </article>
                 </div>
             </form>
@@ -133,8 +126,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 </body>
-
 </html>

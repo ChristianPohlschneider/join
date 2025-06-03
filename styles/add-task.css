@@ -240,13 +240,14 @@ textarea {
   width: 16px;
   height: 16px;
 }
+
 .plus-symbol {
   margin-left: 41px;
   height: 24px;
   width: 24px;
 }
 
-.dropdown-img-container{
+.dropdown-img-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -256,7 +257,7 @@ textarea {
   cursor: pointer;
 }
 
-.dropdown-img-container img{
+.dropdown-img-container img {
   width: 8.21px;
   height: 5.6px;
 }
@@ -269,47 +270,47 @@ textarea {
   border-radius: 10px;
 }
 
-.selectable-assigned-contact{
+.selectable-assigned-contact {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 6px;
-   border-radius: 10px;
-   cursor: pointer;
-   margin-bottom: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 6px;
 }
 
-.selectable-assigned-contact:hover{
+.selectable-assigned-contact:hover {
   background-color: #D1D1D1;
 }
 
-.assigned-bgcolor{
+.assigned-bgcolor {
   background-color: #2A3647;
   color: white;
 }
 
-.assigned-bgcolor img{
- padding-right: 3px;
+.assigned-bgcolor img {
+  padding-right: 3px;
 }
 
-.assigned-bgcolor:hover{
+.assigned-bgcolor:hover {
   background-color: #2A3647;
   color: white;
 }
 
-.initials-name{
+.initials-name {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.memberForTask{
+.memberForTask {
   display: flex;
   gap: 4px;
   margin-top: 8px;
 }
 
-.initials{
+.initials {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -420,7 +421,7 @@ li {
   display: none;
 }
 
-.subtask-edit-container{
+.subtask-edit-container {
   display: flex;
   background-color: white;
   margin: 6px;
@@ -430,98 +431,127 @@ li {
   font-size: 16px;
 }
 
-.subtask-edit-container input{
+.subtask-edit-container input {
   width: 90%;
   font-size: 16px;
 }
 
-.button-area{
-      max-width: 953px;
+.button-area {
+  max-width: 953px;
+}
+
+.success-container {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    background-color: #d1d1d14f;
+    width: 100%;
+    height: 100vh;
+    padding-left: 12px;
+    padding-right: 12px;
+    text-align: center;
+    z-index: 10000;
+}
+
+.success-massage {
+    position: relative;
+    top: 180px;
+    left: 630px;
+    font-size: 24px;
+    font-weight: 700;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: white;
+    padding: 26px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 @media (max-width: 1350px) {
   .add-task-style {
     position: static;
- padding-left: 50px;
-     padding-top: 40px;
-}
+    padding-left: 86px;
+    padding-top: 86px;
+  }
 }
 
 @media (max-width: 1020px) {
   .task-gray-border {
     width: 0px;
     height: 0px;
-  display: none;
-}
+    display: none;
+  }
 
-.flex-gap {
+  .flex-gap {
     display: flex;
     gap: 0px;
-}
+  }
 
-.flex-center-task{
-  display: block;
-}
+  .flex-center-task {
+    display: block;
+  }
 
-    .add-task-style {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+  .add-task-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-    .button-area {
+  .button-area {
     padding-bottom: 50px;
-}
+  }
 
-.margin-top-50px {
+  .margin-top-50px {
     margin-top: 10px !important;
-}
+  }
 
-.mobile-dnone{
-  display: none !important;
-}
+  .mobile-dnone {
+    display: none !important;
+  }
 
-.h1-add-task{
-  font-size: 47px;
-  padding-bottom: 20px;
-}
+  .h1-add-task {
+    font-size: 47px;
+    padding-bottom: 20px;
+  }
 
-.selectable {
-  font-size: 16px;
-  height: 40px;
-  width: 125px;
-}
+  .selectable {
+    font-size: 16px;
+    height: 40px;
+    width: 125px;
+  }
 
   .input-text {
     height: 40px;
     font-size: 16px;
-}
+  }
 }
 
-@media (max-width: 490px){
+@media (max-width: 490px) {
   .input-text {
-   width: 90vw; 
+    width: 90vw;
     font-size: 16px;
-}
+  }
 
   main {
     position: absolute;
     left: 10px;
- padding-left: 0px;
-}
+    padding-left: 0px;
+  }
 
-textarea {
-  width: 90vw;
-  min-width: 0px !important;
-}
+  textarea {
+    width: 90vw;
+    min-width: 0px !important;
+  }
 
-.input-text, .subtask-container{
-      width: 90vw;
-}
+  .input-text,
+  .subtask-container {
+    width: 90vw;
+  }
 
-.selectable-assigned{
-  width: 90vw;
-}
+  .selectable-assigned {
+    width: 90vw;
+  }
 }

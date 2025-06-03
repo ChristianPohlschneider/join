@@ -19,6 +19,8 @@ function addNewToDO() {
 
     pushTask(title, description, dueDate, category, priority);
     cancelTask()
+    succeedRegistration();
+    const Timeout = setTimeout(fowarding, 2000);
 }
 
 function cancelTask() {
@@ -32,7 +34,7 @@ function cancelTask() {
     submitButton.disabled = true;
     addCss('medium')
     assignedMembers = [];
-    
+
 }
 
 function pushTask(title, description, dueDate, category, priority) {
@@ -205,7 +207,7 @@ function addMember(shortName, userName) {
     } else {
         assignedMembers.push(userName);
         bgcolor.classList.add('assigned-bgcolor')
-        checked.src = `../assets/icons/checkbox-checked-white.png`        
+        checked.src = `../assets/icons/checkbox-checked-white.png`
         renderMembersForTask()
     }
 };
@@ -331,7 +333,17 @@ function addEditSubtask(index) {
 document.addEventListener('click', e => {
     let assignInput = document.getElementById('assignee-container')
     let assignedRef = document.getElementById('assigned')
-    if(!assignedRef.contains(e.target) && e.target !== assignInput){
+    if (!assignedRef.contains(e.target) && e.target !== assignInput) {
         assignedRef.classList.add('dnone')
     }
 })
+
+function succeedRegistration() {
+    let succeed = document.getElementById('succedSignup');
+    succeed.classList.remove('d_none');
+    document.getElementById('body').style.overflow = "hidden";
+};
+
+function fowarding() {
+    window.location.href = "./board.html";
+};
