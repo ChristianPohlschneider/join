@@ -368,6 +368,36 @@ body, html {
     display: none;
 }
 
+.contact-view-menu-mobile {
+    display: none;
+}
+
+.contacts-slider a {
+  color: #CDCDCD;
+  text-decoration: none;
+}
+
+.contacts-slider a:hover {
+  color: #29ABE2;
+}
+
+.contacts-slider.open {
+  right: 0;
+}
+
+.contacts-slider h3 {
+  margin-top: 0;
+}
+
+.contacts-slider ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts-slider li {
+  margin: 15px 0;
+}
+
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -424,10 +454,9 @@ body, html {
         height: 56px;
         width: 56px;
         background-color: #2A3647;
-        margin-bottom: 50px;
         border-radius: 50%;
         position: absolute;
-        bottom: 50px;
+        bottom: 100px;
         right: 40px;
     }
 
@@ -559,6 +588,24 @@ body, html {
 
     .contact-name-buttons button {
         display: none;
+    }
+
+    .contact-view-menu-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: #2A3647;
+        position: absolute;
+        bottom: 100px;
+        right: 40px;
+        cursor: pointer;
+    }
+
+    .contact-view-menu-mobile img {
+        height: 22px;
     }
 
 

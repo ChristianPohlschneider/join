@@ -5,10 +5,6 @@ async function initContacts() {
   initTask();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  initContacts();
-});
-
 async function fetchContacts() {
   try {
     const data = await getAllUsers("contacts");
@@ -277,3 +273,4 @@ document.addEventListener("click", function (event) {
     }
   });
 });
+
