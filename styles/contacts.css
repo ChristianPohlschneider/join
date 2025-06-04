@@ -372,32 +372,6 @@ body, html {
     display: none;
 }
 
-.contacts-slider a {
-  color: #CDCDCD;
-  text-decoration: none;
-}
-
-.contacts-slider a:hover {
-  color: #29ABE2;
-}
-
-.contacts-slider.open {
-  right: 0;
-}
-
-.contacts-slider h3 {
-  margin-top: 0;
-}
-
-.contacts-slider ul {
-  list-style: none;
-  padding: 0;
-}
-
-.contacts-slider li {
-  margin: 15px 0;
-}
-
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -608,5 +582,20 @@ body, html {
         height: 22px;
     }
 
+    .contacts-slider {
+        position: absolute;
+        bottom: 80px;
+        right: -116px;
+        width: 116px;
+        height: 100px;
+        background-color: #f11111;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        overflow-y: auto;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+    }
 
+    .contacts-slider.open {
+        right: 0;
+    }
 }
