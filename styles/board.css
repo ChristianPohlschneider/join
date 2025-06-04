@@ -28,7 +28,7 @@ main {
     height: 100%;
     padding-left: 86px;
     padding-right: 86px;
-
+    align-items: center;
 }
 
 .boardHeader {

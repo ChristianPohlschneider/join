@@ -7,6 +7,11 @@ let subtask = 0;
 let subtaskTotal = 0;
 let currentId;
 
+// async function loadContacts() {
+//     const res = await fetch(BASE_URL + "contacts.json");
+//     contacts = await res.json();
+// }
+
 async function initboard() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.querySelector("header").innerHTML = header();
@@ -235,10 +240,11 @@ function startDragging(id) {
     currentId = id;
 }
 
-function moveTo(status) {
+async function moveTo(status) {
     tasks[currentId].status = status
+    await fetchContacts();
     clearBoardTable();
-    renderTasks();
+    renderTasks(contacts);
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
     putData(currentTaskPath, status)
 }

@@ -79,3 +79,36 @@ function closeOverlay() {
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
 }
+
+async function deleteTaskByKey(key) {
+  if (!confirm("Möchtest du diesen Task wirklich löschen?")) return;
+  try {
+    await fetch(`${BASE_URL}tasks/${key}.json`, {
+      method: "DELETE"
+    });
+    closeOverlay();
+    await fetchTasks();
+    await fetchContacts();
+    clearBoardTable();
+    renderTasks(contacts);
+  } catch (error) {
+    console.error("Fehler beim Abrufen oder Löschen:", error);
+  }
+}
+
+async function getTaskKey(name) {
+    try {
+        const response = await fetch(`${BASE_URL}tasks/.json`);
+        const data = await response.json();
+        for (const key in data) {
+            if (data[key].name === name) {
+                await deleteTaskByKey(key);
+                alert(`Task "${name}" gelöscht (Key: ${key}).`);
+                return;
+            }
+        }
+        alert(`Task "${taskName}" nicht gefunden.`);
+    } catch (error) {
+        console.error("Fehler beim Abrufen oder Löschen:", error);
+    }
+}

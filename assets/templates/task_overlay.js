@@ -20,7 +20,7 @@ function renderTaskOverlay(taskIndex) {
                 <p id="subTaskHeadTitle" class="subTaskHeadTitle">Subtasks</p>
             </div>
             <div class="editDeleteDiv">
-                <div class="deleteSectionDiv">
+                <div class="deleteSectionDiv" onclick="getTaskKey('${tasks[taskIndex].name}')">
                     <img class="editDeleteImg" src="../assets/icons/delete.png" alt="delete">
                     <div>Delete</div>
                 </div>    
