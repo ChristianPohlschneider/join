@@ -144,12 +144,12 @@ function getContacts() {
     const shortNames = makeShortName(userNames);
     for (let i = 0; i < contacts.length; i++) {
         contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], i);
-        getBackgroundColor(shortNames[i], i);
+        getBackgroundColor(i);
     };
 };
 
-function getBackgroundColor(initals, index) {
-    document.getElementById(initals).style.backgroundColor = contacts[index].color;
+function getBackgroundColor(index) {
+    document.getElementById(index).style.backgroundColor = contacts[index].color;
 };
 
 function makeShortName(userNames) {
@@ -174,13 +174,13 @@ function toggleSelectable() {
 
 function findSameBgColor(initals,fullname, index) {
     const findSameInitials = contacts.find((item) => { return item.name == fullname[index] });
-    document.getElementById('picked-' + initals[index]).style.backgroundColor = findSameInitials.color;
+    document.getElementById('picked-' + index).style.backgroundColor = findSameInitials.color;
 };
 
-function addMember(shortName, userName) {
+function addMember(index ,shortName, userName) {
     const currentMember = assignedMembers.find((member) => { return member == userName });
-    let bgcolor = document.getElementById("container-" + shortName);
-    let checked = document.getElementById("img-" + shortName);
+    let bgcolor = document.getElementById("container-" + index);
+    let checked = document.getElementById("img-" + index);
     if (currentMember) {
         const index = assignedMembers.indexOf(userName);
         assignedMembers.splice(index, 1);
