@@ -48,18 +48,25 @@ function establishRenderAssignedToName(assignedToNamesIndex, assignedToName, sea
 }
 
 function getOverlaySubtasks(taskIndex) {
-    if (tasks[taskIndex].subtasks === undefined) {
-        document.getElementById("subtasks#" + taskIndex).style.display = "none";
+    const task = tasks[taskIndex];
+    const subtasksObj = task.subtasks;
+    const subtasksContainer = document.getElementById("subtasks#" + taskIndex);
+    if (!subtasksContainer) {
+        console.warn("Subtasks-Container nicht gefunden für Task", taskIndex);
+        return;
+    }
+    if (!subtasksObj || typeof subtasksObj !== "object") {
+        subtasksContainer.style.display = "none";
         document.getElementById("subTaskHeadTitle").style.display = "none";
+        return;
     }
-    getSubtaskIndex(taskIndex);
-    for (let subtaskIndex = 0; subtaskIndex < subtaskArray.length; subtaskIndex++) {
-        document.getElementById("subtasks#" + taskIndex).innerHTML += renderOverlaySubtasks(taskIndex, subtaskIndex, subtaskCounter);
-        subtaskCounter++
+    const subtasksArray = Object.values(subtasksObj);
+    subtasksContainer.innerHTML = "";
+    for (let i = 0; i < subtasksArray.length; i++) {
+        const subtask = subtasksArray[i];
+        subtasksContainer.innerHTML += renderOverlaySubtasks(taskIndex, Object.keys(subtasksObj)[i], i);
     }
-    subtaskCounter = 0;
     checkSubtaskCheckboxes(taskIndex);
-    subtaskArray = [];
 }
 
 function checkSubtaskCheckboxes(taskIndex) {
@@ -111,4 +118,36 @@ async function getTaskKey(name) {
     } catch (error) {
         console.error("Fehler beim Abrufen oder Löschen:", error);
     }
+}
+
+async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
+    const task = tasks[taskIndex];
+    const firebaseKey = task.firebaseKey;
+    if (!firebaseKey) {
+        console.error("Fehlender Firebase-Key für Task:", task);
+        return;
+    }
+    const url = `https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/tasks/${firebaseKey}/subtasks/${subtaskKey}/done.json`;
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(isChecked)
+        });
+        if (!response.ok) {
+            throw new Error("Update fehlgeschlagen");
+        }
+        tasks[taskIndex].subtasks[subtaskKey].done = isChecked;
+        // alert(`Subtask ${subtaskKey} gespeichert: ${isChecked}`);
+        renderTasksOnly();
+        closeOverlay();
+    } catch (error) {
+        console.error("Fehler beim Speichern des Subtasks:", error);
+    }
+}
+
+async function renderTasksOnly() {
+    await fetchTasks();
+    await fetchContacts();
+    clearBoardTable();
+    renderTasks(contacts);
 }

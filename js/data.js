@@ -22,7 +22,14 @@ async function getAllContacts(path) {
 
 async function fetchTasks() {
     taskResponse = await getAllTasks("tasks");
-    tasks = Object.values(taskResponse);
+    tasks = [];
+
+    for (const [key, task] of Object.entries(taskResponse)) {
+        tasks.push({
+            ...task,
+            firebaseKey: key // 🔑 Firebase-Key speichern
+        });
+    }
 };
 
 async function getAllTasks(path) {

@@ -34,14 +34,23 @@ function renderTaskOverlay(taskIndex) {
     `;
 }
 
-function renderOverlaySubtasks(taskIndex, subtaskIndex, subtaskCounter) {
+function renderOverlaySubtasks(taskIndex, subtaskKey, subtaskCounter) {
+    const subtask = tasks[taskIndex].subtasks[subtaskKey];
+    const checkedAttr = subtask.done ? "checked" : "";
+
     return `
         <div class="overlaySubtaskDiv">
             <label class="overlaySubtaskCheckbox">
-            <input type="checkbox" name="" id="overlaySubtask${"#" + taskIndex + "#" + subtaskCounter}" class="overlaySubtaskInput"></input>
-            <span class="overlaySubtaskCheckmark"></span>
+                <input 
+                    type="checkbox" 
+                    id="overlaySubtask#${taskIndex}#${subtaskCounter}" 
+                    class="overlaySubtaskInput"
+                    onchange="updateSubtaskStatus(${taskIndex}, '${subtaskKey}', this.checked)"
+                    ${checkedAttr}
+                >
+                <span class="overlaySubtaskCheckmark"></span>
             </label>
-            <div id="#" class="">${subtaskArray[subtaskIndex].title}</div>
+            <div>${subtask.title}</div>
         </div>
     `;
 }
