@@ -278,13 +278,11 @@ const contactsSlider = document.getElementById("contactsSlider");
 const sliderTrigger = document.getElementById("sliderTrigger");
 
 if (contactsSlider && sliderTrigger) {
-  // Öffnet/schliesst den Slider beim Klick auf Trigger
   sliderTrigger.addEventListener("click", function (event) {
     event.stopPropagation();
     contactsSlider.classList.toggle("open");
   });
 
-  // Schließt den Slider beim Klick ausserhalb
   document.addEventListener("click", function (event) {
     if (!contactsSlider.contains(event.target) && !sliderTrigger.contains(event.target)) {
       contactsSlider.classList.remove("open");
