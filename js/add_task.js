@@ -142,18 +142,14 @@ function getContacts() {
     contentPlace.innerHTML += disabledSelect();
     const userNames = contacts.map(u => u.name);
     const shortNames = makeShortName(userNames);
-    for (let i = 0; i < userNames.length; i++) {
-        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], userNames[i]);
-        getBackgroundColor(shortNames[i], userNames[i]);
+    for (let i = 0; i < contacts.length; i++) {
+        contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], i);
+        getBackgroundColor(shortNames[i], i);
     };
 };
 
-function getBackgroundColor(initals) {
-    assignedToVariants.push({
-        variant: colorVariants[assignedToVariants.length],
-        assigned_to: initals,
-    })
-    document.getElementById(initals).classList.add(colorVariants[assignedToVariants.length - 1]);
+function getBackgroundColor(initals, index) {
+    document.getElementById(initals).style.backgroundColor = contacts[index].color;
 };
 
 function makeShortName(userNames) {
@@ -176,9 +172,9 @@ function toggleSelectable() {
     selectableRef.classList.toggle("dnone");
 };
 
-function findSameBgColor(initals) {
-    const findSameInitials = assignedToVariants.find((item) => { return item.assigned_to == initals });
-    document.getElementById('picked-' + initals).classList.add(findSameInitials.variant);
+function findSameBgColor(initals,fullname, index) {
+    const findSameInitials = contacts.find((item) => { return item.name == fullname[index] });
+    document.getElementById('picked-' + initals[index]).style.backgroundColor = findSameInitials.color;
 };
 
 function addMember(shortName, userName) {
@@ -203,9 +199,9 @@ function renderMembersForTask() {
     const contentPlace = document.getElementById("memberForTask");
     contentPlace.innerHTML = "";
     const initialsMembers = makeShortName(assignedMembers);
-    for (let index = 0; index < initialsMembers.length; index++) {
+    for (let index = 0; index < assignedMembers.length; index++) {
         contentPlace.innerHTML += meberTemplate(initialsMembers, index);
-        findSameBgColor(initialsMembers[index]);
+        findSameBgColor(initialsMembers, assignedMembers, index);
     };
 };
 
