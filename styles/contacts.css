@@ -372,6 +372,14 @@ body, html {
     display: none;
 }
 
+.delete-menu-btn {
+    display: none;
+}
+
+.edit-menu-btn {
+    display: none;
+}
+
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -588,14 +596,23 @@ body, html {
         right: -116px;
         width: 116px;
         height: 100px;
-        background-color: #f11111;
+        background-color: #868282;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
         overflow-y: auto;
         transition: right 0.3s ease-in-out;
         z-index: 1000;
+        display: flex;
     }
 
     .contacts-slider.open {
         right: 0;
+    }
+
+    .delete-menu-btn {
+        display: flex;
+    }
+
+    .edit-menu-btn {
+        display: flex;
     }
 }

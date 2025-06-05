@@ -83,8 +83,8 @@ function showContact(contact, color, key) {
         </div>
         <div class="contact-name-buttons">
           <h2>${contact.name}</h2>
-          <button onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>
-          <button onclick="deleteContact('${key}')"><img src="../assets/icons/delete.png" alt="">Delete</button>
+            <button onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>
+            <button onclick="deleteContact('${key}')"><img src="../assets/icons/delete.png" alt="">Delete</button>
         </div>
       </div>
       <p class="contact-info-subtitle">Contact Information</p>
@@ -288,4 +288,16 @@ if (contactsSlider && sliderTrigger) {
       contactsSlider.classList.remove("open");
     }
   });
-}
+  document.getElementById("contactList").innerHTML = `
+    <div id="contactsSlider" class="contacts-slider">
+            <ul>
+              <li>
+                <button class="edit-menu-btn" onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>
+              </li>
+              <li>
+                <button class="delete-menu-btn" onclick="deleteContact('${key}')"><img src="../assets/icons/delete.png" alt="">Delete</button>
+             </li>
+             </ul>
+          </div>`;
+  }
+

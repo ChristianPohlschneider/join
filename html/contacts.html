@@ -53,9 +53,13 @@
         </div>
           <div id="contactsSlider" class="contacts-slider">
             <ul>
-              <li><a href="#">Kontakt 1</a></li>
-              <li><a href="#">Kontakt 2</a></li>
-            </ul>
+              <li>
+                <button class="edit-menu-btn" onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>
+              </li>
+              <li>
+                <button class="delete-menu-btn" onclick="deleteContact('${key}')"><img src="../assets/icons/delete.png" alt="">Delete</button>
+             </li>
+             </ul>
           </div>
       </div>
       </section>
