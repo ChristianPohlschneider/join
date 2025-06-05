@@ -104,8 +104,8 @@ function editTaskOverlayTemplate(currentTask) {
                     </div>
                     <article class="flex-column">
                         <label for="category">Category</label>
-                        <select value="${tasks[currentTask].category}" id="category" name="selection-category" class="input-text"
-                            required>
+                        <select id="category" name="selection-category" class="input-text"required>
+                            <option value="" disabled selected hidden>${tasks[currentTask].category}</option>
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
                         </select>
