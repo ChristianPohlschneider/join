@@ -170,24 +170,6 @@ textarea {
   gap: 10px;
 }
 
-.urgent {
-  background-color: #FF3D00 !important;
-  color: white;
-  border: 2px solid #FF3D00 !important;
-}
-
-.medium {
-  background-color: #FFA800 !important;
-  color: white;
-  border: 2px solid #FFA800 !important;
-}
-
-.low {
-  background-color: #7AE229 !important;
-  color: white;
-  border: 2px solid #7AE229 !important;
-}
-
 
 
 .date-input {
