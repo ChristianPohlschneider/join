@@ -596,12 +596,21 @@ body, html {
         right: -116px;
         width: 116px;
         height: 100px;
-        background-color: #868282;
+        background-color: #ffffff;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
         overflow-y: auto;
         transition: right 0.3s ease-in-out;
         z-index: 1000;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px 0px 20px 20px; 
+    }
+
+    .contacts-slider img {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
     }
 
     .contacts-slider.open {
@@ -610,9 +619,26 @@ body, html {
 
     .delete-menu-btn {
         display: flex;
+        width: 96px;
+        height: 40px;
+        background-color: #ffffff;
+        font-size: 16px;
+        font-weight: 400;
+        color: #2A3647;
     }
 
     .edit-menu-btn {
         display: flex;
+        width: 96px;
+        height: 40px;
+        background-color: #ffffff;
+        font-size: 16px;
+        font-weight: 400;
+        color: #2A3647;
+    }
+
+    .contacts-slider ul {
+        list-style: none;
+        padding: 0;
     }
 }
