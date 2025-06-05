@@ -23,7 +23,7 @@ function guestLogIn() {
     let emailRef = document.getElementById('mail');
     let passwordRef = document.getElementById('password');
     emailRef.value = "guest@login.com"
-    passwordRef.value = "a1234567"
+    passwordRef.value = "aH%1234567"
     logIn();
 };
 
