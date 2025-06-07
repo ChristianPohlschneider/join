@@ -7,6 +7,7 @@ let subtask = 0;
 let subtaskTotal = 0;
 let currentId;
 
+
 // async function loadContacts() {
 //     const res = await fetch(BASE_URL + "contacts.json");
 //     contacts = await res.json();

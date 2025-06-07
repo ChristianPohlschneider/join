@@ -20,16 +20,44 @@
     position: fixed;
     left: calc(50% - 262px);
     top: 20%;
-    display: flex;
     width: 525px;
     background-color: white;
-    gap: 24px;
-    flex-direction: column;
     border: 2px solid white;
     border-radius: 24px;
-    padding: 32px 32px;
+    padding: 0;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
     z-index: 201;
+    max-height: 800px;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+
+.cardOverlayInner {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 800px;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.cardOverlay::-webkit-scrollbar {
+    width: 8px;
+    padding-right: 50px;
+}
+
+.cardOverlay::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 24px;
+}
+
+.cardOverlay::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    background-clip: padding-box;
 }
 
 .cardOverlay p {

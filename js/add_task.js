@@ -3,8 +3,6 @@ const submitButton = document.getElementById("creatTask");
 let assignedMembers = [];
 dueDate.min = new Date().toISOString().split("T")[0];
 let subtaskArr = [];
-let colorVariants = ["variant1", "variant2", "variant3", "variant4", "variant5", "variant6", "variant7", "variant8", "variant9", "variant10", "variant11", "variant12", "variant13", "variant14", "variant15"];
-let assignedToVariants = [];
 
 async function startForm() {
     addCss('medium');
