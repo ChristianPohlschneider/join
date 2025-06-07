@@ -187,7 +187,7 @@ function removeSubtask(index) {
 };
 
 function editSubtask(index) {
-    let currentListItem = document.getElementById(index);
+    let currentListItem = document.getElementById("subtask-"+index);
     currentListItem.innerHTML = "";
     currentListItem.innerHTML = editSubtaskTemplate(index)
 }

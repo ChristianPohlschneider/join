@@ -11,7 +11,7 @@ function meberTemplate(initialsMembers, index) {
 };
 
 function subtaskTemplate(index) {
-    return `<div id="${index}">
+    return `<div id="subtask-${index}">
                 <div ondblclick="editSubtask(${index})" onmouseover="openSubtaskEdit(${index})" onmouseout="closeSubtaskEdit(${index})"  class="subtask-list-container">
                     <li>${subtaskArr[index]}</li>
                     <div id="${subtaskArr[index]}-${index}" class="d_none subtasks-icon-container">
