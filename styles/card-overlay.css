@@ -42,6 +42,10 @@
     box-sizing: border-box;
 }
 
+.cardOverlayInnerEdit {
+    align-items: end;
+}
+
 .cardOverlay::-webkit-scrollbar {
     width: 8px;
     padding-right: 50px;
@@ -353,4 +357,8 @@
 .editSectionDiv:hover img:hover,
 .editSectionDiv:hover img {
     content: url(../assets/icons/edit-hover.png);
+}
+
+.btn_edit_confirm{
+    width: 89px;
 }

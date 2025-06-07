@@ -7,7 +7,7 @@ function renderTaskOverlay(taskIndex) {
                 <div id="taskDescription" class="taskOverlayDescription">${tasks[taskIndex].description}</div>
                 <div class="dueDateOverlay">   
                     <p class="fontSize20">Due date:</p>
-                    <div class="dueDateOverlayDiv">${tasks[taskIndex].date.slice(0,10).split('-').reverse().join('/')}</div>
+                    <div class="dueDateOverlayDiv">${tasks[taskIndex].date.slice(0, 10).split('-').reverse().join('/')}</div>
                 </div>
                 <div class="priorityOverlay">
                     <p class="fontSize20">Priority:</p>
@@ -66,7 +66,7 @@ function renderAssignedToName(assignedToNamesIndex, assignedToName) {
 }
 
 function editTaskOverlayTemplate(currentTask) {
-    return `<div id="cardOverlay" class="cardOverlayInner">
+    return `<div id="cardOverlay" class="cardOverlayInner cardOverlayInnerEdit">
                 <div class="closeImg" onclick="closeOverlay()"></div>
                 <form class="flex-center-task">
                     <div class="first-container flex-gap flex-column">
@@ -130,5 +130,8 @@ function editTaskOverlayTemplate(currentTask) {
                             <div id="subtaskList"></div>
                     </div>
                 </form>
+                <button class="addTaskButton btn_edit_confirm">Ok
+                    <img class="addPlus" src="../assets/icons/check-btn.png" alt="add task">
+                </button>
             </div>`
 };
