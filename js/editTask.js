@@ -1,4 +1,4 @@
-
+let assignedMembers = [];
 
 function editTaskOverlay(currentTask) {
     let overlayRef = document.getElementById('cardOverlay');
@@ -6,6 +6,8 @@ function editTaskOverlay(currentTask) {
     overlayRef.innerHTML = editTaskOverlayTemplate(currentTask)
     addCss(tasks[currentTask].priority);
     getContacts()
+    getAssignedMembers(currentTask)
+    renderMembersForTask()
 };
 
 function addCss(id) {
@@ -51,14 +53,6 @@ function toggleSelectable() {
     selectableRef.classList.toggle("dnone");
 };
 
-document.addEventListener('click', e => {
-    let assignInput = document.getElementById('assignee-container');
-    let assignedRef = document.getElementById('assigned');
-    if (!assignedRef.contains(e.target) && e.target !== assignInput) {
-        assignedRef.classList.add('dnone');
-    };
-});
-
 function getContacts() {
     const contentPlace = document.getElementById("assigned");
     contentPlace.innerHTML = "";
@@ -82,4 +76,45 @@ function makeShortName(userNames) {
         const last = parts[1]?.charAt(0).toUpperCase() || "";
         return first + last;
     });
+};
+
+function renderMembersForTask() {
+    const contentPlace = document.getElementById("memberForTask");
+    contentPlace.innerHTML = "";
+    const initialsMembers = makeShortName(assignedMembers);
+    for (let index = 0; index < assignedMembers.length; index++) {
+        contentPlace.innerHTML += meberTemplate(initialsMembers, index);
+        findSameBgColor(initialsMembers, assignedMembers, index);
+    };
+};
+
+function getAssignedMembers(currentTask) {
+    for (const [key, value] of Object.entries(tasks[currentTask].assigned_to)) {
+        assignedMembers.push(`${value}`);
+    }
+    return assignedMembers;
+
+}
+
+function findSameBgColor(initals, fullname, index) {
+    const findSameInitials = contacts.find(({ name }) => { return replaceUmlauts(name) == fullname[index] });
+    document.getElementById('picked-' + index).style.backgroundColor = findSameInitials.color;
+};
+
+function addMember(index, shortName, userName) {
+    const currentMember = assignedMembers.find((member) => { return member == userName });
+    let bgcolor = document.getElementById("container-" + index);
+    let checked = document.getElementById("img-" + index);
+    if (currentMember) {
+        const index = assignedMembers.indexOf(userName);
+        assignedMembers.splice(index, 1);
+        bgcolor.classList.remove('assigned-bgcolor');
+        checked.src = `../assets/icons/checkbox.png`
+        renderMembersForTask();
+    } else {
+        assignedMembers.push(userName);
+        bgcolor.classList.add('assigned-bgcolor');
+        checked.src = `../assets/icons/checkbox-checked-white.png`
+        renderMembersForTask();
+    };
 };

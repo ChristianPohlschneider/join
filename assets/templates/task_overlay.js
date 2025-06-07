@@ -67,6 +67,7 @@ function renderAssignedToName(assignedToNamesIndex, assignedToName) {
 
 function editTaskOverlayTemplate(currentTask) {
     return `<div id="cardOverlay" class="cardOverlayInner">
+                <div class="closeImg" onclick="closeOverlay()"></div>
                 <form class="flex-center-task">
                     <div class="first-container flex-gap flex-column">
                             <p>Title</p>

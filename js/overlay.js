@@ -85,6 +85,7 @@ function checkSubtaskCheckboxes(taskIndex) {
 function closeOverlay() {
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
+    assignedMembers = [];
 }
 
 async function deleteTaskByKey(key) {
