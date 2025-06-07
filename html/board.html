@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>board</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/assets.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/menu-style.css">
     <link rel="stylesheet" href="../styles/board.css">
     <link rel="stylesheet" href="../styles/header-style.css">
     <link rel="stylesheet" href="../styles/card.css">
-    <link rel="stylesheet" href="../styles/card-overlay.css">
     <link rel="stylesheet" href="../styles/add-task.css">
+    <link rel="stylesheet" href="../styles/card-overlay.css">
+    <link rel="stylesheet" href="../styles/assets.css">
     <script src="../js/data.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/legal_notice.js"></script>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="boardTable">
-                    <div ondrop="moveTo('toDo')"ondragover="dragoverHandler(event)" class="boardList">
+                    <div ondrop="moveTo('toDo')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>To do</h3>
                             <a href="../html/add_task.html" class="plusButton">
@@ -73,10 +73,10 @@
                             </a>
                         </div>
                         <div id="emptyTask0" class="emptyTask">No Task To Do</div>
-                        <div  id="taskToDo" class="taskList"></div>
+                        <div id="taskToDo" class="taskList"></div>
                     </div>
 
-                    <div ondrop="moveTo('inProgress')"ondragover="dragoverHandler(event)" class="boardList">
+                    <div ondrop="moveTo('inProgress')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>In progress</h3>
                             <a href="../html/add_task.html" class="plusButton">
@@ -85,10 +85,10 @@
                             </a>
                         </div>
                         <div id="emptyTask1" class="emptyTask">Nothing in progress</div>
-                        <div  id="taskInProgress" class="taskList"></div>
+                        <div id="taskInProgress" class="taskList"></div>
                     </div>
 
-                    <div ondrop="moveTo('await')"ondragover="dragoverHandler(event)" class="boardList">
+                    <div ondrop="moveTo('await')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Await feedback</h3>
                             <a href="../html/add_task.html" class="plusButton">
@@ -97,16 +97,16 @@
                             </a>
                         </div>
                         <div id="emptyTask2" class="emptyTask">No feedback</div>
-                        <div  id="taskAwaitFeedback" class="taskList"></div>
+                        <div id="taskAwaitFeedback" class="taskList"></div>
                     </div>
 
-                    <div ondrop="moveTo('done')"ondragover="dragoverHandler(event)" class="boardList">
+                    <div ondrop="moveTo('done')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Done</h3>
 
                         </div>
                         <div id="emptyTask3" class="emptyTask">Nothing done</div>
-                        <div  id="taskDone" class="taskList"></div>
+                        <div id="taskDone" class="taskList"></div>
                     </div>
 
 

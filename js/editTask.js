@@ -1,13 +1,14 @@
 let assignedMembers = [];
+let subtaskArr = [];
 
 function editTaskOverlay(currentTask) {
     let overlayRef = document.getElementById('cardOverlay');
     overlayRef.innerHTML = "";
     overlayRef.innerHTML = editTaskOverlayTemplate(currentTask)
     addCss(tasks[currentTask].priority);
-    getContacts()
     getAssignedMembers(currentTask)
     renderMembersForTask()
+    getContacts()
 };
 
 function addCss(id) {
@@ -62,8 +63,21 @@ function getContacts() {
     for (let i = 0; i < contacts.length; i++) {
         contentPlace.innerHTML += assigneeDropdownTemplate(shortNames[i], i);
         getBackgroundColor(i);
+        checkSelectable(i)
     };
 };
+
+function checkSelectable(index) {
+    const currentMember = assignedMembers.find((member) => { return member == replaceUmlauts(contacts[index].name) });
+    let bgcolor = document.getElementById("container-" + index);
+    let checked = document.getElementById("img-" + index);
+    if (currentMember) {
+        bgcolor.classList.add('assigned-bgcolor');
+        checked.src = `../assets/icons/checkbox-checked-white.png`
+    } else {
+        return
+    };
+}
 
 function getBackgroundColor(index) {
     document.getElementById(index).style.backgroundColor = contacts[index].color;
@@ -102,19 +116,85 @@ function findSameBgColor(initals, fullname, index) {
 };
 
 function addMember(index, shortName, userName) {
-    const currentMember = assignedMembers.find((member) => { return member == userName });
+    const currentMember = assignedMembers.find((member) => { return member == replaceUmlauts(userName) });
     let bgcolor = document.getElementById("container-" + index);
     let checked = document.getElementById("img-" + index);
     if (currentMember) {
-        const index = assignedMembers.indexOf(userName);
+        const index = assignedMembers.indexOf(replaceUmlauts(userName));
         assignedMembers.splice(index, 1);
         bgcolor.classList.remove('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox.png`
         renderMembersForTask();
     } else {
-        assignedMembers.push(userName);
+        replaceUmlauts(userName)
+        assignedMembers.push(replaceUmlauts(userName));
         bgcolor.classList.add('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox-checked-white.png`
         renderMembersForTask();
     };
 };
+
+
+function checkSubtask() {
+    let subtaskRef = document.getElementById('subtask');
+    let subtaskPlus = document.getElementById('subtask-plus');
+    let subtaskIcons = document.getElementById('subtask-icon-container');
+    if (subtaskRef.value.length > 0) {
+        subtaskPlus.classList.add('hidden');
+        subtaskIcons.classList.remove('hidden');
+    } else {
+        subtaskPlus.classList.remove('hidden');
+        subtaskIcons.classList.add('hidden');
+    };
+};
+
+function addSubtask() {
+    subtask = document.getElementById("subtask");
+    if (subtask.value.trim()) {
+        subtaskArr.push(subtask.value);
+        renderSubtasksEdit();
+        subtask.value = "";
+    }
+    checkSubtask();
+};
+
+function renderSubtasksEdit() {
+    subtaskList.innerHTML = "";
+    for (let index = 0; index < subtaskArr.length; index++) {
+        subtaskList.innerHTML += subtaskTemplate(index);
+    };
+};
+
+function deleteSubtaskInput() {
+    let subtaskRef = document.getElementById('subtask');
+    subtaskRef.value = "";
+    checkSubtask();
+};
+
+function openSubtaskEdit(index) {
+    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index);
+    subtaskEdit.classList.remove('d_none');
+};
+
+function closeSubtaskEdit(index) {
+    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index);
+    subtaskEdit.classList.add('d_none');
+};
+
+function removeSubtask(index) {
+    subtaskArr.splice(index, 1);
+    renderSubtasksEdit();
+};
+
+function editSubtask(index) {
+    let currentListItem = document.getElementById(index);
+    currentListItem.innerHTML = "";
+    currentListItem.innerHTML = editSubtaskTemplate(index)
+}
+
+function addEditSubtask(index) {
+    let editInput = document.getElementById('edit-input');
+    subtaskArr[index] = editInput.value;
+    renderSubtasksEdit();
+};
+

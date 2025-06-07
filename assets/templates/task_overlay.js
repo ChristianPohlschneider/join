@@ -118,7 +118,7 @@ function editTaskOverlayTemplate(currentTask) {
                             <div class="subtask-container">
                                 <input onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
                                     maxlength="30" name="subtaskTitle" class="input-subtask">
-                                <div id="subtask-icon-container" class="d_none subtasks-icon-container">
+                                <div id="subtask-icon-container" class="hidden subtasks-icon-container">
                                     <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                         alt="X">
                                     <img src="../assets/icons/vector.png" alt="">
