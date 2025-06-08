@@ -104,6 +104,7 @@ function renderMembersForTask() {
 };
 
 function getAssignedMembers(currentTask) {
+    assignedMembers = [];
     for (const [key, value] of Object.entries(tasks[currentTask].assigned_to)) {
         assignedMembers.push(`${value}`);
     };
@@ -199,6 +200,7 @@ function addEditSubtask(index) {
 };
 
 function getSubtasksEdit(taskIndex) {
+    subtaskArr = [];
     const task = tasks[taskIndex];
     const subtasksObj = task.subtasks;
     if (!subtasksObj || typeof subtasksObj !== "object") {
