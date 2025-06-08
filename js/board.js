@@ -110,6 +110,7 @@ function findBackgroundColor(taskIndex) {
 }
 
 function getSubtasks(taskIndex) {
+    subtask = 0;
     if (tasks[taskIndex].subtasks === undefined) {
         document.getElementById("subtasks#" + taskIndex).style.display = "none";
     }
