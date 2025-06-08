@@ -67,7 +67,7 @@ function renderAssignedToName(assignedToNamesIndex, assignedToName) {
 
 function editTaskOverlayTemplate(currentTask) {
     return `<div id="cardOverlay" class="cardOverlayInner cardOverlayInnerEdit">
-                <div class="closeImg" onclick="closeOverlay()"></div>
+                <div><div class="closeImg" onclick="closeOverlay()"></div></div>
                 <form class="flex-center-task">
                     <div class="first-container flex-gap flex-column">
                             <p>Title</p>
@@ -133,5 +133,29 @@ function editTaskOverlayTemplate(currentTask) {
                 <button disabled=false onclick="editToDo(${currentTask})" id="editToDoBtn" class="addTaskButton btn_edit_confirm">Ok
                     <img class="addPlus" src="../assets/icons/check-btn.png" alt="add task">
                 </button>
+            </div>`
+};
+
+function subtaskEditTemplate(index,arr) {
+    return `<div id="subtask-${index}">
+                <div ondblclick="editSubtask(${index})" onmouseover="openSubtaskEdit(${index})" onmouseout="closeSubtaskEdit(${index})"  class="subtask-list-container">
+                    <li>${arr[index].title}</li>
+                    <div id="${arr[index].title}-${index}" class="d_none subtasks-icon-container">
+                        <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png"alt="X">
+                        <img src="../assets/icons/vector.png" alt="">
+                        <img onclick="editSubtask(${index})" class="check-icon" src="../assets/icons/edit-v2.png" alt="Add">
+                    </div>
+                </div>
+            </div>`
+};
+
+function editSubtaskOverlayTemplate(index) {
+    return `<div class="subtask-edit-container">
+                <input onfocusout="addEditSubtask(${index})" id="edit-input" type="text" value="${subtasksArray[index].title}">
+                <div class="subtasks-icon-container">
+                    <img onclick="removeSubtask(${index})" class="delte-icon" src="../assets/icons/delete.png" alt="X">
+                    <img src="../assets/icons/vector.png" alt="">
+                    <img onclick="addEditSubtask(${index})" class="check-icon" src="../assets/icons/check-black.png" alt="Add">
+                </div>
             </div>`
 };

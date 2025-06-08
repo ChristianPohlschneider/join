@@ -1,5 +1,5 @@
 let assignedMembers = [];
-let subtaskArr = [];
+let subtasksArray = [];
 
 function editTaskOverlay(currentTask) {
     let overlayRef = document.getElementById('cardOverlay');
@@ -153,7 +153,10 @@ function checkSubtask() {
 function addSubtask() {
     subtask = document.getElementById("subtask");
     if (subtask.value.trim()) {
-        subtaskArr.push(subtask.value);
+        subtasksArray.push({
+            done : false,
+            title : subtask.value
+        });
         renderSubtasksEdit();
         subtask.value = "";
     }
@@ -162,8 +165,8 @@ function addSubtask() {
 
 function renderSubtasksEdit() {
     subtaskList.innerHTML = "";
-    for (let index = 0; index < subtaskArr.length; index++) {
-        subtaskList.innerHTML += subtaskTemplate(index);
+    for (let index = 0; index < subtasksArray.length; index++) {
+        subtaskList.innerHTML += subtaskEditTemplate(index,subtasksArray);
     };
 };
 
@@ -174,56 +177,54 @@ function deleteSubtaskInput() {
 };
 
 function openSubtaskEdit(index) {
-    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index);
+    let subtaskEdit = document.getElementById(subtasksArray[index].title + "-" + index);
     subtaskEdit.classList.remove('d_none');
 };
 
 function closeSubtaskEdit(index) {
-    let subtaskEdit = document.getElementById(subtaskArr[index] + "-" + index);
+    let subtaskEdit = document.getElementById(subtasksArray[index].title + "-" + index);
     subtaskEdit.classList.add('d_none');
 };
 
 function removeSubtask(index) {
-    subtaskArr.splice(index, 1);
+    subtasksArray.splice(index, 1);
     renderSubtasksEdit();
 };
 
 function editSubtask(index) {
     let currentListItem = document.getElementById("subtask-" + index);
     currentListItem.innerHTML = "";
-    currentListItem.innerHTML = editSubtaskTemplate(index);
+    currentListItem.innerHTML = editSubtaskOverlayTemplate(index);
 };
 
 function addEditSubtask(index) {
     let editInput = document.getElementById('edit-input');
-    subtaskArr[index] = editInput.value;
+    subtasksArray[index].title = editInput.value;
     renderSubtasksEdit();
 };
 
 function getSubtasksEdit(taskIndex) {
-    subtaskArr = [];
+    subtasksArray = [];
     const task = tasks[taskIndex];
     const subtasksObj = task.subtasks;
     if (!subtasksObj || typeof subtasksObj !== "object") {
         return;
     };
-    const subtasksArray = Object.values(subtasksObj);
-    for (let index = 0; index < subtasksArray.length; index++) {
-        subtaskArr.push(subtasksArray[index].title);
-    };
+    subtasksArray = Object.values(subtasksObj);
     renderSubtasksEdit();
 };
 
-function editToDo(taskIndex) {
+async function editToDo(taskIndex) {
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
     dueDate = document.getElementById("dueDate").value;
     category = document.getElementById("category").value;
-    pushTask(title, description, dueDate, category, priority, taskIndex);
-    //initboard();
+    await pushTask(title, description, dueDate, category, priority, taskIndex);
+    closeOverlay();
+    await initboard();
 };
 
-function pushTask(title, description, dueDate, category, priority, taskIndex) {
+async function pushTask(title, description, dueDate, category, priority, taskIndex) {
     let editTask = ({
         assigned_to: assignedMembers,
         category: category,
@@ -232,10 +233,10 @@ function pushTask(title, description, dueDate, category, priority, taskIndex) {
         name: title,
         priority: priority,
         status: tasks[taskIndex].status,
-        //subtasks: getSubTasks()
+        subtasks: subtasksArray
     });
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[taskIndex];
-    //putData(currentTaskPath, editTask)
+    await putData(currentTaskPath, editTask)
 };
 
 function checkEditInput() {
