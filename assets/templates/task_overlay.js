@@ -71,11 +71,11 @@ function editTaskOverlayTemplate(currentTask) {
                 <form class="flex-center-task">
                     <div class="first-container flex-gap flex-column">
                             <p>Title</p>
-                            <input class="input-text" type="text" id="title"value="${tasks[currentTask].name}" required>
+                            <input onfocusout="checkEditInput()" class="input-text" type="text" id="title"value="${tasks[currentTask].name}" required>
                             <p>Description</p>
                             <textarea class="input-text" id="description" rows="6" cols="50">${tasks[currentTask].description}</textarea>
                             <p>Due date</p>
-                            <input value="${tasks[currentTask].date}" type="date" required class="input-text date-input" id="dueDate">
+                            <input onfocusout="checkEditInput()" value="${tasks[currentTask].date}" type="date" required class="input-text date-input" id="dueDate">
                             <p>Priority</p>
                             <div class="flex-center flex-gap">
                                 <div class="selectable" id="urgent" onclick="addCss('urgent')">
@@ -108,8 +108,8 @@ function editTaskOverlayTemplate(currentTask) {
                         </div>
                         <article class="flex-column">
                             <label for="category">Category</label>
-                            <select id="category" name="selection-category" class="input-text"required>
-                                <option value="" disabled selected hidden>${tasks[currentTask].category}</option>
+                            <select onfocusout="checkEditInput()" id="category" name="selection-category" class="input-text"required>
+                                <option value="${tasks[currentTask].category}" disabled selected hidden>${tasks[currentTask].category}</option>
                                 <option value="Technical Task">Technical Task</option>
                                 <option value="User Story">User Story</option>
                             </select>
@@ -130,7 +130,7 @@ function editTaskOverlayTemplate(currentTask) {
                             <div id="subtaskList"></div>
                     </div>
                 </form>
-                <button class="addTaskButton btn_edit_confirm">Ok
+                <button disabled=false onclick="editToDo(${currentTask})" id="editToDoBtn" class="addTaskButton btn_edit_confirm">Ok
                     <img class="addPlus" src="../assets/icons/check-btn.png" alt="add task">
                 </button>
             </div>`

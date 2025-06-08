@@ -166,7 +166,7 @@ function toggleSelectable() {
         dropdownIcon.src = `../assets/icons/dropdown-open.png`
     } else {
         dropdownIcon.src = `../assets/icons/dropdown-closed.png`
-    }
+    };
     selectableRef.classList.toggle("dnone");
 };
 
@@ -254,8 +254,8 @@ function checkCategory() {
     } else {
         category.classList.remove('red-border');
         warningText.classList.add('d_none');
-    }
-}
+    };
+};
 
 function checkSubtask() {
     let subtaskRef = document.getElementById('subtask');
@@ -294,8 +294,8 @@ function removeSubtask(index) {
 function editSubtask(index) {
     let currentListItem = document.getElementById("subtask-"+index);
     currentListItem.innerHTML = "";
-    currentListItem.innerHTML = editSubtaskTemplate(index)
-}
+    currentListItem.innerHTML = editSubtaskTemplate(index);
+};
 
 function addEditSubtask(index) {
     let editInput = document.getElementById('edit-input');

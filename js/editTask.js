@@ -10,6 +10,7 @@ function editTaskOverlay(currentTask) {
     renderMembersForTask();
     getContacts();
     getSubtasksEdit(currentTask);
+    checkEditInput()
 };
 
 function addCss(id) {
@@ -78,7 +79,7 @@ function checkSelectable(index) {
     } else {
         return
     };
-}
+};
 
 function getBackgroundColor(index) {
     document.getElementById(index).style.backgroundColor = contacts[index].color;
@@ -188,10 +189,10 @@ function removeSubtask(index) {
 };
 
 function editSubtask(index) {
-    let currentListItem = document.getElementById("subtask-"+index);
+    let currentListItem = document.getElementById("subtask-" + index);
     currentListItem.innerHTML = "";
-    currentListItem.innerHTML = editSubtaskTemplate(index)
-}
+    currentListItem.innerHTML = editSubtaskTemplate(index);
+};
 
 function addEditSubtask(index) {
     let editInput = document.getElementById('edit-input');
@@ -205,11 +206,48 @@ function getSubtasksEdit(taskIndex) {
     const subtasksObj = task.subtasks;
     if (!subtasksObj || typeof subtasksObj !== "object") {
         return;
-    }
+    };
     const subtasksArray = Object.values(subtasksObj);
     for (let index = 0; index < subtasksArray.length; index++) {
-        subtaskArr.push(subtasksArray[index].title)
-    }
+        subtaskArr.push(subtasksArray[index].title);
+    };
     renderSubtasksEdit();
+};
+
+function editToDo(taskIndex) {
+    title = document.getElementById("title").value;
+    description = document.getElementById("description").value;
+    dueDate = document.getElementById("dueDate").value;
+    category = document.getElementById("category").value;
+    pushTask(title, description, dueDate, category, priority, taskIndex);
+    //initboard();
+};
+
+function pushTask(title, description, dueDate, category, priority, taskIndex) {
+    let editTask = ({
+        assigned_to: assignedMembers,
+        category: category,
+        date: dueDate,
+        description: description,
+        name: title,
+        priority: priority,
+        status: tasks[taskIndex].status,
+        //subtasks: getSubTasks()
+    });
+    currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[taskIndex];
+    //putData(currentTaskPath, editTask)
+};
+
+function checkEditInput() {
+    const submitButton = document.getElementById("editToDoBtn");
+    const title = document.getElementById("title");
+    const dueDate = document.getElementById("dueDate");
+    const category = document.getElementById("category");
+    checkInputs(title,dueDate,category,submitButton)
 }
- 
+
+function checkInputs(title,dueDate,category,submitButton) {
+    if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
+        submitButton.disabled = true;
+    } else { submitButton.disabled = false; }
+}

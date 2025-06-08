@@ -362,3 +362,14 @@
 .btn_edit_confirm{
     width: 89px;
 }
+
+.btn_edit_confirm:disabled {
+  opacity: 0.6;
+  cursor: auto;
+}
+
+.btn_edit_confirm:disabled:hover {
+  background-color: #2A3647;
+  box-shadow: none;
+  border-color: #2A3647;
+}
