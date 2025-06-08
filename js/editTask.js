@@ -4,11 +4,12 @@ let subtaskArr = [];
 function editTaskOverlay(currentTask) {
     let overlayRef = document.getElementById('cardOverlay');
     overlayRef.innerHTML = "";
-    overlayRef.innerHTML = editTaskOverlayTemplate(currentTask)
+    overlayRef.innerHTML = editTaskOverlayTemplate(currentTask);
     addCss(tasks[currentTask].priority);
-    getAssignedMembers(currentTask)
-    renderMembersForTask()
-    getContacts()
+    getAssignedMembers(currentTask);
+    renderMembersForTask();
+    getContacts();
+    getSubtasksEdit(currentTask);
 };
 
 function addCss(id) {
@@ -105,10 +106,9 @@ function renderMembersForTask() {
 function getAssignedMembers(currentTask) {
     for (const [key, value] of Object.entries(tasks[currentTask].assigned_to)) {
         assignedMembers.push(`${value}`);
-    }
+    };
     return assignedMembers;
-
-}
+};
 
 function findSameBgColor(initals, fullname, index) {
     const findSameInitials = contacts.find(({ name }) => { return replaceUmlauts(name) == fullname[index] });
@@ -198,3 +198,16 @@ function addEditSubtask(index) {
     renderSubtasksEdit();
 };
 
+function getSubtasksEdit(taskIndex) {
+    const task = tasks[taskIndex];
+    const subtasksObj = task.subtasks;
+    if (!subtasksObj || typeof subtasksObj !== "object") {
+        return;
+    }
+    const subtasksArray = Object.values(subtasksObj);
+    for (let index = 0; index < subtasksArray.length; index++) {
+        subtaskArr.push(subtasksArray[index].title)
+    }
+    renderSubtasksEdit();
+}
+ 
