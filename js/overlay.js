@@ -259,7 +259,7 @@ function addNewToDO() {
     category = document.getElementById("category").value;
     pushTaskBoard(title, description, dueDate, category, priority);
     cancelTask();
-    //succeedRegistration();
+    succeedRegistration();
     const Timeout = setTimeout(fowarding, 2000);
 };
 
@@ -279,4 +279,10 @@ function pushTaskBoard(title, description, dueDate, category, priority) {
 
 function fowarding() {
     window.location.href = "./board.html";
+};
+
+function succeedRegistration() {
+    let succeed = document.getElementById('succedSignup');
+    succeed.classList.remove('d_none');
+    document.getElementById('body').style.overflow = "hidden";
 };

@@ -30,8 +30,12 @@
 
 </head>
 
-<body onresize="toogleVieW()" onload="initboard()">
-
+<body id="body" onresize="toogleVieW()" onload="initboard()">
+    <div id="succedSignup" class="d_none success-container ">
+        <div id="sucess-message" class="success-massage">
+            Task added to board <img src="../assets/icons/board.png" alt="">
+        </div>
+    </div>
     <main>
         <div onclick="closeAddTaskBoard()" id="addTaskBoardContainer" class="addTaskBoardContainer hidden">
         </div>
