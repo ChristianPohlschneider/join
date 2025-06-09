@@ -130,6 +130,20 @@ body, html {
     border: 2px solid #ffffff;
 }
 
+.contact-group-header {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.contact-group-highlight {
+    height: 1px;
+    width: 90%;
+    background-color: #c9c9c9;
+    margin-left: 14px;
+}
 
 .contact-mail {
     font-size: 16px;

@@ -42,6 +42,10 @@ function renderContacts(contactsData) {
       groupHeader.classList.add("contact-group-header");
       groupHeader.textContent = currentGroup;
       list.appendChild(groupHeader);
+
+      const highlightDiv = document.createElement("div");
+      highlightDiv.classList.add("contact-group-highlight");
+      list.appendChild(highlightDiv);
     }
 
     const color = contact.color || getRandomColor();
