@@ -162,12 +162,15 @@ function editSubtaskOverlayTemplate(index) {
 
 function addTaskBoardTemplate() {
     return ` <div class="add-task-style-board">
-            <h1 class="h1-add-task">Add Task</h1>
+            <div class="add-task-board-header">
+                <h1 class="h1-add-task">Add Task</h1>
+                <div onclick="closeAddTaskBoard()" class="closeImg" onclick="closeOverlay()"></div>
+            </div>
             <form class="flex-center-task form">
                 <div class="first-container flex-gap flex-column">
                     <article>
                         <p>Title<span>*</span></p>
-                        <input onfocusout="checkTitle()" class="input-text" type="text" id="title"
+                        <input onfocusout="checkTitle(), checkButtonDisabillity()" class="input-text" type="text" id="title"
                             placeholder="Task Title" required>
                         <div class="warning-container">
                             <span class="warning d_none" id="warning-title">This field is required</span>
@@ -180,7 +183,7 @@ function addTaskBoardTemplate() {
                     </article>
                     <article>
                         <p>Due date<span>*</span></p>
-                        <input onfocusout="checkDate()" type="date" required class="input-text date-input" id="dueDate">
+                        <input onfocusout="checkDate(), checkButtonDisabillity()" type="date" required class="input-text date-input" id="dueDate">
                         <div class="warning-container">
                             <span class="warning d_none" id="warning-dueDate">This field is required</span>
                         </div>
@@ -222,7 +225,7 @@ function addTaskBoardTemplate() {
                     </div>
                     <article class="flex-column">
                         <label for="category">Category<span>*</span></label>
-                        <select onfocusout="checkCategory()" id="category" name="selection-category" class="input-text"
+                        <select onfocusout="checkCategory(), checkButtonDisabillity()" id="category" name="selection-category" class="input-text"
                             required>
                             <option value="" disabled selected hidden>Select task category</option>
                             <option value="Technical Task">Technical Task</option>
@@ -237,7 +240,7 @@ function addTaskBoardTemplate() {
                         <div class="subtask-container">
                             <input onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
                                 maxlength="30" name="subtaskTitle" class="input-subtask">
-                            <div id="subtask-icon-container" class="d_none subtasks-icon-container">
+                            <div id="subtask-icon-container" class="hidden subtasks-icon-container">
                                 <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                     alt="X">
                                 <img src="../assets/icons/vector.png" alt="">

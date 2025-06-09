@@ -19,7 +19,7 @@
 .cardOverlay {
     position: fixed;
     left: calc(50% - 262px);
-    top: 20%;
+    top: 10%;
     width: 525px;
     background-color: white;
     border: 2px solid white;

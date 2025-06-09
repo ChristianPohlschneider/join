@@ -1,5 +1,7 @@
+let priority = "medium"
 let assignedMembers = [];
 let subtasksArray = [];
+
 
 function editTaskOverlay(currentTask) {
     let overlayRef = document.getElementById('cardOverlay');
@@ -253,3 +255,5 @@ function checkInputs(title,dueDate,category,submitButton) {
         submitButton.disabled = true;
     } else { submitButton.disabled = false; }
 }
+
+

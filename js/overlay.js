@@ -159,6 +159,9 @@ function openAddTaskBoard() {
     document.getElementById('addTaskBoardContainer').classList.remove('hidden');
     addTaskBoardRef.classList.remove('closed_addTask');
     addTaskBoardRef.classList.add('open_addTask');
+    dueDate.min = new Date().toISOString().split("T")[0];
+    addCss("medium");
+    getContacts();
 }
 
 function closeAddTaskBoard() {
@@ -166,4 +169,82 @@ function closeAddTaskBoard() {
     addTaskBoardRef.classList.remove('open_addTask');
     addTaskBoardRef.classList.add('closed_addTask');
     document.getElementById('addTaskBoardContainer').classList.add('hidden');
+    setTimeout(() => {
+    addTaskBoardRef.innerHTML = "";
+    }, 300);
+    
 }
+
+function cancelTask() {
+    const submitButton = document.getElementById("creatTask");
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("dueDate").value = "";
+    document.getElementById('category').value = "";
+    document.getElementById("memberForTask").innerHTML = "";
+    document.getElementById("subtask").value = "";
+    subtaskList.innerHTML = "";
+    submitButton.disabled = true;
+    addCss('medium');
+    assignedMembers = [];
+};
+
+function checkTitle() {
+    let title = document.getElementById('title');
+    let warningText = document.getElementById('warning-title');
+    if (title.value.length <= 0) {
+        getRedBorder(title);
+    } else {
+        title.classList.remove('red-border');
+        warningText.classList.add('d_none');
+    };
+};
+
+function checkDate() {
+    let date = document.getElementById('dueDate');
+    let warningText = document.getElementById('warning-dueDate');
+    if (date.value === '') {
+        getRedBorder(date);
+    } else {
+        date.classList.remove('red-border');
+        warningText.classList.add('d_none');
+    };
+};
+
+function getRedBorder(input) {
+    input.classList.add('red-border');
+    let warningText = document.getElementById('warning-' + input.id);
+    warningText.classList.remove('d_none');
+};
+
+function checkCategory() {
+    let category = document.getElementById('category');
+    let warningText = document.getElementById('warning-category');
+    if (category.value === '') {
+        getRedBorder(category);
+    } else {
+        category.classList.remove('red-border');
+        warningText.classList.add('d_none');
+    };
+};
+
+function checkSubtask() {
+    let subtaskRef = document.getElementById('subtask');
+    let subtaskPlus = document.getElementById('subtask-plus');
+    let subtaskIcons = document.getElementById('subtask-icon-container');
+    if (subtaskRef.value.length > 0) {
+        subtaskPlus.classList.add('d_none');
+        subtaskIcons.classList.remove('d_none');
+    } else {
+        subtaskPlus.classList.remove('d_none');
+        subtaskIcons.classList.add('d_none');
+    };
+};
+
+function checkButtonDisabillity() {
+    const submitButton = document.getElementById("creatTask");
+    const title = document.getElementById("title");
+    const dueDate = document.getElementById("dueDate");
+    const category = document.getElementById("category");
+    checkInputs(title,dueDate,category,submitButton);
+};
