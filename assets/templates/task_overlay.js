@@ -96,7 +96,7 @@ function editTaskOverlayTemplate(currentTask) {
                             <div class="dropdown" id="assignee-dropdown">
                                 <div onclick="toggleSelectable(), event.stopPropagation()" id="assignee-container"
                                     class="subtask-container">
-                                    <input class="input-subtask" type="text" id="assignee-input"
+                                    <input onkeyup="searchContact()" class="input-subtask" type="text" id="assignee-input"
                                         placeholder="Select contacts to assign" autocomplete="off">
                                     <div class="dropdown-img-container">
                                         <img id="dropwdown-icon" src="../assets/icons/dropdown-closed.png" alt="">
@@ -213,7 +213,7 @@ function addTaskBoardTemplate() {
                         <div class="dropdown" id="assignee-dropdown">
                             <div onclick="toggleSelectable(), event.stopPropagation()" id="assignee-container"
                                 class="subtask-container">
-                                <input class="input-subtask" type="text" id="assignee-input"
+                                <input onkeyup="searchContact()" class="input-subtask" type="text" id="assignee-input"
                                     placeholder="Select contacts to assign" autocomplete="off">
                                 <div class="dropdown-img-container">
                                     <img id="dropwdown-icon" src="../assets/icons/dropdown-closed.png" alt="">

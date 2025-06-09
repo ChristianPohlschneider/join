@@ -154,6 +154,8 @@ async function renderTasksOnly() {
 }
 
 function openAddTaskBoard() {
+    assignedMembers = [];
+    subtasksArray = [];
     const addTaskBoardRef = document.getElementById('addTaskBoard');
     addTaskBoardRef.innerHTML = addTaskBoardTemplate();
     document.getElementById('addTaskBoardContainer').classList.remove('hidden');
@@ -162,6 +164,7 @@ function openAddTaskBoard() {
     dueDate.min = new Date().toISOString().split("T")[0];
     addCss("medium");
     getContacts();
+
 }
 
 function closeAddTaskBoard() {
@@ -170,9 +173,9 @@ function closeAddTaskBoard() {
     addTaskBoardRef.classList.add('closed_addTask');
     document.getElementById('addTaskBoardContainer').classList.add('hidden');
     setTimeout(() => {
-    addTaskBoardRef.innerHTML = "";
+        addTaskBoardRef.innerHTML = "";
     }, 300);
-    
+
 }
 
 function cancelTask() {
@@ -246,5 +249,5 @@ function checkButtonDisabillity() {
     const title = document.getElementById("title");
     const dueDate = document.getElementById("dueDate");
     const category = document.getElementById("category");
-    checkInputs(title,dueDate,category,submitButton);
+    checkInputs(title, dueDate, category, submitButton);
 };

@@ -257,3 +257,17 @@ function checkInputs(title,dueDate,category,submitButton) {
 }
 
 
+function searchContact() {
+    const searchInput = document.getElementById('assignee-input');
+    searchInput.addEventListener('input', filterAssigned);
+};
+   
+
+function filterAssigned(event) {
+    const searchTerm = event.target.value.toLowerCase();
+    const assigned = document.querySelectorAll('.selectable-assigned-contact');
+    assigned.forEach(contact => {
+        const content = contact.innerText.toLowerCase();
+        contact.style.display = content.includes(searchTerm) ? 'flex' : 'none';
+    });
+};
