@@ -58,3 +58,15 @@ async function putData(currentTaskPath, data={}) {
     });
     return response = await response.json()
 }
+
+async function postData(newTask) {
+    let response = await fetch(BASE_URL + 'tasks' + '.json', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+    });
+    let responseData = await response.json();
+    return responseData;
+};

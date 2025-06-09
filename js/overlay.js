@@ -251,3 +251,32 @@ function checkButtonDisabillity() {
     const category = document.getElementById("category");
     checkInputs(title, dueDate, category, submitButton);
 };
+
+function addNewToDO() {
+    title = document.getElementById("title").value;
+    description = document.getElementById("description").value;
+    dueDate = document.getElementById("dueDate").value;
+    category = document.getElementById("category").value;
+    pushTaskBoard(title, description, dueDate, category, priority);
+    cancelTask();
+    //succeedRegistration();
+    const Timeout = setTimeout(fowarding, 2000);
+};
+
+function pushTaskBoard(title, description, dueDate, category, priority) {
+    let newTask = ({
+        assigned_to: assignedMembers,
+        category: category,
+        date: dueDate,
+        description: description,
+        name: title,
+        priority: priority,
+        status: "toDo",
+        subtasks: subtasksArray
+    });
+    postData(newTask);
+};
+
+function fowarding() {
+    window.location.href = "./board.html";
+};
