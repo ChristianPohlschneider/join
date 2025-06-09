@@ -210,9 +210,9 @@ main {
     top: 56px;
     left: 320px;
     transform: translateX(100%);
-    transition: transform 350ms ease-in-out;
+    transition: transform 250ms ease-in-out;
     z-index: 9992;
-    display: flex;
+    width: 1000px;
     right: 0;
 }
 
@@ -221,5 +221,5 @@ main {
 }
 
 .closed_addTask {
-    transform: translateX(100%);
+    transform: translateX(8000px);
 }
