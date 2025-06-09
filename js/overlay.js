@@ -28,11 +28,11 @@ function getAssignedToNames(taskIndex, contacts) {
 }
 
 function getInitialsOverlay(name) {
-  return name
-    .trim()
-    .split(/\s+/)
-    .map(word => word[0].toUpperCase())
-    .join('');
+    return name
+        .trim()
+        .split(/\s+/)
+        .map(word => word[0].toUpperCase())
+        .join('');
 }
 
 function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index, contacts) {
@@ -41,10 +41,10 @@ function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, in
 }
 
 function establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index) {
-        searchWord[index].children[0].after(renderAssignedToName(assignedToNamesIndex, assignedToName));
-        if (index != 0) {
-            searchWord[index].children[0].classList.remove("positionAddInitials");
-        }
+    searchWord[index].children[0].after(renderAssignedToName(assignedToNamesIndex, assignedToName));
+    if (index != 0) {
+        searchWord[index].children[0].classList.remove("positionAddInitials");
+    }
 }
 
 function getOverlaySubtasks(taskIndex) {
@@ -85,23 +85,23 @@ function checkSubtaskCheckboxes(taskIndex) {
 function closeOverlay() {
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
-    
+
 }
 
 async function deleteTaskByKey(key) {
-  if (!confirm("Möchtest du diesen Task wirklich löschen?")) return;
-  try {
-    await fetch(`${BASE_URL}tasks/${key}.json`, {
-      method: "DELETE"
-    });
-    closeOverlay();
-    await fetchTasks();
-    await fetchContacts();
-    clearBoardTable();
-    renderTasks(contacts);
-  } catch (error) {
-    console.error("Fehler beim Abrufen oder Löschen:", error);
-  }
+    if (!confirm("Möchtest du diesen Task wirklich löschen?")) return;
+    try {
+        await fetch(`${BASE_URL}tasks/${key}.json`, {
+            method: "DELETE"
+        });
+        closeOverlay();
+        await fetchTasks();
+        await fetchContacts();
+        clearBoardTable();
+        renderTasks(contacts);
+    } catch (error) {
+        console.error("Fehler beim Abrufen oder Löschen:", error);
+    }
 }
 
 async function getTaskKey(name) {
@@ -151,4 +151,19 @@ async function renderTasksOnly() {
     await fetchContacts();
     clearBoardTable();
     renderTasks(contacts);
+}
+
+function openAddTaskBoard() {
+    const addTaskBoardRef = document.getElementById('addTaskBoard');
+    addTaskBoardRef.innerHTML = addTaskBoardTemplate();
+    document.getElementById('addTaskBoardContainer').classList.remove('hidden');
+    addTaskBoardRef.classList.remove('closed_addTask');
+    addTaskBoardRef.classList.add('open_addTask');
+}
+
+function closeAddTaskBoard() {
+    const addTaskBoardRef = document.getElementById('addTaskBoard');
+    addTaskBoardRef.classList.remove('open_addTask');
+    addTaskBoardRef.classList.add('closed_addTask');
+    document.getElementById('addTaskBoardContainer').classList.add('hidden');
 }

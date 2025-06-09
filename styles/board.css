@@ -1,5 +1,6 @@
 body {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .maxWidth {
@@ -186,4 +187,39 @@ main {
 .stopScrolling {
     height: 100vh;
     overflow-y: hidden;
+}
+
+.add-task-style-board {
+    border-radius: 30px;
+    background-color: white;
+    padding: 24px;
+}
+
+.addTaskBoardContainer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #d1d1d14f;
+    z-index: 9991;
+    top: 0;
+    left: 0;
+}
+
+.addTaskBoard {
+    position: absolute;
+    top: 56px;
+    left: 320px;
+    transform: translateX(100%);
+    transition: transform 350ms ease-in-out;
+    z-index: 9992;
+    display: flex;
+    right: 0;
+}
+
+.open_addTask {
+  transform: translateX(0);
+}
+
+.closed_addTask {
+    transform: translateX(100%);
 }

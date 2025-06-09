@@ -29,10 +29,14 @@
 
 
 </head>
+
 <body onresize="toogleVieW()" onload="initboard()">
 
     <main>
-
+        <div onclick="closeAddTaskBoard()" id="addTaskBoardContainer" class="addTaskBoardContainer hidden">
+        </div>
+        <div id="addTaskBoard" class="addTaskBoard">
+        </div>
         <div id="boardTaskOverlay" class="overlay hidden" onclick="closeOverlay()"></div>
         <div class="currentContent" id="currentContent"></div>
 
@@ -54,8 +58,8 @@
                             <img class="searchVector" src="../assets/icons/vector.png" alt="search">
                             <img class="searchGlass" src="../assets/icons/search.png" alt="search">
                         </div>
-                        <a href="../html/add_task.html">
-                            <button class="addTaskButton">Add task
+                        <a>
+                            <button onclick="openAddTaskBoard()" class="addTaskButton">Add task
                                 <img class="addPlus" src="../assets/icons/add.png" alt="add task">
                             </button>
                         </a>
@@ -66,7 +70,7 @@
                     <div ondrop="moveTo('toDo')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>To do</h3>
-                            <a href="../html/add_task.html" class="plusButton">
+                            <a onclick="openAddTaskBoard()" class="plusButton">
                                 <div class="plusHorizontally"></div>
                                 <div class="plusVertically"></div>
                             </a>
@@ -78,7 +82,7 @@
                     <div ondrop="moveTo('inProgress')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>In progress</h3>
-                            <a href="../html/add_task.html" class="plusButton">
+                            <a onclick="openAddTaskBoard()" class="plusButton">
                                 <div class="plusHorizontally"></div>
                                 <div class="plusVertically"></div>
                             </a>
@@ -90,7 +94,7 @@
                     <div ondrop="moveTo('await')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Await feedback</h3>
-                            <a href="../html/add_task.html" class="plusButton">
+                            <a onclick="openAddTaskBoard()" class="plusButton">
                                 <div class="plusHorizontally"></div>
                                 <div class="plusVertically"></div>
                             </a>

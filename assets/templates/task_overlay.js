@@ -159,3 +159,105 @@ function editSubtaskOverlayTemplate(index) {
                 </div>
             </div>`
 };
+
+function addTaskBoardTemplate() {
+    return ` <div class="add-task-style-board">
+            <h1 class="h1-add-task">Add Task</h1>
+            <form class="flex-center-task form">
+                <div class="first-container flex-gap flex-column">
+                    <article>
+                        <p>Title<span>*</span></p>
+                        <input onfocusout="checkTitle()" class="input-text" type="text" id="title"
+                            placeholder="Task Title" required>
+                        <div class="warning-container">
+                            <span class="warning d_none" id="warning-title">This field is required</span>
+                        </div>
+                    </article>
+                    <article>
+                        <p>Description</p>
+                        <textarea class="input-text" id="description" rows="6" cols="50"
+                            placeholder="Enter a Description"></textarea>
+                    </article>
+                    <article>
+                        <p>Due date<span>*</span></p>
+                        <input onfocusout="checkDate()" type="date" required class="input-text date-input" id="dueDate">
+                        <div class="warning-container">
+                            <span class="warning d_none" id="warning-dueDate">This field is required</span>
+                        </div>
+                    </article>
+                </div>
+                <div id="Border" class="task-gray-border"></div>
+                <div class="second-container flex-gap flex-column">
+                    <div>
+                        <p>Priority</p>
+                        <div class="flex-center flex-gap">
+                            <div class="selectable" id="urgent" onclick="addCss('urgent')">
+                                Urgent
+                                <img src="../assets/icons/urgent.png" alt="">
+                            </div>
+                            <div class="selectable" id="medium" onclick="addCss('medium')">
+                                Medium
+                                <img src="../assets/icons/medium.png" alt="">
+                            </div>
+                            <div class="selectable" id="low" onclick="addCss('low')">
+                                Low
+                                <img src="../assets/icons/low.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="assign-dropdown-container">
+                        <p>Assigned to</p>
+                        <div class="dropdown" id="assignee-dropdown">
+                            <div onclick="toggleSelectable(), event.stopPropagation()" id="assignee-container"
+                                class="subtask-container">
+                                <input class="input-subtask" type="text" id="assignee-input"
+                                    placeholder="Select contacts to assign" autocomplete="off">
+                                <div class="dropdown-img-container">
+                                    <img id="dropwdown-icon" src="../assets/icons/dropdown-closed.png" alt="">
+                                </div>
+                            </div>
+                            <div class="selectable-assigned dnone" id="assigned"></div>
+                            <div class="memberForTask" id="memberForTask"></div>
+                        </div>
+                    </div>
+                    <article class="flex-column">
+                        <label for="category">Category<span>*</span></label>
+                        <select onfocusout="checkCategory()" id="category" name="selection-category" class="input-text"
+                            required>
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+                        <div class="warning-container">
+                            <span class="warning d_none" id="warning-category">This field is required</span>
+                        </div>
+                    </article>
+                    <article>
+                        <p>Subtasks</p>
+                        <div class="subtask-container">
+                            <input onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
+                                maxlength="30" name="subtaskTitle" class="input-subtask">
+                            <div id="subtask-icon-container" class="d_none subtasks-icon-container">
+                                <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
+                                    alt="X">
+                                <img src="../assets/icons/vector.png" alt="">
+                                <img onclick="addSubtask()" class="check-icon" src="../assets/icons/check-black.png"
+                                    alt="Add">
+                            </div>
+                            <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
+                        </div>
+                        <div id="subtaskList"></div>
+                    </article>
+                </div>
+            </form>
+            <div class="flex-center flex-space-between margin-top-50px button-area">
+                <p class="mobile-dnone"><span>*</span>This field is required</p>
+                <div class="btn-container">
+                    <button class="clear-btn" onclick="cancelTask()">Clear <img src="../assets/icons/x.png"
+                            alt=""></button>
+                    <button disabled id="creatTask" onclick="addNewToDO()" class="add-task-btn margin-left-10px">Create
+                        Task<img src="../assets/icons/check-btn.png" alt=""></button>
+                </div>
+            </div>
+        </div>`
+}

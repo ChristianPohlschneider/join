@@ -11,6 +11,7 @@ function editTaskOverlay(currentTask) {
     getContacts();
     getSubtasksEdit(currentTask);
     checkEditInput()
+    dueDate.min = new Date().toISOString().split("T")[0];
 };
 
 function addCss(id) {
