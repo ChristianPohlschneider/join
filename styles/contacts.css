@@ -42,10 +42,9 @@ body, html {
 }
 
 .contacts-list {
-    margin-left: 232px;
+    margin-left: 230px;
     width: 400px;
     border-right: 1px solid #ccc;
-    padding: 12px;
     background-color: #f9f9f9;
     overflow-y: auto; 
     height: calc(100vh - 96px);
@@ -70,7 +69,7 @@ body, html {
 
 .contact-details {
     flex: 1;
-    padding: 20px;
+    margin-left: 20px;
 }
 
 .contact-title{
@@ -411,8 +410,9 @@ body, html {
 @media (max-width: 1350px) {
 
     .contacts-list {
-        margin-left: 16px;
-        width: 375px;
+        margin-left: 0px;
+        width: 400px;
+        height: calc(100vh - 180px);
     }
 
     .contact-details {
