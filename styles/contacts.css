@@ -301,7 +301,10 @@ body, html {
     font-size: 21px;
     font-weight: 400;
     color: #2A3647;
-;
+}
+
+.contact-info-block {
+    margin-left: 34px;
 }
 
 .save-button img {
