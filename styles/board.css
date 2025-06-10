@@ -217,15 +217,28 @@ main {
 }
 
 .open_addTask {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .closed_addTask {
     transform: translateX(8000px);
 }
 
-.add-task-board-header{
+.add-task-board-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+}
+
+.dropzoneCard {
+    width: 252px;
+    height: 244px;
+    border: 2px dashed #A8A8A8;
+    border-radius: 30px;
+    /* background-color: #f9f9f9; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    transition: border 0.2s, background-color 0.2s;
 }

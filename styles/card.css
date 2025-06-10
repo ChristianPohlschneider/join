@@ -1,5 +1,5 @@
 .card {
-    cursor: pointer;
+    cursor: grab;
     display: flex;
     width: 252px;
     background-color: white;

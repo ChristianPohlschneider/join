@@ -240,17 +240,49 @@ function filterTasks(event) {
 
 function startDragging(id) {
     currentId = id;
+    showVisibleFeedbackOnDrag(currentId);
 }
 
 async function moveTo(status) {
-    tasks[currentId].status = status
+    tasks[currentId].status = status;
     await fetchContacts();
     clearBoardTable();
     renderTasks(contacts);
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
-    putData(currentTaskPath, status)
+    putData(currentTaskPath, status);
+    hideVisibleFeedbackOnDrag();
 }
 
 function dragoverHandler(ev) {
     ev.preventDefault();
+}
+
+//dragover with visible feedback
+function showVisibleFeedbackOnDrag(currentId) {
+    // document.getElementById("card").style.cursor = "grabbing";
+    if (tasks[currentId].status == "toDo") {
+    const dragElement = document.getElementById('card');
+    const dropZone = document.getElementById("dropzone#TaskInProgress").classList.remove("d_none");
+    }
+        if (tasks[currentId].status == "inProgress") {
+    const dragElement = document.getElementById('card');
+    const dropZone = document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
+    document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
+    }
+        if (tasks[currentId].status == "await") {
+    const dragElement = document.getElementById('card');
+    const dropZone = document.getElementById("dropzone#TaskDone").classList.remove("d_none");
+    document.getElementById("dropzone#TaskInProgress").classList.remove("d_none")
+    }
+        if (tasks[currentId].status == "done") {
+    const dragElement = document.getElementById('card');
+    const dropZone = document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
+    }
+}
+
+function hideVisibleFeedbackOnDrag() {
+    document.getElementById("dropzone#TaskToDo").classList.add("d_none");
+    document.getElementById("dropzone#TaskInProgress").classList.add("d_none");
+    document.getElementById("dropzone#TaskAwaitFeedback").classList.add("d_none");
+    document.getElementById("dropzone#TaskDone").classList.add("d_none");
 }
