@@ -7,12 +7,6 @@ let subtask = 0;
 let subtaskTotal = 0;
 let currentId;
 
-
-// async function loadContacts() {
-//     const res = await fetch(BASE_URL + "contacts.json");
-//     contacts = await res.json();
-// }
-
 async function initboard() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.querySelector("header").innerHTML = header();
@@ -259,25 +253,42 @@ function dragoverHandler(ev) {
 
 //dragover with visible feedback
 function showVisibleFeedbackOnDrag(currentId) {
-    // document.getElementById("card").style.cursor = "grabbing";
     if (tasks[currentId].status == "toDo") {
-    const dragElement = document.getElementById('card');
-    const dropZone = document.getElementById("dropzone#TaskInProgress").classList.remove("d_none");
+        toggleVisibleFeedbackToDo();
     }
-        if (tasks[currentId].status == "inProgress") {
-    const dragElement = document.getElementById('card');
-    const dropZone = document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
+    if (tasks[currentId].status == "inProgress") {
+        toggleVisibleFeedbackInProgress();
+    }
+    if (tasks[currentId].status == "await") {
+        toggleVisibleFeedbackAwait();
+    }
+    if (tasks[currentId].status == "done") {
+        toggleVisibleFeedbackDone();
+    }
+}
+
+function toggleVisibleFeedbackToDo() {
+    document.getElementById("dropzone#TaskInProgress").classList.remove("d_none");
     document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
-    }
-        if (tasks[currentId].status == "await") {
-    const dragElement = document.getElementById('card');
-    const dropZone = document.getElementById("dropzone#TaskDone").classList.remove("d_none");
+    document.getElementById("dropzone#TaskDone").classList.remove("d_none");
+}
+
+function toggleVisibleFeedbackInProgress() {
+    document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
+    document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
+    document.getElementById("dropzone#TaskDone").classList.remove("d_none");
+}
+
+function toggleVisibleFeedbackAwait() {
+    document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
+    document.getElementById("dropzone#TaskDone").classList.remove("d_none");
     document.getElementById("dropzone#TaskInProgress").classList.remove("d_none")
-    }
-        if (tasks[currentId].status == "done") {
-    const dragElement = document.getElementById('card');
-    const dropZone = document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
-    }
+}
+
+function toggleVisibleFeedbackDone() {
+    document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
+    document.getElementById("dropzone#TaskInProgress").classList.remove("d_none");
+    document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
 }
 
 function hideVisibleFeedbackOnDrag() {
