@@ -4,21 +4,20 @@ function menuLogged() {
             <div class="menu-div">
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
             </div>
-
             <div class="gap-menu">
-            <a class="a-menu menu-button-possition" href="./summary.html" class="menu-button-possition">
+            <a class="a-menu menu-button-possition active" href="./summary.html" id="summary">
                 <div class="icon-menu-summary"></div>
                 <p class="padding-left-10px p-menu-style">Summary</p>
             </a>
-            <a class="a-menu menu-button-possition" href="./add_task.html" class="menu-button-possition">
+            <a class="a-menu menu-button-possition" href="./add_task.html" id="add_task">
                 <img src="../assets/icons/add-task.png" alt="add task logo">
                 <p class="padding-left-10px p-menu-style">Add Task</p>
             </a>
-            <a class="a-menu menu-button-possition" href="./board.html" class="menu-button-possition">
+            <a class="a-menu menu-button-possition" href="./board.html" id="board">
                 <img src="../assets/icons/board.png" alt="board logo">
                 <p class="padding-left-10px p-menu-style">Board</p>
             </a>
-            <a class="a-menu menu-button-possition" href="./contacts.html" class="menu-button-possition">
+            <a class="a-menu menu-button-possition" href="./contacts.html" id="contacts">
                 <img src="../assets/icons/contact.png" alt="contact logo">
                 <p class="padding-left-10px p-menu-style">Contact</p>
             </a>
@@ -30,6 +29,7 @@ function menuLogged() {
         </div>
     </div>    
     `;
+
 }
 
 function mobileMenuLogged() {
@@ -103,9 +103,10 @@ function checkLogged() {
         };
     } else {
         if (window.innerWidth <= 1350) {
-            return  mobileMenuLogged();
+            return mobileMenuLogged();
         } else {
             return menuLogged();
+
         };
     };
 };
@@ -121,3 +122,4 @@ function toogleVieW() {
         document.getElementById("menuTemplate").innerHTML = mobileMenuLogged();
     };
 };
+

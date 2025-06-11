@@ -24,11 +24,6 @@
     padding-bottom: 8px;
 }
 
-.p-menu-style:hover {
-    color: white;
-
-}
-
 .logo-join {
     width: 100px !important;
     height: 120px !important;
@@ -43,7 +38,7 @@
 
 .menu-style a:hover{
     color: white;
-    background-color: #091931;
+    background-color: #0919318f;
 }
 
 .menu-style img {
@@ -108,7 +103,7 @@
 }
 
 .mobile-menu-container a:hover{
-    background-color: #091931;
+    background-color: #0919318f;
     border-radius: 18px;
 }
 
@@ -137,4 +132,8 @@
 .loggedOut-mobile-menu a{
     color: #CDCDCD;
     width: 112px;
+}
+
+.active{
+    background-color: #091931;
 }
