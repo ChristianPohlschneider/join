@@ -1,6 +1,6 @@
 function renderCard(taskIndex) {
     return `
-        <div draggable="true" ondragstart="startDragging(${taskIndex})" id="card" class="card taskCard" onclick="openTaskOverlay(${taskIndex}, event)">
+        <div draggable="true" ondragstart="startDragging(${taskIndex})" ondragend="dragEnd(${taskIndex})" id="card${taskIndex}" class="card taskCard" onclick="openTaskOverlay(${taskIndex}, event)">
             <div id="taskCategory${"#" + taskIndex}" class="taskCategory">${tasks[taskIndex].category}</div>
             <div id="taskName" class="taskName">${tasks[taskIndex].name}</div>
             <div id="taskDescription" class="taskDescription">${tasks[taskIndex].description}</div>

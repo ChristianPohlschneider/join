@@ -234,7 +234,17 @@ function filterTasks(event) {
 
 function startDragging(id) {
     currentId = id;
+    const card = document.getElementById(`card${currentId}`);
+    if (!card) return;
+    card.style.transform = 'rotate(10deg)';
     showVisibleFeedbackOnDrag(currentId);
+}
+
+function dragEnd(taskIndex) {
+    const card = document.getElementById(`card${taskIndex}`);
+    if (card) {
+        card.style.transform = 'rotate(0deg)';
+    }
 }
 
 async function moveTo(status) {
