@@ -6,6 +6,25 @@ body, html {
     overflow: hidden;
 }
 
+.subtask-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.contact-icon{
+    position: relative;
+    left: -30px;
+}
+
+.border-blue{
+    width: 85px;
+    height: 1px;
+    background-color: #29ABE2;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
 .page-container {
     display: flex;
     flex: 1;
@@ -210,8 +229,7 @@ body, html {
     max-width: 90%;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     display: flex;
-    align-items: center;
-    
+    align-items: center;  
 }
 
 .hidden {
@@ -249,9 +267,8 @@ body, html {
 .contact-form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    row-gap: 10px;
     width: 422px;
-    height: 215px;
     margin-left: 30px;
     margin-right: 30px;
 }
@@ -260,6 +277,7 @@ body, html {
     height: 50px;
     border: #afafaf solid 1px;
     border-radius: 10px;
+    width: 90%;
 }
 
 .add-overlay-button {
@@ -267,6 +285,9 @@ body, html {
     height: 57px;
     display: flex;
     justify-content: space-between;
+    padding-left: 46px;
+    gap: 20px;
+    padding-top: 20px;
 }
 
 .cancel-button {
@@ -275,6 +296,13 @@ body, html {
     border-radius: 10px;
     font-size: 21px;
     font-weight: 700;
+    background-color: #FFFFFF;
+    border: 1px solid black;
+}
+
+.cancel-button:hover {
+  border: 1px solid #29ABE2;
+  color: #29ABE2;
 }
 .create-button {
     width: 214px;
@@ -284,6 +312,10 @@ body, html {
     font-size: 21px;
     font-weight: 700;
     color: #FFFFFF;
+}
+
+.create-button:hover {
+    background-color: #29ABE2;
 }
 
 .edit-overlay-button {
@@ -324,6 +356,15 @@ body, html {
     align-items: center;
     justify-content: space-evenly;
 }
+
+.button-icon{
+    position: relative;
+    top: 4px;
+    left: 3px;
+}
+
+
+
 
 .overlay-header {
     background-color: #2A3647;
@@ -408,6 +449,11 @@ body, html {
 
 .contacts-slider ul {
     display: none;
+}
+
+.flex-align-center{
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 1350px) {

@@ -5,7 +5,7 @@ function menuLogged() {
                 <img class="logo-join" src="../assets/icons/join-logo.png" alt="join logo">
             </div>
             <div class="gap-menu">
-            <a class="a-menu menu-button-possition active" href="./summary.html" id="summary">
+            <a class="a-menu menu-button-possition" href="./summary.html" id="summary">
                 <div class="icon-menu-summary"></div>
                 <p class="padding-left-10px p-menu-style">Summary</p>
             </a>
