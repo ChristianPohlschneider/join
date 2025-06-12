@@ -79,8 +79,10 @@
                             </a>
                         </div>
                         <div id="emptyTask0" class="emptyTask">No Task To Do</div>
-                        <div id="taskToDo" class="taskList"></div>
-                        <div id="dropzone#TaskToDo" class="dropzoneCard d_none"></div>
+                        <div class="taskFolder">
+                            <div id="taskToDo" class="taskList"></div>
+                            <div id="dropzone#TaskToDo" class="dropzoneCard d_none"></div>
+                        </div>
                     </div>
 
                     <div ondrop="moveTo('inProgress')" ondragover="dragoverHandler(event)" class="boardList">
@@ -92,8 +94,10 @@
                             </a>
                         </div>
                         <div id="emptyTask1" class="emptyTask">Nothing in progress</div>
-                        <div id="taskInProgress" class="taskList"></div>
-                        <div id="dropzone#TaskInProgress" class="dropzoneCard d_none"></div>
+                        <div class="taskFolder">
+                            <div id="taskInProgress" class="taskList"></div>
+                            <div id="dropzone#TaskInProgress" class="dropzoneCard d_none"></div>
+                        </div>
                     </div>
 
                     <div ondrop="moveTo('await')" ondragover="dragoverHandler(event)" class="boardList">
@@ -105,8 +109,10 @@
                             </a>
                         </div>
                         <div id="emptyTask2" class="emptyTask">No feedback</div>
-                        <div id="taskAwaitFeedback" class="taskList"></div>
-                        <div id="dropzone#TaskAwaitFeedback" class="dropzoneCard d_none"></div>
+                        <div class="taskFolder">
+                            <div id="taskAwaitFeedback" class="taskList"></div>
+                            <div id="dropzone#TaskAwaitFeedback" class="dropzoneCard d_none"></div>
+                        </div>
                     </div>
 
                     <div ondrop="moveTo('done')" ondragover="dragoverHandler(event)" class="boardList">
@@ -115,8 +121,10 @@
 
                         </div>
                         <div id="emptyTask3" class="emptyTask">Nothing done</div>
-                        <div id="taskDone" class="taskList"></div>
-                        <div id="dropzone#TaskDone" class="dropzoneCard d_none"></div>
+                        <div class="taskFolder">
+                            <div id="taskDone" class="taskList"></div>
+                            <div id="dropzone#TaskDone" class="dropzoneCard d_none"></div>
+                        </div>
                     </div>
 
 
