@@ -29,7 +29,7 @@
 
 </head>
 
-<body id="body" onresize="toogleVieW()" onload="initboard()">
+<body id="body" onresize="toogleVieW(), toggleAddTaskLink()" onload="initboard()">
     <div id="succedSignup" class="d_none success-container ">
         <div id="sucess-message" class="success-massage">
             Task added to board <img src="../assets/icons/board.png" alt="">
@@ -61,7 +61,7 @@
                             <img class="searchVector" src="../assets/icons/vector.png" alt="search">
                             <img class="searchGlass" src="../assets/icons/search.png" alt="search">
                         </div>
-                        <a>
+                        <a href="#" id="addTaskButtonBoard">
                             <button onclick="openAddTaskBoard()" class="addTaskButton">Add task
                                 <img class="addPlus" src="../assets/icons/add.png" alt="add task">
                             </button>

@@ -1,4 +1,5 @@
 let subtaskCounter = 0;
+let isAddTaskOverlayOpen = false;
 
 function loadTaskOverlayData(taskIndex) {
     findBackgroundColor(taskIndex);
@@ -154,6 +155,9 @@ async function renderTasksOnly() {
 }
 
 function openAddTaskBoard() {
+    if (window.innerWidth <= 850) {
+        window.location.href = "./add_task.html";
+    } else {
     assignedMembers = [];
     subtasksArray = [];
     const addTaskBoardRef = document.getElementById('addTaskBoard');
@@ -164,10 +168,12 @@ function openAddTaskBoard() {
     dueDate.min = new Date().toISOString().split("T")[0];
     addCss("medium");
     getContacts();
-
+    isAddTaskOverlayOpen = true;
+    };
 }
 
 function closeAddTaskBoard() {
+    isAddTaskOverlayOpen = false;
     const addTaskBoardRef = document.getElementById('addTaskBoard');
     addTaskBoardRef.classList.remove('open_addTask');
     addTaskBoardRef.classList.add('closed_addTask');
@@ -285,4 +291,16 @@ function succeedRegistration() {
     let succeed = document.getElementById('succedSignup');
     succeed.classList.remove('d_none');
     document.getElementById('body').style.overflow = "hidden";
+};
+
+function toggleAddTaskLink() {
+    const taskBtnBoardRef = document.getElementById('addTaskButtonBoard')
+    if (window.innerWidth <= 850) {
+        taskBtnBoardRef.href = "./add_task.html";
+        if (isAddTaskOverlayOpen) {
+            window.location.href = "./add_task.html";
+        }
+    } else {
+        taskBtnBoardRef.href = "#";
+    }
 };
