@@ -257,7 +257,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin-top: 20px; */
     transition: border 0.2s;
 }
 
@@ -303,7 +302,6 @@ main {
         display: flex;
         gap: 0px;
         flex-direction: row;
-        /* overflow-x: auto; */
         padding-bottom: 0px;
     }
 
@@ -312,6 +310,12 @@ main {
         justify-content: flex-start;
         flex-direction: row;
         gap: 0px;
+        overflow-x: auto;
+        padding: 6px;
+    }
+
+    .dropzoneCard {
+        margin-bottom: 10px;
     }
 
     .emptyTask {
