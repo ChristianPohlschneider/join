@@ -236,7 +236,8 @@ function startDragging(id) {
     currentId = id;
     const card = document.getElementById(`card${currentId}`);
     if (!card) return;
-    card.style.transform = 'rotate(10deg)';
+    card.style.transformOrigin = 'bottom left';
+    card.style.transform = 'rotate(3deg)';
     showVisibleFeedbackOnDrag(currentId);
 }
 
