@@ -88,7 +88,9 @@ main {
     padding: 7px;
 }
 
-.addTaskButton, .addTaskButtonResp, .addTaskButtonOverlay {
+.addTaskButton,
+.addTaskButtonResp,
+.addTaskButtonOverlay {
     display: flex;
     height: 48px;
     font-size: 21px;
@@ -101,14 +103,18 @@ main {
     gap: 4px;
 }
 
-.addTaskButton:hover, .addTaskButtonResp:hover, .addTaskButtonOverlay:hover {
+.addTaskButton:hover,
+.addTaskButtonResp:hover,
+.addTaskButtonOverlay:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     border-color: #29ABE2;
 }
 
-.addTaskButtonResp{
+.addTaskButtonResp {
     display: none;
+    height: 40px;
+    width: 40px;
 }
 
 .addPlus {
@@ -309,33 +315,44 @@ main {
 }
 
 @media (max-width: 850px) {
-    .addTaskButtonResp{
+    .addTaskButtonResp {
         display: flex;
+        padding: 0;
+        justify-content: center;
     }
-    .addTaskButton{
+
+    .addTaskButton {
         display: none;
     }
-    .boardHeader{
+
+    .boardHeader {
         flex-direction: column;
     }
-    .boardTitle{
+
+    .boardTitle {
         display: flex;
         align-items: center;
         width: 100%;
         justify-content: space-between;
     }
-    .findAddElement{
+
+    .findAddElement {
         display: unset;
         width: 100%;
     }
-    .taskSearchInput{
+
+    .taskSearchInput {
         width: 100%;
     }
 }
 
 @media (max-width: 500px) {
-    .boardTemplate{
+    .boardTemplate {
         padding-left: 12px;
         padding-right: 12px;
+    }
+
+    .boardTitle {
+        font-size: 47px;
     }
 }
