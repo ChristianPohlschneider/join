@@ -16,7 +16,6 @@ function openTaskOverlay(taskIndex, event) {
     document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex, subtaskCounter);
     loadTaskOverlayData(taskIndex);
     event.stopPropagation();
-    document.body.classList.add("stopScrolling");
 }
 
 function getAssignedToNames(taskIndex, contacts) {

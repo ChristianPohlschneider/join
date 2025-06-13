@@ -17,7 +17,7 @@
 }
 
 .cardOverlay {
-    position: fixed;
+    position: absolute;
     left: calc(50% - 262px);
     top: 10%;
     width: 525px;
@@ -359,17 +359,55 @@
     content: url(../assets/icons/edit-hover.png);
 }
 
-.btn_edit_confirm{
+.btn_edit_confirm {
     width: 89px;
 }
 
 .btn_edit_confirm:disabled {
-  opacity: 0.6;
-  cursor: auto;
+    opacity: 0.6;
+    cursor: auto;
 }
 
 .btn_edit_confirm:disabled:hover {
-  background-color: #2A3647;
-  box-shadow: none;
-  border-color: #2A3647;
+    background-color: #2A3647;
+    box-shadow: none;
+    border-color: #2A3647;
+}
+
+@media (max-width: 550px) {
+    .cardOverlay {
+        left: 0;
+        top: 0;
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+        max-height: unset;
+        height: calc(100vh - 80px);
+    }
+    .cardOverlayInner{
+        padding: 6px;
+        height: 100%;
+        max-height: unset;
+    }
+    .cardOverlayInnerEdit{
+        align-items: flex-start;
+    }
+    .editDeleteDiv{
+        flex: 1;
+        align-items: end;
+        padding-bottom: 12px;
+    }
+    .closeOverlayContainer{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .addTaskButtonOverlayContainer{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .taskOverlayName {
+        font-size: 36px;
+    }
 }

@@ -67,7 +67,7 @@ function renderAssignedToName(assignedToNamesIndex, assignedToName) {
 
 function editTaskOverlayTemplate(currentTask) {
     return `<div id="cardOverlay" class="cardOverlayInner cardOverlayInnerEdit">
-                <div><div class="closeImg" onclick="closeOverlay()"></div></div>
+                <div class="closeOverlayContainer"><div class="closeImg" onclick="closeOverlay()"></div></div>
                 <form class="flex-center-task">
                     <div class="first-container flex-gap flex-column">
                             <p>Title</p>
@@ -130,9 +130,11 @@ function editTaskOverlayTemplate(currentTask) {
                             <div id="subtaskList"></div>
                     </div>
                 </form>
-                <button disabled=false onclick="editToDo(${currentTask})" id="editToDoBtn" class="addTaskButton btn_edit_confirm">Ok
-                    <img class="addPlus" src="../assets/icons/check-btn.png" alt="add task">
-                </button>
+                <div class= "addTaskButtonOverlayContainer">
+                    <button disabled=false onclick="editToDo(${currentTask})" id="editToDoBtn" class="addTaskButtonOverlay btn_edit_confirm">Ok
+                        <img class="addPlus" src="../assets/icons/check-btn.png" alt="add task">
+                    </button>
+                </div>
             </div>`
 };
 

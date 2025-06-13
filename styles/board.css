@@ -88,7 +88,7 @@ main {
     padding: 7px;
 }
 
-.addTaskButton, .addTaskButtonResp {
+.addTaskButton, .addTaskButtonResp, .addTaskButtonOverlay {
     display: flex;
     height: 48px;
     font-size: 21px;
@@ -101,7 +101,7 @@ main {
     gap: 4px;
 }
 
-.addTaskButton:hover, .addTaskButtonResp:hover {
+.addTaskButton:hover, .addTaskButtonResp:hover, .addTaskButtonOverlay:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     border-color: #29ABE2;
@@ -333,7 +333,7 @@ main {
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 500px) {
     .boardTemplate{
         padding-left: 12px;
         padding-right: 12px;
