@@ -271,6 +271,11 @@ main {
 }
 
 @media (max-width: 1150px) {
+        .boardTemplate {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
     .addTaskBoard {
         left: 22%;
         width: 500px;
@@ -312,6 +317,10 @@ main {
         gap: 0px;
         overflow-x: auto;
         padding: 6px;
+    }
+
+    .taskFolder::-webkit-scrollbar {
+        display: none;
     }
 
     .dropzoneCard {
@@ -356,11 +365,6 @@ main {
 }
 
 @media (max-width: 500px) {
-    .boardTemplate {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
     .boardTitle {
         font-size: 47px;
     }

@@ -239,6 +239,7 @@ function startDragging(id) {
     card.style.transformOrigin = 'bottom left';
     card.style.transform = 'rotate(3deg)';
     showVisibleFeedbackOnDrag(currentId);
+    scrollDropzoneIntoView();
 }
 
 function dragEnd(taskIndex) {
@@ -246,6 +247,8 @@ function dragEnd(taskIndex) {
     if (card) {
         card.style.transform = 'rotate(0deg)';
     }
+    scrollElementsLeft();
+     hideVisibleFeedbackOnDrag();
 }
 
 async function moveTo(status) {
@@ -254,15 +257,13 @@ async function moveTo(status) {
     clearBoardTable();
     renderTasks(contacts);
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
-    putData(currentTaskPath, status);
-    hideVisibleFeedbackOnDrag();
+    putData(currentTaskPath, status); 
 }
 
 function dragoverHandler(ev) {
     ev.preventDefault();
 }
 
-//dragover with visible feedback
 function showVisibleFeedbackOnDrag(currentId) {
     if (tasks[currentId].status == "toDo") {
         toggleVisibleFeedbackToDo();
@@ -275,6 +276,27 @@ function showVisibleFeedbackOnDrag(currentId) {
     }
     if (tasks[currentId].status == "done") {
         toggleVisibleFeedbackDone();
+    }
+}
+
+function scrollElementsLeft() {
+    const containers = document.getElementsByClassName("taskFolder");
+    for (const container of containers) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+}
+
+function scrollDropzoneIntoView() {
+    const containers = document.getElementsByClassName("taskFolder");
+    for (const container of containers) {
+        const dropzone = container.querySelector(".dropzoneCard");
+        if (dropzone) {
+            dropzone.scrollIntoView({
+                behavior: "smooth",
+                inline: "end",
+                block: "nearest"
+            });
+        }
     }
 }
 
