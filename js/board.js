@@ -282,7 +282,7 @@ function showVisibleFeedbackOnDrag(currentId) {
 function scrollElementsLeft() {
     const containers = document.getElementsByClassName("taskFolder");
     for (const container of containers) {
-        container.scrollTo({ left: 0, behavior: 'smooth' });
+        container.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     }
 }
 
@@ -291,11 +291,12 @@ function scrollDropzoneIntoView() {
     for (const container of containers) {
         const dropzone = container.querySelector(".dropzoneCard");
         if (dropzone) {
-            dropzone.scrollIntoView({
-                behavior: "smooth",
-                inline: "end",
-                block: "nearest"
-            });
+            const containerRect = container.getBoundingClientRect();
+            const dropzoneRect = dropzone.getBoundingClientRect();
+            const offsetRight = dropzoneRect.right - containerRect.right;
+            if (offsetRight > 0) {
+                container.scrollBy({ left: offsetRight, top: 0, behavior: 'smooth' });
+            }
         }
     }
 }
@@ -330,3 +331,12 @@ function hideVisibleFeedbackOnDrag() {
     document.getElementById("dropzone#TaskAwaitFeedback").classList.add("d_none");
     document.getElementById("dropzone#TaskDone").classList.add("d_none");
 }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const taskList = document.getElementById("taskList");
+    if (taskList) {
+      new Sortable(taskList, {
+        animation: 150
+      });
+    }
+  });
