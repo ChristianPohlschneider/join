@@ -248,6 +248,17 @@ main {
     align-items: flex-start;
 }
 
+.add-btn{
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+}
+
+.add-btn:hover{
+    color: #29ABE2;
+}
+
 .dropzoneCard {
     width: 252px;
     min-width: 252px;
@@ -273,7 +284,6 @@ main {
 @media (max-width: 1150px) {
 
     .addTaskBoard {
-        left: 22%;
         width: 500px;
     }
 
@@ -361,11 +371,11 @@ main {
 }
 
 @media (max-width: 500px) {
-            .boardTemplate {
+    .boardTemplate {
         padding-left: 12px;
         padding-right: 12px;
     }
-    
+
     .boardTitle {
         font-size: 47px;
     }
