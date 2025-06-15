@@ -27,7 +27,6 @@
     <script src="../assets/templates/add_task_template.js"></script>
 
 </head>
-
 <body id="body" onresize="toogleVieW(), toggleAddTaskLink(), toggleOverlayTask()" onload="initboard()">
     <div id="succedSignup" class="d_none success-container ">
         <div id="sucess-message" class="success-massage">
@@ -41,17 +40,12 @@
         </div>
         <div id="boardTaskOverlay" class="overlay hidden" onclick="closeOverlay()"></div>
         <div class="currentContent" id="currentContent"></div>
-
         <header>
             <div class="headerTemplate" id="headerTemplate"></div>
         </header>
-
         <div id="menuTemplate"></div>
-
         <div class="rightSection maxWidth">
-
             <div class="boardTemplate" id="boardTemplate">
-
                 <div class="boardHeader">
                     <div class="boardTitle">Board
                         <a href="#" id="addTaskButtonBoard">
@@ -73,7 +67,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="boardTable">
                     <div ondrop="moveTo('toDo')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
@@ -88,7 +81,6 @@
                             <div id="dropzone#TaskToDo" class="dropzoneCard d_none"></div>
                         </div>
                     </div>
-
                     <div ondrop="moveTo('inProgress')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>In progress</h3>
@@ -102,7 +94,6 @@
                             <div id="dropzone#TaskInProgress" class="dropzoneCard d_none"></div>
                         </div>
                     </div>
-
                     <div ondrop="moveTo('await')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Await feedback</h3>
@@ -116,7 +107,6 @@
                             <div id="dropzone#TaskAwaitFeedback" class="dropzoneCard d_none"></div>
                         </div>
                     </div>
-
                     <div ondrop="moveTo('done')" ondragover="dragoverHandler(event)" class="boardList">
                         <div class="boardListHeader">
                             <h3>Done</h3>
@@ -128,16 +118,9 @@
                             <div id="dropzone#TaskDone" class="dropzoneCard d_none"></div>
                         </div>
                     </div>
-
-
-
                 </div>
-
             </div>
         </div>
-
     </main>
-
 </body>
-
 </html>
