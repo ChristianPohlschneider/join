@@ -3,26 +3,23 @@ async function initSummary() {
     await fetchInit();
     summaryWelcome();
     renderSummary();
-}
+};
 
 const time = new Date();
 
 function initTask() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.getElementById("headerTemplate").innerHTML = header();
-}
+};
 
 function summaryWelcome() {
     contentRef = document.getElementById("content");
-
     greetingTime = switchTime();
-
     greeting.innerHTML = greetingTime + getUserInfo();
-}
+};
 
 function switchTime() {
     t = time.getHours();
-
     switch (true) {
         case (t >= 6 && t < 12):
             return "Good morning";
@@ -30,25 +27,24 @@ function switchTime() {
             return "Good afternoon";
         default:
             return "Good evening";
-    }
-}
+    };
+};
 
 function getUserInfo() {
     let user = JSON.parse(localStorage.getItem("user"));
-
     switch (true) {
         case (user === "Guest"):
             return "";
         default:
             return `,` + `<p class="user-name">${user}</p>`;
-    }
-}
+    };
+};
 
 function renderSummary() {
     renderFirstRow();
     renderSecondRow();
     renderThirdRow();
-}
+};
 
 function renderSecondRow() {
     let allUrgents = document.getElementById('urgent');
@@ -57,7 +53,7 @@ function renderSecondRow() {
     let urgentDates = [];
     for (let index = 0; index < currentUrgent.length; index++) {
         urgentDates.push(new Date(currentUrgent[index].date))
-    }
+    };
     const minDate = new Date(Math.min(...urgentDates));
     let urgentDate = document.getElementById('urgant-date');
     urgentDate.innerHTML = minDate.toLocaleDateString('en-US', {
@@ -65,7 +61,7 @@ function renderSecondRow() {
         month: 'long',
         day: 'numeric'
     });
-}
+};
 
 function renderFirstRow() {
     let allToDoes = document.getElementById('to-do');
@@ -74,7 +70,7 @@ function renderFirstRow() {
     let allDones = document.getElementById('done');
     let currentDones = tasks.filter((i) => i.status === "done");
     allDones.innerHTML = `${currentDones.length}`;
-}
+};
 
 function renderThirdRow() {
     let allTasks = document.getElementById('tasks-in-board');
@@ -85,4 +81,14 @@ function renderThirdRow() {
     let allAwait = document.getElementById('awaiting-feedback');
     let currentAwait = tasks.filter((i) => i.status === "await");
     allAwait.innerHTML = `${currentAwait.length}`;
-}
+};
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.classList.add('stopScrolling');
+    document.body.classList.add('stopScrolling');
+    setTimeout(() => {
+        document.documentElement.classList.remove('stopScrolling');
+        document.body.classList.remove('stopScrolling');
+    }, 2000);
+});

@@ -230,6 +230,11 @@ body {
     gap: 28px;
 }
 
+.stopScrolling {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
 @media (max-width: 1350px) {
     .content {
         margin-left: 0;
@@ -238,7 +243,7 @@ body {
 
 @media (max-width: 1100px) {
     .greeting-style {
-        position: absolute;
+        position: fixed;
         top: 80px;
         left: 0;
         width: 100%;
@@ -249,7 +254,7 @@ body {
         flex-direction: column;
         text-align: center;
         align-items: center;
-        height: calc(100vh - 162px);
+        height: calc(100vh - 160px);
         -webkit-animation: seconds 1.0s forwards;
         -webkit-animation-iteration-count: 1;
         -webkit-animation-delay: 5s;
@@ -261,22 +266,24 @@ body {
     @-webkit-keyframes seconds {
         0% {
             opacity: 1;
+            transform: translate(-50%, -50%);
         }
 
         100% {
             opacity: 0;
-            top: -9999px;
+            transform: translate(-50%, -200%);
         }
     }
 
     @keyframes seconds {
         0% {
             opacity: 1;
+            transform: translate(-50%, -50%);
         }
 
         100% {
             opacity: 0;
-            top: -9999px;
+            transform: translate(-50%, -200%);
         }
     }
 }
