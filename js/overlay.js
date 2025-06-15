@@ -1,5 +1,6 @@
 let subtaskCounter = 0;
 let isAddTaskOverlayOpen = false;
+let isTaskOverlayOpen = false
 
 function loadTaskOverlayData(taskIndex) {
     findBackgroundColor(taskIndex);
@@ -11,6 +12,8 @@ function loadTaskOverlayData(taskIndex) {
 }
 
 function openTaskOverlay(taskIndex, event) {
+    window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') : 'disabled'
+    isTaskOverlayOpen = true
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.remove("hidden");
     document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex, subtaskCounter);
@@ -83,8 +86,10 @@ function checkSubtaskCheckboxes(taskIndex) {
 }
 
 function closeOverlay() {
+    document.documentElement.classList.remove('stopScrolling')
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
+    isTaskOverlayOpen = false
 }
 
 async function deleteTaskByKey(key) {
@@ -300,5 +305,13 @@ function toggleAddTaskLink() {
         }
     } else {
         taskBtnBoardRef.href = "#";
+    }
+};
+
+function toggleOverlayTask() {
+    if (window.innerWidth <= 550 && isTaskOverlayOpen) {
+        document.documentElement.classList.add('stopScrolling')
+    } else {
+        document.documentElement.classList.remove('stopScrolling')
     }
 };
