@@ -118,12 +118,16 @@ html {
     margin-bottom: 12px;
     margin-top: 12px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
-.contact-div:hover {
+.contact-div:hover:not(.CurrentContact) {
+  background-color: rgba(0, 0, 0, 0.041);
+}
+
+.CurrentContact{
     background-color: #2A3647;
     color: #FFFFFF;
-    cursor: pointer;
 }
 
 .subtitle {

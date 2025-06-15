@@ -49,8 +49,10 @@ function renderContacts(contactsData) {
     }
 
     const color = contact.color || getRandomColor();
-    const div = document.createElement("div");
-    div.classList.add("contact-div");
+  const div = document.createElement("div");
+div.classList.add("contact-div");
+div.setAttribute("id", key);
+div.setAttribute("onclick", `showCurrentContact('${key}')`);
     div.innerHTML = `
       <span class="contact-avatar" style="background:${color}">${getInitials(contact.name)}</span>
       <div>
@@ -62,6 +64,18 @@ function renderContacts(contactsData) {
     list.appendChild(div);
   });
 
+}
+
+function showCurrentContact(id) {
+  const prev = document.querySelector(".CurrentContact");
+  if (prev) {
+    prev.classList.remove("CurrentContact");
+  }
+
+  const current = document.getElementById(id);
+  if (current) {
+    current.classList.add("CurrentContact");
+  }
 }
 
 function getInitials(name) {
