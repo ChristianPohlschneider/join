@@ -252,9 +252,19 @@ async function createContact() {
 
     closeAddContact();
     clearAddContactFields();
+    contactAddedSuccessfully();
     await fetchContacts();
   } catch (error) {
   }
+}
+
+function contactAddedSuccessfully() {
+  const feedbackEl = document.getElementById("userFeedback");
+  feedbackEl.classList.remove("hidden");
+
+  setTimeout(() => {
+    feedbackEl.classList.add("hidden");
+  }, 4000);
 }
 
 function clearAddContactFields() {

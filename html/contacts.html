@@ -71,7 +71,6 @@
       </div>
     </section>
     <div id="addContactOverlay" class="overlay hidden">
-      <button class="close-btn" onclick="closeAddContact()">×</button>
       <div class="overlay-content">
         <div class="overlay-header">
           <img src="../assets/icons/Join-logo.png" alt="Join Logo">
@@ -79,6 +78,7 @@
           <p>Tasks are better with a team!</p>
           <div class="border-blue"></div>
         </div>
+         <button class="close-overlay-desktop" onclick="closeAddContact()">×</button>
         <div class="flex-column flex-align-center">
           <div class="overlay-body">
           <div class="add-contact-icon">
@@ -100,7 +100,7 @@
             </div>
           </div>
            <div class="add-overlay-button">
-              <button class="cancel-button" onclick="closeAddContact()">Cancel<img src="../assets/icons/x.png" alt="Close" class="button-icon"></button>
+              <button class="cancel-button" onclick="closeAddContact()">Cancel</button>
               <button class="create-button" onclick="createContact()">Create contact<img src="../assets/icons/check-white.png" alt="Create" class="button-icon"></button>
             </div>
         </div>
@@ -133,6 +133,9 @@
       </div>
     </div>
   </main>
+  <div id="userFeedback" class="hidden flex-center Feedback-design">
+<p>Contact successfully created !</p>
+  </div>
 </body>
 
 </html>

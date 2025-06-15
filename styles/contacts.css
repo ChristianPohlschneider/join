@@ -9,7 +9,6 @@ body, html {
 .subtask-container {
     display: flex;
     align-items: center;
-    background-color: white;
 }
 
 .contact-icon{
@@ -230,10 +229,33 @@ body, html {
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;  
+  animation: flyingIn 1s ease-out forwards;
+}
+
+@keyframes flyingIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+.Feedback-design{
+    background-color: #2A3647;
+    border-radius: 7px;
+    color: #FFFFFF;
+    position: absolute;
+    right: 30px;
+    bottom: 130px;
+    padding: 20px;
+    animation: flyingIn 1s ease-out forwards;
 }
 
 .close-btn {
@@ -298,11 +320,18 @@ body, html {
     font-weight: 700;
     background-color: #FFFFFF;
     border: 1px solid black;
+    background-image: url('../assets/icons/png.hover/X.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 91px;
+    padding-right: 14px;
 }
 
 .cancel-button:hover {
   border: 1px solid #29ABE2;
   color: #29ABE2;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  background-image: url('../assets/icons/png.hover/x-blue.png');
 }
 .create-button {
     width: 214px;
@@ -316,6 +345,7 @@ body, html {
 
 .create-button:hover {
     background-color: #29ABE2;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .edit-overlay-button {
@@ -421,6 +451,21 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.close-overlay-desktop{
+    position: relative;
+    top: -264px;
+    left: 599px;
+    cursor: pointer;
+    font-size: 24px;
+    background: none;
+    padding-bottom: 3px;
+}
+
+.close-overlay-desktop:hover {
+    background-color: #D1D1D1;
+    border-radius: 50%;
 }
 
 .add-button-mobile {
@@ -569,7 +614,7 @@ body, html {
     }
 
     .contact-form {
-        height: 300px;
+        height: 200px;
     }
 
     .contacts-list:not(.show) {
