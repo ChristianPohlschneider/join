@@ -54,7 +54,7 @@ function renderContacts(contactsData) {
     div.innerHTML = `
       <span class="contact-avatar" style="background:${color}">${getInitials(contact.name)}</span>
       <div>
-        <p class="contacts-name">${contact.name}</p><br>
+        <p class="contacts-name">${contact.name}</p>
         <p class="contacts-mail">${contact.mail}</p>
       </div>
     `;

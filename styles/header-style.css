@@ -106,7 +106,7 @@ header {
 
 @media (max-width: 850px) {
  .slider {
-    top: 0px !important;
+    top: 80px !important;
     
   }
 }
