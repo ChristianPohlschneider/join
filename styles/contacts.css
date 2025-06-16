@@ -11,9 +11,16 @@ html {
 .subtask-container {
     display: flex;
     align-items: center;
+    width: 105%;
+    max-width: 440px;
 }
 
 .contact-icon {
+    position: relative;
+    left: -30px;
+}
+
+.contact-icon-edit {
     position: relative;
     left: -30px;
 }
@@ -122,10 +129,10 @@ html {
 }
 
 .contact-div:hover:not(.CurrentContact) {
-  background-color: rgba(0, 0, 0, 0.041);
+    background-color: rgba(0, 0, 0, 0.041);
 }
 
-.CurrentContact{
+.CurrentContact {
     background-color: #2A3647;
     color: #FFFFFF;
 }
@@ -267,15 +274,19 @@ html {
 }
 
 .close-btn {
-    float: right;
+    position: relative;
+    top: -264px;
+    left: 90%;
+    ;
+    cursor: pointer;
     font-size: 24px;
     background: none;
-    border: none;
-    cursor: pointer;
-    width: 80%;
-    max-width: 80%;
-    display: flex;
-    justify-content: flex-end;
+    padding-bottom: 3px;
+}
+
+.close-btn:hover {
+    background-color: #D1D1D1;
+    border-radius: 50%;
 }
 
 .add-contact-icon {
@@ -367,20 +378,21 @@ html {
 .delete-button {
     width: 113px;
     height: 55px;
-    border-radius: 8px;
-    border: 1px solid #2A3647;
+    border-radius: 10px;
     font-size: 21px;
-    font-weight: 400;
-    color: #2A3647;
+    font-weight: 700;
+    background-color: #FFFFFF;
+    border: 1px solid black;
+}
+
+.delete-button:hover {
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info-block {
     margin-left: 34px;
-}
-
-.save-button img {
-    width: 24px;
-    height: 24px;
 }
 
 .save-button {
@@ -396,14 +408,19 @@ html {
     justify-content: space-evenly;
 }
 
+.save-button:hover {
+    background-color: #29ABE2;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
 .button-icon {
     position: relative;
     top: 4px;
     left: 3px;
 }
 
-.contacts-mail{
- color: #007CEE;
+.contacts-mail {
+    color: #007CEE;
 }
 
 .overlay-header {
@@ -487,7 +504,7 @@ html {
     background-position: center;
 }
 
-.add-button-mobile:hover{
+.add-button-mobile:hover {
     background-color: #29ABE2;
 }
 
@@ -545,10 +562,42 @@ html {
     }
 }
 
+@media (max-width: 980px) {
+    .close-overlay-desktop {
+        left: 557px;
+    }
+
+    .contact-form input {
+        width: 80%;
+    }
+}
+
 @media (max-width: 930px) {
 
     body {
         background-color: white;
+    }
+
+    .edit-overlay-button {
+        width: 364px;
+        height: 57px;
+        display: flex;
+        justify-content: center;
+        padding-left: 46px;
+        gap: 20px;
+        padding-top: 20px;
+    }
+
+    .add-overlay-button {
+        padding-left: 0px;
+    }
+
+    .cancel-button {
+        background-position-x: 99px;
+    }
+
+    .add-contact-icon {
+        margin-left: 0px;
     }
 
     .contact-details {
@@ -623,7 +672,8 @@ html {
     }
 
     .close-btn:hover {
-        color: #cacaca;
+        background-color: transparent;
+        border-radius: 50%;
     }
 
     .overlay-body {
@@ -794,15 +844,37 @@ html {
         list-style: none;
         padding: 0;
     }
+
+    .subtask-container {
+        justify-content: center;
+    }
 }
 
-@media (max-width: 980px) {
-    .close-overlay-desktop {
-        left: 557px;
+@media (max-width: 570px) {
+    .contact-form input {
+        width: 60%;
     }
 
-    .contact-form input {
-        width: 80%;
+    .overlay-header h2 {
+        font-size: 42px;
+        margin-left: 10px;
+    }
+
+    .overlay-header p {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .cancel-button {
+        display: none;
+    }
+
+    .add-overlay-button {
+        justify-content: center;
+    }
+
+    .close-overlay-desktop {
+        left: 43% !important;
     }
 }
 
@@ -811,10 +883,47 @@ html {
         padding: 0px;
     }
 
-        .contact-div {
+    .contact-div {
         justify-content: center;
     }
+
+    .contact-form input {
+        width: 50%;
+        font-size: 12px;
+    }
+
+    .overlay-header p {
+        font-size: 16px;
+    }
+
+    .overlay-header h2 {
+        font-size: 30px;
+    }
+
+    .add-button-mobile {
+        height: 45px;
+        width: 45px;
+        right: 20px;
+    }
+
+    .delete-button {
+        width: 90px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .save-button {
+        width: 90px;
+        height: 45px;
+         font-size: 16px;
+    }
+
+        .edit-overlay-button {
+        gap: 10px;
+        padding-left: 56px;
+    }
 }
+
 
 @media (max-width: 350px) {
     .Feedback-design {
@@ -825,14 +934,24 @@ html {
     }
 
     .contact-avatar {
-    margin-left: 5px;
-}
+        margin-left: 5px;
+    }
 
-.contacts-name{
-    font-size: 14px;
-}
+    .contacts-name {
+        font-size: 14px;
+    }
 
-.contacts-mail{
-    font-size: 14px;
-}
+    .contacts-mail {
+        font-size: 14px;
+    }
+
+    .contact-form input {
+        width: 40%;
+    }
+
+    .create-button {
+        width: 180px;
+        height: 47px;
+        font-size: 16px;
+    }
 }

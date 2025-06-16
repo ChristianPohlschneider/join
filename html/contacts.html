@@ -108,20 +108,30 @@
     </div>
     </section>
     <div id="editContactOverlay" class="overlay hidden">
-      <button class="close-btn" onclick="closeEditContact()">×</button>
       <div class="overlay-content">
         <div class="overlay-header">
           <img src="../assets/icons/Join-logo.png" alt="Join Logo">
           <h2>Edit contact</h2>
         </div>
         <div class="overlay-body">
+            <button class="close-btn" onclick="closeEditContact()">×</button>
           <div class="edit-contact-avatar">
-            <div id="editAvatar" class="contact-avatar">AB</div>
+            <div id="editAvatar" class="add-contact-icon">AB</div>
           </div>
           <div class="contact-form">
-            <input type="text" id="editName">
-            <input type="email" id="editMail">
-            <input type="tel" id="editPhone">
+             <div class="subtask-container">
+              <input type="text" id="editName">
+              <img src="../assets/icons/person.png" alt="Contact Name" class="contact-icon-edit">
+            </div>
+            <div class="subtask-container">
+          <input type="email" id="editMail">
+              <img src="../assets/icons/mail.png" alt="Contact Email" class="contact-icon-edit">
+            </div>
+            <div class="subtask-container">
+              <input type="tel" id="editPhone" class="font-size-">
+              <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon-edit">
+            </div>
+          
             <div class="edit-overlay-button">
               <button class="delete-button" onclick="deleteCurrentContact()">Delete</button>
               <button class="save-button" onclick="saveEditedContact()">Save<img src="../assets/icons/check-white.png"
