@@ -36,7 +36,7 @@
     text-decoration: none;
 }
 
-.menu-style a:hover{
+.menu-style a:hover, .activeLink{
     color: white;
     background-color: #0919318f;
 }

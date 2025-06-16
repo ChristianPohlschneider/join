@@ -3,6 +3,7 @@ async function initSummary() {
     await fetchInit();
     summaryWelcome();
     renderSummary();
+    highlightLink();
 };
 
 const time = new Date();
@@ -10,6 +11,11 @@ const time = new Date();
 function initTask() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.getElementById("headerTemplate").innerHTML = header();
+};
+
+function highlightLink() {
+    const currentLink = document.getElementById('summary')
+    currentLink.classList.add('activeLink');
 };
 
 function summaryWelcome() {

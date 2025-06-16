@@ -7,7 +7,13 @@ let subtaskArr = [];
 async function startForm() {
     addCss('medium');
     fetchInit();
+    highlightLink();
 }
+
+function highlightLink() {
+    const currentLink = document.getElementById('add_task')
+    currentLink.classList.add('activeLink');
+};
 
 function addNewToDO() {
     title = document.getElementById("title").value;

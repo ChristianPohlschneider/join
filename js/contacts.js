@@ -3,6 +3,7 @@ let currentEditKey = null;
 async function initContacts() {
   await fetchContacts();
   initTask();
+  highlightLink();
 }
 
 async function fetchContacts() {
@@ -23,6 +24,11 @@ async function getAllUsers(path) {
   const response = await fetch(BASE_URL + path + ".json");
   return await response.json();
 }
+
+function highlightLink() {
+    const currentLink = document.getElementById('contacts')
+    currentLink.classList.add('activeLink');
+};
 
 function renderContacts(contactsData) {
   const list = document.getElementById("contactList");

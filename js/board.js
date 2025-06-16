@@ -15,7 +15,13 @@ async function initboard() {
     await fetchContacts();
     clearBoardTable();
     renderTasks(contacts);
+    highlightLink();
 }
+
+function highlightLink() {
+    const currentLink = document.getElementById('board')
+    currentLink.classList.add('activeLink');
+};
 
 function renderTasks(contacts) {
     for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
