@@ -266,24 +266,24 @@ body {
     @-webkit-keyframes seconds {
         0% {
             opacity: 1;
-            transform: translate(-50%, -50%);
+            transform: translate(0%, 0%);
         }
 
         100% {
             opacity: 0;
-            transform: translate(-50%, -200%);
+            transform: translate(0%, -200%);
         }
     }
 
     @keyframes seconds {
         0% {
             opacity: 1;
-            transform: translate(-50%, -50%);
+            transform: translate(0%, 0%);
         }
 
         100% {
             opacity: 0;
-            transform: translate(-50%, -200%);
+            transform: translate(0%, -200%);
         }
     }
 }
