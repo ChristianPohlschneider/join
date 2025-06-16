@@ -34,19 +34,19 @@ function menuLogged() {
 
 function mobileMenuLogged() {
     return `    <div class="mobile-menu-container">
-        <a href="./summary.html">
+        <a class="border-radius" id="summary" href="./summary.html">
             <img src="../assets/icons/summary.png" alt="">
             <p>Summary</p>
         </a>
-        <a href="./board.html">
+        <a class="border-radius" id="board" href="./board.html">
             <img src="../assets/icons/board.png" alt="">
             <p>Board</p>
         </a>
-        <a href="./add_task.html">
+        <a class="border-radius" id="add_task" href="./add_task.html">
             <img src="../assets/icons/add-task.png" alt="">
             <p>Add Tasks</p>
         </a>
-        <a href="./contacts.html">
+        <a class="border-radius" id="contacts" href="./contacts.html">
             <img src="../assets/icons/contact.png" alt="">
             <p>Contacts</p>
         </a>
@@ -69,8 +69,8 @@ function menuUnlogged() {
            </div>
         </div>
         <div class="position-bottom">
-            <a href="../html/privacy_policy.html" class="flex-center padding-10px">Privacy Policy</a>
-            <a href="../html/legal_notice.html" class="flex-center padding-10px">Legal notice</a>
+            <a id="privacy" href="../html/privacy_policy.html" class="margin-bottom-15px flex-center padding-10px">Privacy Policy</a>
+            <a id="legal" href="../html/legal_notice.html" class="flex-center padding-10px">Legal notice</a>
         </div>
     </div>
     `;
@@ -83,9 +83,9 @@ function mobileMenuUnLogged() {
             <p>Log In</p>
         </a>
         <div class="loggedOut-mobile-menu">
-            <a href="../html/privacy_policy.html">Privacy Policy
+            <a class="border-radius" id="privacy" href="../html/privacy_policy.html">Privacy Policy
             </a>
-            <a href="../html/legal_notice.html">Legal notice
+            <a class="border-radius" id="legal" href="../html/legal_notice.html">Legal notice
             </a>
         </div>
     </div> 

@@ -102,6 +102,10 @@
     width: 76px;
 }
 
+.border-radius{
+    border-radius: 18px;
+}
+
 .mobile-menu-container a:hover{
     background-color: #0919318f;
     border-radius: 18px;
