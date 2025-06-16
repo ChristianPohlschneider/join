@@ -24,8 +24,8 @@ function menuLogged() {
            </div>
         </div>
         <div class="position-bottom">
-            <a href="../html/privacy_policy.html" class="flex-center padding-10px">Privacy Policy</a>
-            <a href="../html/legal_notice.html" class="flex-center padding-10px">Legal notice</a>
+            <a id="privacy" href="../html/privacy_policy.html" class="margin-bottom-15px flex-center padding-10px">Privacy Policy</a>
+            <a id="legal" href="../html/legal_notice.html" class="flex-center padding-10px">Legal notice</a>
         </div>
     </div>    
     `;

@@ -21,3 +21,8 @@ function initAvatarSlider() {
       }
     });
 }
+
+function highlightLink() {
+    const currentLink = document.getElementById('legal')
+    currentLink.classList.add('activeLink');
+};
