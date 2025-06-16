@@ -7,6 +7,9 @@ let subtask = 0;
 let subtaskTotal = 0;
 let currentId;
 
+/**
+ * This function initializes the board.html and fetches the saved tasks and contacts
+ */
 async function initboard() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.querySelector("header").innerHTML = header();
@@ -18,11 +21,19 @@ async function initboard() {
     highlightLink();
 }
 
+/**
+ * This function highlights the chosen link in theh menu
+ */
 function highlightLink() {
     const currentLink = document.getElementById('board')
     currentLink.classList.add('activeLink');
 };
 
+/**
+ * This function renders the actual fetched tasks
+ * 
+ * @param {array} contacts - This function uses the fetched contacts array to render and assign the tasks
+ */
 function renderTasks(contacts) {
     for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
         if (tasks[taskIndex].status == "toDo") {
@@ -450,53 +461,53 @@ function enableTouchDrag(cardElement, taskIndex) {
         cardElement.style.top = newTop + 'px';
     });
 
-cardElement.addEventListener('touchend', function (e) {
-    cardElement.classList.remove('dragging');
-    dragEnd(taskIndex);
+    cardElement.addEventListener('touchend', function (e) {
+        cardElement.classList.remove('dragging');
+        dragEnd(taskIndex);
 
-    const touch = e.changedTouches[0];
+        const touch = e.changedTouches[0];
 
-    // Temporär unsichtbar für hit-testing
-    cardElement.style.pointerEvents = 'none';
-    const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-    cardElement.style.pointerEvents = '';
+        // Temporär unsichtbar für hit-testing
+        cardElement.style.pointerEvents = 'none';
+        const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+        cardElement.style.pointerEvents = '';
 
-    let dropped = false;
+        let dropped = false;
 
-    if (dropTarget) {
-        let boardList = dropTarget.closest('.boardList');
-        if (boardList) {
-            let status = null;
-            const ondropAttr = boardList.getAttribute('ondrop');
-            if (ondropAttr) {
-                const match = ondropAttr.match(/moveTo\('([^']+)'\)/);
-                status = match ? match[1] : null;
-            }
+        if (dropTarget) {
+            let boardList = dropTarget.closest('.boardList');
+            if (boardList) {
+                let status = null;
+                const ondropAttr = boardList.getAttribute('ondrop');
+                if (ondropAttr) {
+                    const match = ondropAttr.match(/moveTo\('([^']+)'\)/);
+                    status = match ? match[1] : null;
+                }
 
-            if (!status) {
-                const headerText = boardList.querySelector('h3')?.innerText.trim();
-                const map = {
-                    "To do": "toDo",
-                    "In progress": "inProgress",
-                    "Await feedback": "await",
-                    "Done": "done"
-                };
-                status = map[headerText];
-            }
+                if (!status) {
+                    const headerText = boardList.querySelector('h3')?.innerText.trim();
+                    const map = {
+                        "To do": "toDo",
+                        "In progress": "inProgress",
+                        "Await feedback": "await",
+                        "Done": "done"
+                    };
+                    status = map[headerText];
+                }
 
-            if (status) {
-                currentId = taskIndex;
-                moveTo(status);
-                dropped = true;
+                if (status) {
+                    currentId = taskIndex;
+                    moveTo(status);
+                    dropped = true;
+                }
             }
         }
-    }
 
-    // ✅ dragged-Card vom Body entfernen (auch wenn kein Drop erfolgt)
-    if (cardElement && cardElement.parentElement === document.body) {
-        cardElement.remove();
-    }
-});
+        // ✅ dragged-Card vom Body entfernen (auch wenn kein Drop erfolgt)
+        if (cardElement && cardElement.parentElement === document.body) {
+            cardElement.remove();
+        }
+    });
 }
 
 function handleTouchDrop(touch) {
