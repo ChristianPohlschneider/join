@@ -56,43 +56,102 @@ function clearBoardTable() {
 }
 
 function renderTaskToDo(taskIndex, contacts) {
+    // document.getElementById("emptyTask0").classList.remove("emptyTask");
+    // document.getElementById("emptyTask0").classList.add("d_none");
+    // document.getElementById("taskToDo").innerHTML += renderCard(taskIndex);
+    // findBackgroundColor(taskIndex);
+    // getSubtasks(taskIndex);
+    // getAssignedTo(taskIndex, contacts);
+    // getPriority(taskIndex);
+    //Testfiles:
     document.getElementById("emptyTask0").classList.remove("emptyTask");
     document.getElementById("emptyTask0").classList.add("d_none");
-    document.getElementById("taskToDo").innerHTML += renderCard(taskIndex);
+
+    const container = document.getElementById("taskToDo");
+    container.insertAdjacentHTML("beforeend", renderCard(taskIndex)); // Besser als innerHTML +=
+
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
+
+    const cardElement = document.getElementById(`card${taskIndex}`);
+    enableTouchDrag(cardElement, taskIndex); // Wird jetzt auch wirksam!
 }
 
 function renderTaskInProgress(taskIndex, contacts) {
-    document.getElementById("emptyTask1").classList.remove("emptyTask");
-    document.getElementById("emptyTask1").classList.add("d_none");
-    document.getElementById("taskInProgress").innerHTML += renderCard(taskIndex);
+    // document.getElementById("emptyTask1").classList.remove("emptyTask");
+    // document.getElementById("emptyTask1").classList.add("d_none");
+    // document.getElementById("taskInProgress").innerHTML += renderCard(taskIndex);
+    // findBackgroundColor(taskIndex);
+    // getSubtasks(taskIndex);
+    // getAssignedTo(taskIndex, contacts);
+    // getPriority(taskIndex);
+    //Testfiles:
+    const empty = document.getElementById("emptyTask1");
+    empty.classList.remove("emptyTask");
+    empty.classList.add("d_none");
+
+    const container = document.getElementById("taskInProgress");
+    container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
+
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
+
+    const cardElement = document.getElementById(`card${taskIndex}`);
+    enableTouchDrag(cardElement, taskIndex);
 }
 
 function renderTaskAwait(taskIndex, contacts) {
-    document.getElementById("emptyTask2").classList.remove("emptyTask");
-    document.getElementById("emptyTask2").classList.add("d_none");
-    document.getElementById("taskAwaitFeedback").innerHTML += renderCard(taskIndex);
+    // document.getElementById("emptyTask2").classList.remove("emptyTask");
+    // document.getElementById("emptyTask2").classList.add("d_none");
+    // document.getElementById("taskAwaitFeedback").innerHTML += renderCard(taskIndex);
+    // findBackgroundColor(taskIndex);
+    // getSubtasks(taskIndex);
+    // getAssignedTo(taskIndex, contacts);
+    // getPriority(taskIndex);
+    //Testfiles:
+    const empty = document.getElementById("emptyTask2");
+    empty.classList.remove("emptyTask");
+    empty.classList.add("d_none");
+
+    const container = document.getElementById("taskAwaitFeedback");
+    container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
+
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
+
+    const cardElement = document.getElementById(`card${taskIndex}`);
+    enableTouchDrag(cardElement, taskIndex);
 }
 
 function renderDone(taskIndex, contacts) {
-    document.getElementById("emptyTask3").classList.remove("emptyTask");
-    document.getElementById("emptyTask3").classList.add("d_none");
-    document.getElementById("taskDone").innerHTML += renderCard(taskIndex);
+    // document.getElementById("emptyTask3").classList.remove("emptyTask");
+    // document.getElementById("emptyTask3").classList.add("d_none");
+    // document.getElementById("taskDone").innerHTML += renderCard(taskIndex);
+    // findBackgroundColor(taskIndex);
+    // getSubtasks(taskIndex);
+    // getAssignedTo(taskIndex, contacts);
+    // getPriority(taskIndex);
+    //Testfiles:
+    const empty = document.getElementById("emptyTask3");
+    empty.classList.remove("emptyTask");
+    empty.classList.add("d_none");
+
+    const container = document.getElementById("taskDone");
+    container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
+
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
+
+    const cardElement = document.getElementById(`card${taskIndex}`);
+    enableTouchDrag(cardElement, taskIndex);
 }
 
 function findBackgroundColor(taskIndex) {
@@ -254,16 +313,27 @@ function dragEnd(taskIndex) {
         card.style.transform = 'rotate(0deg)';
     }
     scrollElementsLeft();
-     hideVisibleFeedbackOnDrag();
+    hideVisibleFeedbackOnDrag();
 }
 
 async function moveTo(status) {
+    // tasks[currentId].status = status;
+    // await fetchContacts();
+    // clearBoardTable();
+    // renderTasks(contacts);
+    // currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
+    // putData(currentTaskPath, status); 
+
+    //Test:
     tasks[currentId].status = status;
-    await fetchContacts();
+
+    currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
+
+    await putData(currentTaskPath, status);  // Warten bis Status gespeichert ist
+    await fetchContacts();                    // Dann frische Daten laden
+
     clearBoardTable();
     renderTasks(contacts);
-    currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
-    putData(currentTaskPath, status); 
 }
 
 function dragoverHandler(ev) {
@@ -338,11 +408,120 @@ function hideVisibleFeedbackOnDrag() {
     document.getElementById("dropzone#TaskDone").classList.add("d_none");
 }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const taskList = document.getElementById("taskList");
-    if (taskList) {
-      new Sortable(taskList, {
-        animation: 150
-      });
+//Testfiles:
+let touchStartX = 0;
+let touchStartY = 0;
+
+function enableTouchDrag(cardElement, taskIndex) {
+    let offsetX = 0, offsetY = 0;
+
+    cardElement.addEventListener('touchstart', function (e) {
+        const touch = e.touches[0];
+        const rect = cardElement.getBoundingClientRect();
+
+        // Berücksichtige die Scrollposition
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+
+        // Setze die Card-Position absolut im Dokument
+        cardElement.style.position = 'absolute';
+        cardElement.style.zIndex = 1000;
+        cardElement.style.left = rect.left + scrollLeft + 'px';
+        cardElement.style.top = rect.top + scrollTop + 'px';
+        cardElement.classList.add('dragging');
+
+        document.body.appendChild(cardElement);
+    });
+
+    cardElement.addEventListener('touchmove', function (e) {
+        e.preventDefault(); // Scrollen unterdrücken
+
+        const touch = e.touches[0];
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        const newLeft = touch.clientX + scrollLeft - offsetX;
+        const newTop = touch.clientY + scrollTop - offsetY;
+
+        cardElement.style.left = newLeft + 'px';
+        cardElement.style.top = newTop + 'px';
+    });
+
+cardElement.addEventListener('touchend', function (e) {
+    cardElement.classList.remove('dragging');
+    dragEnd(taskIndex);
+
+    const touch = e.changedTouches[0];
+
+    // Temporär unsichtbar für hit-testing
+    cardElement.style.pointerEvents = 'none';
+    const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+    cardElement.style.pointerEvents = '';
+
+    let dropped = false;
+
+    if (dropTarget) {
+        let boardList = dropTarget.closest('.boardList');
+        if (boardList) {
+            let status = null;
+            const ondropAttr = boardList.getAttribute('ondrop');
+            if (ondropAttr) {
+                const match = ondropAttr.match(/moveTo\('([^']+)'\)/);
+                status = match ? match[1] : null;
+            }
+
+            if (!status) {
+                const headerText = boardList.querySelector('h3')?.innerText.trim();
+                const map = {
+                    "To do": "toDo",
+                    "In progress": "inProgress",
+                    "Await feedback": "await",
+                    "Done": "done"
+                };
+                status = map[headerText];
+            }
+
+            if (status) {
+                currentId = taskIndex;
+                moveTo(status);
+                dropped = true;
+            }
+        }
     }
-  });
+
+    // ✅ dragged-Card vom Body entfernen (auch wenn kein Drop erfolgt)
+    if (cardElement && cardElement.parentElement === document.body) {
+        cardElement.remove();
+    }
+});
+}
+
+function handleTouchDrop(touch) {
+    const dropTargets = document.querySelectorAll('.boardList');
+    for (const dropTarget of dropTargets) {
+        const rect = dropTarget.getBoundingClientRect();
+        if (
+            touch.clientX >= rect.left &&
+            touch.clientX <= rect.right &&
+            touch.clientY >= rect.top &&
+            touch.clientY <= rect.bottom
+        ) {
+            const targetStatus = getStatusFromDropTarget(dropTarget);
+            if (targetStatus) {
+                moveTo(targetStatus);
+            }
+            break;
+        }
+    }
+}
+
+function getStatusFromDropTarget(dropTarget) {
+    if (dropTarget.innerHTML.includes("To do")) return "toDo";
+    if (dropTarget.innerHTML.includes("In progress")) return "inProgress";
+    if (dropTarget.innerHTML.includes("Await feedback")) return "await";
+    if (dropTarget.innerHTML.includes("Done")) return "done";
+    return null;
+}

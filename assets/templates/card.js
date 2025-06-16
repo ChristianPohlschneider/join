@@ -1,18 +1,47 @@
 function renderCard(taskIndex) {
+    // return `
+    //     <div draggable="true" ontouchstart="startDragging(${taskIndex})" ondragstart="startDragging(${taskIndex})" ondragend="dragEnd(${taskIndex})" id="card${taskIndex}" class="card taskCard" onclick="openTaskOverlay(${taskIndex}, event)">
+    //         <div id="taskCategory${"#" + taskIndex}" class="taskCategory">${tasks[taskIndex].category}</div>
+    //         <div id="taskName" class="taskName">${tasks[taskIndex].name}</div>
+    //         <div id="taskDescription" class="taskDescription">${tasks[taskIndex].description}</div>
+    //         <div id="subtasks${"#" + taskIndex}" class="subtasks">
+    //             <div id="outerScale${"#" + taskIndex}" class="outerScale">
+    //                 <div class="innerScale" id="innerScale${"#" + taskIndex}"></div>
+    //             </div>
+    //             <p id="subtaskDone${"#" + taskIndex}" class="subtaskDone"></p>
+    //         </div>
+    //         <div id="taskAssignment" class="taskAssignment">
+    //             <div id="assignedTo${"#" + taskIndex}" class="assignedTo"></div>
+    //             <div id="priority${"#" + taskIndex}" class="priority"></div>
+    //         </div>
+    //     </div>
+    // `;
+
+    //Test
+    const task = tasks[taskIndex];
     return `
-        <div draggable="true" ontouchstart="startDragging(${taskIndex})" ondragstart="startDragging(${taskIndex})" ondragend="dragEnd(${taskIndex})" id="card${taskIndex}" class="card taskCard" onclick="openTaskOverlay(${taskIndex}, event)">
-            <div id="taskCategory${"#" + taskIndex}" class="taskCategory">${tasks[taskIndex].category}</div>
-            <div id="taskName" class="taskName">${tasks[taskIndex].name}</div>
-            <div id="taskDescription" class="taskDescription">${tasks[taskIndex].description}</div>
-            <div id="subtasks${"#" + taskIndex}" class="subtasks">
-                <div id="outerScale${"#" + taskIndex}" class="outerScale">
-                    <div class="innerScale" id="innerScale${"#" + taskIndex}"></div>
+        <div draggable="true"
+             ontouchstart="startDragging(${taskIndex})"
+             ondragstart="startDragging(${taskIndex})"
+             ondragend="dragEnd(${taskIndex})"
+             id="card${taskIndex}"
+             class="card taskCard"
+             onclick="openTaskOverlay(${taskIndex}, event)">
+            
+            <div id="taskCategory#${taskIndex}" class="taskCategory">${task.category}</div>
+            <div class="taskName">${task.name}</div>
+            <div class="taskDescription">${task.description}</div>
+            
+            <div id="subtasks#${taskIndex}" class="subtasks">
+                <div id="outerScale#${taskIndex}" class="outerScale">
+                    <div class="innerScale" id="innerScale#${taskIndex}"></div>
                 </div>
-                <p id="subtaskDone${"#" + taskIndex}" class="subtaskDone"></p>
+                <p id="subtaskDone#${taskIndex}" class="subtaskDone"></p>
             </div>
-            <div id="taskAssignment" class="taskAssignment">
-                <div id="assignedTo${"#" + taskIndex}" class="assignedTo"></div>
-                <div id="priority${"#" + taskIndex}" class="priority"></div>
+            
+            <div class="taskAssignment">
+                <div id="assignedTo#${taskIndex}" class="assignedTo"></div>
+                <div id="priority#${taskIndex}" class="priority"></div>
             </div>
         </div>
     `;

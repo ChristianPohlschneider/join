@@ -315,6 +315,7 @@ main {
         gap: 0px;
         flex-direction: row;
         padding-bottom: 0px;
+        flex-wrap: nowrap;
     }
 
     .taskFolder {
