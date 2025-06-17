@@ -1,7 +1,7 @@
 /**
  * Render the content.
  * 
- * load the menu, the header, the greeting and the tasks
+ * load the menu, the header, the greeting get the tasks and highlight the current link.
  * 
  */
 async function initSummary() {
@@ -26,7 +26,7 @@ function initTask() {
  * highlight the summary link at the menu 
  */
 function highlightLink() {
-    const currentLink = document.getElementById('summary')
+    const currentLink = document.getElementById('summary');
     currentLink.classList.add('activeLink');
 };
 
