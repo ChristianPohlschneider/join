@@ -18,6 +18,8 @@ function openTaskOverlay(taskIndex, event) {
     document.getElementById("boardTaskOverlay").classList.remove("hidden");
     document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex, subtaskCounter);
     loadTaskOverlayData(taskIndex);
+    document.getElementById("cardOverlay").style.transform = "translateX(0)";
+    document.getElementById("cardOverlay").classList.add("openCardOverlay");
     event.stopPropagation();
 }
 
@@ -146,7 +148,6 @@ async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
             throw new Error("Update fehlgeschlagen");
         }
         tasks[taskIndex].subtasks[subtaskKey].done = isChecked;
-        // alert(`Subtask ${subtaskKey} gespeichert: ${isChecked}`);
         renderTasksOnly();
         closeOverlay();
     } catch (error) {
