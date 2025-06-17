@@ -39,6 +39,10 @@ function getInitialsOverlay(name) {
 }
 
 function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index, contacts) {
+    if (!contacts[assignedToNamesIndex] || !contacts[assignedToNamesIndex].name) {
+        alert("Contact is not registered yet!");
+        return;
+    }
     assignedToName = contacts[assignedToNamesIndex].name;
     establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index);
 }
@@ -161,17 +165,17 @@ function openAddTaskBoard() {
     if (window.innerWidth <= 850) {
         window.location.href = "./add_task.html";
     } else {
-    assignedMembers = [];
-    subtasksArray = [];
-    const addTaskBoardRef = document.getElementById('addTaskBoard');
-    addTaskBoardRef.innerHTML = addTaskBoardTemplate();
-    document.getElementById('addTaskBoardContainer').classList.remove('hidden');
-    addTaskBoardRef.classList.remove('closed_addTask');
-    addTaskBoardRef.classList.add('open_addTask');
-    dueDate.min = new Date().toISOString().split("T")[0];
-    addCss("medium");
-    getContacts();
-    isAddTaskOverlayOpen = true;
+        assignedMembers = [];
+        subtasksArray = [];
+        const addTaskBoardRef = document.getElementById('addTaskBoard');
+        addTaskBoardRef.innerHTML = addTaskBoardTemplate();
+        document.getElementById('addTaskBoardContainer').classList.remove('hidden');
+        addTaskBoardRef.classList.remove('closed_addTask');
+        addTaskBoardRef.classList.add('open_addTask');
+        dueDate.min = new Date().toISOString().split("T")[0];
+        addCss("medium");
+        getContacts();
+        isAddTaskOverlayOpen = true;
     };
 }
 
