@@ -22,7 +22,7 @@ async function initboard() {
 }
 
 /**
- * This function highlights the chosen link in theh menu
+ * This function highlights the chosen link in the menu
  */
 function highlightLink() {
     const currentLink = document.getElementById('board')
@@ -51,6 +51,9 @@ function renderTasks(contacts) {
     }
 }
 
+/**
+ * This function clears the board table to render new content.
+ */
 function clearBoardTable() {
     document.getElementById("taskToDo").innerHTML = "";
     document.getElementById("taskInProgress").innerHTML = "";
@@ -66,105 +69,97 @@ function clearBoardTable() {
     document.getElementById("emptyTask3").classList.add("emptyTask");
 }
 
+/**
+ * This function renders the "To do" tasks as a card template from card.js
+ * and adds the task informations
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array
+ * @param {array} contacts - This is the array in which all contacts are pushed
+ */
 function renderTaskToDo(taskIndex, contacts) {
-    // document.getElementById("emptyTask0").classList.remove("emptyTask");
-    // document.getElementById("emptyTask0").classList.add("d_none");
-    // document.getElementById("taskToDo").innerHTML += renderCard(taskIndex);
-    // findBackgroundColor(taskIndex);
-    // getSubtasks(taskIndex);
-    // getAssignedTo(taskIndex, contacts);
-    // getPriority(taskIndex);
-    //Testfiles:
     document.getElementById("emptyTask0").classList.remove("emptyTask");
     document.getElementById("emptyTask0").classList.add("d_none");
-
     const container = document.getElementById("taskToDo");
-    container.insertAdjacentHTML("beforeend", renderCard(taskIndex)); // Besser als innerHTML +=
-
+    container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
-
     const cardElement = document.getElementById(`card${taskIndex}`);
-    enableTouchDrag(cardElement, taskIndex); // Wird jetzt auch wirksam!
+    enableTouchDrag(cardElement, taskIndex);
 }
 
+/**
+ * This function renders the "in progress" tasks as a card template from card.js
+ * and adds the task informations
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array
+ * @param {array} contacts - This is the array in which all contacts are pushed
+ */
 function renderTaskInProgress(taskIndex, contacts) {
-    // document.getElementById("emptyTask1").classList.remove("emptyTask");
-    // document.getElementById("emptyTask1").classList.add("d_none");
-    // document.getElementById("taskInProgress").innerHTML += renderCard(taskIndex);
-    // findBackgroundColor(taskIndex);
-    // getSubtasks(taskIndex);
-    // getAssignedTo(taskIndex, contacts);
-    // getPriority(taskIndex);
-    //Testfiles:
     const empty = document.getElementById("emptyTask1");
     empty.classList.remove("emptyTask");
     empty.classList.add("d_none");
-
     const container = document.getElementById("taskInProgress");
     container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
-
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
-
     const cardElement = document.getElementById(`card${taskIndex}`);
     enableTouchDrag(cardElement, taskIndex);
 }
 
+/**
+ * This function renders the "Await feedback" tasks as a card template from card.js
+ * and adds the task informations
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array
+ * @param {array} contacts - This is the array in which all contacts are pushed
+ */
 function renderTaskAwait(taskIndex, contacts) {
-    // document.getElementById("emptyTask2").classList.remove("emptyTask");
-    // document.getElementById("emptyTask2").classList.add("d_none");
-    // document.getElementById("taskAwaitFeedback").innerHTML += renderCard(taskIndex);
-    // findBackgroundColor(taskIndex);
-    // getSubtasks(taskIndex);
-    // getAssignedTo(taskIndex, contacts);
-    // getPriority(taskIndex);
-    //Testfiles:
     const empty = document.getElementById("emptyTask2");
     empty.classList.remove("emptyTask");
     empty.classList.add("d_none");
-
     const container = document.getElementById("taskAwaitFeedback");
     container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
-
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
-
     const cardElement = document.getElementById(`card${taskIndex}`);
     enableTouchDrag(cardElement, taskIndex);
 }
 
+/**
+ * This function renders the "Done" tasks as a card template from card.js
+ * and adds the task informations
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array
+ * @param {array} contacts - This is the array in which all contacts are pushed 
+ */
 function renderDone(taskIndex, contacts) {
-    // document.getElementById("emptyTask3").classList.remove("emptyTask");
-    // document.getElementById("emptyTask3").classList.add("d_none");
-    // document.getElementById("taskDone").innerHTML += renderCard(taskIndex);
-    // findBackgroundColor(taskIndex);
-    // getSubtasks(taskIndex);
-    // getAssignedTo(taskIndex, contacts);
-    // getPriority(taskIndex);
-    //Testfiles:
     const empty = document.getElementById("emptyTask3");
     empty.classList.remove("emptyTask");
     empty.classList.add("d_none");
-
     const container = document.getElementById("taskDone");
     container.insertAdjacentHTML("beforeend", renderCard(taskIndex));
-
     findBackgroundColor(taskIndex);
     getSubtasks(taskIndex);
     getAssignedTo(taskIndex, contacts);
     getPriority(taskIndex);
-
     const cardElement = document.getElementById(`card${taskIndex}`);
     enableTouchDrag(cardElement, taskIndex);
 }
 
+
+/**
+ * This function finds the background color for the initials of the contacts, which are
+ * assigned to the current task. If no contact is found, it pushes a new color-variant
+ * in the categoryVariants array
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
 function findBackgroundColor(taskIndex) {
     if (categoryVariants.find(({ category }) => category == tasks[taskIndex].category)) {
         let searchWord = tasks[taskIndex].category;
@@ -179,6 +174,11 @@ function findBackgroundColor(taskIndex) {
     }
 }
 
+/**
+ * This function finds all subtasks from the current task
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
 function getSubtasks(taskIndex) {
     subtask = 0;
     if (tasks[taskIndex].subtasks === undefined) {
@@ -193,7 +193,11 @@ function getSubtasks(taskIndex) {
     }
     renderSubtasks(taskIndex);
 }
-
+/**
+ * This function renders the subtasks in the current task card
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
 function renderSubtasks(taskIndex) {
     document.getElementById("subtaskDone#" + taskIndex).innerHTML = subtask + "/" + subtaskTotal + " Subtask";
     document.getElementById("innerScale#" + taskIndex).style.width = Math.abs(Number((subtask / subtaskTotal) * 128)) + "px";
@@ -202,6 +206,11 @@ function renderSubtasks(taskIndex) {
     subtaskArray = [];
 }
 
+/**
+ * This function saves all found subtasks from tasks[taskindex] in the subtaskArray
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array
+ */
 function getSubtaskIndex(taskIndex) {
     const task = tasks[taskIndex];
     if (task.subtasks) {
@@ -218,6 +227,12 @@ function getSubtaskIndex(taskIndex) {
     }
 }
 
+
+/**
+ * This function finds the task priority and renders it into the task card
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
 function getPriority(taskIndex) {
     let cardPriority = tasks[taskIndex].priority;
     if (cardPriority == "urgent") {
@@ -229,10 +244,24 @@ function getPriority(taskIndex) {
     }
 }
 
+
+/**
+ * This function calls the getAssignedTiInitials() function
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {array} contacts - This is the array in which all contacts are pushed 
+ */
 function getAssignedTo(taskIndex, contacts) {
     getAssignedToInitials(taskIndex, contacts);
 }
 
+/**
+ * This function prepares the finding of the initial letters from each assigned 
+ * contact and pushes them into the assignedTo array
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {array} contacts - This is the array in which all contacts are pushed 
+ */
 function getAssignedToInitials(taskIndex, contacts) {
     for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
         let nameValue = replaceUmlauts(value);
@@ -242,6 +271,13 @@ function getAssignedToInitials(taskIndex, contacts) {
     assignedTo = [];
 }
 
+/**
+ * This function finds the initial letters from each assigned contact and renders them
+ * in the task card
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {array} contacts - This is the array in which all contacts are pushed 
+ */
 function establishInitials(taskIndex, contacts) {
     for (let index = 0; index < assignedTo.length; index++) {
         let name = assignedTo[index];
@@ -257,6 +293,15 @@ function establishInitials(taskIndex, contacts) {
     }
 }
 
+/**
+ * This function is used to find the peviously saved color variant for the assigned contact
+ * from the contacts array. Otherwise a random color will be assigned to the assigned initials 
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {string} initials - These are the found initials of the assigned people
+ * @param {number} index - This is the index number from the assignedTo array 
+ * @param {array} contacts - This is the array in which all contacts are pushed 
+ */
 function getAssignedToVariants(taskIndex, initials, index, contacts) {
     let nameToFind = replaceUmlauts(Object.entries(tasks[taskIndex].assigned_to)[index][1]);
     if (contacts.find(({ name }) => replaceUmlauts(name) == nameToFind)) {
@@ -269,6 +314,13 @@ function getAssignedToVariants(taskIndex, initials, index, contacts) {
     }
 }
 
+/**
+ * This function replaces umlauts from the assigned contact names for a better finding of the
+ * initial color variants
+ * 
+ * @param {string} string - This string is the name of the current assigned contact
+ * @returns - This functions returns the name of the assigned contact with replaced umlauts
+ */
 function replaceUmlauts(string) {
     value = string;
     value = value.replace(/ä/g, 'ae');
@@ -280,6 +332,13 @@ function replaceUmlauts(string) {
     return value;
 }
 
+/**
+ * This function establishes the found color variant from a known assigned contact
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {string} initials - These are the found initials of the assigned people 
+ * @param {number} index - This is the index number from the assignedTo array 
+ */
 function establishKnownVariant(taskIndex, initials, index) {
     let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][1];
     let colorIndex = contacts.findIndex(v => replaceUmlauts(v.name) === replaceUmlauts(searchWord));
@@ -289,16 +348,30 @@ function establishKnownVariant(taskIndex, initials, index) {
     }
 }
 
+/**
+ * This function establishes a random color variant for an unknown contact
+ * 
+ * @returns - The function returns a random color code from the colors array
+ */
 function getRandomColor() {
     const colors = ["#6E52FF", "#FFA35E", "#FFE62B", "#00BEE8", "#FF5EB3", "#FFBB2B", "#FF745E", "#C3FF2B", "#FF7A00", "#1FD7C1", "#0038FF", "#FFC701", "#9327FF", "#FC71FF", "#FF4646"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+/**
+ * This function listens to the search input field in the task board to find the wanted
+ * task
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.taskSearchInput');
     searchInput.addEventListener('input', filterTasks);
 });
 
+/**
+ * This function dynamically searches for tasks which fit to the input objects
+ * 
+ * @param {object} event - This is the search input object
+ */
 function filterTasks(event) {
     const searchTerm = event.target.value.toLowerCase();
     const taskCards = document.querySelectorAll('.taskCard');
@@ -328,21 +401,10 @@ function dragEnd(taskIndex) {
 }
 
 async function moveTo(status) {
-    // tasks[currentId].status = status;
-    // await fetchContacts();
-    // clearBoardTable();
-    // renderTasks(contacts);
-    // currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
-    // putData(currentTaskPath, status); 
-
-    //Test:
     tasks[currentId].status = status;
-
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
-
-    await putData(currentTaskPath, status);  // Warten bis Status gespeichert ist
-    await fetchContacts();                    // Dann frische Daten laden
-
+    await putData(currentTaskPath, status);
+    await fetchContacts();
     clearBoardTable();
     renderTasks(contacts);
 }
@@ -419,95 +481,76 @@ function hideVisibleFeedbackOnDrag() {
     document.getElementById("dropzone#TaskDone").classList.add("d_none");
 }
 
-//Testfiles:
-let touchStartX = 0;
-let touchStartY = 0;
-
 function enableTouchDrag(cardElement, taskIndex) {
     let offsetX = 0, offsetY = 0;
-
-    cardElement.addEventListener('touchstart', function (e) {
-        const touch = e.touches[0];
-        const rect = cardElement.getBoundingClientRect();
-
-        // Berücksichtige die Scrollposition
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        offsetX = touch.clientX - rect.left;
-        offsetY = touch.clientY - rect.top;
-
-        // Setze die Card-Position absolut im Dokument
-        cardElement.style.position = 'absolute';
-        cardElement.style.zIndex = 1000;
-        cardElement.style.left = rect.left + scrollLeft + 'px';
-        cardElement.style.top = rect.top + scrollTop + 'px';
-        cardElement.classList.add('dragging');
-
-        document.body.appendChild(cardElement);
+    cardElement.addEventListener('touchstart', (e) => {
+        ({ offsetX, offsetY } = handleTouchStart(cardElement, e));
     });
-
-    cardElement.addEventListener('touchmove', function (e) {
-        e.preventDefault(); // Scrollen unterdrücken
-
-        const touch = e.touches[0];
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        const newLeft = touch.clientX + scrollLeft - offsetX;
-        const newTop = touch.clientY + scrollTop - offsetY;
-
-        cardElement.style.left = newLeft + 'px';
-        cardElement.style.top = newTop + 'px';
+    cardElement.addEventListener('touchmove', (e) => {
+        handleTouchMove(cardElement, e, offsetX, offsetY);
     });
-
-    cardElement.addEventListener('touchend', function (e) {
-        cardElement.classList.remove('dragging');
-        dragEnd(taskIndex);
-
-        const touch = e.changedTouches[0];
-
-        // Temporär unsichtbar für hit-testing
-        cardElement.style.pointerEvents = 'none';
-        const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-        cardElement.style.pointerEvents = '';
-
-        let dropped = false;
-
-        if (dropTarget) {
-            let boardList = dropTarget.closest('.boardList');
-            if (boardList) {
-                let status = null;
-                const ondropAttr = boardList.getAttribute('ondrop');
-                if (ondropAttr) {
-                    const match = ondropAttr.match(/moveTo\('([^']+)'\)/);
-                    status = match ? match[1] : null;
-                }
-
-                if (!status) {
-                    const headerText = boardList.querySelector('h3')?.innerText.trim();
-                    const map = {
-                        "To do": "toDo",
-                        "In progress": "inProgress",
-                        "Await feedback": "await",
-                        "Done": "done"
-                    };
-                    status = map[headerText];
-                }
-
-                if (status) {
-                    currentId = taskIndex;
-                    moveTo(status);
-                    dropped = true;
-                }
-            }
-        }
-
-        // ✅ dragged-Card vom Body entfernen (auch wenn kein Drop erfolgt)
-        if (cardElement && cardElement.parentElement === document.body) {
-            cardElement.remove();
-        }
+    cardElement.addEventListener('touchend', (e) => {
+        handleTouchEnd(cardElement, taskIndex, e);
     });
+}
+
+function handleTouchStart(cardElement, e) {
+    const touch = e.touches[0];
+    const rect = cardElement.getBoundingClientRect();
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    cardElement.style.position = 'absolute';
+    cardElement.style.zIndex = 1000;
+    cardElement.style.left = rect.left + scrollLeft + 'px';
+    cardElement.style.top = rect.top + scrollTop + 'px';
+    cardElement.classList.add('dragging');
+    document.body.appendChild(cardElement);
+    return { offsetX, offsetY };
+}
+
+function handleTouchMove(cardElement, e, offsetX, offsetY) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const newLeft = touch.clientX + scrollLeft - offsetX;
+    const newTop = touch.clientY + scrollTop - offsetY;
+    cardElement.style.left = newLeft + 'px';
+    cardElement.style.top = newTop + 'px';
+}
+
+function handleTouchEnd(cardElement, taskIndex, e) {
+    cardElement.classList.remove('dragging');
+    dragEnd(taskIndex);
+    const touch = e.changedTouches[0];
+    cardElement.style.pointerEvents = 'none';
+    const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+    cardElement.style.pointerEvents = '';
+    const status = extractStatusFromDropTarget(dropTarget);
+    if (status) {
+        currentId = taskIndex;
+        moveTo(status);}
+    if (cardElement.parentElement === document.body) {
+        cardElement.remove();
+    }}
+
+function extractStatusFromDropTarget(dropTarget) {
+    if (!dropTarget) return null;
+    const boardList = dropTarget.closest('.boardList');
+    if (!boardList) return null;
+    const ondropAttr = boardList.getAttribute('ondrop');
+    if (ondropAttr) {
+        const match = ondropAttr.match(/moveTo\('([^']+)'\)/);
+        if (match) return match[1];}
+    const headerText = boardList.querySelector('h3')?.innerText.trim();
+    const map = {
+        "To do": "toDo",
+        "In progress": "inProgress",
+        "Await feedback": "await",
+        "Done": "done"};
+    return map[headerText] || null;
 }
 
 function handleTouchDrop(touch) {
@@ -525,9 +568,7 @@ function handleTouchDrop(touch) {
                 moveTo(targetStatus);
             }
             break;
-        }
-    }
-}
+        }}}
 
 function getStatusFromDropTarget(dropTarget) {
     if (dropTarget.innerHTML.includes("To do")) return "toDo";
