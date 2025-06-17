@@ -1,3 +1,9 @@
+/**
+ * Render the content.
+ * 
+ * load the menu, the header, the greeting and the tasks
+ * 
+ */
 async function initSummary() {
     initTask();
     await fetchInit();
@@ -8,22 +14,38 @@ async function initSummary() {
 
 const time = new Date();
 
+/**
+ * Function to render the menu and header into the HTML
+ */
 function initTask() {
     document.getElementById("menuTemplate").innerHTML = checkLogged();
     document.getElementById("headerTemplate").innerHTML = header();
 };
 
+/**
+ * highlight the summary link at the menu 
+ */
 function highlightLink() {
     const currentLink = document.getElementById('summary')
     currentLink.classList.add('activeLink');
 };
 
+/**
+ * Function to display the greeting
+ */
 function summaryWelcome() {
     contentRef = document.getElementById("content");
     greetingTime = switchTime();
     greeting.innerHTML = greetingTime + getUserInfo();
 };
 
+/**
+ * Function to get the correct greeting
+ * 
+ * Depends on daytime witch greeting displays on the HTML
+ * 
+ * @returns {string} - good morning, good afternoon or good evening
+ */
 function switchTime() {
     t = time.getHours();
     switch (true) {
@@ -36,6 +58,14 @@ function switchTime() {
     };
 };
 
+/**
+ * Function to get the current user's name
+ * 
+ * Get the current user name from the logged in out of the localStorage.
+ * And displays it or if the user name ist "guest" display nothing
+ * 
+ * @returns {string} - current user name or " "
+ */
 function getUserInfo() {
     let user = JSON.parse(localStorage.getItem("user"));
     switch (true) {
@@ -46,12 +76,23 @@ function getUserInfo() {
     };
 };
 
+/**
+ * Function to render the rows of the summary
+ */
 function renderSummary() {
     renderFirstRow();
     renderSecondRow();
     renderThirdRow();
 };
 
+/**
+ * Renders the number of urgent tasks and displays the earliest due date
+ * 
+ * This function filters all tasks with the priority "urgent", counts them,
+ * and updates the DOM with:
+ * - The total number of urgent tasks
+ * - The earliest date
+ */
 function renderSecondRow() {
     let allUrgents = document.getElementById('urgent');
     let currentUrgent = tasks.filter((i) => i.priority === "urgent");
@@ -69,6 +110,13 @@ function renderSecondRow() {
     });
 };
 
+/**
+ * Renders the number of "to-does" and "done" tasks and displays them
+ * 
+ * This function filters all tasks with the status "to-do" and "done" counts them,
+ * and updates the DOM with:
+ * - The total number of to-does and done's tasks
+ */
 function renderFirstRow() {
     let allToDoes = document.getElementById('to-do');
     let currentToDoes = tasks.filter((i) => i.status === "toDo");
@@ -78,6 +126,13 @@ function renderFirstRow() {
     allDones.innerHTML = `${currentDones.length}`;
 };
 
+/**
+ * Renders the number of "all Tasks", "tasks in Progress" and "awaiting feedback" tasks and displays them
+ * 
+ * This function filters all tasks with the status "to-do" and "done" counts them,
+ * and updates the DOM with:
+ * - The total number of to-does and done's tasks
+ */
 function renderThirdRow() {
     let allTasks = document.getElementById('tasks-in-board');
     allTasks.innerHTML = `${tasks.length}`;
@@ -89,7 +144,10 @@ function renderThirdRow() {
     allAwait.innerHTML = `${currentAwait.length}`;
 };
 
-
+/**
+ * Add the body and the HTML the class "stopScrolling" for 2 seconds.
+ * Removes it after
+ */
 window.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.add('stopScrolling');
     document.body.classList.add('stopScrolling');
