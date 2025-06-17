@@ -1,8 +1,12 @@
 /**
- * Render the content.
- * 
- * load the menu, the header, the greeting get the tasks and highlight the current link.
- * 
+ * Initializes the summary view of the application.
+ *
+ * This functions:
+ * - Initializes task data with {@link initTask}.
+ * - Fetches data from the API using {@link fetchInit}.
+ * - Displays a welcome message via {@link summaryWelcome}.
+ * - Renders the summary content using {@link renderSummary}.
+ * - Highlights the corresponding navigation link with {@link highlightLink}.
  */
 async function initSummary() {
     initTask();

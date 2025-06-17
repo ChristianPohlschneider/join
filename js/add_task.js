@@ -4,17 +4,37 @@ let assignedMembers = [];
 dueDate.min = new Date().toISOString().split("T")[0];
 let subtaskArr = [];
 
+/**
+ * Initializes the form view on page load.
+ * 
+ * This functions:
+ * - Applies the CSS theme using {@link addCss}.
+ * - Initializes fetching logic with {@link fetchInit}.
+ * - Highlights the navigation link using {@link highlightLink}. 
+ * 
+ */
 async function startForm() {
     addCss('medium');
     fetchInit();
     highlightLink();
-}
+};
 
+/**
+ * highlight the add task link at the menu 
+ */
 function highlightLink() {
     const currentLink = document.getElementById('add_task')
     currentLink.classList.add('activeLink');
 };
 
+/**
+ * Collects input values and create a new task
+ * 
+ * collects the input and calls {@link pushTask} to create a new task
+ * cancels the inputs via {@link cancelTask}
+ * displays a success message with {@link succeedRegistration}.
+ * forwards the user to the board after a short delay using {@link fowarding}
+ */
 function addNewToDO() {
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
@@ -26,6 +46,15 @@ function addNewToDO() {
     const Timeout = setTimeout(fowarding, 2000);
 };
 
+/**
+ * Cancel the Task input
+ * 
+ * clears the values that the user typed
+ * removes the subtask list
+ * set the submit button disabled 
+ * ste the priority to "medium" and displays it via {@link addCss}
+ * empties the assignedMember array
+ */
 function cancelTask() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
@@ -39,6 +68,15 @@ function cancelTask() {
     assignedMembers = [];
 };
 
+/**
+ * Creates a new task object and sends it to the backend.
+ * 
+ * @param {string} title - task title
+ * @param {string} description - task description
+ * @param {string} dueDate - due date 
+ * @param {string} category - the selected task category
+ * @param {string} priority - the selected priority
+ */
 function pushTask(title, description, dueDate, category, priority) {
     let newTask = ({
         assigned_to: assignedMembers,
@@ -53,6 +91,15 @@ function pushTask(title, description, dueDate, category, priority) {
     postData(newTask);
 };
 
+/**
+ * Updates the CSS styling and sets the selected priority.
+ * 
+ * Adds the selected priority class
+ * Updates the priority image via {@link addImage}.
+ * Sets the global `priority` variable to the selected value.
+ * 
+ * @param {string} id - the selected priority "low", "urgent" or "medium"
+ */
 function addCss(id) {
     const elements = document.querySelectorAll('.selectable');
     elements.forEach(el => {
@@ -64,6 +111,11 @@ function addCss(id) {
     priority = id;
 };
 
+/**
+ * get the correct image depends on the chosen priority
+ * 
+ * @param {string} id - the selected priority "low", "urgent" or "medium"
+ */
 function addImage(id) {
     switch (id) {
         case 'urgent':
@@ -84,6 +136,14 @@ function addImage(id) {
     };
 };
 
+/**
+ * Add new subtask to the subtask list.
+ * 
+ * adds the input value to an subtask array if its not empty
+ * clears the input field
+ * calls {@link renderSubtasks} to update the HTML
+ * calls {@link checkSubtask} to validate the current subtask list.
+ */
 function addSubtask() {
     subtask = document.getElementById("subtask");
     if (subtask.value.trim()) {
@@ -94,6 +154,11 @@ function addSubtask() {
     checkSubtask();
 };
 
+/**
+ * render the subtask
+ * 
+ * Loop trough the subtask array and displays it trough the template
+ */
 function renderSubtasks() {
     subtaskList.innerHTML = "";
     for (let index = 0; index < subtaskArr.length; index++) {
@@ -101,6 +166,14 @@ function renderSubtasks() {
     };
 };
 
+/**
+ * Extracts subtasks from the DOM and returns them as an array of objects
+ * 
+ * if the container is empty, returns an empty array.
+ * otherwise, converts each child element into an object
+ * with a `title` and a default `done` status set to `false`.
+ * @returns {Array} - array of subtask objects
+ */
 function getSubTasks() {
     const div = document.getElementById("subtaskList");
     if (div.children.length === 0) { return []; }
@@ -111,6 +184,13 @@ function getSubTasks() {
     return subtasks;
 };
 
+/**
+ * Set the submit button able or disabled.
+ * 
+ * selects the title, due date, and category input elements.
+ * defines a `checkInputs()` function that ables the submit button
+ * if the values aren't empty
+ */
 document.addEventListener("DOMContentLoaded", function () {
     const title = document.getElementById("title");
     const dueDate = document.getElementById("dueDate");
@@ -126,8 +206,21 @@ document.addEventListener("DOMContentLoaded", function () {
     checkInputs();
 });
 
+/**
+ * get contacts from the backend
+ */
 fetchInit().then(() => { getContacts(); });
 
+/**
+ * Renders the list of contacts into the assignee dropdown
+ * 
+ * This function:
+ * - Clears the current content of the assigned contact area.
+ * - Extracts user names from the `contacts` array.
+ * - Generates short name initials using {@link makeShortName}.
+ * - For each contact, renders a dropdown entry using {@link assigneeDropdownTemplate}
+ *   and sets its background color via {@link getBackgroundColor}.
+ */
 function getContacts() {
     const contentPlace = document.getElementById("assigned");
     contentPlace.innerHTML = "";
@@ -140,10 +233,23 @@ function getContacts() {
     };
 };
 
+/**
+ * sets the background color of the contact element with the given index.
+ * 
+ * @param {number} index - The index of the contact in the global `contacts` array
+ */
 function getBackgroundColor(index) {
     document.getElementById(index).style.backgroundColor = contacts[index].color;
 };
 
+/**
+ * creates initials from name array
+ * 
+ * loop trough userNames array and creates the initials from each name
+ * 
+ * @param {Array} userNames - array of contact names from the contacts array
+ * @returns {string} - first letter from the name and first letter from the surname
+ */
 function makeShortName(userNames) {
     return userNames.map(name => {
         const parts = name.trim().split(" ");
@@ -153,6 +259,9 @@ function makeShortName(userNames) {
     });
 };
 
+/**
+ * Toggles the visibility of the contact assignment dropdown
+ */
 function toggleSelectable() {
     let dropdownIcon = document.getElementById('dropwdown-icon');
     let selectableRef = document.getElementById("assigned");
@@ -164,18 +273,34 @@ function toggleSelectable() {
     selectableRef.classList.toggle("dnone");
 };
 
-function findSameBgColor(initals,fullname, index) {
+/**
+ * Finds the contact by full name and sets their background color on the matching DOM element.
+ * 
+ * @param {string} fullname - current name
+ * @param {number} index - Index of the contact to apply the color for.
+ */
+function findSameBgColor(fullname, index) {
     const findSameInitials = contacts.find((item) => { return item.name == fullname[index] });
     document.getElementById('picked-' + index).style.backgroundColor = findSameInitials.color;
 };
 
-function addMember(index ,shortName, userName) {
+/**
+ * Toggles a user's assignment status for a task.
+ * 
+ * Adds or removes the given user from the `assignedMembers` array depending on their current state.
+ * Updates the UI by changing the background color and checkbox icon accordingly
+ * Finally, re-renders the member list for the task.
+ * 
+ * @param {number} index -The index of the member in the contact list
+ * @param {string} userName - The name of the user to add or remove from the task.
+ */
+function addMember(index, userName) {
     const currentMember = assignedMembers.find((member) => { return member == userName });
     let bgcolor = document.getElementById("container-" + index);
     let checked = document.getElementById("img-" + index);
     if (currentMember) {
-        const index = assignedMembers.indexOf(userName);
-        assignedMembers.splice(index, 1);
+        const memberIndex = assignedMembers.indexOf(userName);
+        assignedMembers.splice(memberIndex, 1);
         bgcolor.classList.remove('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox.png`
         renderMembersForTask();
@@ -187,13 +312,16 @@ function addMember(index ,shortName, userName) {
     };
 };
 
+/**
+ * 
+ */
 function renderMembersForTask() {
     const contentPlace = document.getElementById("memberForTask");
     contentPlace.innerHTML = "";
     const initialsMembers = makeShortName(assignedMembers);
     for (let index = 0; index < assignedMembers.length; index++) {
         contentPlace.innerHTML += meberTemplate(initialsMembers, index);
-        findSameBgColor(initialsMembers, assignedMembers, index);
+        findSameBgColor(assignedMembers, index);
     };
 };
 
