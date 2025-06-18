@@ -381,6 +381,13 @@ function filterTasks(event) {
     });
 }
 
+/**
+ * This function start the card dragging and rotates the card. It shows a visible dropzone
+ * for the dragged card and scrolls to the end of the tasklist.
+ * 
+ * @param {number} id - This is the id from the dragged task from the tasks array
+ * @returns - If there is no card, the function stops with return
+ */
 function startDragging(id) {
     currentId = id;
     const card = document.getElementById(`card${currentId}`);
@@ -391,6 +398,12 @@ function startDragging(id) {
     scrollDropzoneIntoView();
 }
 
+/**
+ * This function ends the card dragging and rotates the card to its original value.
+ * It hides the visible dropzone for the dragged card and the tasklist scrolls back.
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array
+ */
 function dragEnd(taskIndex) {
     const card = document.getElementById(`card${taskIndex}`);
     if (card) {
@@ -400,6 +413,11 @@ function dragEnd(taskIndex) {
     hideVisibleFeedbackOnDrag();
 }
 
+/**
+ * This function saves the current task card status, fetches it and renders the changed tasks 
+ * 
+ * @param {string} status - This function needs the task from the task array
+ */
 async function moveTo(status) {
     tasks[currentId].status = status;
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[currentId] + "/status";
@@ -409,10 +427,20 @@ async function moveTo(status) {
     renderTasks(contacts);
 }
 
+/**
+ * This function allows a drop-event in the current browser
+ * 
+ * @param {object} ev - This parameter is the drag event
+ */
 function dragoverHandler(ev) {
     ev.preventDefault();
 }
 
+/**
+ * This function shows visible feedback at the end of a tasklist while dragging
+ * 
+ * @param {number} currentId - This is the id from the dragged task from the tasks array
+ */
 function showVisibleFeedbackOnDrag(currentId) {
     if (tasks[currentId].status == "toDo") {
         toggleVisibleFeedbackToDo();
@@ -428,6 +456,9 @@ function showVisibleFeedbackOnDrag(currentId) {
     }
 }
 
+/**
+ * This function scrolls the tasklist back to the first task
+ */
 function scrollElementsLeft() {
     const containers = document.getElementsByClassName("taskFolder");
     for (const container of containers) {
@@ -435,6 +466,9 @@ function scrollElementsLeft() {
     }
 }
 
+/**
+ * This function scrolls the visible feedback element called dropzone into view
+ */
 function scrollDropzoneIntoView() {
     const containers = document.getElementsByClassName("taskFolder");
     for (const container of containers) {
@@ -450,30 +484,49 @@ function scrollDropzoneIntoView() {
     }
 }
 
+/**
+ * This function toggles the classes of the visible feedback of the To do tasklist
+ * to see the feedback while dragging
+ */
 function toggleVisibleFeedbackToDo() {
     document.getElementById("dropzone#TaskInProgress").classList.remove("d_none");
     document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
     document.getElementById("dropzone#TaskDone").classList.remove("d_none");
 }
 
+/**
+ * This function toggles the classes of the visible feedback of the In progress tasklist
+ * to see the feedback while dragging
+ */
 function toggleVisibleFeedbackInProgress() {
     document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
     document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
     document.getElementById("dropzone#TaskDone").classList.remove("d_none");
 }
 
+/**
+ * This function toggles the classes of the visible feedback of the Await feedback tasklist
+ * to see the feedback while dragging
+ */
 function toggleVisibleFeedbackAwait() {
     document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
     document.getElementById("dropzone#TaskDone").classList.remove("d_none");
     document.getElementById("dropzone#TaskInProgress").classList.remove("d_none")
 }
 
+/**
+ * This function toggles the classes of the visible feedback of the Done tasklist
+ * to see the feedback while dragging
+ */
 function toggleVisibleFeedbackDone() {
     document.getElementById("dropzone#TaskToDo").classList.remove("d_none");
     document.getElementById("dropzone#TaskInProgress").classList.remove("d_none");
     document.getElementById("dropzone#TaskAwaitFeedback").classList.remove("d_none");
 }
 
+/**
+ * This function is hiding the visible feedback on dragEnd
+ */
 function hideVisibleFeedbackOnDrag() {
     document.getElementById("dropzone#TaskToDo").classList.add("d_none");
     document.getElementById("dropzone#TaskInProgress").classList.add("d_none");
@@ -481,6 +534,12 @@ function hideVisibleFeedbackOnDrag() {
     document.getElementById("dropzone#TaskDone").classList.add("d_none");
 }
 
+/**
+ * This function enables the touch function for dragging on mobile devices with touch screen
+ * 
+ * @param {element} cardElement - This is the element which should be dragged
+ * @param {number} taskIndex - This is the index number from the tasks array
+ */
 function enableTouchDrag(cardElement, taskIndex) {
     let offsetX = 0, offsetY = 0;
     cardElement.addEventListener('touchstart', (e) => {
@@ -494,6 +553,13 @@ function enableTouchDrag(cardElement, taskIndex) {
     });
 }
 
+/**
+ * This function handles the touch start and gets the actual touch event position for dragging
+ * 
+ * @param {element} cardElement - This is the element which should be dragged 
+ * @param {object} e - This is the touch event object
+ * @returns - The function returns the position of the touch event
+ */
 function handleTouchStart(cardElement, e) {
     const touch = e.touches[0];
     const rect = cardElement.getBoundingClientRect();
@@ -510,6 +576,14 @@ function handleTouchStart(cardElement, e) {
     return { offsetX, offsetY };
 }
 
+/**
+ * This function handles the movement of the dragged element by touch
+ * 
+ * @param {element} cardElement - This is the element which should be dragged 
+ * @param {object} e - This is the touch event object 
+ * @param {number} offsetX - This is the x-position of the touch event
+ * @param {number} offsetY - This is the y-position of the touch event 
+ */
 function handleTouchMove(cardElement, e, offsetX, offsetY) {
     e.preventDefault();
     const touch = e.touches[0];
@@ -521,6 +595,14 @@ function handleTouchMove(cardElement, e, offsetX, offsetY) {
     cardElement.style.top = newTop + 'px';
 }
 
+/**
+ * This function handles the end of the touch event and if dropped correctly, saves
+ * the new tasks. Otherwise the card elment will be removed.
+ * 
+ * @param {element} cardElement - This is the element which should be dragged 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {object} e - This is the touch event object 
+ */
 function handleTouchEnd(cardElement, taskIndex, e) {
     cardElement.classList.remove('dragging');
     dragEnd(taskIndex);
@@ -536,6 +618,12 @@ function handleTouchEnd(cardElement, taskIndex, e) {
         cardElement.remove();
     }}
 
+/**
+ * This function searches for the new status which the dragged element should get 
+ * 
+ * @param {HTMLElement} dropTarget - This is the target element of the dropped card
+ * @returns - This function returns the new status which the dragged element should get
+ */
 function extractStatusFromDropTarget(dropTarget) {
     if (!dropTarget) return null;
     const boardList = dropTarget.closest('.boardList');
@@ -551,29 +639,4 @@ function extractStatusFromDropTarget(dropTarget) {
         "Await feedback": "await",
         "Done": "done"};
     return map[headerText] || null;
-}
-
-function handleTouchDrop(touch) {
-    const dropTargets = document.querySelectorAll('.boardList');
-    for (const dropTarget of dropTargets) {
-        const rect = dropTarget.getBoundingClientRect();
-        if (
-            touch.clientX >= rect.left &&
-            touch.clientX <= rect.right &&
-            touch.clientY >= rect.top &&
-            touch.clientY <= rect.bottom
-        ) {
-            const targetStatus = getStatusFromDropTarget(dropTarget);
-            if (targetStatus) {
-                moveTo(targetStatus);
-            }
-            break;
-        }}}
-
-function getStatusFromDropTarget(dropTarget) {
-    if (dropTarget.innerHTML.includes("To do")) return "toDo";
-    if (dropTarget.innerHTML.includes("In progress")) return "inProgress";
-    if (dropTarget.innerHTML.includes("Await feedback")) return "await";
-    if (dropTarget.innerHTML.includes("Done")) return "done";
-    return null;
 }
