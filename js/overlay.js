@@ -2,6 +2,11 @@ let subtaskCounter = 0;
 let isAddTaskOverlayOpen = false;
 let isTaskOverlayOpen = false
 
+/**
+ * This function loads the data for the clicked task overlay
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
 function loadTaskOverlayData(taskIndex) {
     findBackgroundColor(taskIndex);
     getOverlaySubtasks(taskIndex);
@@ -11,6 +16,12 @@ function loadTaskOverlayData(taskIndex) {
     document.getElementById("priority#" + taskIndex).innerHTML += tasks[taskIndex].priority.charAt(0).toUpperCase() + tasks[taskIndex].priority.slice(1);
 }
 
+/**
+ * This function opens the clicked task overlay
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array  
+ * @param {object} event - This is the click event object 
+ */
 function openTaskOverlay(taskIndex, event) {
     window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') : 'disabled'
     isTaskOverlayOpen = true
@@ -23,6 +34,12 @@ function openTaskOverlay(taskIndex, event) {
     event.stopPropagation();
 }
 
+/**
+ * This function gets the contacts which are assigned to the current task
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {array} contacts - This function uses the fetched contacts array to get the assigned contacts 
+ */
 function getAssignedToNames(taskIndex, contacts) {
     let searchWord = Object.entries(document.getElementsByClassName("assignedToOverlay"))[0][1].children;
     for (let index = 0; index < searchWord.length; index++) {
@@ -32,6 +49,12 @@ function getAssignedToNames(taskIndex, contacts) {
     }
 }
 
+/**
+ * This function creates initials from the current name
+ * 
+ * @param {string} name - This is the name of the contact for which the initials are created
+ * @returns - The initials are returned as a string
+ */
 function getInitialsOverlay(name) {
     return name
         .trim()
@@ -40,6 +63,17 @@ function getInitialsOverlay(name) {
         .join('');
 }
 
+/**
+ * This function is testing, if the assigned contact is valid and prepares for rendering the 
+ * assigned contacts
+ * 
+ * @param {number} assignedToNamesIndex - This is the index of the assigned contact in the contacts array 
+ * @param {string} assignedToName - This is a string for saving the assigned contact
+ * @param {HTMLCollection} searchWord - This is a HTMLCollection of the assigned task contacts
+ * @param {number} index - This is the index of the searchWort HTMLCollection
+ * @param {array} contacts - This function uses the fetched contacts array to get the assigned contacts 
+ * @returns 
+ */
 function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index, contacts) {
     if (!contacts[assignedToNamesIndex] || !contacts[assignedToNamesIndex].name) {
         alert("Contact is not registered yet!");
@@ -49,6 +83,14 @@ function editAssignedToName(assignedToNamesIndex, assignedToName, searchWord, in
     establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index);
 }
 
+/**
+ * This function establishes the rendering of the assigned contacts to a specific task
+ * 
+ * @param {number} assignedToNamesIndex - This is the index of the assigned contact in the contacts array 
+ * @param {string} assignedToName - This is a string for saving the assigned contact 
+ * @param {HTMLCollection} searchWord - This is a HTMLCollection of the assigned task contacts 
+ * @param {number} index - This is the index of the searchWort HTMLCollection 
+ */
 function establishRenderAssignedToName(assignedToNamesIndex, assignedToName, searchWord, index) {
     searchWord[index].children[0].after(renderAssignedToName(assignedToNamesIndex, assignedToName));
     if (index != 0) {
@@ -56,6 +98,12 @@ function establishRenderAssignedToName(assignedToNamesIndex, assignedToName, sea
     }
 }
 
+/**
+ * This function gets the subtask from the current task overlay
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array  
+ * @returns - if there is no subtask, the function ends with return 
+ */
 function getOverlaySubtasks(taskIndex) {
     const { subtasksObj, subtasksContainer } = validateAndPrepareSubtasks(taskIndex);
     if (!subtasksObj || !subtasksContainer) return;
@@ -63,6 +111,12 @@ function getOverlaySubtasks(taskIndex) {
     checkSubtaskCheckboxes(taskIndex);
 }
 
+/**
+ * This function validates and prepares the subtasks of a task for rendering
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @returns This function returns the subtask as an object 
+ */
 function validateAndPrepareSubtasks(taskIndex) {
     const task = tasks[taskIndex];
     const subtasksObj = task?.subtasks;
@@ -79,6 +133,13 @@ function validateAndPrepareSubtasks(taskIndex) {
     return { subtasksObj, subtasksContainer };
 }
 
+/**
+ * This function renders the specific subtasks of a task to the subtask container
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {object} subtasksObj - This is an objetc of the current subtasks from a task
+ * @param {HTMLElement} container - This is the HTML Element in which the subtask is rendered
+ */
 function renderSubtasksToContainer(taskIndex, subtasksObj, container) {
     const keys = Object.keys(subtasksObj);
     const values = Object.values(subtasksObj);
@@ -89,6 +150,11 @@ function renderSubtasksToContainer(taskIndex, subtasksObj, container) {
     }
 }
 
+/**
+ * This function checkes the checkboxes in the current task overlay
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
 function checkSubtaskCheckboxes(taskIndex) {
     for (let subtaskIndex = 0; subtaskIndex < subtaskArray.length; subtaskIndex++) {
         if (subtaskArray[subtaskIndex].done == true) {
@@ -102,6 +168,9 @@ function checkSubtaskCheckboxes(taskIndex) {
     subtaskCounter = 0;
 }
 
+/**
+ * This function closes the task overlay
+ */
 function closeOverlay() {
     document.documentElement.classList.remove('stopScrolling')
     document.getElementById("currentContent").innerHTML = "";
@@ -109,6 +178,12 @@ function closeOverlay() {
     isTaskOverlayOpen = false
 }
 
+/**
+ * This function deletes the entire task by confirmation with a key
+ * 
+ * @param {string} key - This function uses a key to delete the entire task
+ * @returns - If the task should not be deleted, the function ends with return 
+ */
 async function deleteTaskByKey(key) {
     if (!confirm("Möchtest du diesen Task wirklich löschen?")) return;
     try {
@@ -125,6 +200,13 @@ async function deleteTaskByKey(key) {
     }
 }
 
+/**
+ * This function is getting the key of the current task and deletes the entire
+ * task by confirmation with the key
+ * 
+ * @param {string} name - This is the name of the current task
+ * @returns - If the task is deleted, the function ends by return
+ */
 async function getTaskKey(name) {
     try {
         const response = await fetch(`${BASE_URL}tasks/.json`);
