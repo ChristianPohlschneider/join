@@ -224,6 +224,13 @@ async function getTaskKey(name) {
     }
 }
 
+/**
+ * This function updates the subtask status when checked
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array  
+ * @param {string} subtaskKey - This is the key for the specific subtask 
+ * @param {boolean} isChecked - This is the status for the subtask
+ */
 async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
     try {
         const success = await sendSubtaskUpdate(taskIndex, subtaskKey, isChecked);
@@ -236,6 +243,14 @@ async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
     }
 }
 
+/**
+ * This function updates and fetches the task when a subtask checkbox is checked via firebaseKey
+ * 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {string} subtaskKey - This is the key for the specific subtask 
+ * @param {boolean} isChecked - This is the status for the subtask 
+ * @returns - The function returns false if an error occurs or response.ok, when ok
+ */
 async function sendSubtaskUpdate(taskIndex, subtaskKey, isChecked) {
     const task = tasks[taskIndex];
     const firebaseKey = task.firebaseKey;
@@ -251,6 +266,9 @@ async function sendSubtaskUpdate(taskIndex, subtaskKey, isChecked) {
     return response.ok;
 }
 
+/**
+ * This function renders only the tasks
+ */
 async function renderTasksOnly() {
     await fetchTasks();
     await fetchContacts();
@@ -258,6 +276,9 @@ async function renderTasksOnly() {
     renderTasks(contacts);
 }
 
+/**
+ * This function opens the add task overlay board, if the window inner width is over 850px
+ */
 function openAddTaskBoard() {
     if (window.innerWidth <= 850) {
         window.location.href = "./add_task.html";
@@ -276,6 +297,9 @@ function openAddTaskBoard() {
     };
 }
 
+/**
+ * This function closes the add task overlay board
+ */
 function closeAddTaskBoard() {
     isAddTaskOverlayOpen = false;
     const addTaskBoardRef = document.getElementById('addTaskBoard');
@@ -288,6 +312,9 @@ function closeAddTaskBoard() {
 
 }
 
+/**
+ * This function clears the entries of the add task board
+ */
 function cancelTask() {
     const submitButton = document.getElementById("creatTask");
     document.getElementById("title").value = "";
@@ -302,6 +329,9 @@ function cancelTask() {
     assignedMembers = [];
 };
 
+/**
+ * This function checks the input of the add task title onfocusout
+ */
 function checkTitle() {
     let title = document.getElementById('title');
     let warningText = document.getElementById('warning-title');
@@ -313,6 +343,9 @@ function checkTitle() {
     };
 };
 
+/**
+ * This function checks the input of the add task dueDate onfocusout
+ */
 function checkDate() {
     let date = document.getElementById('dueDate');
     let warningText = document.getElementById('warning-dueDate');
@@ -324,12 +357,21 @@ function checkDate() {
     };
 };
 
+/**
+ * This function creates a warning message and a red boarder around an input field if there
+ * is no input
+ * 
+ * @param {Element} input - This function uses an Element to establish the red boarder
+ */
 function getRedBorder(input) {
     input.classList.add('red-border');
     let warningText = document.getElementById('warning-' + input.id);
     warningText.classList.remove('d_none');
 };
 
+/**
+ * This function checks the input of the add task category onfocusout
+ */
 function checkCategory() {
     let category = document.getElementById('category');
     let warningText = document.getElementById('warning-category');
@@ -341,6 +383,9 @@ function checkCategory() {
     };
 };
 
+/**
+ * This function checks the subtask via onkeyup on the input field
+ */
 function checkSubtask() {
     let subtaskRef = document.getElementById('subtask');
     let subtaskPlus = document.getElementById('subtask-plus');
@@ -354,6 +399,10 @@ function checkSubtask() {
     };
 };
 
+/**
+ * This function checks the input fields from the add task board and enables the
+ * add task button
+ */
 function checkButtonDisabillity() {
     const submitButton = document.getElementById("creatTask");
     const title = document.getElementById("title");
@@ -362,6 +411,9 @@ function checkButtonDisabillity() {
     checkInputs(title, dueDate, category, submitButton);
 };
 
+/**
+ * This function collects the input values and creates a new task
+ */
 function addNewToDO() {
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
@@ -373,6 +425,15 @@ function addNewToDO() {
     const Timeout = setTimeout(fowarding, 2000);
 };
 
+/**
+ * This function collects the input from the add task board and creates/fetches a new task
+ * 
+ * @param {string} title - collects the title from the input field as a string
+ * @param {string} description - collects the description from the input field as a string 
+ * @param {string} dueDate - collects the dueDate from the input field as a string 
+ * @param {string} category - collects the category from the input field as a string 
+ * @param {string} priority - collects the priority from the input field as a string 
+ */
 function pushTaskBoard(title, description, dueDate, category, priority) {
     let newTask = ({
         assigned_to: assignedMembers,
@@ -387,16 +448,27 @@ function pushTaskBoard(title, description, dueDate, category, priority) {
     postData(newTask);
 };
 
+/**
+ * This function forwards the user to "./board.html"
+ */
 function fowarding() {
     window.location.href = "./board.html";
 };
 
+
+/**
+ * This function creates a visible feedback for successful registration
+ */
 function succeedRegistration() {
     let succeed = document.getElementById('succedSignup');
     succeed.classList.remove('d_none');
     document.getElementById('body').style.overflow = "hidden";
 };
 
+/**
+ * This function toggles the button for the add task button under a window.innerWidth of
+ * 850px and redirects the user to "./add_task.html"
+ */
 function toggleAddTaskLink() {
     const taskBtnBoardRef = document.getElementById('addTaskButtonBoard')
     if (window.innerWidth <= 850) {
@@ -409,6 +481,10 @@ function toggleAddTaskLink() {
     }
 };
 
+/**
+ * This function toggles the scroll behavior of the task overlay if the window.innerWidth
+ * gets higher or lower than 550px
+ */
 function toggleOverlayTask() {
     if (window.innerWidth <= 550 && isTaskOverlayOpen) {
         document.documentElement.classList.add('stopScrolling')
