@@ -57,25 +57,36 @@ function establishRenderAssignedToName(assignedToNamesIndex, assignedToName, sea
 }
 
 function getOverlaySubtasks(taskIndex) {
+    const { subtasksObj, subtasksContainer } = validateAndPrepareSubtasks(taskIndex);
+    if (!subtasksObj || !subtasksContainer) return;
+    renderSubtasksToContainer(taskIndex, subtasksObj, subtasksContainer);
+    checkSubtaskCheckboxes(taskIndex);
+}
+
+function validateAndPrepareSubtasks(taskIndex) {
     const task = tasks[taskIndex];
-    const subtasksObj = task.subtasks;
+    const subtasksObj = task?.subtasks;
     const subtasksContainer = document.getElementById("subtasks#" + taskIndex);
     if (!subtasksContainer) {
         console.warn("Subtasks-Container nicht gefunden für Task", taskIndex);
-        return;
+        return {};
     }
     if (!subtasksObj || typeof subtasksObj !== "object") {
         subtasksContainer.style.display = "none";
         document.getElementById("subTaskHeadTitle").style.display = "none";
-        return;
+        return {};
     }
-    const subtasksArray = Object.values(subtasksObj);
-    subtasksContainer.innerHTML = "";
-    for (let i = 0; i < subtasksArray.length; i++) {
-        const subtask = subtasksArray[i];
-        subtasksContainer.innerHTML += renderOverlaySubtasks(taskIndex, Object.keys(subtasksObj)[i], i);
+    return { subtasksObj, subtasksContainer };
+}
+
+function renderSubtasksToContainer(taskIndex, subtasksObj, container) {
+    const keys = Object.keys(subtasksObj);
+    const values = Object.values(subtasksObj);
+    container.innerHTML = "";
+    for (let i = 0; i < values.length; i++) {
+        const subtaskHTML = renderOverlaySubtasks(taskIndex, keys[i], i);
+        container.innerHTML += subtaskHTML;
     }
-    checkSubtaskCheckboxes(taskIndex);
 }
 
 function checkSubtaskCheckboxes(taskIndex) {
@@ -132,27 +143,30 @@ async function getTaskKey(name) {
 }
 
 async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
-    const task = tasks[taskIndex];
-    const firebaseKey = task.firebaseKey;
-    if (!firebaseKey) {
-        console.error("Fehlender Firebase-Key für Task:", task);
-        return;
-    }
-    const url = `https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/tasks/${firebaseKey}/subtasks/${subtaskKey}/done.json`;
     try {
-        const response = await fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(isChecked)
-        });
-        if (!response.ok) {
-            throw new Error("Update fehlgeschlagen");
-        }
+        const success = await sendSubtaskUpdate(taskIndex, subtaskKey, isChecked);
+        if (!success) throw new Error("Update fehlgeschlagen");
         tasks[taskIndex].subtasks[subtaskKey].done = isChecked;
         renderTasksOnly();
         closeOverlay();
     } catch (error) {
         console.error("Fehler beim Speichern des Subtasks:", error);
     }
+}
+
+async function sendSubtaskUpdate(taskIndex, subtaskKey, isChecked) {
+    const task = tasks[taskIndex];
+    const firebaseKey = task.firebaseKey;
+    if (!firebaseKey) {
+        console.error("Fehlender Firebase-Key für Task:", task);
+        return false;
+    }
+    const url = `https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/tasks/${firebaseKey}/subtasks/${subtaskKey}/done.json`;
+    const response = await fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(isChecked)
+    });
+    return response.ok;
 }
 
 async function renderTasksOnly() {
