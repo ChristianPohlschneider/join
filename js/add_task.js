@@ -294,7 +294,7 @@ function findSameBgColor(fullname, index) {
  * @param {number} index -The index of the member in the contact list
  * @param {string} userName - The name of the user to add or remove from the task.
  */
-function addMember(index, userName) {
+function addMember(index, shortName, userName) {
     const currentMember = assignedMembers.find((member) => { return member == userName });
     let bgcolor = document.getElementById("container-" + index);
     let checked = document.getElementById("img-" + index);
