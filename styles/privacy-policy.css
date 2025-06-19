@@ -2,11 +2,33 @@ body {
     margin: 0;
 }
 
-.txtContainer p {
+main {
+max-width: 1440px;
+}
+
+.txtContainer {
+    display: flex;
     font-size: 16px;
     font-weight: 400;
-    width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 104px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.txtField {
+    margin-bottom: 20px;
+    word-break: break-word;
+}
+
+a {
+    color: #29ABE2;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 h1 {
@@ -19,6 +41,10 @@ h1 {
 h2 {
     font-size: 27px;
     font-weight: 700;
+    margin-top: 24px;
+}
+h3 {
+    margin-top: 12px;
     margin-bottom: 12px;
 }
 
@@ -30,7 +56,7 @@ h2 {
     height: 100%;
     margin-top: 36px;
     margin-left: 328px;
-    margin-right: 36px;
+    margin-right: 96px;
 }
 
 @media (max-width: 1350px) {
