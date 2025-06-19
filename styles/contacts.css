@@ -178,7 +178,7 @@ html {
 .contact-mail {
     font-size: 16px;
     font-weight: 400;
-    color: #007CEE;
+    color: #29ABE2;
 }
 
 .contact-name {
@@ -197,19 +197,42 @@ html {
     font-weight: 500;
 }
 
-.contact-name-buttons button {
+.contact-name-buttons-delete {
     border-radius: 10px;
     font-size: 16px;
-    background-color: #2a364700;
+    background-color: transparent;
+    background-image: url(../assets/icons/delete.png);
+    background-repeat: no-repeat;
+    background-position-x: 3px;
+    background-position-y: 1px;
+    background-size: 16px;
+    width: 100px;
 }
 
-.contact-name-buttons button:hover {
-    background-color: #ebebeb;
+.contact-name-buttons-delete:hover {
+    color: #29ABE2;
+    font-weight: 600;
+    background-image: url(../assets/icons/delete-hover.png);
 }
 
-.contact-name-buttons button img {
-    height: 16px;
-    margin-right: 10px;
+
+
+.contact-name-buttons-edit {
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: transparent;
+    background-image: url('../assets/icons/edit-v2.png');
+    background-repeat: no-repeat;
+    background-position-x: 2px;
+    background-position-y: 1px;
+    background-size: 16px;
+    width: 80px;
+}
+
+.contact-name-buttons-edit:hover {
+    color: #29ABE2;
+    font-weight: 600;
+    background-image: url('../assets/icons/edit-hover.png');
 }
 
 .contact-info-subtitle {
@@ -420,7 +443,7 @@ html {
 }
 
 .contacts-mail {
-    color: #007CEE;
+    color: #29ABE2;
 }
 
 .overlay-header {
@@ -518,6 +541,10 @@ html {
 
 .contact-view-menu-mobile {
     display: none;
+}
+
+.contact-view-menu-mobile:hover {
+    background-color: #29ABE2;
 }
 
 .delete-menu-btn {
@@ -674,6 +701,11 @@ html {
     .close-overlay-desktop {
         top: -243px;
         left: 45% !important;
+        color: white;
+    }
+
+    .close-overlay-desktop:hover {
+        background-color: transparent;
     }
 
     .overlay-header {

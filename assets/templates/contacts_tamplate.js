@@ -7,13 +7,13 @@ function showContact(contact, color, key) {
         </div>
         <div class="contact-name-buttons">
           <h2>${contact.name}</h2>
-          <button onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png" alt="">Edit</button>
-          <button onclick="deleteContact('${key}')"><img src="../assets/icons/delete.png" alt="">Delete</button>
+          <button class="contact-name-buttons-edit" onclick="editContact('${key}')">Edit</button>
+          <button class="contact-name-buttons-delete" onclick="deleteContact('${key}')">Delete</button>
         </div>
       </div>
       <p class="contact-info-subtitle">Contact Information</p>
       <div class="contact-info-block">        
-        <p><strong>Email:</strong><br><br><a href="mailto:${contact.mail}">${contact.mail}</a></p><br>
+        <p><strong>Email:</strong><br><br><a class="contacts-mail" href="mailto:${contact.mail}">${contact.mail}</a></p><br>
         <p><strong>Phone:</strong><br><br>${contact.phone_number || '-'}</p>
       </div>
     </div>
@@ -44,5 +44,11 @@ function listTamplate(color, contact){
 function errorTamplate(){
  return `
     "<p>Wähle einen Kontakt aus der Liste.</p>"
+  `;
+}
+
+function noKontaktTamplate() {
+  return `
+    <p>Keine Kontakte gefunden.</p>
   `;
 }

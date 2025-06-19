@@ -11,7 +11,7 @@ async function fetchContacts() {
     const data = await getAllUsers("contacts");
 
     if (!data) {
-      document.getElementById("contactList").innerHTML = "<p>Keine Kontakte gefunden.</p>";
+      document.getElementById("contactList").innerHTML = noKontaktTamplate();
       return;
     }
 
@@ -123,7 +123,7 @@ async function editContact(key) {
     const contact = await response.json();
 
     if (!contact) {
-      alert("Kontakt nicht gefunden.");
+      alert("Contact not found."); closeEditContact();
       return;
     }
 
@@ -154,11 +154,12 @@ async function editContact(key) {
     document.getElementById("editContactOverlay").classList.remove("hidden");
   } catch (error) {
   }
+  document.getElementById("contactsSlider").classList.toggle("open")
 }
 
 async function saveEditedContact() {
   if (!currentEditKey) {
-    alert("Kein Kontakt ausgewählt.");
+    alert("No contact has been selected.");
     return;
   }
 
@@ -186,7 +187,7 @@ async function saveEditedContact() {
 }
 
 async function deleteContact(key) {
-  if (!confirm("Möchtest du diesen Kontakt wirklich löschen?")) return;
+  if (!confirm("Do you really want to delete this contact?")) return;
 
   try {
     await fetch(`${BASE_URL}contacts/${key}.json`, {
