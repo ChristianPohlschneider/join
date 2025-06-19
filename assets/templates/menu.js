@@ -94,6 +94,11 @@ function mobileMenuUnLogged() {
 
 let userName = localStorage.getItem("user");
 
+/**
+ * Checks if a user is logged in and renders the appropriate menu
+ * depending on the screen width and login status.
+ * @returns - {@link mobileMenuUnLogged} {@link menuUnlogged} {@link menuLogged} {@link mobileMenuLogged}
+ */
 function checkLogged() {
     if (userName == undefined) {
         if (window.innerWidth <= 1350) {
@@ -106,11 +111,13 @@ function checkLogged() {
             return mobileMenuLogged();
         } else {
             return menuLogged();
-
         };
     };
 };
 
+/**
+ * Renders the appropriate navigation menu based on screen width and login status.
+ */
 function toogleVieW() {
     if (window.innerWidth <= 1350 && userName == undefined) {
         document.getElementById("menuTemplate").innerHTML = mobileMenuUnLogged();

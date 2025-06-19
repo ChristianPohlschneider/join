@@ -19,20 +19,33 @@ function header() {
   `;
 }
 
+/**
+ * clears the localStorage
+ */
 function clearStorage() {
   localStorage.clear();
 }
 
+/**
+ * Function to render the menu and header into the HTML
+ */
 function initTask () {
   document.getElementById("menuTemplate").innerHTML = checkLogged();
   document.getElementById("headerTemplate").innerHTML = header();
   initAvatarSlider();
 }
 
+/**
+ * Initializes the avatar slider and its toggle functionality.
+ *
+ * Retrieves the username from `localStorage` and sets the avatar's text content to the user's initials.
+ * Hides the help icon if no user is logged in.
+ * Adds event listeners to toggle the avatar dropdown menu when clicked.
+ * Closes the dropdown when clicking outside of the avatar or slider area.
+ */
 function initAvatarSlider() {
   const avatar = document.getElementById("userAvatar");
   const slider = document.getElementById("userSlider");
-
   let userName = localStorage.getItem("user");
   userName = userName?.replace(/['"]/g, "");
   if (userName) {
@@ -40,7 +53,7 @@ function initAvatarSlider() {
     avatar.textContent = initials;
   } else {
     document.getElementById('header-help').classList.add('d_none')
-  }
+  };
 
   avatar.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -55,6 +68,12 @@ function initAvatarSlider() {
   });
 }
 
+/**
+ * Generates initials from a given full name.
+ * 
+ * @param {string} name - The full name from which to generate initials.
+ * @returns {string} The uppercase initials (max 2 characters).
+ */
 function getInitials(name) {
   return name
     .trim()
