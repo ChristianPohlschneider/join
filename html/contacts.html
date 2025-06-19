@@ -78,31 +78,32 @@
           <p>Tasks are better with a team!</p>
           <div class="border-blue"></div>
         </div>
-         <button class="close-overlay-desktop" onclick="closeAddContact()">×</button>
+        <button class="close-overlay-desktop" onclick="closeAddContact()">×</button>
         <div class="flex-column flex-align-center">
           <div class="overlay-body">
-          <div class="add-contact-icon">
-            <img src="../assets/icons/person-white.png" alt="Add contact icon">
+            <div class="add-contact-icon">
+              <img src="../assets/icons/person-white.png" alt="Add contact icon">
+            </div>
+            <div class="contact-form">
+              <div class="subtask-container">
+                <input type="text" id="contactName" placeholder="Name">
+                <img src="../assets/icons/person.png" alt="Contact Name" class="contact-icon">
+              </div>
+              <div class="subtask-container">
+                <input type="email" id="contactEmail" placeholder="Email">
+                <img src="../assets/icons/mail.png" alt="Contact Email" class="contact-icon">
+              </div>
+              <div class="subtask-container">
+                <input type="tel" id="contactPhone" placeholder="Phone">
+                <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon">
+              </div>
+            </div>
           </div>
-          <div class="contact-form">
-            <div class="subtask-container">
-              <input type="text" id="contactName" placeholder="Name">
-              <img src="../assets/icons/person.png" alt="Contact Name" class="contact-icon">
-            </div>
-            <div class="subtask-container">
-              <input type="email" id="contactEmail" placeholder="Email">
-              <img src="../assets/icons/mail.png" alt="Contact Email" class="contact-icon">
-            </div>
-            <div class="subtask-container">
-              <input type="tel" id="contactPhone" placeholder="Phone">
-              <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon">
-            </div>
-            </div>
+          <div class="add-overlay-button">
+            <button class="cancel-button" onclick="closeAddContact()">Cancel</button>
+            <button class="create-button" onclick="createContact()">Create contact<img
+                src="../assets/icons/check-white.png" alt="Create" class="button-icon"></button>
           </div>
-           <div class="add-overlay-button">
-              <button class="cancel-button" onclick="closeAddContact()">Cancel</button>
-              <button class="create-button" onclick="createContact()">Create contact<img src="../assets/icons/check-white.png" alt="Create" class="button-icon"></button>
-            </div>
         </div>
 
       </div>
@@ -115,24 +116,24 @@
           <h2>Edit contact</h2>
         </div>
         <div class="overlay-body">
-            <button class="close-btn" onclick="closeEditContact()">×</button>
+          <button class="close-btn" onclick="closeEditContact()">×</button>
           <div class="edit-contact-avatar">
             <div id="editAvatar" class="add-contact-icon">AB</div>
           </div>
           <div class="contact-form">
-             <div class="subtask-container">
+            <div class="subtask-container">
               <input type="text" id="editName">
               <img src="../assets/icons/person.png" alt="Contact Name" class="contact-icon-edit">
             </div>
             <div class="subtask-container">
-          <input type="email" id="editMail">
+              <input type="email" id="editMail">
               <img src="../assets/icons/mail.png" alt="Contact Email" class="contact-icon-edit">
             </div>
             <div class="subtask-container">
               <input type="tel" id="editPhone" class="font-size-">
               <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon-edit">
             </div>
-          
+
             <div class="edit-overlay-button">
               <button class="delete-button" onclick="deleteCurrentContact()">Delete</button>
               <button class="save-button" onclick="saveEditedContact()">Save<img src="../assets/icons/check-white.png"
@@ -144,7 +145,7 @@
     </div>
   </main>
   <div id="userFeedback" class="hidden flex-center Feedback-design">
-<p>Contact successfully created !</p>
+    <p>Contact successfully created !</p>
   </div>
 </body>
 

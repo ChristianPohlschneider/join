@@ -2,7 +2,7 @@ function showContact(contact, color, key) {
   document.getElementById("contactView").innerHTML = `
     <div class="contact-view">
       <div class="contact-info">
-        <div class="contact-avatar" style="background:${color}; width:120px; height:120px; font-size:47px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white;">
+        <div class="contact-avatar avatar-style" style="background:${color};">
           ${getInitials(contact.name)}
         </div>
         <div class="contact-name-buttons">
@@ -13,8 +13,8 @@ function showContact(contact, color, key) {
       </div>
       <p class="contact-info-subtitle">Contact Information</p>
       <div class="contact-info-block">        
-        <p><strong>Email:</strong><br><br> <a href="mailto:${contact.mail}">${contact.mail}</a></p><br><br>
-        <p><strong>Phone:</strong><br><br> ${contact.phone_number || '-'}</p>
+        <p><strong>Email:</strong><br><br><a href="mailto:${contact.mail}">${contact.mail}</a></p><br>
+        <p><strong>Phone:</strong><br><br>${contact.phone_number || '-'}</p>
       </div>
     </div>
   `;
@@ -29,4 +29,20 @@ function showContact(contact, color, key) {
     document.querySelector(".contacts-list").classList.remove("show");
     document.getElementById("contactDetails").classList.add("show");
   }
+}
+
+function listTamplate(color, contact){
+ return `
+    <span class="contact-avatar margen-avatar" style="background:${color}">${getInitials(contact.name)}</span>
+    <div>
+      <p class="contacts-name">${contact.name}</p>
+      <p class="contacts-mail">${contact.mail}</p>
+    </div>
+  `
+}
+
+function errorTamplate(){
+ return `
+    "<p>Wähle einen Kontakt aus der Liste.</p>"
+  `;
 }

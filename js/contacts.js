@@ -55,13 +55,7 @@ function appendContactElement(list, key, contact) {
   div.id = key;
   div.setAttribute("onclick", `showCurrentContact('${key}')`);
 
-  div.innerHTML = `
-    <span class="contact-avatar" style="background:${color}">${getInitials(contact.name)}</span>
-    <div>
-      <p class="contacts-name">${contact.name}</p>
-      <p class="contacts-mail">${contact.mail}</p>
-    </div>
-  `;
+  div.innerHTML = listTamplate(color, contact);
 
   div.addEventListener("click", () => showContact(contact, color, key));
   list.appendChild(div);
@@ -199,7 +193,7 @@ async function deleteContact(key) {
       method: "DELETE"
     });
 
-    document.getElementById("contactView").innerHTML = "<p>Wähle einen Kontakt aus der Liste.</p>";
+    document.getElementById("contactView").innerHTML = errorTamplate();
     await fetchContacts();
   } catch (error) {
   }
