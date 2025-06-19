@@ -32,6 +32,10 @@ function initAvatarSlider() {
  * highlight the legal notice link at the menu 
  */
 function highlightLink() {
-    const currentLink = document.getElementById('legal')
-    currentLink.classList.add('activeLink');
-};
+    if (window.innerWidth > 1350) {
+        const currentLink = document.getElementById('legal');
+        if (currentLink) {
+            currentLink.classList.add('activeLink');
+        }
+    }
+}
