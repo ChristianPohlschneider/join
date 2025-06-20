@@ -146,6 +146,12 @@ function addImage(id) {
  */
 function addSubtask() {
     subtask = document.getElementById("subtask");
+    subtask.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("subtask-add-btn").click();
+    }
+  });
     if (subtask.value.trim()) {
         subtaskArr.push(subtask.value);
         renderSubtasks();
