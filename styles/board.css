@@ -28,8 +28,8 @@ main {
     flex-direction: column;
     color: black;
     height: 100%;
-    padding-left: 86px;
-    padding-right: 86px;
+    padding-left: 24px;
+    padding-right: 24px;
     align-items: center;
 }
 
@@ -313,6 +313,7 @@ main {
         flex-direction: row;
         padding-bottom: 0px;
         flex-wrap: nowrap;
+        overflow-x: auto;
     }
 
     .taskFolder {
