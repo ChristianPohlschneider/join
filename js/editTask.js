@@ -177,10 +177,14 @@ function renderMembersForTask() {
  */
 function getAssignedMembers(currentTask) {
     assignedMembers = [];
-    for (const [key, value] of Object.entries(tasks[currentTask].assigned_to)) {
-        assignedMembers.push(`${value}`);
-    };
-    return assignedMembers;
+    if (tasks[currentTask].assigned_to) {
+        for (const [key, value] of Object.entries(tasks[currentTask].assigned_to)) {
+            assignedMembers.push(`${value}`);
+        };
+        return assignedMembers;
+    } else {
+        return
+    }
 };
 
 /**
@@ -254,8 +258,8 @@ function addSubtask() {
     subtask = document.getElementById("subtask");
     if (subtask.value.trim()) {
         subtasksArray.push({
-            done : false,
-            title : subtask.value
+            done: false,
+            title: subtask.value
         });
         renderSubtasksEdit();
         subtask.value = "";
@@ -269,7 +273,7 @@ function addSubtask() {
 function renderSubtasksEdit() {
     subtaskList.innerHTML = "";
     for (let index = 0; index < subtasksArray.length; index++) {
-        subtaskList.innerHTML += subtaskEditTemplate(index,subtasksArray);
+        subtaskList.innerHTML += subtaskEditTemplate(index, subtasksArray);
     };
 };
 
@@ -410,7 +414,7 @@ function checkEditInput() {
     const title = document.getElementById("title");
     const dueDate = document.getElementById("dueDate");
     const category = document.getElementById("category");
-    checkInputs(title,dueDate,category,submitButton)
+    checkInputs(title, dueDate, category, submitButton)
 }
 
 /**
@@ -425,7 +429,7 @@ function checkEditInput() {
  * @param {HTMLInputElement} category - Input field for the category.
  * @param {HTMLButtonElement} submitButton - The button to enable/disable.
  */
-function checkInputs(title,dueDate,category,submitButton) {
+function checkInputs(title, dueDate, category, submitButton) {
     if (title.value.trim() === "" || dueDate.value.trim() === "" || category.value.trim() === "") {
         submitButton.disabled = true;
     } else { submitButton.disabled = false; }
@@ -438,7 +442,7 @@ function searchContact() {
     const searchInput = document.getElementById('assignee-input');
     searchInput.addEventListener('input', filterAssigned);
 };
-   
+
 /**
  * Filters the list of assigned contacts based on user input.
  * 
