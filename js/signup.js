@@ -78,7 +78,7 @@ async function createContact(name, email) {
         },
         body: JSON.stringify(
             {
-                email: email,
+                mail: email,
                 name: name,
                phone_number: ""
             }
