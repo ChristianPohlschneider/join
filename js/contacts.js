@@ -33,10 +33,8 @@ function highlightLink() {
 function renderContacts(contactsData) {
   const list = document.getElementById("contactList");
   list.innerHTML = "";
-
   const contacts = Object.entries(contactsData);
   contacts.sort((a, b) => a[1].name.localeCompare(b[1].name));
-
   let currentGroup = "";
   contacts.forEach(([key, contact]) => {
     const firstLetter = contact.name.charAt(0).toUpperCase();
