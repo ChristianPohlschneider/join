@@ -263,12 +263,16 @@ function getAssignedTo(taskIndex, contacts) {
  * @param {array} contacts - This is the array in which all contacts are pushed 
  */
 function getAssignedToInitials(taskIndex, contacts) {
-    for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
-        let nameValue = replaceUmlauts(value);
-        assignedTo.push(`${nameValue}`);
-    }
-    establishInitials(taskIndex, contacts);
-    assignedTo = [];
+    if (tasks[taskIndex].assigned_to) {
+        for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
+            let nameValue = replaceUmlauts(value);
+            assignedTo.push(`${nameValue}`);
+        };
+        establishInitials(taskIndex, contacts);
+        assignedTo = [];
+    } else {
+        return
+    };
 }
 
 /**
@@ -613,10 +617,12 @@ function handleTouchEnd(cardElement, taskIndex, e) {
     const status = extractStatusFromDropTarget(dropTarget);
     if (status) {
         currentId = taskIndex;
-        moveTo(status);}
+        moveTo(status);
+    }
     if (cardElement.parentElement === document.body) {
         cardElement.remove();
-    }}
+    }
+}
 
 /**
  * This function searches for the new status which the dragged element should get 
@@ -631,12 +637,14 @@ function extractStatusFromDropTarget(dropTarget) {
     const ondropAttr = boardList.getAttribute('ondrop');
     if (ondropAttr) {
         const match = ondropAttr.match(/moveTo\('([^']+)'\)/);
-        if (match) return match[1];}
+        if (match) return match[1];
+    }
     const headerText = boardList.querySelector('h3')?.innerText.trim();
     const map = {
         "To do": "toDo",
         "In progress": "inProgress",
         "Await feedback": "await",
-        "Done": "done"};
+        "Done": "done"
+    };
     return map[headerText] || null;
 }
