@@ -116,13 +116,13 @@ function editTaskOverlayTemplate(currentTask) {
                         </article>
                             <p>Subtasks</p>
                             <div class="subtask-container">
-                                <input onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
+                                <input onclick="addSubtask()" onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
                                     maxlength="30" name="subtaskTitle" class="input-subtask">
                                 <div id="subtask-icon-container" class="hidden subtasks-icon-container">
                                     <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                         alt="X">
                                     <img src="../assets/icons/vector.png" alt="">
-                                    <img onclick="addSubtask()" class="check-icon" src="../assets/icons/check-black.png"
+                                    <img id="subtask-add-btn" onclick="addSubtask()" class="check-icon" src="../assets/icons/check-black.png"
                                         alt="Add">
                                 </div>
                                 <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
@@ -240,13 +240,13 @@ function addTaskBoardTemplate() {
                     <article>
                         <p>Subtasks</p>
                         <div class="subtask-container">
-                            <input onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
+                            <input onclick="addSubtask()" onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
                                 maxlength="30" name="subtaskTitle" class="input-subtask">
                             <div id="subtask-icon-container" class="hidden subtasks-icon-container">
                                 <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                     alt="X">
                                 <img src="../assets/icons/vector.png" alt="">
-                                <img onclick="addSubtask()" class="check-icon" src="../assets/icons/check-black.png"
+                                <img id="subtask-add-btn" onclick="addSubtask()" class="check-icon" src="../assets/icons/check-black.png"
                                     alt="Add">
                             </div>
                             <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
