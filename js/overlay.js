@@ -23,6 +23,7 @@ function loadTaskOverlayData(taskIndex) {
  * @param {object} event - This is the click event object 
  */
 function openTaskOverlay(taskIndex, event) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') : 'disabled'
     isTaskOverlayOpen = true
     document.getElementById("currentContent").innerHTML = "";

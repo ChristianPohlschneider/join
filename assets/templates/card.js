@@ -2,7 +2,7 @@ function renderCard(taskIndex) {
     const task = tasks[taskIndex];
     return `
         <div draggable="true"
-             ontouchstart="startDragging(${taskIndex})"
+             ontouchstart="handleTouchStart(this, event,${taskIndex})"
              ondragstart="startDragging(${taskIndex})"
              ondragend="dragEnd(${taskIndex})"
              id="card${taskIndex}"
@@ -40,4 +40,10 @@ function renderInitials(taskIndex, initials, index) {
         <div id="assignedToInitial${"#" + initials + "#" + index +  "#" + taskIndex}" class="assignedToInitial">${initials.toUpperCase()}</div>
      </div>
      `;
+}
+
+function renderDropZone(id) {
+    return `
+    <div id="${id}" class="dropzoneCard d_none"></div>
+    `;
 }
