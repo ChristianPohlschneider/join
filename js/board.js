@@ -6,6 +6,11 @@ let assignedToVariants = [];
 let subtask = 0;
 let subtaskTotal = 0;
 let currentId;
+let touchTimer = null;
+let touchStartTime = 0;
+let hasStartedDragging = false;
+let canStartDrag = false;
+let hasMoved = false;
 
 /**
  * This function initializes the board.html and fetches the saved tasks and contacts
@@ -49,6 +54,7 @@ function renderTasks(contacts) {
             renderDone(taskIndex, contacts);
         }
     }
+    renderDropZones();
 }
 
 /**
@@ -67,6 +73,16 @@ function clearBoardTable() {
     document.getElementById("emptyTask2").classList.add("emptyTask");
     document.getElementById("emptyTask3").classList.remove("d_none");
     document.getElementById("emptyTask3").classList.add("emptyTask");
+}
+
+/**
+ * This function renders the dropzones for the moved cards
+ */
+function renderDropZones() {
+    document.getElementById("taskToDo").innerHTML += renderDropZone("dropzone#TaskToDo");
+    document.getElementById("taskInProgress").innerHTML += renderDropZone("dropzone#TaskInProgress");
+    document.getElementById("taskAwaitFeedback").innerHTML += renderDropZone("dropzone#TaskAwaitFeedback");
+    document.getElementById("taskDone").innerHTML += renderDropZone("dropzone#TaskDone");
 }
 
 /**
@@ -193,6 +209,7 @@ function getSubtasks(taskIndex) {
     }
     renderSubtasks(taskIndex);
 }
+
 /**
  * This function renders the subtasks in the current task card
  * 
@@ -396,6 +413,15 @@ function startDragging(id) {
     currentId = id;
     const card = document.getElementById(`card${currentId}`);
     if (!card) return;
+
+    // Nur einmal anhängen
+    if (!card.dataset.dragListenerAdded) {
+        card.addEventListener('dragstart', function (e) {
+            e.preventDefault(); // Verhindert native Drag-Aktionen komplett
+        });
+        card.dataset.dragListenerAdded = "true";
+    }
+
     card.style.transformOrigin = 'bottom left';
     card.style.transform = 'rotate(3deg)';
     showVisibleFeedbackOnDrag(currentId);
@@ -464,7 +490,7 @@ function showVisibleFeedbackOnDrag(currentId) {
  * This function scrolls the tasklist back to the first task
  */
 function scrollElementsLeft() {
-    const containers = document.getElementsByClassName("taskFolder");
+    const containers = document.getElementsByClassName("taskList");
     for (const container of containers) {
         container.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     }
@@ -474,7 +500,7 @@ function scrollElementsLeft() {
  * This function scrolls the visible feedback element called dropzone into view
  */
 function scrollDropzoneIntoView() {
-    const containers = document.getElementsByClassName("taskFolder");
+    const containers = document.getElementsByClassName("taskList");
     for (const container of containers) {
         const dropzone = container.querySelector(".dropzoneCard");
         if (dropzone) {
@@ -558,59 +584,74 @@ function enableTouchDrag(cardElement, taskIndex) {
 }
 
 /**
- * This function handles the touch start and gets the actual touch event position for dragging
+ * This function adds the class "touched" to the card element
  * 
- * @param {element} cardElement - This is the element which should be dragged 
- * @param {object} e - This is the touch event object
- * @returns - The function returns the position of the touch event
+ * @param {element} cardElement - This is the element which should be dragged
  */
-function handleTouchStart(cardElement, e) {
-    const touch = e.touches[0];
-    const rect = cardElement.getBoundingClientRect();
-    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const offsetX = touch.clientX - rect.left;
-    const offsetY = touch.clientY - rect.top;
-    cardElement.style.position = 'absolute';
-    cardElement.style.zIndex = 1000;
-    cardElement.style.left = rect.left + scrollLeft + 'px';
-    cardElement.style.top = rect.top + scrollTop + 'px';
-    cardElement.classList.add('dragging');
-    document.body.appendChild(cardElement);
-    return { offsetX, offsetY };
+function addTouchedClass(cardElement) {
+    cardElement.classList.add('touched');
 }
 
 /**
- * This function handles the movement of the dragged element by touch
+ * This function removes the class "touched" to the card element
  * 
  * @param {element} cardElement - This is the element which should be dragged 
- * @param {object} e - This is the touch event object 
- * @param {number} offsetX - This is the x-position of the touch event
+ */
+function removeTouchedClass(cardElement) {
+    cardElement.classList.remove('touched');
+}
+
+/**
+ * This function starts the drag function on touch
+ * 
+ * @param {element} cardElement - This is the element which should be dragged 
+ * @param {DOMRect-Object} rect - This object specifies the position and the size of an object 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {number} offsetX - This is the x-position of the touch event 
+ * @param {number} offsetY - This is the y-position of the touch event  
+ */
+function startDrag(cardElement, rect, taskIndex, offsetX, offsetY) {
+    cardElement.style.position = 'absolute';
+    cardElement.style.zIndex = 1000;
+    cardElement.style.left = rect.left + window.pageXOffset + 'px';
+    cardElement.style.top = rect.top + window.pageYOffset + 'px';
+    cardElement.classList.add('dragging');
+    document.body.appendChild(cardElement);
+    cardElement.style.transformOrigin = 'bottom left';
+    cardElement.style.transform = 'rotate(3deg)';
+    showVisibleFeedbackOnDrag(taskIndex);
+    scrollDropzoneIntoView();
+}
+
+/**
+ * This function is used to move the card by touch hold
+ * 
+ * @param {element} cardElement - This is the element which should be dragged  
+ * @param {object} ev - This is the touch event object
+ * @param {number} offsetX - This is the x-position of the touch event 
  * @param {number} offsetY - This is the y-position of the touch event 
  */
-function handleTouchMove(cardElement, e, offsetX, offsetY) {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const newLeft = touch.clientX + scrollLeft - offsetX;
-    const newTop = touch.clientY + scrollTop - offsetY;
+function moveCard(cardElement, ev, offsetX, offsetY) {
+    ev.preventDefault();
+    const touch = ev.touches[0];
+    const newLeft = touch.clientX + window.pageXOffset - offsetX;
+    const newTop = touch.clientY + window.pageYOffset - offsetY;
     cardElement.style.left = newLeft + 'px';
     cardElement.style.top = newTop + 'px';
 }
 
 /**
- * This function handles the end of the touch event and if dropped correctly, saves
- * the new tasks. Otherwise the card elment will be removed.
+ * This function is used to finish the drag on release of touch
  * 
- * @param {element} cardElement - This is the element which should be dragged 
+ * @param {element} cardElement - This is the element which should be dragged  
  * @param {number} taskIndex - This is the index number from the tasks array 
- * @param {object} e - This is the touch event object 
+ * @param {object} ev - This is the touch event object 
  */
-function handleTouchEnd(cardElement, taskIndex, e) {
+function finishDrag(cardElement, taskIndex, ev) {
+    removeTouchedClass(cardElement);
     cardElement.classList.remove('dragging');
     dragEnd(taskIndex);
-    const touch = e.changedTouches[0];
+    const touch = ev.changedTouches[0];
     cardElement.style.pointerEvents = 'none';
     const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
     cardElement.style.pointerEvents = '';
@@ -618,10 +659,162 @@ function handleTouchEnd(cardElement, taskIndex, e) {
     if (status) {
         currentId = taskIndex;
         moveTo(status);
-    }
-    if (cardElement.parentElement === document.body) {
+    } if (cardElement.parentElement === document.body) {
         cardElement.remove();
+    }}
+
+/**
+* This function handles the dragging process of the dragged card element
+* 
+* @param {element} cardElement - This is the element which should be dragged  
+* @param {object} e - This is the touch event object  
+* @param {number} taskIndex - This is the index number from the tasks array 
+*/
+function handleTouchStart(cardElement, e, taskIndex) {
+    e.preventDefault();
+    addTouchedClass(cardElement);
+    const touch = e.touches[0];
+    const rect = cardElement.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+    let dragStarted = false;
+    let canDrag = false;
+    const dragTimer = startDragTimer(() => canDrag = true, 300);
+    const onMove = (ev) => {
+        if (tryStartDrag(ev, { dragStarted, canDrag, touch, cardElement, rect, taskIndex, offsetX, offsetY, dragTimer }))
+            dragStarted = true;
+        if (dragStarted) moveCard(cardElement, ev, offsetX, offsetY);
+    };
+
+    const onEnd = (ev) => {
+        clearTimeout(dragTimer);
+        cleanupListeners(cardElement, onMove, onEnd);
+        removeTouchedClass(cardElement);
+        if (!dragStarted) openTaskOverlay(taskIndex, ev);
+        else finishDrag(cardElement, taskIndex, ev);
+    };
+
+    cardElement.addEventListener('touchmove', onMove, { passive: false });
+    cardElement.addEventListener('touchend', onEnd);
+}
+
+/**
+ * This function is used to start the timer für the touch/drag event
+ * 
+ * @param {function} callback - This parameter is used to set the timer
+ * @param {number} delay - This parameter controlls the timer delay
+ * @returns - This function returns the setTimeout function
+ */
+function startDragTimer(callback, delay) {
+    return setTimeout(callback, delay);
+}
+
+/**
+ * This function adds the class "touched to the card"
+ * 
+ * @param {element} card - This is the element which should be dragged 
+ */
+function addTouchedClass(card) {
+    card.classList.add('touched');
+}
+
+/**
+ * This function removes the class "touched to the card"
+ * 
+ * @param {*element} card - This is the element which should be dragged 
+ */
+function removeTouchedClass(card) {
+    card.classList.remove('touched');
+}
+
+/**
+ * This function removes the event listeners from the card
+ * 
+ * @param {element} card - This is the element which should be dragged 
+ * @param {object} onMove - This is the touch event on touchmove
+ * @param {object} onEnd - This is the touch event on touchend 
+ */
+function cleanupListeners(card, onMove, onEnd) {
+    card.removeEventListener('touchmove', onMove);
+    card.removeEventListener('touchend', onEnd);
+}
+
+/**
+ * This function is used to start the dragging, otherwise it returns false
+ * 
+ * @param {object} ev - This is the touch event object
+ * @param {object} state - This is the status of the dragging process
+ * @returns - This function returns false or true, depending on the dragged state
+ */
+function tryStartDrag(ev, state) {
+    const moveTouch = ev.touches[0];
+    const movedX = Math.abs(moveTouch.clientX - state.touch.clientX);
+    const movedY = Math.abs(moveTouch.clientY - state.touch.clientY);
+    if (!state.dragStarted && state.canDrag && (movedX > 5 || movedY > 5)) {
+        clearTimeout(state.dragTimer);
+        startDrag(state.cardElement, state.rect, state.taskIndex);
+        return true;
     }
+    return false;
+}
+
+/**
+ * This function is used to start the dragging by touch
+ * 
+ * @param {element} card - This is the element which should be dragged  
+ * @param {DOMRect-Object} rect - This object specifies the position and the size of an object  
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
+function startDrag(card, rect, taskIndex) {
+    card.style.position = 'absolute';
+    card.style.zIndex = 1000;
+    card.style.left = rect.left + window.pageXOffset + 'px';
+    card.style.top = rect.top + window.pageYOffset + 'px';
+    card.classList.add('dragging');
+    document.body.appendChild(card);
+    card.style.transformOrigin = 'bottom left';
+    card.style.transform = 'rotate(3deg)';
+    showVisibleFeedbackOnDrag(taskIndex);
+    scrollDropzoneIntoView();
+}
+
+/**
+ * This function is used to move the card on touch event
+ * 
+ * @param {element} card - This is the element which should be dragged
+ * @param {object} ev - This is the touch event object 
+ * @param {number} offsetX - This is the x-position of the touch event  
+ * @param {number} offsetY - This is the y-position of the touch event  
+ */
+function moveCard(card, ev, offsetX, offsetY) {
+    ev.preventDefault();
+    const touch = ev.touches[0];
+    const newLeft = touch.clientX + window.pageXOffset - offsetX;
+    const newTop = touch.clientY + window.pageYOffset - offsetY;
+    card.style.left = newLeft + 'px';
+    card.style.top = newTop + 'px';
+}
+
+/**
+ * This function is used to finish the dragging process on touch event
+ * 
+ * @param {element} card - This is the element which should be dragged 
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ * @param {object} ev - This is the touch event object 
+ */
+function finishDrag(card, taskIndex, ev) {
+    card.classList.remove('dragging');
+    dragEnd(taskIndex);
+    const touch = ev.changedTouches[0];
+    card.style.pointerEvents = 'none';
+    const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+    card.style.pointerEvents = '';
+    const status = extractStatusFromDropTarget(dropTarget);
+    if (status) {
+        currentId = taskIndex;
+        moveTo(status);
+    }
+    if (card.parentElement === document.body) card.remove();
 }
 
 /**

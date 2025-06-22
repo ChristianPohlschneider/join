@@ -43,7 +43,7 @@ function listTamplate(color, contact){
 
 function errorTamplate(){
  return `
-    "<p>Wähle einen Kontakt aus der Liste.</p>"
+    <p>Wähle einen Kontakt aus der Liste.</p>
   `;
 }
 

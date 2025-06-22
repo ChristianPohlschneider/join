@@ -61,7 +61,30 @@ async function createUser(name, email, password) {
             }
         )
     });
+    createContact(name, email);
 };
+
+/**
+ * Posts the new user contact data to the API
+ * 
+ * @param {string} name - The name of the user
+ * @param {string} email - The email of the user
+ */
+async function createContact(name, email) {
+     let response = await fetch(BASE_URL + "/contacts" + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+            {
+                mail: email,
+                name: name,
+               phone_number: ""
+            }
+        )
+    });
+}
 
 /**
  * clears and removes all error messages and red border highlights
