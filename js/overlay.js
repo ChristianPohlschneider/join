@@ -186,19 +186,14 @@ function closeOverlay() {
  * @returns - If the task should not be deleted, the function ends with return 
  */
 async function deleteTaskByKey(key) {
-    if (!confirm("Möchtest du diesen Task wirklich löschen?")) return;
-    try {
-        await fetch(`${BASE_URL}tasks/${key}.json`, {
-            method: "DELETE"
-        });
-        closeOverlay();
-        await fetchTasks();
-        await fetchContacts();
-        clearBoardTable();
-        renderTasks(contacts);
-    } catch (error) {
-        console.error("Fehler beim Abrufen oder Löschen:", error);
-    }
+    await fetch(`${BASE_URL}tasks/${key}.json`, {
+        method: "DELETE"
+    });
+    closeOverlay();
+    await fetchTasks();
+    await fetchContacts();
+    clearBoardTable();
+    renderTasks(contacts);
 }
 
 /**
@@ -209,19 +204,13 @@ async function deleteTaskByKey(key) {
  * @returns - If the task is deleted, the function ends by return
  */
 async function getTaskKey(name) {
-    try {
-        const response = await fetch(`${BASE_URL}tasks/.json`);
-        const data = await response.json();
-        for (const key in data) {
-            if (data[key].name === name) {
-                await deleteTaskByKey(key);
-                alert(`Task "${name}" gelöscht (Key: ${key}).`);
-                return;
-            }
+    const response = await fetch(`${BASE_URL}tasks/.json`);
+    const data = await response.json();
+    for (const key in data) {
+        if (data[key].name === name) {
+            await deleteTaskByKey(key);
+            return;
         }
-        alert(`Task "${taskName}" nicht gefunden.`);
-    } catch (error) {
-        console.error("Fehler beim Abrufen oder Löschen:", error);
     }
 }
 
