@@ -1,3 +1,6 @@
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const digitPattern = /^\+?\d[\d\s\-()]+$/
+
 /** @type {string|null} Currently selected contact key for editing */
 let currentEditKey = null;
 
@@ -27,7 +30,7 @@ async function fetchContacts() {
     }
 
     renderContacts(data);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -172,7 +175,6 @@ function openEditContact() {
  */
 function closeEditContact() {
   document.getElementById("editContactOverlay").classList.add("hidden");
-  currentEditKey = null;
 }
 
 /**
@@ -194,7 +196,7 @@ async function editContact(key) {
     fillEditForm(name || "", mail || "", phone || "", color);
     currentEditKey = key;
     showEditOverlay(name || "", color);
-  } catch (error) {}
+  } catch (error) { }
   toggleContactsSlider();
 }
 
@@ -259,21 +261,44 @@ function toggleContactsSlider() {
 }
 
 /**
- * Saves the currently edited contact and updates the UI.
+ * Validates and saves an edited contact.
+ * Ensures all fields are filled and properly formatted before saving.
  */
-async function saveEditedContact() {
-  if (!currentEditKey) {
-    alert("No contact has been selected.");
+async function CheckEditedContact() {
+  const name = document.getElementById("editName").value;
+  const mail = document.getElementById("editMail").value;
+  const phone = document.getElementById("editPhone").value;
+  const color = document.getElementById("editAvatar").style.background || getRandomColor();
+
+  if (!name || !mail || !phone) {
+    alertEdit();
+    return;
+  }
+
+  if (!emailPattern.test(mail)) {
+    alertValidMailEdit();
+    return;
+  }
+
+  if (!digitPattern.test(phone)) {
+    alertValidNumberEdit();
     return;
   }
 
   const updatedContact = {
-    name: document.getElementById("editName").value,
-    mail: document.getElementById("editMail").value,
-    phone_number: document.getElementById("editPhone").value,
-    color: document.getElementById("editAvatar").style.background || getRandomColor()
+    name: name,
+    mail: mail,
+    phone_number: phone,
+    color: color
   };
 
+  await saveEditedContact(updatedContact);
+}
+
+/**
+ * Saves the currently edited contact and updates the UI.
+ */
+async function saveEditedContact(updatedContact) {
   try {
     await fetch(`${BASE_URL}contacts/${currentEditKey}.json`, {
       method: "PUT",
@@ -286,7 +311,7 @@ async function saveEditedContact() {
     closeEditContact();
     await fetchContacts();
     showContact(updatedContact, updatedContact.color, currentEditKey);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -303,7 +328,7 @@ async function deleteContact(key) {
 
     document.getElementById("contactView").innerHTML = errorTamplate();
     await fetchContacts();
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -316,7 +341,15 @@ function generateKeyFromName(name) {
 }
 
 /**
- * Creates and saves a new contact.
+ * Validates input fields and creates a new contact if all validations pass.
+ * 
+ * - Checks if the email is valid using `emailPattern`.
+ * - Checks if all fields (name, email, phone) are filled.
+ * - Checks if the phone number contains only digits using `digitPattern`.
+ * - If all checks pass, calls `createNewContact` to save the contact.
+ * 
+ * @async
+ * @function
  */
 async function createContact() {
   const name = getInputValue("contactName");
@@ -324,10 +357,26 @@ async function createContact() {
   const phone = getInputValue("contactPhone");
 
   if (!name || !mail || !phone) {
-    alert("Bitte fülle alle Felder aus.");
-    return;
-  }
+    alert();
+    return;}
+  if (!emailPattern.test(mail)) {
+    alertValidMail();
+    return;}
+  if (!digitPattern.test(phone)) {
+    alertValidNumber();
+    return;}
+  createNewContact(name, mail, phone);
+}
 
+/**
+ * Builds a contact object and saves it using a generated key.
+ * 
+ * @param {string} name - The name of the contact.
+ * @param {string} mail - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @returns {Promise<void>}
+ */
+async function createNewContact(name, mail, phone) {
   const newContact = buildContactObject(name, mail, phone);
   const key = generateKeyFromName(name);
   await saveContact(key, newContact);
@@ -379,7 +428,7 @@ async function saveContact(key, contact) {
     }
 
     finishContactCreation();
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -392,70 +441,3 @@ function finishContactCreation() {
   fetchContacts();
 }
 
-/**
- * Shows feedback that contact was added successfully.
- */
-function contactAddedSuccessfully() {
-  const feedbackEl = document.getElementById("userFeedback");
-  feedbackEl.classList.remove("hidden");
-
-  setTimeout(() => {
-    feedbackEl.classList.add("hidden");
-  }, 4000);
-}
-
-/**
- * Clears the add-contact form fields.
- */
-function clearAddContactFields() {
-  document.getElementById("contactName").value = "";
-  document.getElementById("contactEmail").value = "";
-  document.getElementById("contactPhone").value = "";
-}
-
-/**
- * Deletes the currently selected contact.
- */
-function deleteCurrentContact() {
-  if (currentEditKey) {
-    deleteContact(currentEditKey);
-    closeEditContact();
-  }
-}
-
-/**
- * Closes a given overlay by its ID.
- * @param {string} overlayId - The overlay element ID.
- */
-function closeOverlayByElement(overlayId) {
-  const overlay = document.getElementById(overlayId);
-  if (overlay) overlay.classList.add("hidden");
-}
-
-// Global click handler for closing overlays
-document.addEventListener("click", function (event) {
-  const openOverlays = document.querySelectorAll(".overlay:not(.hidden)");
-
-  openOverlays.forEach(overlay => {
-    if (event.target === overlay) {
-      overlay.classList.add("hidden");
-    }
-  });
-});
-
-// Toggle sidebar menu
-const contactsSlider = document.getElementById("contactsSlider");
-const sliderTrigger = document.getElementById("sliderTrigger");
-
-if (contactsSlider && sliderTrigger) {
-  sliderTrigger.addEventListener("click", function (event) {
-    event.stopPropagation();
-    contactsSlider.classList.toggle("open");
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!contactsSlider.contains(event.target) && !sliderTrigger.contains(event.target)) {
-      contactsSlider.classList.remove("open");
-    }
-  });
-}

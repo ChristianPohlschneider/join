@@ -575,6 +575,31 @@ html {
     color: white
 }
 
+.warning {
+    height: 15px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+}
+
+.warning-container {
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.red-border {
+    border: 1px solid #FF001F !important;
+}
+
+.warning-signup {
+    height: 15px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+}
+
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -847,7 +872,7 @@ html {
     .contacts-slider {
         position: absolute;
         bottom: 80px;
-        right: -116px;
+        right: 0px;
         width: 116px;
         height: 100px;
         background-color: #ffffff;
@@ -861,16 +886,15 @@ html {
         border-radius: 20px 0px 20px 20px;
     }
 
+    .dnone {
+        display: none !important;
+    }
+
     .contacts-slider img {
         width: 24px;
         height: 24px;
         margin-right: 12px;
     }
-
-    .contacts-slider.open {
-        right: 0;
-    }
-
     .delete-menu-btn {
         display: flex;
         width: 96px;

@@ -18,7 +18,7 @@
   <script defer src="../assets/templates/contacts_tamplate.js"></script>
   <script defer src="../js/data.js"></script>
   <script defer src="../js/contacts.js"></script>
-
+  <script defer src="../js/contacts_v2.js"></script>
 </head>
 
 <body onresize="toogleVieW(),highlightLink()" onload="initContacts()">
@@ -56,7 +56,7 @@
         <div class="contact-view-menu-mobile" id="sliderTrigger">
           <img src="../assets/icons/more_vert.png" alt="more_vert">
         </div>
-        <div id="contactsSlider" class="contacts-slider">
+        <div id="contactsSlider" class="contacts-slider dnone">
           <ul>
             <li>
               <button class="edit-menu-btn" onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png"
@@ -86,17 +86,18 @@
             </div>
             <div class="contact-form">
               <div class="subtask-container">
-                <input type="text" id="contactName" placeholder="Name">
+                <input type="text" id="contactName" placeholder="Name" onclick="alertremove()">
                 <img src="../assets/icons/person.png" alt="Contact Name" class="contact-icon">
               </div>
               <div class="subtask-container">
-                <input type="email" id="contactEmail" placeholder="Email">
+                <input type="email" id="contactEmail" placeholder="Email" onclick="alertremove()">
                 <img src="../assets/icons/mail.png" alt="Contact Email" class="contact-icon">
               </div>
               <div class="subtask-container">
-                <input type="tel" id="contactPhone" placeholder="Phone">
+                <input type="tel" id="contactPhone" placeholder="Phone" onclick="alertremove()">
                 <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon">
               </div>
+              <div id="warningContainer" class="warning-container"></div>
             </div>
           </div>
           <div class="add-overlay-button">
@@ -122,21 +123,21 @@
           </div>
           <div class="contact-form">
             <div class="subtask-container">
-              <input type="text" id="editName">
+              <input type="text" id="editName" onclick="alertremoveEdit()" placeholder="Name">
               <img src="../assets/icons/person.png" alt="Contact Name" class="contact-icon-edit">
             </div>
             <div class="subtask-container">
-              <input type="email" id="editMail">
+              <input type="email" id="editMail" onclick="alertremoveEdit()" placeholder="Email">
               <img src="../assets/icons/mail.png" alt="Contact Email" class="contact-icon-edit">
             </div>
             <div class="subtask-container">
-              <input type="tel" id="editPhone" class="font-size-">
+              <input type="tel" id="editPhone" class="font-size-" onclick="alertremoveEdit()" placeholder="Number">
               <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon-edit">
             </div>
-
+            <div id="editWarningContainer" class="warning-container"></div>
             <div class="edit-overlay-button">
               <button class="delete-button" onclick="deleteCurrentContact()">Delete</button>
-              <button class="save-button" onclick="saveEditedContact()">Save<img src="../assets/icons/check-white.png"
+              <button class="save-button" onclick="CheckEditedContact()">Save<img src="../assets/icons/check-white.png"
                   alt=""></button>
             </div>
           </div>

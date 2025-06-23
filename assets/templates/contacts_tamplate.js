@@ -43,12 +43,30 @@ function listTamplate(color, contact){
 
 function errorTamplate(){
  return `
-    <p>Wähle einen Kontakt aus der Liste.</p>
+    <p>Select a contact from the list</p>
   `;
 }
 
 function noKontaktTamplate() {
   return `
-    <p>Keine Kontakte gefunden.</p>
+    <p>No contacts found</p>
+  `;
+}
+
+function warningText() {
+  return `
+    <p class="warning">Please fill in all fields!</p>
+  `;
+}
+
+function alertValidMailText() {
+  return `
+    <p class="warning">Please enter a valid email address!</p>
+  `;
+}
+
+function  alertValidNumberText() {
+   return `
+    <p class="warning">Please enter a valid phone number</p>
   `;
 }
