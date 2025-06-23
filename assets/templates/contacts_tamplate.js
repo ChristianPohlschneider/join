@@ -7,7 +7,7 @@ function showContact(contact, color, key) {
         </div>
         <div class="contact-name-buttons">
           <h2>${contact.name}</h2>
-          <button class="contact-name-buttons-edit" onclick="editContact('${key}')">Edit</button>
+          <button class="contact-name-buttons-edit" onclick="alertremoveEdit(); editContact('${key}');">Edit</button>
           <button class="contact-name-buttons-delete" onclick="deleteContact('${key}')">Delete</button>
         </div>
       </div>

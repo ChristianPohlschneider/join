@@ -30,7 +30,7 @@
     <section class="contacts-section">
       <div class="contacts-list show">
         <div class="contacts-header">
-          <button onclick="openAddContact()" class="add-button">
+          <button onclick="openAddContact(); alertremove()" class="add-button">
             Add new contact
             <img src="../assets/icons/person_add.png" alt="">
           </button>
@@ -38,7 +38,7 @@
 
         <div class="contacts-scroll-area" id="contactList">
         </div>
-        <button onclick="openAddContact()" class="add-button-mobile">
+        <button onclick="openAddContact(); alertremove()" class="add-button-mobile">
         </button>
       </div>
       </div>
@@ -56,7 +56,7 @@
         <div class="contact-view-menu-mobile" id="sliderTrigger">
           <img src="../assets/icons/more_vert.png" alt="more_vert">
         </div>
-        <div id="contactsSlider" class="contacts-slider dnone">
+        <div id="contactsSlider" class="contacts-slider">
           <ul>
             <li>
               <button class="edit-menu-btn" onclick="editContact('${key}')"><img src="../assets/icons/edit-v2.png"
@@ -134,7 +134,7 @@
               <input type="tel" id="editPhone" class="font-size-" onclick="alertremoveEdit()" placeholder="Number">
               <img src="../assets/icons/call.png" alt="Contact Phone" class="contact-icon-edit">
             </div>
-            <div id="editWarningContainer" class="warning-container"></div>
+            <div id="warningEditContainer" class="warning-container"></div>
             <div class="edit-overlay-button">
               <button class="delete-button" onclick="deleteCurrentContact()">Delete</button>
               <button class="save-button" onclick="CheckEditedContact()">Save<img src="../assets/icons/check-white.png"

@@ -886,6 +886,10 @@ html {
         border-radius: 20px 0px 20px 20px;
     }
 
+  .contacts-slider.open {
+        right: 0;
+    }
+
     .dnone {
         display: none !important;
     }
