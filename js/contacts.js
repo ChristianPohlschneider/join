@@ -207,8 +207,6 @@ async function saveEditedContact(updatedContact) {
 }
 
 async function deleteContact(key) {
-  if (!confirm("Do you really want to delete this contact?")) return;
-
   try {
     await fetch(`${BASE_URL}contacts/${key}.json`, { method: "DELETE" });
     document.getElementById("contactView").innerHTML = errorTamplate();
@@ -244,6 +242,7 @@ async function createNewContact(name, mail, phone) {
   const newContact = buildContactObject(name, mail, phone);
   const key = generateKeyFromName(name);
   await saveContact(key, newContact);
+  await fetchContacts();
 }
 
 function getInputValue(id) {
