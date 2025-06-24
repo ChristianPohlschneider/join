@@ -22,6 +22,7 @@ function renderCard(taskIndex) {
             
             <div class="taskAssignment">
                 <div id="assignedTo#${taskIndex}" class="assignedTo"></div>
+                <div id="taskAssignment${taskIndex}" class="assignedTo"></div>
                 <div id="priority#${taskIndex}" class="priority"></div>
             </div>
         </div>

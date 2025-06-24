@@ -242,6 +242,7 @@ async function createNewContact(name, mail, phone) {
   const newContact = buildContactObject(name, mail, phone);
   const key = generateKeyFromName(name);
   await saveContact(key, newContact);
+  await fetchContacts();
 }
 
 function getInputValue(id) {

@@ -450,6 +450,24 @@ li {
   gap: 6px;
 }
 
+.subtaskList{
+  max-height: 150px;
+  overflow-x: auto;
+}
+
+.moreMembers{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 42px;
+  height: 42px;
+  background-color: rgb(177, 179, 183);
+  font-size: 18px;
+}
+
 @media (max-width: 1350px) {
 
   .success-container {
