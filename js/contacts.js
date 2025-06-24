@@ -1,15 +1,33 @@
+/**
+ * Regular expression to validate email addresses.
+ * Matches a basic format like name@example.com.
+ */
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Regular expression to validate phone numbers.
+ * Allows optional '+' and various common separators.
+ */
 const digitPattern = /^\+?\d[\d\s\-()]{6,19}$/;
 
-/** @type {string|null} Currently selected contact key for editing */
+/** 
+ * Currently selected contact key for editing.
+ * @type {string|null} 
+ */
 let currentEditKey = null;
 
+/**
+ * Initializes the contacts module: fetches contacts and highlights the menu link.
+ */
 async function initContacts() {
   await fetchContacts();
   initTask();
   highlightLink();
 }
 
+/**
+ * Fetches all contacts and renders them in the list.
+ */
 async function fetchContacts() {
   try {
     const data = await getAllUsers("contacts");
@@ -21,16 +39,28 @@ async function fetchContacts() {
   } catch (error) {}
 }
 
+/**
+ * Fetches all data from a specific path in the backend.
+ * @param {string} path - The path to fetch data from.
+ * @returns {Promise<Object>} - JSON data from the backend.
+ */
 async function getAllUsers(path) {
   const response = await fetch(BASE_URL + path + ".json");
   return await response.json();
 }
 
+/**
+ * Highlights the 'contacts' navigation link.
+ */
 function highlightLink() {
   const currentLink = document.getElementById('contacts');
   currentLink.classList.add('activeLink');
 }
 
+/**
+ * Renders the contact list grouped by first letter.
+ * @param {Object} contactsData - The contacts data object.
+ */
 function renderContacts(contactsData) {
   const list = document.getElementById("contactList");
   list.innerHTML = "";
@@ -47,6 +77,12 @@ function renderContacts(contactsData) {
   });
 }
 
+/**
+ * Appends a contact element to the contact list.
+ * @param {HTMLElement} list - The parent list element.
+ * @param {string} key - The contact key.
+ * @param {Object} contact - The contact object.
+ */
 function appendContactElement(list, key, contact) {
   const color = contact.color || getRandomColor();
   const div = document.createElement("div");
@@ -58,6 +94,11 @@ function appendContactElement(list, key, contact) {
   list.appendChild(div);
 }
 
+/**
+ * Appends a header element for a new group of contacts.
+ * @param {HTMLElement} list - The parent list element.
+ * @param {string} groupLetter - The letter grouping the contacts.
+ */
 function appendGroupHeader(list, groupLetter) {
   const groupHeader = document.createElement("div");
   groupHeader.classList.add("contact-group-header");
@@ -69,6 +110,10 @@ function appendGroupHeader(list, groupLetter) {
   list.appendChild(highlightDiv);
 }
 
+/**
+ * Highlights the currently selected contact.
+ * @param {string} id - The ID of the selected contact.
+ */
 function showCurrentContact(id) {
   const prev = document.querySelector(".CurrentContact");
   if (prev) prev.classList.remove("CurrentContact");
@@ -77,42 +122,69 @@ function showCurrentContact(id) {
   if (current) current.classList.add("CurrentContact");
 }
 
+/**
+ * Returns the initials of a given name.
+ * @param {string} name - The full name.
+ * @returns {string} - Initials in uppercase.
+ */
 function getInitials(name) {
   return name.split(" ").map(n => n[0].toUpperCase()).join("");
 }
 
+/**
+ * Returns a random color from the predefined list.
+ * @returns {string} - A hex color string.
+ */
 function getRandomColor() {
   const colors = ["#6E52FF", "#FFA35E", "#FFE62B", "#00BEE8", "#FF5EB3", "#FFBB2B", "#FF745E", "#C3FF2B", "#FF7A00", "#1FD7C1", "#0038FF", "#FFC701", "#9327FF", "#FC71FF", "#FF4646"];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
+/**
+ * Navigates back to the contact list view.
+ */
 function backToList() {
   document.getElementById("contactDetails").classList.remove("show");
   document.querySelector(".contacts-list").classList.add("show");
 }
 
+/**
+ * Opens the overlay for adding a new contact.
+ */
 function openAddContact() {
   document.getElementById("addContactOverlay").classList.remove("hidden");
 }
 
+/**
+ * Closes the overlay for adding a contact and clears form fields.
+ */
 function closeAddContact() {
   document.getElementById("addContactOverlay").classList.add("hidden");
   clearAddContactFields();
 }
 
+/**
+ * Opens the overlay for editing a contact.
+ */
 function openEditContact() {
   document.getElementById("editContactOverlay").classList.remove("hidden");
 }
 
+/**
+ * Closes the overlay for editing a contact.
+ */
 function closeEditContact() {
   document.getElementById("editContactOverlay").classList.add("hidden");
 }
 
+/**
+ * Loads contact data into the edit form by key.
+ * @param {string} key - The contact key.
+ */
 async function editContact(key) {
   try {
     const contact = await fetchContactByKey(key);
     if (!contact) {
-      alert("Contact not found.");
       closeEditContact();
       return;
     }
@@ -127,11 +199,22 @@ async function editContact(key) {
   toggleContactsSlider();
 }
 
+/**
+ * Fetches a single contact by its key.
+ * @param {string} key - The contact key.
+ * @returns {Promise<Object>} - Contact object.
+ */
 async function fetchContactByKey(key) {
   const response = await fetch(`${BASE_URL}contacts/${key}.json`);
   return await response.json();
 }
 
+/**
+ * Ensures the contact has a color assigned; generates one if missing.
+ * @param {string} key - The contact key.
+ * @param {string} color - The current color.
+ * @returns {Promise<string>} - Final color value.
+ */
 async function ensureContactColor(key, color) {
   if (!color) {
     color = getRandomColor();
@@ -144,12 +227,24 @@ async function ensureContactColor(key, color) {
   return color;
 }
 
+/**
+ * Fills the edit form fields with given contact data.
+ * @param {string} name 
+ * @param {string} mail 
+ * @param {string} phone 
+ * @param {string} color 
+ */
 function fillEditForm(name, mail, phone, color) {
   document.getElementById("editName").value = name;
   document.getElementById("editMail").value = mail;
   document.getElementById("editPhone").value = phone;
 }
 
+/**
+ * Displays the edit avatar and overlay.
+ * @param {string} name - Contact name.
+ * @param {string} color - Avatar background color.
+ */
 function showEditOverlay(name, color) {
   const avatar = document.getElementById("editAvatar");
   avatar.textContent = getInitials(name);
@@ -157,41 +252,49 @@ function showEditOverlay(name, color) {
   document.getElementById("editContactOverlay").classList.remove("hidden");
 }
 
+/**
+ * Toggles the visibility of the contact slider.
+ */
 function toggleContactsSlider() {
   document.getElementById("contactsSlider").classList.toggle("open");
 }
 
+/**
+ * Validates and saves the edited contact data.
+ */
 async function CheckEditedContact() {
   const name = document.getElementById("editName").value;
   const mail = document.getElementById("editMail").value;
   const phone = document.getElementById("editPhone").value;
   const color = document.getElementById("editAvatar").style.background || getRandomColor();
-
   if (!name || !mail || !phone) {
     alertEdit();
-    return;
-  }
-
+    return;}
   if (!emailPattern.test(mail)) {
     alertValidMailEdit();
-    return;
-  }
-
+    return;}
   if (!digitPattern.test(phone)) {
     alertValidNumberEdit();
-    return;
-  }
+    return;}
+    await  combineFullContact(name,mail,phone,color)
+}
 
+/**
+ * Combines the new contact
+ */
+async function combineFullContact(name,mail,phone,color) {
   const updatedContact = {
     name: name,
     mail: mail,
     phone_number: phone,
-    color: color
-  };
-
+    color: color};
   await saveEditedContact(updatedContact);
 }
 
+/**
+ * Saves the edited contact to the database.
+ * @param {Object} updatedContact - Contact object.
+ */
 async function saveEditedContact(updatedContact) {
   try {
     await fetch(`${BASE_URL}contacts/${currentEditKey}.json`, {
@@ -206,6 +309,10 @@ async function saveEditedContact(updatedContact) {
   } catch (error) {}
 }
 
+/**
+ * Deletes a contact by its key.
+ * @param {string} key - Contact key.
+ */
 async function deleteContact(key) {
   try {
     await fetch(`${BASE_URL}contacts/${key}.json`, { method: "DELETE" });
@@ -214,10 +321,18 @@ async function deleteContact(key) {
   } catch (error) {}
 }
 
+/**
+ * Generates a database-safe key from a contact name.
+ * @param {string} name - Contact name.
+ * @returns {string} - Sanitized key.
+ */
 function generateKeyFromName(name) {
   return name.toLowerCase().replace(/[^a-z0-9]/g, "_");
 }
 
+/**
+ * Creates a new contact from form input.
+ */
 async function createContact() {
   const name = getInputValue("contactName");
   const mail = getInputValue("contactEmail");
@@ -225,19 +340,22 @@ async function createContact() {
 
   if (!name || !mail || !phone) {
     alert();
-    return;
-  }
+    return;}
   if (!emailPattern.test(mail)) {
     alertValidMail();
-    return;
-  }
+    return;}
   if (!digitPattern.test(phone)) {
     alertValidNumber();
-    return;
-  }
+    return;}
   createNewContact(name, mail, phone);
 }
 
+/**
+ * Builds and saves a new contact to the database.
+ * @param {string} name 
+ * @param {string} mail 
+ * @param {string} phone 
+ */
 async function createNewContact(name, mail, phone) {
   const newContact = buildContactObject(name, mail, phone);
   const key = generateKeyFromName(name);
@@ -245,10 +363,22 @@ async function createNewContact(name, mail, phone) {
   await fetchContacts();
 }
 
+/**
+ * Gets the value of an input field by ID.
+ * @param {string} id - Element ID.
+ * @returns {string} - Trimmed input value.
+ */
 function getInputValue(id) {
   return document.getElementById(id).value.trim();
 }
 
+/**
+ * Builds a contact object.
+ * @param {string} name 
+ * @param {string} mail 
+ * @param {string} phone 
+ * @returns {Object} - Contact object.
+ */
 function buildContactObject(name, mail, phone) {
   return {
     name: name,
@@ -258,6 +388,11 @@ function buildContactObject(name, mail, phone) {
   };
 }
 
+/**
+ * Saves a contact to the backend.
+ * @param {string} key - Contact key.
+ * @param {Object} contact - Contact object.
+ */
 async function saveContact(key, contact) {
   try {
     const response = await fetch(`${BASE_URL}contacts/${key}.json`, {
@@ -267,7 +402,6 @@ async function saveContact(key, contact) {
     });
 
     if (!response.ok) {
-      alert("Fehler beim Speichern.");
       return;
     }
 
@@ -275,6 +409,9 @@ async function saveContact(key, contact) {
   } catch (error) {}
 }
 
+/**
+ * Finishes contact creation process and updates UI.
+ */
 function finishContactCreation() {
   closeAddContact();
   clearAddContactFields();
@@ -282,6 +419,10 @@ function finishContactCreation() {
   fetchContacts();
 }
 
+/**
+ * Closes a specified overlay by its ID.
+ * @param {string} overlayId - The overlay element ID.
+ */
 function closeOverlayByElement(overlayId) {
   const overlay = document.getElementById(overlayId);
   if (overlay) overlay.classList.add("hidden");
@@ -317,11 +458,26 @@ if (contactsSlider && sliderTrigger) {
   });
 }
 
+/**
+ * Deletes the currently selected contact.
+ */
 function deleteCurrentContact() {
   if (currentEditKey) {
     deleteContact(currentEditKey);
     closeEditContact();
   }
+}
+
+/**
+ * Shows feedback that contact was added successfully.
+ */
+function contactAddedSuccessfully() {
+  const feedbackEl = document.getElementById("userFeedback");
+  feedbackEl.classList.remove("hidden");
+
+  setTimeout(() => {
+    feedbackEl.classList.add("hidden");
+  }, 4000);
 }
 
 

@@ -1159,6 +1159,10 @@ input::placeholder {
     .add-overlay-button {
         padding-top: 0px;
     }
+
+        .close-btn {
+        top: 10px;
+    }
 }
 
 @media (max-height: 740px) {
@@ -1180,6 +1184,10 @@ input::placeholder {
     .create-button {
         width: 200px;
         height: 50px;
+    }
+
+        .edit-overlay-button {
+        padding-top: 0px;
     }
 }
 
