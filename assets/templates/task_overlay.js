@@ -266,3 +266,11 @@ function addTaskBoardTemplate() {
             </div>
         </div>`
 }
+
+function moreMemberTemplate() {
+    return `<div class="moreMembers">+${assignedMembers.length}</div>`
+}
+
+function moreMemberCardTemplate() {
+    return `<div class="moreCardMembers">+${assignedTo.length}</div>`
+}

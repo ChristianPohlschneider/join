@@ -300,7 +300,12 @@ function getAssignedToInitials(taskIndex, contacts) {
  * @param {array} contacts - This is the array in which all contacts are pushed 
  */
 function establishInitials(taskIndex, contacts) {
+    const contentPlace = document.getElementById("taskAssignment" + taskIndex);
     for (let index = 0; index < assignedTo.length; index++) {
+        if (index == 5) {
+            contentPlace.innerHTML = moreMemberCardTemplate()
+            return
+        }
         let name = assignedTo[index];
         let parts = name.split(' ')
         let initials = ''
@@ -661,7 +666,8 @@ function finishDrag(cardElement, taskIndex, ev) {
         moveTo(status);
     } if (cardElement.parentElement === document.body) {
         cardElement.remove();
-    }}
+    }
+}
 
 /**
 * This function handles the dragging process of the dragged card element

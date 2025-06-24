@@ -272,6 +272,19 @@ main {
     transition: border 0.2s;
 }
 
+.moreCardMembers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 32px;
+    height: 32px;
+    background-color: rgb(177, 179, 183);
+    font-size: 14px;
+}
+
 @media (max-width: 1350px) {
     .rightSection {
         padding-left: 0;
