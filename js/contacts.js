@@ -1,5 +1,5 @@
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const digitPattern = /^\+?\d[\d\s\-()]+$/;
+const digitPattern = /^\+?\d[\d\s\-()]{6,19}$/;
 
 /** @type {string|null} Currently selected contact key for editing */
 let currentEditKey = null;
@@ -207,8 +207,6 @@ async function saveEditedContact(updatedContact) {
 }
 
 async function deleteContact(key) {
-  if (!confirm("Do you really want to delete this contact?")) return;
-
   try {
     await fetch(`${BASE_URL}contacts/${key}.json`, { method: "DELETE" });
     document.getElementById("contactView").innerHTML = errorTamplate();

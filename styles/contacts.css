@@ -600,6 +600,10 @@ html {
     color: #FF8190;
 }
 
+input::placeholder {
+    padding-left: 5px;
+}
+
 @media (max-width: 1350px) {
 
     .contacts-list {
@@ -886,7 +890,7 @@ html {
         border-radius: 20px 0px 20px 20px;
     }
 
-  .contacts-slider.open {
+    .contacts-slider.open {
         right: 0;
     }
 
@@ -899,6 +903,7 @@ html {
         height: 24px;
         margin-right: 12px;
     }
+
     .delete-menu-btn {
         display: flex;
         width: 96px;
@@ -940,14 +945,22 @@ html {
         width: 60%;
     }
 
+    .border-blue {
+        margin-left: 14px;
+    }
+
     .overlay-header h2 {
         font-size: 42px;
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
     .overlay-header p {
         font-size: 20px;
-        margin-left: 10px;
+        margin-left: 20px;
+    }
+
+    .border-blue {
+        margin-left: 21px;
     }
 
     .cancel-button {
@@ -966,6 +979,18 @@ html {
 @media (max-width: 450px) {
     .close-btn {
         left: 84%;
+    }
+
+    .overlay-header h2 {
+        margin-left: 10px;
+    }
+
+    .overlay-header p {
+        margin-left: 10px;
+    }
+
+    .border-blue {
+        margin-left: 13px;
     }
 
     .avatar-style {
@@ -1104,5 +1129,111 @@ html {
 
     .contact-avatar {
         margin-right: 10px;
+    }
+}
+
+
+@media (max-height: 900px) {
+    .overlay-content {
+        max-height: 660px;
+    }
+
+    .overlay-header {
+        height: 33%;
+    }
+}
+
+@media (max-height: 813px) {
+    .overlay {
+        justify-content: flex-start;
+    }
+
+    .overlay-header p {
+        margin-top: 5px;
+    }
+
+    .overlay-content {
+        margin-top: 20px;
+    }
+
+    .add-overlay-button {
+        padding-top: 0px;
+    }
+}
+
+@media (max-height: 740px) {
+    .add-contact-icon {
+        margin-bottom: 17px;
+    }
+
+    .overlay-header {
+        justify-content: flex-start;
+    }
+
+    .overlay-header h2 {
+        margin-top: 25px;
+    }
+}
+
+@media (max-height: 670px) {
+
+    .create-button {
+        width: 200px;
+        height: 50px;
+    }
+}
+
+@media (max-height: 662px) {
+    .close-overlay-desktop {
+        top: -31%;
+    }
+
+    .overlay-header h2 {
+        margin-top: 10px;
+    }
+
+
+    .border-blue {
+        margin-top: 5px;
+    }
+
+    .add-contact-icon {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-height: 632px) {
+    .close-overlay-desktop {
+        top: -28%;
+    }
+}
+
+@media (max-height: 620px) {
+    .close-overlay-desktop {
+        top: -26%;
+    }
+
+    .overlay-header h2 {
+        font-size: 31px;
+        margin-left: 15px;
+    }
+
+    .overlay-header p {
+        font-size: 18px;
+        margin-left: 15px;
+    }
+
+    .close-overlay-desktop {
+        top: -24%;
+    }
+}
+
+@media screen and (max-width: 930px) {
+  input {
+    height: 934px;
+  }
+
+    .overlay-content {
+        max-height: 700px;
     }
 }
