@@ -329,6 +329,10 @@ function renderMembersForTask() {
     contentPlace.innerHTML = "";
     const initialsMembers = makeShortName(assignedMembers);
     for (let index = 0; index < assignedMembers.length; index++) {
+        if (index == 5) {
+            contentPlace.innerHTML += moreMemberTemplate()
+            return
+        }
         contentPlace.innerHTML += meberTemplate(initialsMembers, index);
         findSameBgColor(assignedMembers, index);
     };

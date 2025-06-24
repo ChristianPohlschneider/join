@@ -33,3 +33,7 @@ function editSubtaskTemplate(index) {
                 </div>
             </div>`
 };
+
+function moreMemberTemplate() {
+    return `<div class="moreMembers">+${assignedMembers.length}</div>`
+}
