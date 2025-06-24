@@ -268,9 +268,9 @@ function addTaskBoardTemplate() {
 }
 
 function moreMemberTemplate() {
-    return `<div class="moreMembers">+${assignedMembers.length}</div>`
+    return `<div class="moreMembers">+${assignedMembers.length - 5}</div>`
 }
 
 function moreMemberCardTemplate() {
-    return `<div class="moreCardMembers">+${assignedTo.length}</div>`
+    return `<div class="moreCardMembers">+${assignedTo.length - 5}</div>`
 }

@@ -35,5 +35,5 @@ function editSubtaskTemplate(index) {
 };
 
 function moreMemberTemplate() {
-    return `<div class="moreMembers">+${assignedMembers.length}</div>`
+    return `<div class="moreMembers">+${assignedMembers.length - 5}</div>`
 }
