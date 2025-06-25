@@ -204,6 +204,11 @@ async function editContact(key, contactName) {
   toggleContactsSlider();
 }
 
+/**
+ * Filters all tasks and finds those assigned to the given contact name.
+ * 
+ * @param {string} name -The name of the contact to search for in the assigned tasks
+ */
 function findContactTasks(name) {
   taskContactIsIncluded = tasks.filter((i) => {
     return i.assigned_to.includes(name)
@@ -307,6 +312,14 @@ async function combineFullContact(name, mail, phone, color) {
   await updateTasks(updatedContact.name);
 }
 
+/**
+ * Updates all tasks assigned to a specific contact name by replacing the contact
+ * name in the `assigned_to` array with a new name.
+ *
+ * The tasks to be updated must be stored in the global variable `taskContactIsIncluded`.
+ *
+ * @param {string} name - The new name to assign in the `assigned_to` array.
+ */
 async function updateTasks(name) {
   for (let index = 0; index < taskContactIsIncluded.length; index++) {
     let currentContactIndex = taskContactIsIncluded[index].assigned_to.indexOf(currentEditName)
