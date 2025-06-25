@@ -1,3 +1,5 @@
+let taskContactIsIncluded = [];
+let currentEditName = "";
 /**
  * Regular expression to validate email addresses.
  * Matches a basic format like name@example.com.
@@ -21,6 +23,7 @@ let currentEditKey = null;
  */
 async function initContacts() {
   await fetchContacts();
+  await fetchTasks();
   initTask();
   highlightLink();
 }
@@ -36,7 +39,7 @@ async function fetchContacts() {
       return;
     }
     renderContacts(data);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -181,8 +184,10 @@ function closeEditContact() {
  * Loads contact data into the edit form by key.
  * @param {string} key - The contact key.
  */
-async function editContact(key) {
+async function editContact(key, contactName) {
   try {
+    findContactTasks(contactName)
+    currentEditName = contactName;
     const contact = await fetchContactByKey(key);
     if (!contact) {
       closeEditContact();
@@ -195,8 +200,14 @@ async function editContact(key) {
     fillEditForm(name || "", mail || "", phone || "", color);
     currentEditKey = key;
     showEditOverlay(name || "", color);
-  } catch (error) {}
+  } catch (error) { }
   toggleContactsSlider();
+}
+
+function findContactTasks(name) {
+  taskContactIsIncluded = tasks.filter((i) => {
+    return i.assigned_to.includes(name)
+  })
 }
 
 /**
@@ -269,26 +280,45 @@ async function CheckEditedContact() {
   const color = document.getElementById("editAvatar").style.background || getRandomColor();
   if (!name || !mail || !phone) {
     alertEdit();
-    return;}
+    return;
+  }
   if (!emailPattern.test(mail)) {
     alertValidMailEdit();
-    return;}
+    return;
+  }
   if (!digitPattern.test(phone)) {
     alertValidNumberEdit();
-    return;}
-    await  combineFullContact(name,mail,phone,color)
+    return;
+  }
+  await combineFullContact(name, mail, phone, color)
 }
 
 /**
  * Combines the new contact
  */
-async function combineFullContact(name,mail,phone,color) {
+async function combineFullContact(name, mail, phone, color) {
   const updatedContact = {
     name: name,
     mail: mail,
     phone_number: phone,
-    color: color};
+    color: color
+  };
   await saveEditedContact(updatedContact);
+  await updateTasks(updatedContact.name);
+}
+
+async function updateTasks(name) {
+  for (let index = 0; index < taskContactIsIncluded.length; index++) {
+    let currentContactIndex = taskContactIsIncluded[index].assigned_to.indexOf(currentEditName)
+    let currentTaskPath = BASE_URL + "tasks/" + taskContactIsIncluded[index].firebaseKey + "/assigned_to/" + currentContactIndex;
+    let response = await fetch(currentTaskPath + ".json", {
+      method: "PUT",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(name)
+    });
+  }
 }
 
 /**
@@ -306,7 +336,7 @@ async function saveEditedContact(updatedContact) {
     closeEditContact();
     await fetchContacts();
     showContact(updatedContact, updatedContact.color, currentEditKey);
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -318,7 +348,7 @@ async function deleteContact(key) {
     await fetch(`${BASE_URL}contacts/${key}.json`, { method: "DELETE" });
     document.getElementById("contactView").innerHTML = errorTamplate();
     await fetchContacts();
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
@@ -340,13 +370,16 @@ async function createContact() {
 
   if (!name || !mail || !phone) {
     alert();
-    return;}
+    return;
+  }
   if (!emailPattern.test(mail)) {
     alertValidMail();
-    return;}
+    return;
+  }
   if (!digitPattern.test(phone)) {
     alertValidNumber();
-    return;}
+    return;
+  }
   createNewContact(name, mail, phone);
 }
 
@@ -406,7 +439,7 @@ async function saveContact(key, contact) {
     }
 
     finishContactCreation();
-  } catch (error) {}
+  } catch (error) { }
 }
 
 /**
