@@ -268,8 +268,8 @@ function getPriority(taskIndex) {
  * @param {number} taskIndex - This is the index number from the tasks array 
  * @param {array} contacts - This is the array in which all contacts are pushed 
  */
-function getAssignedTo(taskIndex, contacts) {
-    getAssignedToInitials(taskIndex, contacts);
+function getAssignedTo(taskIndex, contacts, full) {
+    getAssignedToInitials(taskIndex, contacts, full);
 }
 
 /**
@@ -279,13 +279,13 @@ function getAssignedTo(taskIndex, contacts) {
  * @param {number} taskIndex - This is the index number from the tasks array 
  * @param {array} contacts - This is the array in which all contacts are pushed 
  */
-function getAssignedToInitials(taskIndex, contacts) {
+function getAssignedToInitials(taskIndex, contacts, full) {
     if (tasks[taskIndex].assigned_to) {
         for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
             let nameValue = replaceUmlauts(value);
             assignedTo.push(`${nameValue}`);
         };
-        establishInitials(taskIndex, contacts);
+        establishInitials(taskIndex, contacts, full);
         assignedTo = [];
     } else {
         return
@@ -299,10 +299,10 @@ function getAssignedToInitials(taskIndex, contacts) {
  * @param {number} taskIndex - This is the index number from the tasks array 
  * @param {array} contacts - This is the array in which all contacts are pushed 
  */
-function establishInitials(taskIndex, contacts) {
+function establishInitials(taskIndex, contacts, full) {
     const contentPlace = document.getElementById("taskAssignment" + taskIndex);
     for (let index = 0; index < assignedTo.length; index++) {
-        if (index == 5) {
+        if (index == 5 && !full) {
             contentPlace.innerHTML = moreMemberCardTemplate()
             return
         }

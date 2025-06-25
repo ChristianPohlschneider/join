@@ -1,6 +1,7 @@
 let subtaskCounter = 0;
 let isAddTaskOverlayOpen = false;
 let isTaskOverlayOpen = false
+let full = true;
 
 /**
  * This function loads the data for the clicked task overlay
@@ -10,7 +11,7 @@ let isTaskOverlayOpen = false
 function loadTaskOverlayData(taskIndex) {
     findBackgroundColor(taskIndex);
     getOverlaySubtasks(taskIndex);
-    getAssignedTo(taskIndex, contacts);
+    getAssignedTo(taskIndex, contacts, full);
     getAssignedToNames(taskIndex, contacts);
     getPriority(taskIndex);
     document.getElementById("priority#" + taskIndex).innerHTML += tasks[taskIndex].priority.charAt(0).toUpperCase() + tasks[taskIndex].priority.slice(1);
@@ -273,6 +274,8 @@ function openAddTaskBoard() {
     if (window.innerWidth <= 850) {
         window.location.href = "./add_task.html";
     } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') : 'disabled'
         assignedMembers = [];
         subtasksArray = [];
         const addTaskBoardRef = document.getElementById('addTaskBoard');

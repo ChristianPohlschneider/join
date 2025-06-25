@@ -8,6 +8,10 @@ html {
     background-color: #f9f9f9;
 }
 
+input{
+    padding-left: 8px;
+}
+
 .subtask-container {
     display: flex;
     align-items: center;
