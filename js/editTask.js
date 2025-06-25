@@ -116,7 +116,7 @@ function getContacts() {
  * @returns {void}
  */
 function checkSelectable(index) {
-    const currentMember = assignedMembers.find((member) => { return member == replaceUmlauts(contacts[index].name) });
+    const currentMember = assignedMembers.find((member) => { return member == contacts[index].name });
     let bgcolor = document.getElementById("container-" + index);
     let checked = document.getElementById("img-" + index);
     if (currentMember) {
@@ -183,7 +183,7 @@ function getAssignedMembers(currentTask) {
     assignedMembers = [];
     if (tasks[currentTask].assigned_to) {
         for (const [key, value] of Object.entries(tasks[currentTask].assigned_to)) {
-            let nameValue = replaceUmlauts(value);
+            let nameValue = value;
             assignedMembers.push(`${nameValue}`);
         };
         return assignedMembers;
@@ -199,7 +199,7 @@ function getAssignedMembers(currentTask) {
  * @param {number} index - Index of the contact to apply the color for.
  */
 function findSameBgColor(initals, fullname, index) {
-    const findSameInitials = contacts.find(({ name }) => { return replaceUmlauts(name) == fullname[index] });
+    const findSameInitials = contacts.find(({ name }) => { return name == fullname[index] });
     document.getElementById('picked-' + index).style.backgroundColor = findSameInitials.color;
 };
 
@@ -214,18 +214,17 @@ function findSameBgColor(initals, fullname, index) {
  * @param {string} userName - The name of the user to add or remove from the task.
  */
 function addMember(index, shortName, userName) {
-    const currentMember = assignedMembers.find((member) => { return member == replaceUmlauts(userName) });
+    const currentMember = assignedMembers.find((member) => { return member == userName });
     let bgcolor = document.getElementById("container-" + index);
     let checked = document.getElementById("img-" + index);
     if (currentMember) {
-        const index = assignedMembers.indexOf(replaceUmlauts(userName));
+        const index = assignedMembers.indexOf(userName);
         assignedMembers.splice(index, 1);
         bgcolor.classList.remove('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox.png`
         renderMembersForTask();
     } else {
-        replaceUmlauts(userName)
-        assignedMembers.push(replaceUmlauts(userName));
+        assignedMembers.push(userName);
         bgcolor.classList.add('assigned-bgcolor');
         checked.src = `../assets/icons/checkbox-checked-white.png`
         renderMembersForTask();

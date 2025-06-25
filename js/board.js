@@ -282,7 +282,7 @@ function getAssignedTo(taskIndex, contacts, full) {
 function getAssignedToInitials(taskIndex, contacts, full) {
     if (tasks[taskIndex].assigned_to) {
         for (const [key, value] of Object.entries(tasks[taskIndex].assigned_to)) {
-            let nameValue = replaceUmlauts(value);
+            let nameValue = value;
             assignedTo.push(`${nameValue}`);
         };
         establishInitials(taskIndex, contacts, full);
@@ -329,8 +329,8 @@ function establishInitials(taskIndex, contacts, full) {
  * @param {array} contacts - This is the array in which all contacts are pushed 
  */
 function getAssignedToVariants(taskIndex, initials, index, contacts) {
-    let nameToFind = replaceUmlauts(Object.entries(tasks[taskIndex].assigned_to)[index][1]);
-    if (contacts.find(({ name }) => replaceUmlauts(name) == nameToFind)) {
+    let nameToFind = Object.entries(tasks[taskIndex].assigned_to)[index][1];
+    if (contacts.find(({ name }) => name == nameToFind)) {
         establishKnownVariant(taskIndex, initials, index);
     } else {
         document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).style.backgroundColor = getRandomColor();
@@ -338,24 +338,6 @@ function getAssignedToVariants(taskIndex, initials, index, contacts) {
             document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).classList.add("positionAddInitials");
         }
     }
-}
-
-/**
- * This function replaces umlauts from the assigned contact names for a better finding of the
- * initial color variants
- * 
- * @param {string} string - This string is the name of the current assigned contact
- * @returns - This functions returns the name of the assigned contact with replaced umlauts
- */
-function replaceUmlauts(string) {
-    value = string;
-    value = value.replace(/ä/g, 'ae');
-    value = value.replace(/ö/g, 'oe');
-    value = value.replace(/ü/g, 'ue');
-    value = value.replace(/Ä/g, 'Ae');
-    value = value.replace(/Ö/g, 'Oe');
-    value = value.replace(/Ü/g, 'Ue');
-    return value;
 }
 
 /**
@@ -367,7 +349,7 @@ function replaceUmlauts(string) {
  */
 function establishKnownVariant(taskIndex, initials, index) {
     let searchWord = Object.entries(tasks[taskIndex].assigned_to)[index][1];
-    let colorIndex = contacts.findIndex(v => replaceUmlauts(v.name) === replaceUmlauts(searchWord));
+    let colorIndex = contacts.findIndex(v => v.name === searchWord);
     document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).style.backgroundColor = contacts[colorIndex].color;
     if (index != 0) {
         document.getElementById("assignedToInitial#" + initials + "#" + index + "#" + taskIndex).classList.add("positionAddInitials");
