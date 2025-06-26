@@ -17,9 +17,12 @@ function renderTaskOverlay(taskIndex) {
                     <p class="fontSize20">Assigned To:</p>
                     <div id="assignedTo${"#" + taskIndex}" class="assignedToOverlay"></div>
                 </div>
-                <div id="subtasks${"#" + taskIndex}" class="overlaySubtasks">
+                <div>
                     <p id="subTaskHeadTitle" class="subTaskHeadTitle">Subtasks</p>
+                    <div id="subtasks${"#" + taskIndex}" class="overlaySubtasks">
+                    </div>
                 </div>
+                
                 <div class="editDeleteDiv">
                     <div class="deleteSectionDiv" onclick="getTaskKey('${tasks[taskIndex].name}')">
                         <img class="editDeleteImg" src="../assets/icons/delete.png" alt="delete">
