@@ -19,8 +19,27 @@ function editTaskOverlay(currentTask) {
     renderMembersForTask();
     getContacts();
     getSubtasksEdit(currentTask);
-    checkEditInput()
-    dueDate.min = new Date().toISOString().split("T")[0];
+    dueDateEdit.min = new Date().toISOString().split("T")[0];
+    initValidationEdit();
+};
+
+function initValidationEdit() {
+    const submitButton = document.getElementById("creatTaskEdit");
+    const title = document.getElementById("titleEdit");
+    const dueDate = document.getElementById("dueDateEdit");
+    const category = document.getElementById("categoryEdit");
+    if (!title || !dueDate || !category || !submitButton) {
+        console.warn("Formularelemente nicht gefunden.");
+        return;
+    }
+     if (validationInterval !== null) return;
+    validationInterval = setInterval(() => {
+        const isValid =
+            title.value.trim() !== "" &&
+            dueDate.value.trim() !== "" &&
+            category.value.trim() !== "";
+        submitButton.disabled = !isValid;
+    }, 200)
 };
 
 /**
@@ -383,10 +402,10 @@ function getSubtasksEdit(taskIndex) {
  * @returns {Promise<void>} - Resolves when the task is updated and the board is refreshed.
  */
 async function editToDo(taskIndex) {
-    title = document.getElementById("title").value;
+    title = document.getElementById("titleEdit").value;
     description = document.getElementById("description").value;
-    dueDate = document.getElementById("dueDate").value;
-    category = document.getElementById("category").value;
+    dueDate = document.getElementById("dueDateEdit").value;
+    category = document.getElementById("categoryEdit").value;
     await pushTask(title, description, dueDate, category, priority, taskIndex);
     closeOverlay();
     await initboard();
@@ -415,17 +434,6 @@ async function pushTask(title, description, dueDate, category, priority, taskInd
     currentTaskPath = BASE_URL + "tasks/" + Object.keys(taskResponse)[taskIndex];
     await putData(currentTaskPath, editTask)
 };
-
-/**
- * Validates the input fields for editing a task.
- */
-function checkEditInput() {
-    const submitButton = document.getElementById("editToDoBtn");
-    const title = document.getElementById("title");
-    const dueDate = document.getElementById("dueDate");
-    const category = document.getElementById("category");
-    checkInputs(title, dueDate, category, submitButton)
-}
 
 /**
  * Enables or disables the submit button based on input field values.

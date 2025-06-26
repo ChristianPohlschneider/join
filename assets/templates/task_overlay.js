@@ -71,11 +71,11 @@ function editTaskOverlayTemplate(currentTask) {
                 <form class="flex-center-task">
                     <div class="first-container flex-gap flex-column">
                             <p>Title</p>
-                            <input onfocusout="checkEditInput()" class="input-text" type="text" id="title"value="${tasks[currentTask].name}" required>
+                            <input class="input-text" type="text" id="titleEdit"value="${tasks[currentTask].name}" required>
                             <p>Description</p>
                             <textarea class="input-text" id="description" rows="6" cols="50">${tasks[currentTask].description}</textarea>
                             <p>Due date</p>
-                            <input onfocusout="checkEditInput()" value="${tasks[currentTask].date}" type="date" required class="input-text date-input" id="dueDate">
+                            <input value="${tasks[currentTask].date}" type="date" required class="input-text date-input" id="dueDateEdit">
                             <p>Priority</p>
                             <div class="flex-center flex-gap">
                                 <div class="selectable" id="urgent" onclick="addCss('urgent')">
@@ -108,7 +108,7 @@ function editTaskOverlayTemplate(currentTask) {
                         </div>
                         <article class="flex-column">
                             <label for="category">Category</label>
-                            <select disabled onfocusout="checkEditInput()" id="category" name="selection-category" class="input-text"required>
+                            <select disabled onfocusout="checkEditInput()" id="categoryEdit" name="selection-category" class="input-text"required>
                                 <option value="${tasks[currentTask].category}" disabled selected hidden>${tasks[currentTask].category}</option>
                                 <option value="Technical Task">Technical Task</option>
                                 <option value="User Story">User Story</option>
@@ -131,7 +131,7 @@ function editTaskOverlayTemplate(currentTask) {
                     </div>
                 </form>
                 <div class= "addTaskButtonOverlayContainer">
-                    <button disabled=false onclick="editToDo(${currentTask})" id="editToDoBtn" class="addTaskButtonOverlay btn_edit_confirm">Ok
+                    <button disabled=false onclick="editToDo(${currentTask})" id="creatTaskEdit" class="addTaskButtonOverlay btn_edit_confirm">Ok
                         <img class="addPlus" src="../assets/icons/check-btn.png" alt="add task">
                     </button>
                 </div>
@@ -172,7 +172,7 @@ function addTaskBoardTemplate() {
                 <div class="first-container flex-gap flex-column">
                     <article>
                         <p>Title<span>*</span></p>
-                        <input onfocusout="checkTitle(), checkButtonDisabillity()" class="input-text" type="text" id="title"
+                        <input onfocusout="checkTitle()" class="input-text" type="text" id="title"
                             placeholder="Task Title" required>
                         <div class="warning-container">
                             <span class="warning d_none" id="warning-title">This field is required</span>
@@ -185,7 +185,7 @@ function addTaskBoardTemplate() {
                     </article>
                     <article>
                         <p>Due date<span>*</span></p>
-                        <input onfocusout="checkDate(), checkButtonDisabillity()" type="date" required class="input-text date-input" id="dueDate">
+                        <input onfocusout="checkDate()" type="date" required class="input-text date-input" id="dueDate">
                         <div class="warning-container">
                             <span class="warning d_none" id="warning-dueDate">This field is required</span>
                         </div>
@@ -227,7 +227,7 @@ function addTaskBoardTemplate() {
                     </div>
                     <article class="flex-column">
                         <label for="category">Category<span>*</span></label>
-                        <select onfocusout="checkCategory(), checkButtonDisabillity()" id="category" name="selection-category" class="input-text"
+                        <select onfocusout="checkCategory()" id="category" name="selection-category" class="input-text"
                             required>
                             <option value="" disabled selected hidden>Select task category</option>
                             <option value="Technical Task">Technical Task</option>

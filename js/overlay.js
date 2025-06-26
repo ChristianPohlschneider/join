@@ -2,6 +2,7 @@ let subtaskCounter = 0;
 let isAddTaskOverlayOpen = false;
 let isTaskOverlayOpen = false
 let full = true;
+let validationInterval = null;
 
 /**
  * This function loads the data for the clicked task overlay
@@ -179,6 +180,7 @@ function closeOverlay() {
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
     isTaskOverlayOpen = false
+    stopValidation();
 }
 
 /**
@@ -286,7 +288,35 @@ function openAddTaskBoard() {
         addCss("medium");
         getContacts();
         isAddTaskOverlayOpen = true;
+        initValidation();
     };
+}
+
+function initValidation() {
+    const submitButton = document.getElementById("creatTask");
+    const title = document.getElementById("title");
+    const dueDate = document.getElementById("dueDate");
+    const category = document.getElementById("category");
+    if (!title || !dueDate || !category || !submitButton) {
+        console.warn("Formularelemente nicht gefunden.");
+        return;
+    }
+     if (validationInterval !== null) return;
+    validationInterval = setInterval(() => {
+        const isValid =
+            title.value.trim() !== "" &&
+            dueDate.value.trim() !== "" &&
+            category.value.trim() !== "";
+        submitButton.disabled = !isValid;
+    }, 200)
+};
+
+function stopValidation() {
+    if (validationInterval !== null) {
+        clearInterval(validationInterval);
+        validationInterval = null;
+        console.log("Validierungs-Intervall gestoppt.");
+    }
 }
 
 /**
@@ -298,6 +328,7 @@ function closeAddTaskBoard() {
     addTaskBoardRef.classList.remove('open_addTask');
     addTaskBoardRef.classList.add('closed_addTask');
     document.getElementById('addTaskBoardContainer').classList.add('hidden');
+    stopValidation();
 }
 
 /**
