@@ -301,7 +301,7 @@ function initValidation() {
         console.warn("Formularelemente nicht gefunden.");
         return;
     }
-     if (validationInterval !== null) return;
+    if (validationInterval !== null) return;
     validationInterval = setInterval(() => {
         const isValid =
             title.value.trim() !== "" &&
@@ -327,6 +327,7 @@ function closeAddTaskBoard() {
     const addTaskBoardRef = document.getElementById('addTaskBoard');
     addTaskBoardRef.classList.remove('open_addTask');
     addTaskBoardRef.classList.add('closed_addTask');
+    addTaskBoardRef.innerHTML = "";
     document.getElementById('addTaskBoardContainer').classList.add('hidden');
     stopValidation();
 }
