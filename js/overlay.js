@@ -174,6 +174,7 @@ function checkSubtaskCheckboxes(taskIndex) {
  * This function closes the task overlay
  */
 function closeOverlay() {
+    renderTasksOnly();
     document.documentElement.classList.remove('stopScrolling')
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
@@ -227,8 +228,6 @@ async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
         const success = await sendSubtaskUpdate(taskIndex, subtaskKey, isChecked);
         if (!success) throw new Error("Update fehlgeschlagen");
         tasks[taskIndex].subtasks[subtaskKey].done = isChecked;
-        renderTasksOnly();
-        closeOverlay();
     } catch (error) {
         console.error("Fehler beim Speichern des Subtasks:", error);
     }
@@ -299,10 +298,6 @@ function closeAddTaskBoard() {
     addTaskBoardRef.classList.remove('open_addTask');
     addTaskBoardRef.classList.add('closed_addTask');
     document.getElementById('addTaskBoardContainer').classList.add('hidden');
-    setTimeout(() => {
-        addTaskBoardRef.innerHTML = "";
-    }, 300);
-
 }
 
 /**
@@ -407,15 +402,15 @@ function checkButtonDisabillity() {
 /**
  * This function collects the input values and creates a new task
  */
-function addNewToDO() {
+async function addNewToDO() {
     title = document.getElementById("title").value;
     description = document.getElementById("description").value;
     dueDate = document.getElementById("dueDate").value;
     category = document.getElementById("category").value;
-    pushTaskBoard(title, description, dueDate, category, priority);
+    await pushTaskBoard(title, description, dueDate, category, priority);
     cancelTask();
-    succeedRegistration();
-    const Timeout = setTimeout(fowarding, 2000);
+    renderTasksOnly();
+    closeAddTaskBoard();
 };
 
 /**
@@ -427,7 +422,7 @@ function addNewToDO() {
  * @param {string} category - collects the category from the input field as a string 
  * @param {string} priority - collects the priority from the input field as a string 
  */
-function pushTaskBoard(title, description, dueDate, category, priority) {
+async function pushTaskBoard(title, description, dueDate, category, priority) {
     let newTask = ({
         assigned_to: assignedMembers,
         category: category,
@@ -438,7 +433,7 @@ function pushTaskBoard(title, description, dueDate, category, priority) {
         status: "toDo",
         subtasks: subtasksArray
     });
-    postData(newTask);
+    await postData(newTask);
 };
 
 /**
@@ -446,16 +441,6 @@ function pushTaskBoard(title, description, dueDate, category, priority) {
  */
 function fowarding() {
     window.location.href = "./board.html";
-};
-
-
-/**
- * This function creates a visible feedback for successful registration
- */
-function succeedRegistration() {
-    let succeed = document.getElementById('succedSignup');
-    succeed.classList.remove('d_none');
-    document.getElementById('body').style.overflow = "hidden";
 };
 
 /**

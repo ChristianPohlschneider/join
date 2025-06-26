@@ -233,6 +233,7 @@
     user-select: none;
     position: relative;
     justify-content: center;
+    margin: 0;
 }
 
 .overlaySubtaskCheckbox:hover input:checked+.overlaySubtaskCheckmark,

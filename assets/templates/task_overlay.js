@@ -127,7 +127,7 @@ function editTaskOverlayTemplate(currentTask) {
                                 </div>
                                 <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
                             </div>
-                            <div id="subtaskList"></div>
+                            <div class="subtaskList subtaskListEdit" id="subtaskList"></div>
                     </div>
                 </form>
                 <div class= "addTaskButtonOverlayContainer">
@@ -168,7 +168,7 @@ function addTaskBoardTemplate() {
                 <h1 class="h1-add-task">Add Task</h1>
                 <div onclick="closeAddTaskBoard()" class="closeImg" onclick="closeOverlay()"></div>
             </div>
-            <form class="flex-center-task form">
+            <form class="flex-center-task form formBoard">
                 <div class="first-container flex-gap flex-column">
                     <article>
                         <p>Title<span>*</span></p>
@@ -251,7 +251,7 @@ function addTaskBoardTemplate() {
                             </div>
                             <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
                         </div>
-                        <div id="subtaskList"></div>
+                        <div class="subtaskList subtaskListBoard" id="subtaskList"></div>
                     </article>
                 </div>
             </form>

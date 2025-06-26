@@ -244,12 +244,19 @@ textarea {
   height: 5.6px;
 }
 
+.formBoard{
+    height: 620px;
+}
+
 .selectable-assigned {
+  position: absolute;
+  width: 100%;
   background: white;
   border: 1px solid #D1D1D1;
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
   border-radius: 10px;
+  z-index: 10;
 }
 
 .selectable-assigned-contact {
@@ -304,6 +311,7 @@ textarea {
 }
 
 .assign-dropdown-container {
+  position: relative;
   margin-top: 8px;
 }
 
@@ -455,6 +463,10 @@ li {
   overflow-x: auto;
 }
 
+.subtaskListBoard{
+  height: 150px;
+}
+
 .moreMembers{
   display: flex;
   align-items: center;
@@ -466,6 +478,10 @@ li {
   height: 42px;
   background-color: rgb(177, 179, 183);
   font-size: 18px;
+}
+
+.subtaskListEdit{
+  max-height: 100px;
 }
 
 @media (max-width: 1350px) {
@@ -492,6 +508,14 @@ li {
     width: 0px;
     height: 0px;
     display: none;
+  }
+
+  .formBoard{
+    height: unset;
+  }
+
+  .selectable-assigned {
+    max-height: 200px;
   }
 
   .flex-gap {
