@@ -431,7 +431,7 @@ li {
 }
 
 .success-container {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: flex-start;
   background-color: #d1d1d14f;
