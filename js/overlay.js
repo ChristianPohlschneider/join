@@ -292,6 +292,11 @@ function openAddTaskBoard() {
     };
 }
 
+/**
+ * Initializes form input validation for the "Create Task" button.
+ * The button is enabled only if all required fields (title, due date, category) are filled.
+ * Uses an interval to continuously check form input validity.
+ */
 function initValidation() {
     const submitButton = document.getElementById("creatTask");
     const title = document.getElementById("title");
@@ -300,7 +305,7 @@ function initValidation() {
     if (!title || !dueDate || !category || !submitButton) {
         console.warn("Formularelemente nicht gefunden.");
         return;
-    }
+    };
     if (validationInterval !== null) return;
     validationInterval = setInterval(() => {
         const isValid =
@@ -308,16 +313,19 @@ function initValidation() {
             dueDate.value.trim() !== "" &&
             category.value.trim() !== "";
         submitButton.disabled = !isValid;
-    }, 200)
+    }, 200);
 };
 
+/**
+ * Stops the ongoing form validation interval if it is running.
+ * This prevents further automatic checks of input fields.
+ */
 function stopValidation() {
     if (validationInterval !== null) {
         clearInterval(validationInterval);
         validationInterval = null;
-        console.log("Validierungs-Intervall gestoppt.");
-    }
-}
+    };
+};
 
 /**
  * This function closes the add task overlay board

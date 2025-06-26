@@ -23,6 +23,11 @@ function editTaskOverlay(currentTask) {
     initValidationEdit();
 };
 
+/**
+ * Initializes form input validation for the "Create Task" button.
+ * The button is enabled only if all required fields (title, due date, category) are filled.
+ * Uses an interval to continuously check form input validity.
+ */
 function initValidationEdit() {
     const submitButton = document.getElementById("creatTaskEdit");
     const title = document.getElementById("titleEdit");
