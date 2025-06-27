@@ -532,7 +532,7 @@ li {
     flex-direction: column;
     align-items: center;
     padding-left: 18px;
-    padding-right: 10px;
+    padding-right: 12px;
   }
 
   .button-area {
@@ -604,7 +604,6 @@ li {
   }
 
   .input-text {
-    width: 85vw;
     font-size: 16px;
   }
 
@@ -614,18 +613,10 @@ li {
   }
 
   textarea {
-    width: 85vw;
     min-width: 0px !important;
   }
 
-  .input-text,
-  .subtask-container {
-    width: 85vw;
-  }
 
-  .selectable-assigned {
-    width: 85vw;
-  }
 
   .dropdown-img-container {
   margin-left: 0;

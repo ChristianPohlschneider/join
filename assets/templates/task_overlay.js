@@ -120,7 +120,7 @@ function editTaskOverlayTemplate(currentTask) {
                             <p>Subtasks</p>
                             <div class="subtask-container">
                                 <input onclick="addSubtask()" onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
-                                    maxlength="30" name="subtaskTitle" class="input-subtask">
+                                    maxlength="20" name="subtaskTitle" class="input-subtask">
                                 <div id="subtask-icon-container" class="hidden subtasks-icon-container">
                                     <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                         alt="X">
@@ -244,7 +244,7 @@ function addTaskBoardTemplate() {
                         <p>Subtasks</p>
                         <div class="subtask-container">
                             <input onclick="addSubtask()" onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
-                                maxlength="30" name="subtaskTitle" class="input-subtask">
+                                maxlength="20" name="subtaskTitle" class="input-subtask">
                             <div id="subtask-icon-container" class="hidden subtasks-icon-container">
                                 <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                     alt="X">
