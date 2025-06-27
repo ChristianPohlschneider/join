@@ -178,6 +178,7 @@ function openEditContact() {
  */
 function closeEditContact() {
   document.getElementById("editContactOverlay").classList.add("hidden");
+  alertremoveEdit()
 }
 
 /**
