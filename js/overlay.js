@@ -26,13 +26,13 @@ function loadTaskOverlayData(taskIndex) {
  */
 function openTaskOverlay(taskIndex, event) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') : 'disabled'
+    window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') && document.body.classList.add('stopScrolling') : 'disabled'
     isTaskOverlayOpen = true
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.remove("hidden");
     document.getElementById("currentContent").innerHTML += renderTaskOverlay(taskIndex, subtaskCounter);
+    document.getElementById("cardOverlay").classList.add('show');
     loadTaskOverlayData(taskIndex);
-    document.getElementById("cardOverlay").style.transform = "translateX(0)";
     document.getElementById("cardOverlay").classList.add("openCardOverlay");
     event.stopPropagation();
 }
@@ -177,6 +177,7 @@ function checkSubtaskCheckboxes(taskIndex) {
 function closeOverlay() {
     renderTasksOnly();
     document.documentElement.classList.remove('stopScrolling')
+    document.body.classList.remove('stopScrolling')
     document.getElementById("currentContent").innerHTML = "";
     document.getElementById("boardTaskOverlay").classList.add("hidden");
     isTaskOverlayOpen = false
