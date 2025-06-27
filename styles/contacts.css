@@ -266,7 +266,8 @@ input{
     background: white;
     border-radius: 10px;
     height: 594px;
-    max-width: 90%;
+    max-width: 1130px;
+    width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
@@ -581,7 +582,7 @@ input{
 
 .warning {
     height: 15px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: #FF8190;
 }
@@ -599,7 +600,7 @@ input{
 
 .warning-signup {
     height: 15px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: #FF8190;
 }
@@ -639,7 +640,7 @@ input::placeholder {
     }
 
     .contact-form input {
-        width: 80%;
+        width: 75%;
     }
 
     .close-btn {
@@ -722,7 +723,6 @@ input::placeholder {
     }
 
     .overlay-content {
-        width: 70%;
         height: 80vh;
         max-width: none;
         max-height: none;
@@ -945,9 +945,6 @@ input::placeholder {
 }
 
 @media (max-width: 570px) {
-    .contact-form input {
-        width: 60%;
-    }
 
     .border-blue {
         margin-left: 14px;
@@ -1043,8 +1040,8 @@ input::placeholder {
     }
 
     .contact-form input {
-        width: 50%;
-        font-size: 12px;
+        width: 60%;
+        font-size: 16px;
     }
 
     .overlay-header p {
@@ -1096,11 +1093,6 @@ input::placeholder {
         padding-right: 10px;
     }
 
-    .contact-form input {
-        width: 50%;
-        font-size: 11px;
-    }
-
     .subtask-container {
         width: 100%;
     }
@@ -1110,15 +1102,11 @@ input::placeholder {
     }
 
     .contacts-name {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .contacts-mail {
-        font-size: 14px;
-    }
-
-    .contact-form input {
-        width: 40%;
+        font-size: 16px;
     }
 
     .create-button {
