@@ -125,15 +125,14 @@ function validateAndPrepareSubtasks(taskIndex) {
     const subtasksObj = task?.subtasks;
     const subtasksContainer = document.getElementById("subtasks#" + taskIndex);
     if (!subtasksContainer) {
-        console.warn("Subtasks-Container nicht gefunden für Task", taskIndex);
+        console.warn("No subtaskContainer found", taskIndex);
         return {};
     }
     if (!subtasksObj || typeof subtasksObj !== "object") {
         subtasksContainer.style.display = "none";
         document.getElementById("subTaskHeadTitle").style.display = "none";
         return {};
-    }
-    return { subtasksObj, subtasksContainer };
+    } return { subtasksObj, subtasksContainer };
 }
 
 /**
@@ -232,7 +231,7 @@ async function updateSubtaskStatus(taskIndex, subtaskKey, isChecked) {
         if (!success) throw new Error("Update fehlgeschlagen");
         tasks[taskIndex].subtasks[subtaskKey].done = isChecked;
     } catch (error) {
-        console.error("Fehler beim Speichern des Subtasks:", error);
+        console.error("Error on saving subtasks:", error);
     }
 }
 
@@ -248,7 +247,7 @@ async function sendSubtaskUpdate(taskIndex, subtaskKey, isChecked) {
     const task = tasks[taskIndex];
     const firebaseKey = task.firebaseKey;
     if (!firebaseKey) {
-        console.error("Fehlender Firebase-Key für Task:", task);
+        console.error("Missing firebase key on task:", task);
         return false;
     }
     const url = `https://join-13fcf-default-rtdb.europe-west1.firebasedatabase.app/tasks/${firebaseKey}/subtasks/${subtaskKey}/done.json`;
@@ -276,238 +275,56 @@ function openAddTaskBoard() {
     if (window.innerWidth <= 850) {
         window.location.href = "./add_task.html";
     } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        window.innerWidth <= 500 ? document.documentElement.classList.add('stopScrolling') : 'disabled'
-        assignedMembers = [];
-        subtasksArray = [];
-        const addTaskBoardRef = document.getElementById('addTaskBoard');
-        addTaskBoardRef.innerHTML = addTaskBoardTemplate();
-        document.getElementById('addTaskBoardContainer').classList.remove('hidden');
-        addTaskBoardRef.classList.remove('closed_addTask');
-        addTaskBoardRef.classList.add('open_addTask');
-        dueDate.min = new Date().toISOString().split("T")[0];
-        addCss("medium");
-        getContacts();
-        isAddTaskOverlayOpen = true;
-        initValidation();
-    };
+        openAddTaskOverlay();
+    }
 }
 
 /**
- * Initializes form input validation for the "Create Task" button.
- * The button is enabled only if all required fields (title, due date, category) are filled.
- * Uses an interval to continuously check form input validity.
+ * This function opens the overlay if the window inner width is under 850px
  */
-function initValidation() {
-    const submitButton = document.getElementById("creatTask");
-    const title = document.getElementById("title");
-    const dueDate = document.getElementById("dueDate");
-    const category = document.getElementById("category");
-    if (!title || !dueDate || !category || !submitButton) {
-        console.warn("Formularelemente nicht gefunden.");
-        return;
-    };
-    if (validationInterval !== null) return;
-    validationInterval = setInterval(() => {
-        const isValid =
-            title.value.trim() !== "" &&
-            dueDate.value.trim() !== "" &&
-            category.value.trim() !== "";
-        submitButton.disabled = !isValid;
-    }, 200);
-};
-
-/**
- * Stops the ongoing form validation interval if it is running.
- * This prevents further automatic checks of input fields.
- */
-function stopValidation() {
-    if (validationInterval !== null) {
-        clearInterval(validationInterval);
-        validationInterval = null;
-    };
-};
-
-/**
- * This function closes the add task overlay board
- */
-function closeAddTaskBoard() {
-    isAddTaskOverlayOpen = false;
-    const addTaskBoardRef = document.getElementById('addTaskBoard');
-    addTaskBoardRef.classList.remove('open_addTask');
-    addTaskBoardRef.classList.add('closed_addTask');
-    addTaskBoardRef.innerHTML = "";
-    document.getElementById('addTaskBoardContainer').classList.add('hidden');
-    stopValidation();
+function openAddTaskOverlay() {
+    scrollToTopAndStopScroll();
+    resetTaskData();
+    setupAddTaskBoard();
+    finalizeAddTaskSetup();
 }
 
 /**
- * This function clears the entries of the add task board
+ * This function scrolls the window to the top
  */
-function cancelTask() {
-    const submitButton = document.getElementById("creatTask");
-    document.getElementById("title").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("dueDate").value = "";
-    document.getElementById('category').value = "";
-    document.getElementById("memberForTask").innerHTML = "";
-    document.getElementById("subtask").value = "";
-    subtaskList.innerHTML = "";
-    submitButton.disabled = true;
-    addCss('medium');
+function scrollToTopAndStopScroll() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.innerWidth <= 500) {
+        document.documentElement.classList.add('stopScrolling');
+    }
+}
+
+/**
+ * This function resets the task data
+ */
+function resetTaskData() {
     assignedMembers = [];
-};
+    subtasksArray = [];
+}
 
 /**
- * This function checks the input of the add task title onfocusout
+ * This function is used to setup the task board
  */
-function checkTitle() {
-    let title = document.getElementById('title');
-    let warningText = document.getElementById('warning-title');
-    if (title.value.length <= 0) {
-        getRedBorder(title);
-    } else {
-        title.classList.remove('red-border');
-        warningText.classList.add('d_none');
-    };
-};
+function setupAddTaskBoard() {
+    const addTaskBoardRef = document.getElementById('addTaskBoard');
+    addTaskBoardRef.innerHTML = addTaskBoardTemplate();
+    document.getElementById('addTaskBoardContainer').classList.remove('hidden');
+    addTaskBoardRef.classList.remove('closed_addTask');
+    addTaskBoardRef.classList.add('open_addTask');
+    dueDate.min = new Date().toISOString().split("T")[0];
+}
 
 /**
- * This function checks the input of the add task dueDate onfocusout
+ * This function is used to finalize the add task setup
  */
-function checkDate() {
-    let date = document.getElementById('dueDate');
-    let warningText = document.getElementById('warning-dueDate');
-    if (date.value === '') {
-        getRedBorder(date);
-    } else {
-        date.classList.remove('red-border');
-        warningText.classList.add('d_none');
-    };
-};
-
-/**
- * This function creates a warning message and a red boarder around an input field if there
- * is no input
- * 
- * @param {Element} input - This function uses an Element to establish the red boarder
- */
-function getRedBorder(input) {
-    input.classList.add('red-border');
-    let warningText = document.getElementById('warning-' + input.id);
-    warningText.classList.remove('d_none');
-};
-
-/**
- * This function checks the input of the add task category onfocusout
- */
-function checkCategory() {
-    let category = document.getElementById('category');
-    let warningText = document.getElementById('warning-category');
-    if (category.value === '') {
-        getRedBorder(category);
-    } else {
-        category.classList.remove('red-border');
-        warningText.classList.add('d_none');
-    };
-};
-
-/**
- * This function checks the subtask via onkeyup on the input field
- */
-function checkSubtask() {
-    let subtaskRef = document.getElementById('subtask');
-    let subtaskPlus = document.getElementById('subtask-plus');
-    let subtaskIcons = document.getElementById('subtask-icon-container');
-    if (subtaskRef.value.length > 0) {
-        subtaskPlus.classList.add('d_none');
-        subtaskIcons.classList.remove('d_none');
-    } else {
-        subtaskPlus.classList.remove('d_none');
-        subtaskIcons.classList.add('d_none');
-    };
-};
-
-/**
- * This function checks the input fields from the add task board and enables the
- * add task button
- */
-function checkButtonDisabillity() {
-    const submitButton = document.getElementById("creatTask");
-    const title = document.getElementById("title");
-    const dueDate = document.getElementById("dueDate");
-    const category = document.getElementById("category");
-    checkInputs(title, dueDate, category, submitButton);
-};
-
-/**
- * This function collects the input values and creates a new task
- */
-async function addNewToDO() {
-    title = document.getElementById("title").value;
-    description = document.getElementById("description").value;
-    dueDate = document.getElementById("dueDate").value;
-    category = document.getElementById("category").value;
-    await pushTaskBoard(title, description, dueDate, category, priority);
-    cancelTask();
-    renderTasksOnly();
-    closeAddTaskBoard();
-};
-
-/**
- * This function collects the input from the add task board and creates/fetches a new task
- * 
- * @param {string} title - collects the title from the input field as a string
- * @param {string} description - collects the description from the input field as a string 
- * @param {string} dueDate - collects the dueDate from the input field as a string 
- * @param {string} category - collects the category from the input field as a string 
- * @param {string} priority - collects the priority from the input field as a string 
- */
-async function pushTaskBoard(title, description, dueDate, category, priority) {
-    let newTask = ({
-        assigned_to: assignedMembers,
-        category: category,
-        date: dueDate,
-        description: description,
-        name: title,
-        priority: priority,
-        status: "toDo",
-        subtasks: subtasksArray
-    });
-    await postData(newTask);
-};
-
-/**
- * This function forwards the user to "./board.html"
- */
-function fowarding() {
-    window.location.href = "./board.html";
-};
-
-/**
- * This function toggles the button for the add task button under a window.innerWidth of
- * 850px and redirects the user to "./add_task.html"
- */
-function toggleAddTaskLink() {
-    const taskBtnBoardRef = document.getElementById('addTaskButtonBoard')
-    if (window.innerWidth <= 850) {
-        taskBtnBoardRef.href = "./add_task.html";
-        if (isAddTaskOverlayOpen) {
-            window.location.href = "./add_task.html";
-        }
-    } else {
-        taskBtnBoardRef.href = "#";
-    }
-};
-
-/**
- * This function toggles the scroll behavior of the task overlay if the window.innerWidth
- * gets higher or lower than 550px
- */
-function toggleOverlayTask() {
-    if (window.innerWidth <= 550 && isTaskOverlayOpen) {
-        document.documentElement.classList.add('stopScrolling')
-    } else {
-        document.documentElement.classList.remove('stopScrolling')
-    }
-};
+function finalizeAddTaskSetup() {
+    addCss("medium");
+    getContacts();
+    isAddTaskOverlayOpen = true;
+    initValidation();
+}
