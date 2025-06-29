@@ -16,6 +16,8 @@
     <script src="../assets/templates/header.js"></script>
     <script src="../js/add_task.js" defer></script>
     <script src="../assets/templates/add_task_template.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/contacts_v2.js"></script>
 </head>
 
 <body id="body" onresize="toogleVieW(),highlightLink()" onload="initTask(); startForm()">
@@ -101,14 +103,14 @@
                     <article>
                         <p>Subtasks</p>
                         <div class="subtask-container">
-                            <input onclick="addSubtask()" onkeyup="checkSubtask()" id="subtask" type="text" placeholder="Add new Subtask"
-                                maxlength="20" name="subtaskTitle" class="input-subtask">
+                            <input onclick="addSubtask()" onkeyup="checkSubtask()" id="subtask" type="text"
+                                placeholder="Add new Subtask" maxlength="20" name="subtaskTitle" class="input-subtask">
                             <div id="subtask-icon-container" class="d_none subtasks-icon-container">
                                 <img onclick="deleteSubtaskInput()" class="delte-icon" src="../assets/icons/delete.png"
                                     alt="X">
                                 <img src="../assets/icons/vector.png" alt="">
-                                <img id="subtask-add-btn" onclick="addSubtask()" class="check-icon" src="../assets/icons/check-black.png"
-                                    alt="Add">
+                                <img id="subtask-add-btn" onclick="addSubtask()" class="check-icon"
+                                    src="../assets/icons/check-black.png" alt="Add">
                             </div>
                             <img id="subtask-plus" src="../assets/icons/+.png" alt="+" class="plus-symbol">
                         </div>
@@ -128,4 +130,5 @@
         </div>
     </main>
 </body>
+
 </html>

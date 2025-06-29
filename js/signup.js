@@ -58,10 +58,8 @@ async function createUser(name, email, password) {
                 email: email,
                 name: name,
                 password: password
-            }
-        )
-    });
-    createContact(name, email);
+            })
+    }); createContact(name, email);
 };
 
 /**
@@ -81,8 +79,7 @@ async function createContact(name, email) {
                 mail: email,
                 name: name,
                phone_number: ""
-            }
-        )
+            })
     });
 }
 
@@ -91,21 +88,35 @@ async function createContact(name, email) {
  * 
  */
 function clearErrors() {
-    let nameContainer = document.getElementById('name-input-container');
+    clearNameAndMailErrors();
+    clearPasswordErrors();
+};
+
+/**
+ * clears and removes all error messages and red border highlights from name and mail input
+ */
+function clearNameAndMailErrors() {
     let nameInput = document.getElementById('warning-name');
+    let nameContainer = document.getElementById('name-input-container');
     nameInput.classList.add('d_none');
     nameContainer.classList.remove('red-border');
-    let matchPassword = document.getElementById('warning-password');
-    let passwordContainer = document.getElementById('pasword-confirm-input-container');
-    let passwordCOnfirmContainer = document.getElementById('pasword-input-container');
-    matchPassword.classList.add('d_none');
-    passwordContainer.classList.remove('red-border');
-    passwordCOnfirmContainer.classList.remove('red-border');
     let warningMail = document.getElementById('warning-mail');
     let mailContainer = document.getElementById('mail-input-container');
     warningMail.classList.add('d_none');
     mailContainer.classList.remove('red-border');
-};
+}
+
+/**
+ * clears and removes all error messages and red border highlights from password input 
+ */
+function clearPasswordErrors() {
+    let matchPassword = document.getElementById('warning-password');
+    let passwordContainer = document.getElementById('pasword-confirm-input-container');
+    let passwordConfirmContainer = document.getElementById('pasword-input-container');
+    matchPassword.classList.add('d_none');
+    passwordContainer.classList.remove('red-border');
+    passwordConfirmContainer.classList.remove('red-border');
+}
 
 /**
  * Check the name value input
@@ -144,15 +155,12 @@ function checkPassword() {
     let passwordCOnfirmContainer = document.getElementById('pasword-input-container');
     if (password.value === confirmPwassword.value && password.value.length != 0) {
         return password.value
-    } else {
-        throw {
-            code: 'password mismatch',
-            passwordText: matchPassword,
-            passwordBorder: passwordContainer,
-            passwordConfirmBorder: passwordCOnfirmContainer
-        };
-    };
-};
+    } else {    throw {
+                    code: 'password mismatch',
+                    passwordText: matchPassword,
+                    passwordBorder: passwordContainer,
+                    passwordConfirmBorder: passwordCOnfirmContainer
+    };};};
 
 /**
  * Check the email value input

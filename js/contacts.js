@@ -1,5 +1,6 @@
 let taskContactIsIncluded = [];
 let currentEditName = "";
+
 /**
  * Regular expression to validate email addresses.
  * Matches a basic format like name@example.com.
@@ -77,8 +78,7 @@ function renderContacts(contactsData) {
       appendGroupHeader(list, currentGroup);
     }
     appendContactElement(list, key, contact);
-  });
-}
+  });}
 
 /**
  * Appends a contact element to the contact list.
@@ -107,7 +107,6 @@ function appendGroupHeader(list, groupLetter) {
   groupHeader.classList.add("contact-group-header");
   groupHeader.textContent = groupLetter;
   list.appendChild(groupHeader);
-
   const highlightDiv = document.createElement("div");
   highlightDiv.classList.add("contact-group-highlight");
   list.appendChild(highlightDiv);
@@ -120,7 +119,6 @@ function appendGroupHeader(list, groupLetter) {
 function showCurrentContact(id) {
   const prev = document.querySelector(".CurrentContact");
   if (prev) prev.classList.remove("CurrentContact");
-
   const current = document.getElementById(id);
   if (current) current.classList.add("CurrentContact");
 }
@@ -191,19 +189,14 @@ async function editContact(key, contactName) {
     currentEditName = contactName;
     const contact = await fetchContactByKey(key);
     if (!contact) {
-      closeEditContact();
-      return;
-    }
-
+      closeEditContact(); return;}
     const { name, mail, phone_number: phone } = contact;
     const color = await ensureContactColor(key, contact.color);
-
     fillEditForm(name || "", mail || "", phone || "", color);
     currentEditKey = key;
     showEditOverlay(name || "", color);
   } catch (error) { }
-  toggleContactsSlider();
-}
+  toggleContactsSlider();}
 
 /**
  * Filters all tasks and finds those assigned to the given contact name.
@@ -285,17 +278,11 @@ async function CheckEditedContact() {
   const phone = document.getElementById("editPhone").value;
   const color = document.getElementById("editAvatar").style.background || getRandomColor();
   if (!name || !mail || !phone) {
-    alertEdit();
-    return;
-  }
+    alertEdit(); return;}
   if (!emailPattern.test(mail)) {
-    alertValidMailEdit();
-    return;
-  }
+    alertValidMailEdit(); return;}
   if (!digitPattern.test(phone)) {
-    alertValidNumberEdit();
-    return;
-  }
+    alertValidNumberEdit(); return;}
   await combineFullContact(name, mail, phone, color)
 }
 
@@ -332,8 +319,7 @@ async function updateTasks(name) {
       },
       body: JSON.stringify(name)
     });
-  }
-}
+  }}
 
 /**
  * Saves the edited contact to the database.
@@ -346,7 +332,6 @@ async function saveEditedContact(updatedContact) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedContact)
     });
-
     closeEditContact();
     await fetchContacts();
     showContact(updatedContact, updatedContact.color, currentEditKey);
@@ -381,19 +366,12 @@ async function createContact() {
   const name = getInputValue("contactName");
   const mail = getInputValue("contactEmail");
   const phone = getInputValue("contactPhone");
-
   if (!name || !mail || !phone) {
-    alert();
-    return;
-  }
+    alert(); return;}
   if (!emailPattern.test(mail)) {
-    alertValidMail();
-    return;
-  }
+    alertValidMail(); return;}
   if (!digitPattern.test(phone)) {
-    alertValidNumber();
-    return;
-  }
+    alertValidNumber(); return;}
   createNewContact(name, mail, phone);
 }
 
@@ -418,113 +396,3 @@ async function createNewContact(name, mail, phone) {
 function getInputValue(id) {
   return document.getElementById(id).value.trim();
 }
-
-/**
- * Builds a contact object.
- * @param {string} name 
- * @param {string} mail 
- * @param {string} phone 
- * @returns {Object} - Contact object.
- */
-function buildContactObject(name, mail, phone) {
-  return {
-    name: name,
-    mail: mail,
-    phone_number: phone,
-    color: getRandomColor()
-  };
-}
-
-/**
- * Saves a contact to the backend.
- * @param {string} key - Contact key.
- * @param {Object} contact - Contact object.
- */
-async function saveContact(key, contact) {
-  try {
-    const response = await fetch(`${BASE_URL}contacts/${key}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(contact)
-    });
-
-    if (!response.ok) {
-      return;
-    }
-
-    finishContactCreation();
-  } catch (error) { }
-}
-
-/**
- * Finishes contact creation process and updates UI.
- */
-function finishContactCreation() {
-  closeAddContact();
-  clearAddContactFields();
-  contactAddedSuccessfully();
-  fetchContacts();
-}
-
-/**
- * Closes a specified overlay by its ID.
- * @param {string} overlayId - The overlay element ID.
- */
-function closeOverlayByElement(overlayId) {
-  const overlay = document.getElementById(overlayId);
-  if (overlay) overlay.classList.add("hidden");
-}
-
-document.addEventListener("click", function (event) {
-  const openOverlays = document.querySelectorAll(".overlay:not(.hidden)");
-
-  openOverlays.forEach(overlay => {
-    if (event.target === overlay) {
-      overlay.classList.add("hidden");
-    }
-  });
-});
-
-const contactsSlider = document.getElementById("contactsSlider");
-const sliderTrigger = document.getElementById("sliderTrigger");
-
-if (contactsSlider && sliderTrigger) {
-  sliderTrigger.addEventListener("click", function (event) {
-    event.stopPropagation();
-    contactsSlider.classList.toggle("dnone");
-  });
-
-  document.addEventListener("click", function (event) {
-    const isClickOutside =
-      !contactsSlider.contains(event.target) &&
-      !sliderTrigger.contains(event.target);
-
-    if (isClickOutside && !contactsSlider.classList.contains("dnone")) {
-      contactsSlider.classList.add("dnone");
-    }
-  });
-}
-
-/**
- * Deletes the currently selected contact.
- */
-function deleteCurrentContact() {
-  if (currentEditKey) {
-    deleteContact(currentEditKey);
-    closeEditContact();
-  }
-}
-
-/**
- * Shows feedback that contact was added successfully.
- */
-function contactAddedSuccessfully() {
-  const feedbackEl = document.getElementById("userFeedback");
-  feedbackEl.classList.remove("hidden");
-
-  setTimeout(() => {
-    feedbackEl.classList.add("hidden");
-  }, 4000);
-}
-
-

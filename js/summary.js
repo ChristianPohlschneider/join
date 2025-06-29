@@ -1,3 +1,5 @@
+const time = new Date();
+
 /**
  * Initializes the summary view of the application.
  *
@@ -15,8 +17,6 @@ async function initSummary() {
     renderSummary();
     highlightLink();
 };
-
-const time = new Date();
 
 /**
  * Function to render the menu and header into the HTML
@@ -103,15 +103,13 @@ function renderSecondRow() {
     allUrgents.innerHTML = `${currentUrgent.length}`;
     let urgentDates = [];
     for (let index = 0; index < currentUrgent.length; index++) {
-        urgentDates.push(new Date(currentUrgent[index].date))
-    };
+        urgentDates.push(new Date(currentUrgent[index].date))};
     const minDate = new Date(Math.min(...urgentDates));
     let urgentDate = document.getElementById('urgant-date');
     urgentDate.innerHTML = minDate.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
-    });
+        day: 'numeric' });
 };
 
 /**
