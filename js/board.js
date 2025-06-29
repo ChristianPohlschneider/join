@@ -42,17 +42,13 @@ function highlightLink() {
 function renderTasks(contacts) {
     for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
         if (tasks[taskIndex].status == "toDo") {
-            renderTaskToDo(taskIndex, contacts);
-        }
+            renderTaskToDo(taskIndex, contacts);}
         else if (tasks[taskIndex].status == "inProgress") {
-            renderTaskInProgress(taskIndex, contacts);
-        }
+            renderTaskInProgress(taskIndex, contacts);}
         else if (tasks[taskIndex].status == "await") {
-            renderTaskAwait(taskIndex, contacts);
-        }
+            renderTaskAwait(taskIndex, contacts);}
         else if (tasks[taskIndex].status == "done") {
-            renderDone(taskIndex, contacts);
-        }
+            renderDone(taskIndex, contacts);}
     }
     renderDropZones();
 }
@@ -241,9 +237,7 @@ function getSubtaskIndex(taskIndex) {
                 done: value.done
             });
         });
-    }
-}
-
+    }}
 
 /**
  * This function finds the task priority and renders it into the task card
@@ -303,21 +297,16 @@ function establishInitials(taskIndex, contacts, full) {
     const contentPlace = document.getElementById("taskAssignment" + taskIndex);
     for (let index = 0; index < assignedTo.length; index++) {
         if (index == 5 && !full) {
-            contentPlace.innerHTML = moreMemberCardTemplate()
-            return
-        }
+            contentPlace.innerHTML = moreMemberCardTemplate(); return}
         let name = assignedTo[index];
-        let parts = name.split(' ')
-        let initials = ''
+        let parts = name.split(' ');
+        let initials = '';
         for (let i = 0; i < parts.length; i++) {
             if (parts[i].length > 0 && parts[i] !== '') {
-                initials += parts[i][0]
-            }
-        }
+                initials += parts[i][0]}}
         document.getElementById("assignedTo#" + taskIndex).innerHTML += renderInitials(taskIndex, initials, index);
         getAssignedToVariants(taskIndex, initials, index, contacts);
-    }
-}
+    }}
 
 /**
  * This function is used to find the peviously saved color variant for the assigned contact
@@ -400,15 +389,11 @@ function startDragging(id) {
     currentId = id;
     const card = document.getElementById(`card${currentId}`);
     if (!card) return;
-
-    // Nur einmal anhängen
     if (!card.dataset.dragListenerAdded) {
         card.addEventListener('dragstart', function (e) {
-            e.preventDefault(); // Verhindert native Drag-Aktionen komplett
+            e.preventDefault();
         });
-        card.dataset.dragListenerAdded = "true";
-    }
-
+        card.dataset.dragListenerAdded = "true";}
     card.style.transformOrigin = 'bottom left';
     card.style.transform = 'rotate(3deg)';
     showVisibleFeedbackOnDrag(currentId);
@@ -646,9 +631,7 @@ function finishDrag(cardElement, taskIndex, ev) {
     if (status) {
         currentId = taskIndex;
         moveTo(status);
-    } if (cardElement.parentElement === document.body) {
-        cardElement.remove();
-    }
+    } if (cardElement.parentElement === document.body) {cardElement.remove();}
 }
 
 /**
@@ -665,25 +648,63 @@ function handleTouchStart(cardElement, e, taskIndex) {
     const rect = cardElement.getBoundingClientRect();
     const offsetX = touch.clientX - rect.left;
     const offsetY = touch.clientY - rect.top;
+    setupDragHandlers(cardElement, touch, rect, offsetX, offsetY, taskIndex);
+}
+
+/**
+ * This function is used to get the setup for the dragging process
+ * 
+ * @param {element} cardElement - This is the element which should be dragged 
+ * @param {object} touch - This is the touch event object 
+ * @param {DOMRect-Object} rect - This object specifies the position and the size of an object 
+ * @param {number} offsetX - This is the x-position of the touch event  
+ * @param {number} offsetY - This is the y-position of the touch event  
+ * @param {number} taskIndex - This is the index number from the tasks array 
+ */
+function setupDragHandlers(cardElement, touch, rect, offsetX, offsetY, taskIndex) {
     let dragStarted = false;
     let canDrag = false;
     const dragTimer = startDragTimer(() => canDrag = true, 300);
     const onMove = (ev) => {
-        if (tryStartDrag(ev, { dragStarted, canDrag, touch, cardElement, rect, taskIndex, offsetX, offsetY, dragTimer }))
-            dragStarted = true;
-        if (dragStarted) moveCard(cardElement, ev, offsetX, offsetY);
-    };
-
+        dragStarted = onTouchMove(ev, {
+            dragStarted, canDrag, touch, cardElement, rect, taskIndex, offsetX, offsetY, dragTimer
+        });};
     const onEnd = (ev) => {
-        clearTimeout(dragTimer);
-        cleanupListeners(cardElement, onMove, onEnd);
-        removeTouchedClass(cardElement);
-        if (!dragStarted) openTaskOverlay(taskIndex, ev);
-        else finishDrag(cardElement, taskIndex, ev);
-    };
-
+        onTouchEnd(ev, {
+            dragStarted, cardElement, onMove, onEnd, taskIndex, dragTimer});};
     cardElement.addEventListener('touchmove', onMove, { passive: false });
     cardElement.addEventListener('touchend', onEnd);
+}
+
+/**
+ * This functin is used to move the element on touch
+ * 
+ * @param {object} ev - This is the touch event object 
+ * @param {object} context - This is a container for the touch values
+ * @returns the return value is true or false depending on touch state. if the drag event started
+ *          previously, the return value is dragStarted
+ */
+function onTouchMove(ev, context) {
+    const { dragStarted, canDrag, touch, cardElement, rect, taskIndex, offsetX, offsetY, dragTimer } = context;
+    if (tryStartDrag(ev, { dragStarted, canDrag, touch, cardElement, rect, taskIndex, offsetX, offsetY, dragTimer }))
+        return true;
+    if (dragStarted) moveCard(cardElement, ev, offsetX, offsetY);
+    return dragStarted;
+}
+
+/**
+ * This function is used to handle the touch end
+ * 
+ * @param {object} ev - This is the touch event object 
+ * @param {object} context - This is a container for the touch values 
+ */
+function onTouchEnd(ev, context) {
+    const { dragStarted, cardElement, onMove, onEnd, taskIndex, dragTimer } = context;
+    clearTimeout(dragTimer);
+    cleanupListeners(cardElement, onMove, onEnd);
+    removeTouchedClass(cardElement);
+    if (!dragStarted) openTaskOverlay(taskIndex, ev);
+    else finishDrag(cardElement, taskIndex, ev);
 }
 
 /**
@@ -821,11 +842,20 @@ function extractStatusFromDropTarget(dropTarget) {
         if (match) return match[1];
     }
     const headerText = boardList.querySelector('h3')?.innerText.trim();
-    const map = {
+    const map = getStatusMapping();
+    return map[headerText] || null;
+}
+
+/**
+ * This function is used to return the mapping status as an object
+ * 
+ * @returns - This function returs the mapping status as an object 
+ */
+function getStatusMapping() {
+    return {
         "To do": "toDo",
         "In progress": "inProgress",
         "Await feedback": "await",
         "Done": "done"
     };
-    return map[headerText] || null;
 }
